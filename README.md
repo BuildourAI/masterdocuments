@@ -12,4 +12,14 @@ The master guides and the blueprint-writing skill, in one place.
 
 ## Using the skill
 
-Clone this repository and start Claude Code inside it. The `ai-systems-blueprint` skill loads automatically for any session in this folder: type `/ai-systems-blueprint`, or simply ask for a client blueprint. Updates arrive with `git pull`.
+Install it into your personal skills folder so it works inside every client repository:
+
+```
+cp -r "masterdocuments/.claude/skills/ai-systems-blueprint" ~/.claude/skills/
+```
+
+Then, in any client repo, type `/ai-systems-blueprint` or simply ask for that client's blueprint. This repository stays the single source of truth: after `git pull`, re-run the copy above to take the latest version.
+
+## Start here
+
+New developer? Read **HOW-TO.md**: installing the skill, writing a client blueprint, and which guide to send a client when.
