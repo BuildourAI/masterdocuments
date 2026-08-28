@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The UI Guide: Design What You Show</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","Courier New",monospace; --sans: "Segoe UI","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI \00b7 UI Guide"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-UI \00b7 REV A"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "The UI Guide \00b7 Design What You Show"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 44px; line-height: 1.05; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 28px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 28px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 24px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 26px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 16px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 16px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  table.numbers td.k { font-family: var(--mono); font-size: 11px; color: var(--orange); font-weight: 700; white-space: nowrap; }
+  .prompt { border: 1.5px solid var(--orange); background: #fff; margin: 10px 0 14px; page-break-inside: avoid; }
+  .prompt .phead { background: var(--orange); color: #fff; padding: 6px 13px; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; font-family: var(--mono); text-transform: uppercase; }
+  .prompt .pbody { padding: 10px 13px; font-size: 12.5px; font-style: italic; }
+  .prompt .pbody p { margin-bottom: 8px; text-align: left; }
+  .prompt .pbody p:last-child { margin-bottom: 0; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 7px; font-size: 12.5px; }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 7px; font-size: 12.5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 12px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+</style>
+</head>
+<body>
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>UI Guide</span></div>
+    <h1 class="cover">THE UI GUIDE<br><span class="accent">DESIGN WHAT YOU SHOW</span></h1>
+    <div class="coversub">Claude builds what you <b>speak</b>, but Claude designs what you <b>show</b>. A mood board, a chooser prompt, and five screen laws that make your team open the app instead of running from it.</div>
+    <div class="flow">
+      <span class="chip">Mood<br>Board</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">AI Picks<br>The Winner</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Design<br>.MD File</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Plan<br>Mode</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Build<br>Beautiful</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Purpose</span>Give every system you build a face your team actually wants to use. You collect real designs, let the AI&rsquo;s strongest model pick the winner for your business, turn that choice into a written design direction, and hand direction plus pictures to Claude Code before it builds a single screen. Never again accept the design the machine invents on its own.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Who this is for</span>Every builder. Use it the day you start a new system (before the first screen exists) and again whenever an existing system looks like homework instead of a tool.</td>
+        <td><span class="lbl">What you need open</span>Pinterest in a browser &middot; the Claude app (chat, not Claude Code) &middot; your project folder with Claude Code running &middot; your AI Systems Blueprint.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Time</span>Ten minutes to collect designs. One chat to choose. One sitting to apply.</td>
+        <td><span class="lbl">Series</span>Companion to the Builder Guides: it plugs in the moment you hand Claude the Build Sheet. Prepared by BuildOur AI.</td>
+      </tr>
+    </table>
+    <div class="covernote">Nobody will tell you the design is wrong. Your team will just quietly stop opening the app. That silence is the bug this guide fixes.</div>
+  </div></div>
+</div>
+
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">WHY EVERY AI-BUILT APP LOOKS THE SAME</div><div class="sectag">The statistical average</div></div>
+
+<p>Claude is trained on millions of interfaces. Ask it to &ldquo;build my system&rdquo; and say nothing about looks, and it hands you the <b>statistical average of every interface on the internet</b>: the same purple gradient, the same floating cards, the same font everyone has seen a thousand times. It is not wrong; it is average. And average is what your team already ignores.</p>
+
+<p>Apple did not win in 1976 because the Apple I had new functions &mdash; it mostly did not. It won because Steve Jobs looked at the existing machines and said they were ugly, and made the computer <b>friendly to look at</b>. Less is more: Apple shows you only what matters; the cluttered screen shows you everything and teaches you nothing. Your system is competing for the same three seconds of your team&rsquo;s patience.</p>
+
+<p>Open your current build and ask one honest question: <em>if I put this in front of a new team member, do they smile, or do they see a fighter-jet cockpit?</em> A cockpit gets closed. A clean screen gets used.</p>
+
+<div class="guard"><b>THE LAW OF THIS GUIDE:</b> Claude builds what you <em>speak</em> &mdash; the features, the rules, the flow. But Claude designs what you <em>show</em> &mdash; the colours, the calm, the placement. If you show it nothing, it shows your team the internet&rsquo;s average. So you never start a build without pictures.</div>
+
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">THE MOOD BOARD</div><div class="sectag">Ten minutes on Pinterest</div></div>
+
+<table class="numbers">
+  <tr><th style="width:26%;">Step</th><th>What to do</th></tr>
+  <tr><td class="k">1 &middot; Search</td><td>Open pinterest.com and search exactly: <b>minimalist UI design web app</b>. Minimalist is not taste, it is policy: the cleaner the screen, the faster your team understands it.</td></tr>
+  <tr><td class="k">2 &middot; Collect</td><td>Download 10&ndash;15 screens that make you think &ldquo;my team would get this at a glance.&rdquo; Ignore anything crowded, dark-cluttered, or clever.</td></tr>
+  <tr><td class="k">3 &middot; Choose by AI</td><td>Open a fresh chat in the Claude app &mdash; <b>chat, not Claude Code</b> &mdash; set the model to the strongest one available (Fable), attach all the screenshots, and paste the chooser prompt below with your own business line filled in.</td></tr>
+  <tr><td class="k">4 &middot; Read the verdict</td><td>It will name a winner, tell you what to borrow from the runner-up, and which design to stay away from. Check the recommendation against your own eye before accepting it.</td></tr>
+  <tr><td class="k">5 &middot; Get it in writing</td><td>Re-upload only the winning one or two designs and ask: <em>&ldquo;I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.&rdquo;</em> Download that .md file. It is now a permanent part of your project.</td></tr>
+</table>
+
+<div class="prompt"><div class="phead">The Chooser Prompt &middot; change only the line in brackets</div><div class="pbody">
+<p>I have shared some powerful, minimal UI designs with you. I am building the interface for my company &mdash; [we manufacture bolting and torquing tools for second-party vendors]. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite &mdash; an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.</p>
+</div></div>
+
+<div class="guard"><b>SCOPE WARNING:</b> if the AI&rsquo;s written direction narrows your system (&ldquo;a pre-sales dashboard&rdquo;), correct it in one line: <em>&ldquo;This is not only pre-sales. It is the complete business centre of my company &mdash; marketing, sales, finance, operations, team &mdash; everything.&rdquo;</em> And if you are redesigning a system that already works, say so with a screenshot: <em>&ldquo;My system is already built. Change only the design &mdash; colours, look, placement. Do not touch the features.&rdquo;</em></div>
+
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">FROM MOOD BOARD TO BUILD</div><div class="sectag">One sitting in Claude Code</div></div>
+
+<ol class="tight">
+<li><b>Attach three things</b> to a new Claude Code session in your project: the winning design images, the design .md file, and your AI Systems Blueprint.</li>
+<li><b>Plan first, always.</b> Switch to plan mode with the strongest model and ask: <em>&ldquo;I have given you these files. What do you understand from them?&rdquo;</em> Read its answer. It should say back, in its own words, both what you are building and how it must look. Only then approve the plan &mdash; and read the plan itself, every time, even when you understand half of it.</li>
+<li><b>Accept the checkpoint offer.</b> When it proposes building in reviewed steps, take the recommended option: it builds a stage, shows you, you approve, it continues. Going live happens after a checkpoint you have seen, never before.</li>
+<li><b>Spend models like money.</b> The strongest model (Fable) is for choosing designs and planning &mdash; the thinking. The workhorse model (Opus) is for execution &mdash; the typing. Planning on the strong model costs little and saves you from building the wrong thing at full price.</li>
+<li><b>Put this guide&rsquo;s rules in the repo.</b> The design .md and the design principles document live in the project folder, so every future sitting inherits the same taste. A rule about looks, stated once, holds forever &mdash; exactly like the house rules.</li>
+</ol>
+
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">THE FIVE SCREEN LAWS</div><div class="sectag">What good design means, precisely</div></div>
+
+<p>Your software is not a set of screens; it is a set of <b>conversations</b>. Every user arrives with a question, the screen answers it, and the user does one thing. Home answers <em>&ldquo;where am I?&rdquo;</em> The queue answers <em>&ldquo;what do I do next?&rdquo;</em> The record answers <em>&ldquo;tell me everything about this one thing.&rdquo;</em> The button answers <em>&ldquo;approve, send, or reject?&rdquo;</em> Design each screen for its one question and the whole app becomes obvious.</p>
+
+<table class="numbers">
+  <tr><th style="width:30%;">Law</th><th>What it demands</th></tr>
+  <tr><td class="k">1 &middot; Nobody reads,<br>everyone scans</td><td>The eye lands on the biggest, boldest, highest-contrast thing first, then walks down by size and weight. Hierarchy is not decoration; it is the order in which you are telling the eye to look. Decide what your user must see first, and make it unmissable.</td></tr>
+  <tr><td class="k">2 &middot; One screen,<br>one job</td><td>Exactly one primary action per screen, visible <b>without scrolling</b>, in the one colour you reserve for action. Two primary buttons on one screen is a decision you refused to make, handed to your least patient user.</td></tr>
+  <tr><td class="k">3 &middot; Consistency<br>is trust</td><td>The same thing looks the same everywhere. A button that changes shape or colour between screens teaches the team that nothing here can be trusted at a glance.</td></tr>
+  <tr><td class="k">4 &middot; The default<br>is the decision</td><td>Whatever the team fills in repeatedly is pre-filled, pre-selected, pre-sorted. The system should run WhatsApp-fast, with no load on anyone&rsquo;s mind.</td></tr>
+  <tr><td class="k">5 &middot; Silence<br>is an error</td><td>Every tap answers in a blink &mdash; a change, a tick, a message. A screen that says nothing after an action is a screen reporting a failure.</td></tr>
+</table>
+
+<div class="guard"><b>THE TWO-MINUTE RULE:</b> a new employee opens any screen and understands what it is and what to do in under two minutes, with no training. If a screen needs explaining, the screen is wrong &mdash; not the employee. Steps on the screen (&ldquo;1 &middot; Set up your team, 2 &middot; Add your first client&hellip;&rdquo;) beat any manual you will ever write.</div>
+
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">WHAT NEVER TO DO</div><div class="sectag">The four traps</div></div>
+
+<ul class="tight">
+<li><b>Never let Claude invent the design.</b> No pictures attached means the internet&rsquo;s average delivered. Every new screen starts from your mood board direction, not from a blank prompt.</li>
+<li><b>Never write design prompts with a tool that has no design taste.</b> A generic chatbot prompt will clutter your interface, and cleaning a cluttered system costs days. The design direction comes from the mood-board chat and nowhere else.</li>
+<li><b>Never feed your blueprint back to an AI for &ldquo;critical analysis.&rdquo;</b> Ask any AI to find gaps in any document and it will manufacture gaps &mdash; even in the best system ever written. Read the blueprint yourself; discuss real gaps with a person.</li>
+<li><b>Never confuse starting with finishing.</b> Anyone can begin a build excited. The builder who carries it to the end &mdash; screen by screen, checkpoint by checkpoint &mdash; is the one whose team actually gets a system. Abandoning a half-built system is an axe to your own foot.</li>
+</ul>
+
+<div class="guard"><b>THE GATE:</b> you have a mood board of 10+ real designs; the strongest model chose the winner and you agreed; the design .md sits in your repo next to the blueprint; every screen passes the five laws and the two-minute rule; and one honest colleague has opened the app and not asked a single &ldquo;what is this?&rdquo; Then the design is done &mdash; and it stays done, because the direction is written down.</div>
+
+<div class="traceline">Written for builders on the fixed stack: Claude Code, Next.js, Supabase, Vercel, GitHub.<br>The features come from your Build Sheet; the face comes from your mood board. Show, then build.</div>
+
+</body>
+</html>

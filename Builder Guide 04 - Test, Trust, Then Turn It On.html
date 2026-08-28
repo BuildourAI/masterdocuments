@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Builder Guide 04: Test, Trust, Then Turn It On</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","Courier New",monospace; --sans: "Segoe UI","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI \00b7 Builder Guide"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BLD-04 \00b7 REV A"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Builder Guide 04 \00b7 Test, Trust, Turn It On"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 40px; line-height: 1.06; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 28px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 28px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 24px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 26px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 16px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 16px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 7px; font-size: 12.5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 12px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Builder Guide 04</span></div>
+    <h1 class="cover">TEST, TRUST,<br><span class="accent">THEN TURN IT ON</span></h1>
+    <div class="coversub">Five real cases, one watch week, one switch. <b>The same four moves for every system you will ever build.</b></div>
+    <div class="flow">
+      <span class="chip">Month One<br>Passed</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">5 Cases,<br>Your Thumb</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">The Watch<br>Week</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">The<br>Switch</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Team +<br>Review</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">System<br>Two</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Purpose</span>Take the system that passed month one (Builder Guide 02) from &ldquo;it works when I drive it&rdquo; to &ldquo;it runs by itself for the cases it has earned&rdquo;, without ever risking a customer, and land it with the team so it is actually used. Ends with starting system two.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Who this is for</span>The builder whose first system finished week 4: real data, drafts correct, memory piece working, diary and &ldquo;needs review&rdquo; path live.</td>
+        <td><span class="lbl">What you need open</span>The live app &middot; your Build Sheet &middot; your &ldquo;rules I learned&rdquo; note &middot; your blueprint&rsquo;s &sect;4 (the &ldquo;AI may act alone&rdquo; and sign-off lists).</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Time</span>About two weeks of calendar time: five cases, then a watch week, then the switch week. Your daily sitting stays one hour.</td>
+        <td><span class="lbl">Series</span>Builder Guide 04 of 04. Before: 03 The Six House Rules. After: back to 01 for system two. Prepared by BuildOur AI.</td>
+      </tr>
+    </table>
+    <div class="covernote">You never flip a whole business onto a new system in one day. You earn your own trust first, then the team&rsquo;s, then the customers&rsquo;.</div>
+  </div></div>
+</div>
+
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">FIVE REAL CASES, YOUR THUMB ON THE BUTTON</div><div class="sectag">Nothing automatic yet</div></div>
+<p>Pick five real, current cases: customers you know well enough to phone if something lands wrong, covering your languages and typical order types. Run each through the system. The system drafts; <b>you press every button.</b> Note every wrong word, wrong figure, wrong timing in your &ldquo;rules I learned&rdquo; note, and have Claude fix each one the same day.</p>
+<div class="guard"><b>WHY FIVE, WHY THESE FIVE:</b> five is enough to catch the wording, timing and language mistakes and small enough that you can personally repair any damage with one phone call. A system that works for five and grows will beat a complete system that nobody trusts.</div>
+
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">THE WATCH WEEK</div><div class="sectag">System beside the old way</div></div>
+<p>For one full week the system drafts <b>everything</b> in its lane while your team keeps working the old way beside it. Each day, compare: what did the system prepare, and what did your people actually send or do? Every mismatch is either a fix for the system or a rule missing from your Build Sheet; update whichever is wrong the same day. The old way is not switched off; nothing is, yet.</p>
+<div class="guard"><b>DONE WHEN:</b> a week passes in which the system&rsquo;s drafts and reality agree, and every exception was caught by the &ldquo;needs review&rdquo; path before it went anywhere. If the week fails, fix and run another week. There is no shame in two watch weeks; there is real damage in zero.</div>
+
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">THE SWITCH</div><div class="sectag">Only what passed, only what is allowed</div></div>
+<p>Turn on automatic behaviour <b>only</b> for what passed the watch week, and only what your blueprint&rsquo;s &ldquo;AI may act alone&rdquo; list allows: reminders, status updates, internal notifications. Everything on the sign-off list stays human forever.</p>
+<ul class="tight">
+<li><b>If sending to customers needs the business WhatsApp number</b>, this is the week that clock (started in Builder Guide 01) pays off. If it has not finished verifying, keep drafting-for-approval until it has; never send customer messages from a personal number.</li>
+<li><b>Widen in rings, never all at once:</b> from five cases to one route, one department or one customer group. Hold each ring for a few days before the next.</li>
+<li><b>One bad send:</b> use the off switch, fix, re-test on five, switch on again. The off switch exists for exactly this moment; using it is the system working, not failing.</li>
+</ul>
+
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">THE TEAM, AND THE REVIEW</div><div class="sectag">Adoption is the finish line</div></div>
+<ul class="tight">
+<li><b>One person first.</b> Give the system to the one team member who feels the old pain most; their relief recruits the others. Never launch to the whole team by announcement.</li>
+<li><b>The system hands people work; it does not watch them.</b> Every screen answers &ldquo;what should I do next&rdquo;, not &ldquo;who was slow&rdquo;. Reports are a by-product of work done in the system, never a form anyone fills. This one design choice decides whether your team adopts the system or quietly kills it.</li>
+<li><b>The old way retires only after the new way holds.</b> Run both until the team member stops opening the old register on their own. Then the register goes in a drawer, not in the bin, for one more month.</li>
+<li><b>The owner review runs off the diary.</b> At the end of the switch week, read the log, not memories: what ran alone, what got flagged, what got corrected, and what each automatic action is costing. Adjust the guardrails, have Claude commit the adjustments, and lock them.</li>
+</ul>
+
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">SYSTEM TWO</div><div class="sectag">A new room in the same house</div></div>
+<p>Back to Builder Guide 01 with the same blueprint: the deferred list on your First Build Card is the menu, and the data your first system has been writing is the head start. Same folder, same app, same database, same six rules: a new room in the same house. Each build is faster than the one before, because the house is already standing, the team already trusts the first room, and the data is already flowing.</p>
+<div class="guard"><b>THE STANDING TEST, EVERY MONTH:</b> open the live app on your phone and ask three questions. Is the list still true? Did anything reach a customer without a yes it needed? Does the diary explain the week better than your memory does? Three yeses: build the next room. Any no: fix that before anything new.</div>
+
+<div class="traceline">Written for builders whose first system passed month one. Shadow before send, always: nothing existing switches off<br>until the new way has run beside it and proven itself, and nothing automatic widens past the cases that earned it.</div>
+
+</body>
+</html>

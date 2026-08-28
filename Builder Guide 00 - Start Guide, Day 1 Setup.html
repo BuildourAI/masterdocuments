@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Builder Guide 00: Start Guide, Day 1 Setup</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","Courier New",monospace; --sans: "Segoe UI","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI \00b7 Builder Guide"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BLD-00 \00b7 REV B"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Builder Guide 00 \00b7 Start Guide"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 42px; line-height: 1.06; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 28px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 28px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 24px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol { margin: 2px 0 4px 18px; }
+  .stepbody ol li { margin-bottom: 5px; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 11.8px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 6px 20px; }
+  .paste ol li { margin-bottom: 6px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 7px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 12px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+</style>
+</head>
+<body>
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Builder Guide 00 &middot; Rev B</span></div>
+    <h1 class="cover">START GUIDE:<br><span class="accent">DAY 1 SETUP</span></h1>
+    <div class="coversub">Day 1: from wherever you are, to a <b>live app</b>. Written so you can hand it to your <b>Claude Code</b> session together with your AI Systems Blueprint.</div>
+    <div class="flow">
+      <span class="chip">Where<br>Are You?</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Accounts</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Database +<br>3 Keys</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Folder +<br>Session</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Day 1<br>Prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Live on<br>Your Phone</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Guide 01</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Purpose</span>Everything a builder does on day 1: accounts, the database project and its keys, the folder, the one big prompt that sets up the whole project, and putting the app online. Ends with an empty app live on your phone that updates itself on every push, and the five habits for every session after.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Your build stack, fixed</span><b>Claude Code</b> writes the code &middot; <b>Next.js</b> is the app &middot; <b>Supabase</b> is the database &middot; <b>Vercel</b> puts it online &middot; <b>GitHub</b> keeps the code safe. Nothing else. All accounts are yours, on the business email; the finished system runs on your own Claude, paid by you.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Who this is for</span>The business owner (or the person they name) building their own systems from their finalised blueprint. Some readers start from zero today; some already have accounts, a repo, or a half-built app. The checkpoint table inside tells each reader where to jump in.</td>
+        <td><span class="lbl">Time</span>One sitting for the whole page if you start from zero; minutes if you are already partway.<br><br><span class="lbl">Series</span>Builder Guide 00 of 04. After this: 01 Pick Your First System &middot; 02 The Build Sheet &middot; 03 The Six House Rules &middot; 04 Test, Trust, Then Turn It On. Prepared by BuildOur AI.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices, marked on every step: YOU DO THIS (a human step) &middot; PASTE TO CLAUDE CODE (a ready prompt).</div>
+  </div></div>
+</div>
+
+<div class="sechead"><div class="secnum">0.0</div><div class="sectitle">WHERE ARE YOU?</div><div class="sectag">Find your entry point</div></div>
+<table class="numbers">
+  <tr><th>Your situation today</th><th style="width:38%;">Start at</th></tr>
+  <tr><td>Nothing yet: no accounts, nothing installed</td><td><b>Step 1</b></td></tr>
+  <tr><td>Accounts exist (from the Sunday sessions) but no project for this build</td><td><b>Step 2</b></td></tr>
+  <tr><td>Claude Code already runs in a folder for this build, but nothing is online</td><td><b>Step 4</b></td></tr>
+  <tr><td>An app is already live on Vercel with Supabase connected</td><td>Go to <b>Builder Guide 01</b>. Paste the six house rules (Builder Guide 03) into your CLAUDE.md first if it does not have them.</td></tr>
+  <tr><td>You built something yourself before this program (a no-code app, a local program)</td><td>Go to <b>Builder Guide 01</b> and read its branch note. Your first build is making that thing real, not starting a new one.</td></tr>
+</table>
+
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>The accounts</b> <em>(skip any you already have)</em></p>
+<ol>
+<li><b>GitHub</b> (github.com): where your code lives, privately. Create the account with the <b>business email</b>, switch on two-factor authentication.</li>
+<li><b>Supabase</b> (supabase.com): your database. Sign in <b>with your GitHub account</b> (one button, no new password).</li>
+<li><b>Vercel</b> (vercel.com): puts your app online. Also sign in <b>with GitHub</b>.</li>
+<li><b>Claude Code</b>: install it on your computer per the instructions at claude.com/claude-code and sign in with your Claude account. This is the account that builds and later runs your system, paid by you.</li>
+<li><b>Node.js and Git</b>: two free tools Claude Code needs on your machine. Install Node.js LTS from nodejs.org and Git from git-scm.com, accepting the defaults. If anything goes wrong here, finish Step 3 and let Claude fix it: it can check and repair this for you.</li>
+</ol>
+</div></div>
+
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>The database project and its three keys</b></p>
+<ol>
+<li>In Supabase: <b>New project</b>. Name it after your business. Region: the one nearest you (Mumbai for India). Let it generate a strong database password and save that password in a safe place.</li>
+<li>Open <b>Project Settings &rarr; API</b> and keep this page open. You will see three values: the <b>Project URL</b>, the <b>anon key</b>, and the <b>service_role key</b>. You will paste them in Step 4 when Claude asks. Treat the service_role key like a bank password: never message it to anyone, never put it in a file Claude commits.</li>
+</ol>
+</div></div>
+
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>The folder and the session</b></p>
+<ol>
+<li>Make one folder for this build, named after your business, for example <code class="f">Documents\mybusiness-os</code>. Everything lives here for life: this first system and every one after it.</li>
+<li>Put a copy of your <b>AI Systems Blueprint</b> (the .md or .pdf) inside the folder.</li>
+<li>Open a terminal in that folder and start <b>Claude Code</b>. From now on, every sitting starts exactly like this: open the folder, start Claude Code.</li>
+</ol>
+</div></div>
+
+<div class="step"><div class="stepnum">STEP 4</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>The day 1 prompt</b>: paste this whole block as your first message.</p>
+</div></div>
+
+<div class="paste"><span class="plbl">Paste &middot; Message 1</span>
+<p>You are setting up my business platform from zero. My AI Systems Blueprint is in this folder; read it so you know my business. Then do the following, one step at a time, telling me in simple words what you did after each step, and stopping to ask me whenever you need something only I have.</p>
+<ol>
+<li>Check that Node.js and Git are installed and working. If anything is missing or broken, tell me exactly what to download and click, then check again.</li>
+<li>Create a Next.js app with TypeScript in this folder, accepting standard defaults. Confirm it runs on my machine and show me the local address to open.</li>
+<li>Set up Git in this folder and make the first commit.</li>
+<li>Help me create a PRIVATE repository on my GitHub account named after this folder, and push the code to it. Walk me through any login step in the browser. The repository must be private.</li>
+<li>Create a file called .env.local for my secret keys and make sure Git ignores it. Then ask me for three values one at a time: my Supabase Project URL, my anon key, and my service_role key. Put them in the file yourself. Never repeat the keys back to me in chat, never write them in any other file, and never commit them.</li>
+<li>Create a CLAUDE.md file for this project. I will paste the house rules for it in my next message; wait for them.</li>
+<li>When all of this is done, tell me the project is ready for Vercel and remind me to come back to the guide for Step 5.</li>
+</ol>
+</div>
+<p>Then paste the <b>six house rules from Builder Guide 03</b> as your second message, exactly as written there, and tell Claude: <em>&ldquo;Put these in CLAUDE.md as standing rules for everything you ever build in this folder.&rdquo;</em></p>
+
+<div class="step"><div class="stepnum">STEP 5</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put it online</b></p>
+<ol>
+<li>In Vercel: <b>Add New &rarr; Project &rarr; Import</b> the repository you just pushed. Vercel recognises the app automatically.</li>
+<li>Before deploying, add the same three values from Step 2 as <b>Environment Variables</b> (Claude can tell you the exact names to use: ask <em>&ldquo;what environment variable names does my .env.local use?&rdquo;</em>).</li>
+<li>Press <b>Deploy</b>. About two minutes later your app is live at an address ending in <code class="f">.vercel.app</code>.</li>
+<li>Open that address on your phone and add it to your home screen. From today, <b>every time Claude commits and pushes, the live app updates itself.</b> That is the whole publishing system; there is no other step, ever.</li>
+</ol>
+</div></div>
+
+<div class="guard"><b>DAY 1 IS DONE WHEN:</b> the app opens on your phone at its live address; the repository on GitHub is private; your three keys sit only in <code class="f">.env.local</code> and in Vercel&rsquo;s settings; and CLAUDE.md holds the six house rules. If any of these is not true, paste the failing point into Claude Code and ask it to fix it before you continue to Builder Guide 01.</div>
+
+<div class="sechead"><div class="secnum">0.6</div><div class="sectitle">EVERY SESSION AFTER DAY 1</div><div class="sectag">The five habits</div></div>
+<ol class="tight">
+<li><b>Plan first.</b> Start every piece of work with: <em>&ldquo;Make a plan first and wait for my ok before touching any files.&rdquo;</em> Read the plan. If you do not understand a line, ask for simple words. Only then say go.</li>
+<li><b>One small finished thing per sitting.</b> An hour that ends with one working screen beats three hours that end with six half-things.</li>
+<li><b>Save the work.</b> When something works, say: <em>&ldquo;Commit and push.&rdquo;</em> This both saves your progress and updates the live app. Do it at least once per sitting.</li>
+<li><b>When it breaks, paste the error.</b> Say: <em>&ldquo;Explain this in simple words and fix it.&rdquo;</em> Being stuck is the normal texture of building, and this is the tool that answers at midnight.</li>
+<li><b>Close the sitting.</b> Ask: <em>&ldquo;Summarise what we did today and what comes next, and save it in a notes file.&rdquo;</em> Next sitting starts by reading that note. Bring the note and your questions to the Sunday live class.</li>
+</ol>
+
+<div class="traceline">Written for builders holding a finalised AI Systems Blueprint. Stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub.<br>Every account, key and line of code belongs to the builder. Supersedes BOA-2026-BLD-00 Rev A.</div>
+
+</body>
+</html>

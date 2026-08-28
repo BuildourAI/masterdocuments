@@ -1,0 +1,97 @@
+{
+  "skill_name": "ai-systems-blueprint",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "New client Prabhat Ranjan Jena (PRJ infraventures) filled the audit form but we haven't done his audit call yet. His folder is C:\\Users\\roman\\OneDrive\\Desktop\\BuildOur AI\\clients\\Prabhat Rajan. Can you put together his AI Systems Blueprint from what we have?",
+      "expected_output": "sparse-form-new-client",
+      "files": [],
+      "assertions": [
+        {
+          "id": "triplet",
+          "text": "Delivers the full .md, .html and .pdf triplet, not just one format"
+        },
+        {
+          "id": "dwg_rev_a",
+          "text": "Carries a running head with a DWG number in BOA-{year}-{3-letter code}-01 format and REV A"
+        },
+        {
+          "id": "fixed_sections",
+          "text": "Uses the fixed section order 00 EXECUTIVE SUMMARY / 01 CURRENT STATE / 02 RECOMMENDED AI SYSTEMS / 03 IMPLEMENTATION ROADMAP / 04 GUARDRAILS / 05 THE NUMBERS / 06 NEXT STEPS"
+        },
+        {
+          "id": "guardrails_tag",
+          "text": "Guardrails section tagged 'Set by {first name}, enforced by design'"
+        },
+        {
+          "id": "no_audit_call_disclosed",
+          "text": "States plainly in Sources and/or body that no audit call has happened and the document rests on the written brief alone"
+        },
+        {
+          "id": "gaps_named_not_invented",
+          "text": "Thin or missing form answers are named as gaps or confirm items rather than filled with invented detail"
+        },
+        {
+          "id": "system_cards_solve",
+          "text": "Every system card has WHAT IT DOES and SOLVES rows, each SOLVES pointing at a section 1 subsection"
+        },
+        {
+          "id": "cover_chips",
+          "text": "Cover has flow chips tracing the client's own money path with exactly one chip highlighted"
+        },
+        {
+          "id": "no_em_dashes",
+          "text": "Contains no em dash characters anywhere in the deliverables"
+        },
+        {
+          "id": "trace_line",
+          "text": "Closes with the dated traceability line stating unknowns are named, not guessed"
+        },
+        {
+          "id": "sheet_count",
+          "text": "Rendered PDF is between 7 and 10 sheets"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Vinod Punjabi's blueprint was written before we standardised the format. Go through it and tell me everything that needs to change to bring it up to our current standard, and how bad it is. Folder: C:\\Users\\roman\\OneDrive\\Desktop\\BuildOur AI\\clients\\Vinod Punjabi",
+      "expected_output": "audit-existing-blueprint",
+      "files": [],
+      "assertions": [
+        {
+          "id": "missing_cover",
+          "text": "Identifies that the document has no drawing-format cover sheet (no frame, title block, or flow chips)"
+        },
+        {
+          "id": "missing_dwg_rev",
+          "text": "Identifies the missing DWG number, REV stamp, and running heads and feet"
+        },
+        {
+          "id": "missing_sectags",
+          "text": "Identifies the missing right-side section tags and 00-06 section numbering"
+        },
+        {
+          "id": "build_row_deviation",
+          "text": "Notices the system cards use a BUILD row instead of the standard GUARDRAIL row"
+        },
+        {
+          "id": "missing_numbers_section",
+          "text": "Notices there is no THE NUMBERS section, with figures scattered in prose instead"
+        },
+        {
+          "id": "checks_against_gate",
+          "text": "Assesses against the defined standard systematically rather than giving loose impressions"
+        },
+        {
+          "id": "severity_verdict",
+          "text": "Gives a clear overall verdict on how bad it is, distinguishing presentation gaps from content defects"
+        },
+        {
+          "id": "content_is_sound",
+          "text": "Recognises the underlying content (traceability, guardrails from the form, done-whens) is largely sound, so this is mostly a re-typeset rather than a rewrite"
+        }
+      ]
+    }
+  ]
+}

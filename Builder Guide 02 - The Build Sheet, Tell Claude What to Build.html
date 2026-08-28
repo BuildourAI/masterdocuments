@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Builder Guide 02: The Build Sheet, Tell Claude What to Build</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","Courier New",monospace; --sans: "Segoe UI","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI \00b7 Builder Guide"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BLD-02 \00b7 REV A"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Builder Guide 02 \00b7 The Build Sheet"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 40px; line-height: 1.06; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 28px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 28px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 24px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 26px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 16px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 16px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  table.numbers td.k { font-family: var(--mono); font-size: 11px; color: var(--orange); font-weight: 700; white-space: nowrap; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 11.8px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste p:last-child { margin-bottom: 0; }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 7px; font-size: 12.5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 12px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+</style>
+</head>
+<body>
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Builder Guide 02</span></div>
+    <h1 class="cover">THE BUILD SHEET:<br><span class="accent">TELL CLAUDE WHAT TO BUILD</span></h1>
+    <div class="coversub">One page of truth about your business rule. <b>Claude Code</b> turns it into a plan you approve, then builds it <b>one phase per sitting</b>.</div>
+    <div class="flow">
+      <span class="chip">First Build<br>Card</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Build<br>Sheet</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Plan<br>Approved</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">One Phase<br>Per Sitting</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Month One<br>W1 to W4</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Guide 04:<br>Turn It On</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Purpose</span>Turn the First Build Card (Builder Guide 01) into the one page Claude Code builds from, hand it over with the right prompt, and run month one week by week. You never write a technical document; you state your business rule so clearly that the AI cannot misread it.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Who this is for</span>The builder whose First Build Card is filled and whose app shell is live (Builder Guide 00).</td>
+        <td><span class="lbl">What you need open</span>Your First Build Card &middot; your AI Systems Blueprint (&sect;4, the guardrails) &middot; your project folder with Claude Code running.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Time</span>One sitting to write the sheet. One sitting to approve the plan. Then one phase per sitting.</td>
+        <td><span class="lbl">Series</span>Builder Guide 02 of 04. Before: 01 Pick Your First System. After: 03 The Six House Rules &middot; 04 Test, Trust, Then Turn It On. Prepared by BuildOur AI.</td>
+      </tr>
+    </table>
+    <div class="covernote">The AI can only build a rule you can state. This page is where you state it.</div>
+  </div></div>
+</div>
+
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">FILL THE BUILD SHEET</div><div class="sectag">One page, seven fields</div></div>
+<table class="numbers">
+  <tr><th style="width:30%;">Field</th><th>What to write</th></tr>
+  <tr><td><b>My first system</b></td><td>Name and slice sentence, from the First Build Card.</td></tr>
+  <tr><td><b>What starts it</b></td><td>The exact event: an order is confirmed, a bill crosses its due date, an enquiry arrives.</td></tr>
+  <tr><td><b>What it does or says, word for word</b></td><td>The message, document or entry, written out fully, in the language your customers and team actually use. If it sends in two languages, write both versions.</td></tr>
+  <tr><td><b>What happens on silence or postponement</b></td><td>If the person does not respond, then what, after how many days? If they say &ldquo;next week&rdquo;, what date comes back?</td></tr>
+  <tr><td><b>When a human steps in</b></td><td>The exact point it escalates, and to whom by name. Plus everything from your blueprint&rsquo;s sign-off list: prices, credit, discounts, commitments: always a person.</td></tr>
+  <tr><td><b>What it must never do</b></td><td>Copied from your blueprint&rsquo;s &sect;4: the untouchable data, the never-without-sign-off list, the error protocol.</td></tr>
+  <tr><td><b>Done when</b></td><td>From the First Build Card. One state you can observe on your phone.</td></tr>
+</table>
+<p>Two sources feed this page and nothing else: your <b>First Build Card</b> and your <b>blueprint&rsquo;s &sect;4</b>. If a line is not on either, ask yourself whether it is real or imagined scope.</p>
+<div class="guard"><b>THE WORD-FOR-WORD RULE:</b> the third field is where most builds go wrong. &ldquo;Send a polite reminder&rdquo; is not a rule; the actual sentence, in the actual language, with the actual amount and date in it, is. You know how your customers speak; the machine does not. Write the message you would send with your own thumb, and the system will only ever say what you wrote.</div>
+
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">THE BUILD PROMPT</div><div class="sectag">Paste to Claude Code</div></div>
+<p>Save the Build Sheet in your project folder, then paste:</p>
+<div class="paste"><span class="plbl">Paste to Claude Code</span>
+<p>Read my AI Systems Blueprint and my Build Sheet, both in this folder, and the house rules in CLAUDE.md. I want to build exactly what the Build Sheet describes: no more, no less.</p>
+<p>First, make a plan: break the build into small phases, where every phase ends with something I can see and test on my phone, and the first phase is always &ldquo;load my real data and show me one true list.&rdquo; Tell me for each phase what I will be able to do when it is done. Do not write any code until I approve the plan.</p>
+<p>While building, obey the Build Sheet&rsquo;s &ldquo;never&rdquo; list and the house rules at all times. Anything the system is not sure about must be marked &ldquo;needs review&rdquo; and shown to a person, never guessed. If any part of my Build Sheet is unclear or contradicts the blueprint, stop and ask me instead of choosing for me.</p>
+</div>
+<p>Read the plan. Ask for simple words on any line you do not understand. Only then say go.</p>
+
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">BUILDING, SITTING BY SITTING</div><div class="sectag">One phase per sitting</div></div>
+<p>Build <b>one phase per sitting</b>, with the five habits from Builder Guide 00: plan first, one finished thing, commit and push, paste the error when it breaks, close the sitting with a summary note. After each phase:</p>
+<ol class="tight">
+<li><b>Commit and push.</b> The live app updates itself.</li>
+<li><b>Open the live app on your phone</b>, not on the computer it was built on.</li>
+<li><b>Test like a businessman:</b> find one customer or order you know cold and check every figure against reality. A screen that is beautiful and wrong is worse than an ugly one that is true.</li>
+<li><b>Log what surprised you</b> in your &ldquo;rules I learned&rdquo; note. Every surprise is either a fix for Claude or a line missing from the Build Sheet; update the sheet the same day, so the document and the build never drift apart.</li>
+</ol>
+<div class="guard"><b>WHEN THE PLAN GOES WRONG MID-BUILD:</b> do not push through a sitting where nothing works. Say: <em>&ldquo;Stop. Summarise what is broken in simple words, and give me two options: fix forward or go back to the last commit.&rdquo;</em> Going back costs one sitting; pushing a broken build forward costs a week. Both options are one sentence away, because you committed at every phase.</div>
+
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">MONTH ONE, WEEK BY WEEK</div><div class="sectag">You are done when</div></div>
+<table class="numbers">
+  <tr><th style="width:26%;">Week</th><th>You are done when</th></tr>
+  <tr><td class="k">W1 &middot; The list that is true</td><td>Real data loaded; one screen shows the live truth of your system; you did the job once by hand through it.</td></tr>
+  <tr><td class="k">W2 &middot; It drafts, you act</td><td>It prepares every message or document correctly, in the right language; a human presses every button; five real cases went through without you composing anything.</td></tr>
+  <tr><td class="k">W3 &middot; The memory piece</td><td>The part paper cannot do (the promise that reschedules itself, the stage that notifies the next person, the price it remembers) works, and nothing is held in anyone&rsquo;s head.</td></tr>
+  <tr><td class="k">W4 &middot; Ready to prove</td><td>The &ldquo;needs review&rdquo; path and the diary work; the deferred list is untouched; you move to Builder Guide 04 to test and turn on.</td></tr>
+</table>
+<div class="guard"><b>THE GATE:</b> you are ready for Builder Guide 04 when all four week rows are true, the Build Sheet still matches what was actually built, and nothing on the deferred list crept in. One failure holds the gate; fix it before the watch week, because testing a build that drifted from its sheet proves nothing.</div>
+
+<div class="traceline">Written for builders holding a filled First Build Card and a live app shell. The Build Sheet is the contract:<br>the blueprint governs the sheet, the sheet governs the build, and updates happen the same day reality disagrees.</div>
+
+</body>
+</html>

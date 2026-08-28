@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Builder Guide 03: The Six House Rules</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","Courier New",monospace; --sans: "Segoe UI","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI \00b7 Builder Guide"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BLD-03 \00b7 REV A"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Builder Guide 03 \00b7 The Six House Rules"; font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 44px; line-height: 1.05; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 28px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 28px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 24px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 26px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 16px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 16px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  table.numbers td.k { font-family: var(--mono); font-size: 11px; color: var(--orange); font-weight: 700; white-space: nowrap; }
+  .rule6 { border: 1.5px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .rule6 .rhead { background: var(--orange); color: #fff; padding: 6px 13px; font-weight: 700; font-size: 13px; letter-spacing: 0.3px; }
+  .rule6 .rbody { padding: 9px 13px; font-size: 12.5px; }
+  .rule6 .rbody p { margin-bottom: 6px; text-align: left; }
+  .rule6 .rwhy { color: #8a5a3d; font-style: italic; font-size: 12px; border-top: 1px dotted var(--rule); padding-top: 6px; margin-bottom: 0 !important; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 7px; font-size: 12.5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 12px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+</style>
+</head>
+<body>
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Builder Guide 03</span></div>
+    <h1 class="cover">THE SIX<br><span class="accent">HOUSE RULES</span></h1>
+    <div class="coversub">Paste once into <b>CLAUDE.md</b>, obey forever. Six plain-language rules that keep every system you ever build <b>safe, honest and yours</b>.</div>
+    <div class="flow">
+      <span class="chip">One<br>Home</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Own<br>Keys</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Human<br>Yes</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">The<br>Diary</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Secrets<br>Cupboard</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Money<br>Calculated</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Purpose</span>The standing rules for the platform. They go into your project&rsquo;s CLAUDE.md on day 1 (Builder Guide 00, Step 4) and govern every system ever built in that folder. Each rule is written to be pasted exactly as it is, and each explains, in plain words, why it exists. No technical vocabulary is needed to read, use or enforce them.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Who this is for</span>Every builder, from day 1 onward. If your app is already running and these rules are not in its CLAUDE.md, paste them today and run the audit prompt at the end.</td>
+        <td><span class="lbl">What you need open</span>Your project folder with Claude Code running. Nothing else.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Time</span>Ten minutes to paste. A lifetime of not worrying.</td>
+        <td><span class="lbl">Series</span>Builder Guide 03 of 04. Before: 02 The Build Sheet. After: 04 Test, Trust, Then Turn It On. Prepared by BuildOur AI.</td>
+      </tr>
+    </table>
+    <div class="covernote">A rule stated once in CLAUDE.md holds for every build, every sitting, every system. That is the whole trick.</div>
+  </div></div>
+</div>
+
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">THE RULES</div><div class="sectag">Paste this block into CLAUDE.md</div></div>
+
+<div class="rule6"><div class="rhead">RULE 1 &middot; ONE HOME</div><div class="rbody">
+<p>This folder, this repository, this database and this app are the only ones this business will ever have. Every new system is a new room in the same house: a new section of the app reading the same customer list, the same orders, the same logins. Never create a second app, a second database or a second repository for a new system.</p>
+<p class="rwhy">Why: a business with eight systems in eight apps has eight logins and eight copies of the customer list, and the one screen that should show everything can never be built.</p>
+</div></div>
+
+<div class="rule6"><div class="rhead">RULE 2 &middot; EVERY PERSON THEIR OWN KEY</div><div class="rbody">
+<p>Every team member gets their own login. Each person sees exactly what their work needs and nothing more; the owner sees everything. No shared passwords, ever.</p>
+<p class="rwhy">Why: &ldquo;who did what&rdquo; only means something when everyone is themselves.</p>
+</div></div>
+
+<div class="rule6"><div class="rhead">RULE 3 &middot; A HUMAN YES BEFORE ANYTHING REACHES A CUSTOMER</div><div class="rbody">
+<p>Nothing is sent to a customer, and no price, discount, credit or commitment is given, without a named person approving it first. Automatic sending exists only for message types the owner has explicitly switched on after testing, and there is one switch that turns all automatic behaviour off without touching code.</p>
+<p class="rwhy">Why: trust is spent in one wrong message and earned back over months.</p>
+</div></div>
+
+<div class="rule6"><div class="rhead">RULE 4 &middot; THE DIARY NOBODY CAN EDIT</div><div class="rbody">
+<p>Every action the system takes (every message, every change, every approval, every mistake) is written to a log that can never be edited or deleted, only added to.</p>
+<p class="rwhy">Why: reviews run on what actually happened, not on what anyone remembers.</p>
+</div></div>
+
+<div class="rule6"><div class="rhead">RULE 5 &middot; SECRETS STAY IN THE CUPBOARD</div><div class="rbody">
+<p>Keys and passwords live only in .env.local on this machine and in the hosting settings online. They never appear in code, in chat, or in any file that goes to GitHub.</p>
+<p class="rwhy">Why: a key in the code is a key given to everyone who ever sees the code.</p>
+</div></div>
+
+<div class="rule6"><div class="rhead">RULE 6 &middot; MONEY IS CALCULATED, NEVER GUESSED</div><div class="rbody">
+<p>Prices, quantities, totals and stock figures come from exact rules written as code from the owner&rsquo;s own numbers, and those rules are tested against real past examples. AI reads, matches, drafts and reminds; it never invents a number.</p>
+<p class="rwhy">Why: an AI that guesses a price is wrong confidently. A calculation is either right or visibly broken.</p>
+</div></div>
+
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">WHAT EACH RULE LOOKS LIKE WHEN IT IS WORKING</div><div class="sectag">You know it holds when</div></div>
+<table class="numbers">
+  <tr><th style="width:26%;">Rule</th><th>You know it holds when</th></tr>
+  <tr><td class="k">1 &middot; One home</td><td>Your second system appears as a new section in the same app, behind the same login, reading the same customers. No new address, no new password.</td></tr>
+  <tr><td class="k">2 &middot; Own keys</td><td>Each team member signs in as themselves on their own phone, and their screen shows their work only. Nobody has ever asked &ldquo;what&rsquo;s the password?&rdquo;</td></tr>
+  <tr><td class="k">3 &middot; Human yes</td><td>Every outgoing thing sits in a queue with a name next to it until someone taps yes. The off switch is one tap, and you have tested that it works.</td></tr>
+  <tr><td class="k">4 &middot; The diary</td><td>You can answer &ldquo;what did the system do last Tuesday?&rdquo; from a screen, in one minute, without asking anyone.</td></tr>
+  <tr><td class="k">5 &middot; Secrets</td><td>You can show your code to a stranger without changing a single password afterwards.</td></tr>
+  <tr><td class="k">6 &middot; Calculated money</td><td>When a price looks wrong, you find the exact rule that produced it, and the fix is a change to that rule, tested against old orders before it goes live.</td></tr>
+</table>
+
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">KEEPING THE RULES HONEST</div><div class="sectag">Flag, audit, make permanent</div></div>
+<ul class="tight">
+<li><b>Claude must flag, not bend.</b> If Claude ever proposes something that bends one of these rules, it must say so out loud and wait for your decision. That expectation is part of the rules block itself; it costs nothing and catches drift early.</li>
+<li><b>The audit prompt.</b> Whenever you wonder whether the rules still hold, paste: <em>&ldquo;Audit this project against the six house rules in CLAUDE.md and report anything that breaks them, in simple words.&rdquo;</em> Run it at least once a month, and always before you widen a system to more customers (Builder Guide 04).</li>
+<li><b>New sitting, same rules.</b> The rules live in CLAUDE.md precisely so you never have to repeat them. If you ever start a fresh project folder (you should not: Rule 1), the rules move first, before any code.</li>
+<li><b>Corrections are permanent.</b> When you correct the system once (a wording, a boundary, a person&rsquo;s access), have Claude record it so it holds forever: <em>&ldquo;Make this correction permanent so it applies to everything we build from now on.&rdquo;</em></li>
+</ul>
+<div class="guard"><b>THE GATE:</b> the rules are in CLAUDE.md word for word; the audit prompt has run once and reported clean, or every finding it raised has been fixed; and you can name, from memory, the one switch that turns all automatic behaviour off. Then move on, and never think about this document again except once a month.</div>
+
+<div class="traceline">Written for builders on the fixed stack: Claude Code, Next.js, Supabase, Vercel, GitHub.<br>The rules are the owner&rsquo;s, stated once; the code merely makes them physically true.</div>
+
+</body>
+</html>
