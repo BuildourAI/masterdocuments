@@ -1,11 +1,11 @@
 ---
 name: ai-systems-blueprint
-description: Create a BuildOur AI "AI Systems Blueprint" for a client from their filled audit form (My Systems Brief) and audit call transcript, in the fixed v2 technical-drawing format, delivered as a matching .md, .html and .pdf triplet. Use this skill whenever the user mentions an AI Systems Blueprint, a client blueprint, a systems brief, an audit form or audit call VTT, a Rev B or blueprint revision, or points at a client folder and asks for their blueprint, even if they do not name the format. Also use it when asked to review, revise, quality-check or re-render an existing blueprint, or to draft one for a new client from BuildOur AI audit inputs.
+description: Create a BuildOur AI "AI Systems Blueprint" for a client from their filled audit form (My Systems Brief) and audit call transcript: one document that opens with the infographic (the one-shot capture, ten panels on wide sheets) followed by the in-depth blueprint, in the fixed technical-drawing format, delivered as a matching .md, .html and .pdf triplet. Use this skill whenever the user mentions an AI Systems Blueprint, a client blueprint, a systems brief, an audit form or audit call VTT, a Rev B or blueprint revision, or points at a client folder and asks for their blueprint, even if they do not name the format. Also use it when asked to review, revise, quality-check or re-render an existing blueprint, or to draft one for a new client from BuildOur AI audit inputs.
 ---
 
 # Creating the AI Systems Blueprint
 
-The AI Systems Blueprint is the first substantial deliverable a client receives after their audit. It plays the client's business back to them in their own words, names exactly where that business hurts and what the pain costs, prescribes AI systems that each point at a named pain, and sequences those systems into phases with testable finish lines, wrapped in the safety rules the client themselves set. Diagnosis, proposal and build contract in one document.
+The AI Systems Blueprint is the first substantial deliverable a client receives after their audit. It plays the client's business back to them in their own words, names exactly where that business hurts and what the pain costs, prescribes AI systems that each point at a named pain, and sequences those systems into phases with testable finish lines, wrapped in the safety rules the client themselves set. Diagnosis, proposal and build contract in one document, and that document opens with its own one-shot capture: the infographic, ten panels on wide sheets that draw the whole story before the in-depth part argues it.
 
 The test of a good one: the client's reaction is recognition. *This is my business, and this is my plan.*
 
@@ -39,8 +39,9 @@ Work these in order. Steps 3 to 5 are judgment; the rest is deliberately mechani
 3. **Run the evidence pass.** See below. Read everything before writing a word.
 4. **Design the systems.** See below.
 5. **Sequence the roadmap.** See below.
-6. **Write and typeset.** Draft `{Client} AI Systems Blueprint.md` in the fixed running order, pour it into the template, render the PDF. Read `references/document-structure.md` for the section-by-section spec and `references/design-spec.md` for the template and rendering mechanics.
-7. **Run the quality gate and deliver.** `references/quality-gate.md`. Save the triplet in the client's folder, then book the review call. What comes back starts the Rev B cycle (`references/revisions.md`).
+6. **Design the infographic.** Fill the fixed spine and pick the 2-3 diagnostic panels the evidence supports. Read `references/infographic-spec.md`: the panel inventory, the diagnostic menu, and the sourcing rules (no figure appears first on a panel).
+7. **Write and typeset.** Draft `{Client} AI Systems Blueprint.md` in the fixed running order (Part A panels, then Part B sections), pour it into the template, render the PDF. Read `references/document-structure.md` for the section-by-section spec, including which written sections compress now that the panels carry them, and `references/design-spec.md` for the template and rendering mechanics.
+8. **Run the quality gate and deliver.** `references/quality-gate.md`. Save the triplet in the client's folder, then book the review call. What comes back starts the Rev B cycle (`references/revisions.md`).
 
 ## The inputs
 
@@ -127,9 +128,10 @@ Phase card: `P1` plus an evocative title ("STOP THE MANUAL BLEEDING"), a right t
 
 Read these when you reach the matching step rather than all at once:
 
-- `references/document-structure.md` · the fixed section running order, cover anatomy, and the back sections (guardrails, numbers, next steps) in detail. Read before drafting.
+- `references/document-structure.md` · the two-part running order, cover anatomy, the compression rules for the written back sections, and their detail. Read before drafting.
+- `references/infographic-spec.md` · Part A: the ten-panel spine, the diagnostic chart menu, sourcing rules and layout mechanics. Read at pipeline step 6.
 - `references/design-spec.md` · design tokens, component inventory, template placeholders, and the render pipeline. Read before typesetting.
 - `references/quality-gate.md` · the 11-check gate. Run before delivering, every time.
 - `references/revisions.md` · Rev B and the delta discipline. Read when new client input lands on a shipped blueprint.
-- `assets/blueprint-template.html` · the v2 template. Copy it, fill it, do not restyle it.
+- `assets/blueprint-template.html` · the v3 template: Part A (infographic, wide sheets) + Part B (in-depth, A4) in one file. Copy it, fill it, do not restyle it.
 - `scripts/render_pdf.py` · renders the HTML to PDF (WeasyPrint if present, else headless Chrome). Run it rather than reinventing the command.

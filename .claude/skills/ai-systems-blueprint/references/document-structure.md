@@ -2,19 +2,22 @@
 
 The fixed running order. Section numbers, titles and right-side tags are exactly these; only the bracketed values change per client. Consistency here is what makes twelve different clients receive documents that read as one firm's work.
 
+The document has two parts in one file and one PDF. **Part A, the infographic**, opens it: the one-shot capture on wide sheets, panels 01 to 10 per `references/infographic-spec.md`. **Part B, the in-depth blueprint**, follows on A4 sheets in the running order below. Because Part A carries the figures, the timeline, the guardrail lists and the action list visually, four written sections compress to what the panels cannot hold; the table's Content column states each rule.
+
 | No. | Section title | Right-side tag | Content |
 |---|---|---|---|
-| – | **Cover** (Sheet 1) | – | See "Cover anatomy" below. |
+| A | **Infographic** (wide sheets) | – | Panels 01-10 per `infographic-spec.md`: fixed spine plus 2-3 diagnostic panels from the menu. Typically 2-3 wide sheets. |
+| – | **Cover** (first A4 sheet) | – | Opens Part B. See "Cover anatomy" below. |
 | 00 | EXECUTIVE SUMMARY | Overview | 3 to 4 paragraphs: who the client is and what they said plainly; how the business runs and where it leaks; what this blueprint recommends (N systems in M phases) and the anchors it respects. Open with the client's strongest sentence when you have one. |
 | 01 | CURRENT STATE | How work happens today, and where it hurts | Subsections 1.1 to 1.N (typically 5 to 9), ordered along the money path. Each: a short narrative, then a PAIN callout. Mark call-only subsections. |
 | 02 | RECOMMENDED AI SYSTEMS | {N} systems | System cards, plus the tool-disposition note and any deferral note blocks. |
-| 03 | IMPLEMENTATION ROADMAP | {M} phases · {anchor} | Constraints intro + phase cards. |
-| 04 | GUARDRAILS | Set by {first name}, enforced by design | Guard callouts. |
-| 05 | THE NUMBERS | As provided, with gaps named | Table + flags + at most one reading. |
-| 06 | NEXT STEPS | Immediate actions | Numbered step blocks. |
+| 03 | IMPLEMENTATION ROADMAP | {M} phases · {anchor} | COMPRESSED: panel 07 carries the timing. Keep the constraints intro and the phase cards with rationale and DONE WHEN; drop prose that only restates the gantt. |
+| 04 | GUARDRAILS | Set by {first name}, enforced by design | COMPRESSED: panel 09 carries the swimlane. Keep only the client's verbatim sentences and the error protocol, as guard callouts. |
+| 05 | THE NUMBERS | Flagged, not resolved | COMPRESSED: panel 01 carries the figures. Keep only the numbered confirm items and at most one interpretation paragraph. The full table returns only if a figure's exact wording could not survive on a tile. |
+| 06 | NEXT STEPS | Detail behind panel 10 | COMPRESSED: panel 10 carries the actions. Keep only steps needing detail the panel could not hold (data homework with columns, access checklists). If nothing needs expanding, one paragraph pointing at panel 10. |
 | – | Trace line | – | The closing oath, dated. |
 
-Target 7 to 10 sheets total.
+Target 8 to 12 sheets total: 2-3 wide sheets for Part A, 6-9 A4 sheets for Part B. Sections 00, 01 and 02 stay full length; the diagnosis and the system cards are what earn the client's recognition, and no chart replaces them.
 
 ## Section 01 · Current State
 
@@ -39,9 +42,7 @@ The reason this section quotes rather than paraphrases: these are the rules the 
 
 ## Section 05 · The Numbers
 
-Title: THE NUMBERS. Tag: "As provided, with gaps named". A two-column METRIC / VALUE table containing only the client's figures, with their "(estimate)" and "stated on call" markers kept exactly as written.
-
-Below the table, two things are allowed and nothing else:
+Title: THE NUMBERS. Tag: "Flagged, not resolved". Panel 01's tiles now carry the figures with the client's "(estimate)" markers; this section keeps what a tile cannot say. Two things are allowed and nothing else:
 
 1. The numbered "flagged, not resolved" contradictions, each phrased as a confirm item.
 2. At most one interpretation paragraph reading their numbers back to them: "~160 quotes a month do not convert; speed is the cheapest conversion lever available, which is why P1 leads."

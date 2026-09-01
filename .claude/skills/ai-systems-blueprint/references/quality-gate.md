@@ -12,10 +12,13 @@ Run every check before the blueprint leaves the building. One failure blocks shi
 | 5 | Contradictions | Flagged as numbered confirm items in §5 and repeated in Next Steps. None silently resolved. |
 | 6 | Roadmap | Hours per week, deadline anchor and busy season named in the intro; every phase has a testable DONE WHEN; the final one echoes the client's "worth it if". |
 | 7 | Cover | Chips are the client's money path with the first build highlighted; DWG number correct; Sources complete and dated; deadline anchor present. |
-| 8 | Design | Template untouched; no card broken across sheets; 7 to 10 sheets; running heads and feet correct on every sheet; no `{{` placeholders survive. |
+| 8 | Design | Template untouched; no card or panel broken across sheets; 8 to 12 sheets (2-3 wide + 6-9 A4); running heads and feet correct on every sheet; no `{{` placeholders survive. |
 | 9 | Language | No em dashes; jargon explained on first use; client-language quotes intact; no selling. |
 | 10 | Trace line | Present, dated, and true. |
 | 11 | Files | The .md / .html / .pdf triplet saved in the client's folder; prior revisions archived, not deleted. |
+| 12 | Infographic figures | Every figure, quote and claim on every panel already exists in Part B or the form; nothing appears first on a panel. Hot tiles mark findings the evidence pass named. |
+| 13 | Infographic spine | Panels numbered 01-10 with no gaps; the 7 fixed panels present; each diagnostic panel points at the section 1 evidence that earned it; no diagnostic panel invented to fill a slot. |
+| 14 | Cross-agreement | Panel 06 chains match the system cards; panel 07 bars match the phase cards and done-whens; panel 09 lanes match section 04's verbatim rules; panel 10 matches section 06. One story, two renderings. |
 
 ## How to run it honestly
 

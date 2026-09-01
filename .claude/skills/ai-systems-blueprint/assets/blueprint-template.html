@@ -4,15 +4,18 @@
 <meta charset="UTF-8">
 <title>AI Systems Blueprint: {{COMPANY}}</title>
 <!--
-  BUILDOUR AI · CLIENT BLUEPRINT TEMPLATE · v2 DESIGN
+  BUILDOUR AI · CLIENT BLUEPRINT TEMPLATE · v3 DESIGN (infographic + in-depth, one document)
   How to use:
   1. Copy this file into the client's folder and rename it "{Client Name} AI Systems Blueprint.html".
   2. Replace every {{PLACEHOLDER}}. Search for "{{" until none remain.
-  3. ALSO replace the header/footer strings inside the @page rules below (marked EDIT ME).
-  4. Duplicate the .sys / .phase / .guard / .step blocks as many times as needed; delete unused optional blocks.
-  5. Render: chrome --headless --no-pdf-header-footer --print-to-pdf="out.pdf" "file:///.../in.html"
-     (or: python -m weasyprint in.html out.pdf). Sheet numbers fill in automatically.
-  6. Do not restyle. The design is fixed. See "Master Copy - Creating the AI Systems Blueprint" for all rules.
+  3. ALSO replace the header/footer strings inside BOTH @page rules below (marked EDIT ME).
+  4. PART A is the infographic (wide sheets, panels 01-10). PART B is the in-depth blueprint (A4 sheets).
+     Panels 03-05 are DIAGNOSTIC SLOTS: pick 2-3 chart types from references/infographic-spec.md
+     to match this client's evidence; delete the slot variants you did not use.
+  5. Duplicate repeating blocks (.tile / .mstep / .icard / .sys / .phase / .guard / .igstep) as needed.
+  6. Render: python scripts/render_pdf.py "{Client} AI Systems Blueprint.html"
+     Chrome honours both named page sizes; sheets number themselves across both parts.
+  7. Do not restyle. The design is fixed. See "Master Copy - Creating the AI Systems Blueprint" for all rules.
   House rule: no em dashes anywhere in the text. Use commas, colons, periods, middots.
 -->
 <style>
@@ -27,36 +30,51 @@
     --sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ---------- PART B pages: A4, in-depth blueprint ---------- */
   @page {
     size: A4;
     margin: 84px 44px 84px;
-    @top-left {
-      content: "Buildour AI \00b7 Client Blueprint";
+    @top-left { content: "Buildour AI \00b7 Client Blueprint";
       font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: bottom; padding-bottom: 24px;
-    }
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
     @top-right {
       /* EDIT ME: DWG NO. BOA-{year}-{3-letter company code}-01 · REV A */
       content: "DWG NO. BOA-2026-XXX-01 \00b7 REV A";
       font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: bottom; padding-bottom: 24px;
-    }
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
     @bottom-left {
       /* EDIT ME: {Company} · AI Systems Blueprint */
       content: "{{COMPANY}} \00b7 AI Systems Blueprint";
       font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: top; padding-top: 20px;
-    }
-    @bottom-right {
-      content: "Sheet " counter(page) " / " counter(pages);
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
       font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: top; padding-top: 20px;
-    }
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
   }
+
+  /* ---------- PART A pages: wide infographic sheets ---------- */
+  @page infog {
+    size: 842pt 1191pt;
+    margin: 64px 40px 64px;
+    @top-left { content: "Buildour AI \00b7 Client Blueprint";
+      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @top-right {
+      /* EDIT ME: same DWG string as above */
+      content: "DWG NO. BOA-2026-XXX-01 \00b7 REV A";
+      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "{{COMPANY}} \00b7 AI Systems Blueprint";
+      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+  }
+
   html {
     background:
       linear-gradient(var(--grid) 1px, transparent 1px),
@@ -65,8 +83,194 @@
     background-size: 24px 24px;
   }
   body { font-family: var(--sans); color: var(--ink); font-size: 13.5px; line-height: 1.6; }
-  /* ---------- cover ---------- */
-  .coverpage { page-break-after: always; page-break-inside: avoid; }
+
+  /* ================= PART A · INFOGRAPHIC COMPONENTS ================= */
+  .ig { page: infog; font-size: 12px; line-height: 1.45; }
+  .ig p { text-align: left; }
+
+  /* header block, top of sheet 1 */
+  .ighead { display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2.5px solid var(--ink); padding-bottom: 18px; margin-bottom: 8px; }
+  .ightitle h1 { font-size: 40px; line-height: 1.02; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
+  .ightitle .standfirst { font-size: 13px; margin-top: 10px; max-width: 480px; color: #46556b; }
+  .igbox { border: 1.5px solid var(--orange); background: #fff; padding: 10px 14px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.9; }
+  .igbox .bl { color: var(--orange); font-weight: 700; }
+
+  /* panel scaffold */
+  .panel { margin: 22px 0 6px; page-break-inside: avoid; }
+  .phead { display: flex; align-items: baseline; gap: 10px; border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 12px; page-break-after: avoid; }
+  .pnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; padding: 2px 8px; }
+  .ptitle { font-size: 17px; font-weight: 800; letter-spacing: 0.2px; text-transform: uppercase; }
+  .ptag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+  .pcap { font-size: 11px; font-style: italic; color: #46556b; margin-top: 8px; }
+  .pcap b { color: var(--orange); font-style: normal; }
+  .mcap { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #8a7361; margin-top: 8px; }
+
+  /* P01 · dashboard tiles */
+  .tiles { display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid var(--rule); background: #fff; }
+  .tile { padding: 12px 10px 10px; border-right: 1px dotted var(--rule); }
+  .tile:last-child { border-right: none; }
+  .tile .v { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+  .tile.hot .v { color: var(--orange); }
+  .tile .l { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361;
+    text-transform: uppercase; margin-top: 3px; }
+
+  /* P02 · money path flow */
+  .mpath { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+  .mstep { border: 1px solid var(--rule); background: #fff; padding: 8px 10px; }
+  .mstep .mn { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #8a7361; }
+  .mstep .mt { font-weight: 700; font-size: 12px; margin: 1px 0; }
+  .mstep .ms { font-family: var(--mono); font-size: 8px; letter-spacing: 0.8px; color: #46556b; text-transform: lowercase; }
+  .mstep.broken { border: 1.5px solid var(--orange); background: var(--orange-faint); }
+  .mstep.broken .ms { color: var(--orange); }
+  .legend { display: flex; gap: 22px; font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #46556b; margin-top: 9px; align-items: center; }
+  .sw { display: inline-block; width: 9px; height: 9px; border: 1px solid var(--orange); margin-right: 5px; vertical-align: -1px; }
+  .sw.f { background: var(--orange-faint); border-width: 1.5px; }
+
+  /* duo row: two diagnostic panels side by side */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* diagnostic · funnel */
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 2px; }
+  .ftier { position: relative; text-align: center; padding: 11px 0 9px; }
+  .ftier .fill { position: absolute; inset: 0; }
+  .ftier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ftier .tx { position: relative; }
+  .ftier .fv { font-size: 19px; font-weight: 800; }
+  .ftier .fl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #46556b; text-transform: uppercase; }
+  .ftier.t1 { width: 88%; } .ftier.t2 { width: 66%; } .ftier.t3 { width: 46%; }
+  .ftier .fill, .ftier .inner { clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .ftier .fill { background: var(--rule); }
+  .ftier.mid .fill { background: var(--orange); }
+  .ftier.mid .inner { background: var(--orange-faint); }
+  .ftier.mid .fv, .ftier.mid .fl { color: var(--orange); }
+  .fverdict { text-align: center; font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 8px; }
+
+  /* diagnostic · layer pyramid */
+  .pyr { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 2px; }
+  .ptier { position: relative; text-align: center; padding: 10px 0 8px; }
+  .ptier .fill { position: absolute; inset: 0; background: var(--rule); }
+  .ptier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ptier .tx { position: relative; }
+  .ptier .pv { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+  .ptier .pl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #46556b; text-transform: uppercase; }
+  .ptier.top { width: 40%; } .ptier.top .fill, .ptier.top .inner { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .ptier.top { padding-top: 22px; }
+  .ptier.mid { width: 66%; } .ptier.mid .fill, .ptier.mid .inner { clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%); }
+  .ptier.mid .fill { background: var(--orange); } .ptier.mid .inner { background: var(--orange-faint); }
+  .ptier.mid .pv, .ptier.mid .pl { color: var(--orange); }
+  .ptier.base { width: 88%; } .ptier.base .fill, .ptier.base .inner { clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+
+  /* diagnostic · before/after cards */
+  .ba { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .bacard { border: 1px solid var(--rule); background: #fff; padding: 10px 13px; }
+  .bacard .fl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .bacard .bt { font-weight: 700; font-size: 12.5px; margin-bottom: 5px; }
+  .bacard p { font-size: 11px; margin-bottom: 4px; }
+  .bacard b.was { color: var(--ink); } .bacard b.now { color: var(--orange); }
+
+  /* diagnostic · comparison bars */
+  .cbars { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+  .cbar { display: flex; align-items: center; gap: 10px; }
+  .cbar .cl { flex: 0 0 170px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: right; color: #46556b; }
+  .cbar .track { flex: 1; }
+  .cbar .bar { height: 20px; border: 1px solid var(--orange); background: var(--orange-faint);
+    display: flex; align-items: center; padding: 0 8px; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 1px; color: var(--orange); font-weight: 700; }
+  .cbar.max .bar { background: var(--orange); color: #fff; }
+
+  /* diagnostic · split/entity map */
+  .split { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .scard { border: 1px solid var(--rule); background: #fff; padding: 9px 11px; text-align: center; }
+  .scard .sv { font-weight: 800; font-size: 14px; }
+  .scard .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361; text-transform: uppercase; }
+
+  /* P06 · system cards grid */
+  .sysgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .icard { border: 1px solid var(--rule); background: #fff; padding: 11px 13px 9px; page-break-inside: avoid; }
+  .icard .iwin { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; }
+  .icard .iname { font-weight: 700; font-size: 13.5px; margin: 2px 0 9px; }
+  .ibody { display: grid; grid-template-columns: 55% 45%; gap: 4px 10px; }
+  .ichain { display: flex; flex-direction: column; align-items: stretch; }
+  .ichip { border: 1px solid var(--orange); background: #fff; font-family: var(--mono); font-size: 7.5px;
+    letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 5px 4px; color: var(--ink); }
+  .ichip.first { background: var(--orange-faint); border-width: 1.5px; color: var(--orange); font-weight: 700; }
+  .iarrow { text-align: center; color: var(--orange); font-size: 10px; line-height: 1.4; }
+  .inotes .nl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-top: 7px; }
+  .inotes .nl:first-child { margin-top: 0; }
+  .inotes p { font-size: 10px; line-height: 1.4; margin-bottom: 2px; }
+  .isolve { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 6px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange); text-transform: uppercase; }
+
+  /* P07 · gantt */
+  table.gantt { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.gantt th, table.gantt td { border: 1px solid var(--rule); padding: 5px 8px; }
+  table.gantt th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; background: #fff; }
+  table.gantt td.sysname { width: 17%; }
+  table.gantt td.sysname .gc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  table.gantt td.sysname .gn { font-weight: 700; font-size: 10.5px; }
+  .gbar { border: 1px solid var(--orange); background: var(--orange-faint); font-family: var(--mono);
+    font-size: 8px; letter-spacing: 0.8px; color: var(--ink); padding: 2px 7px; white-space: nowrap; overflow: hidden; }
+  .dwrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+  .dw { border: 1.5px solid var(--orange); background: #fff; padding: 9px 12px; font-size: 11px; }
+  .dw .dl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+  /* P08 · 2x2 matrix */
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); background: #fff; }
+  .quad { border: 1px solid var(--rule); padding: 10px 13px; min-height: 108px; }
+  .quad .qh { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #46556b;
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 7px; }
+  .mc { border: 1px solid var(--orange); background: #fff; padding: 4px 9px; margin-bottom: 5px; }
+  .mc .mcc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  .mc .mcn { font-weight: 700; font-size: 11px; }
+  .quad.build .mc { background: var(--orange-faint); border-width: 1.5px; }
+  .quad .qv { font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange);
+    text-transform: uppercase; margin-top: 4px; }
+  .axis { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; margin-top: 6px; display: flex; justify-content: space-between; }
+
+  /* P09 · guardrails swimlane */
+  .swim { border: 1px solid var(--rule); background: #fff; }
+  .lane { display: flex; border-top: 1px dotted var(--rule); }
+  .lane:first-child { border-top: none; }
+  .lanel { flex: 0 0 140px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); font-weight: 700; text-transform: uppercase; padding: 11px 0 11px 13px; }
+  .lanev { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 13px; border-left: 1px dotted var(--rule); }
+  .tag { border: 1px solid var(--rule); background: #fff; font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: 0.8px; padding: 3px 9px; }
+  .tag.never { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* P10 · next steps */
+  .igsteps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .igstep { display: flex; border: 1px solid var(--orange); background: #fff; page-break-inside: avoid; }
+  .igstep .n { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 11px; padding: 8px 10px; display: flex; align-items: flex-start; }
+  .igstep .b { padding: 7px 12px; font-size: 11px; }
+
+  /* footer strip, end of each infographic group */
+  .stripe { display: flex; border-top: 2px solid var(--ink); margin: 20px 0 4px; background: #fff; }
+  .scell2 { flex: 1; border-left: 1px dotted var(--rule); padding: 7px 12px; }
+  .scell2:first-child { border-left: none; }
+  .scell2 .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; }
+  .scell2 .sv { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+  .igtrace { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 12px; }
+
+  /* ================= PART B · IN-DEPTH BLUEPRINT COMPONENTS (unchanged v2) ================= */
+  .coverpage { page-break-before: always; page-break-after: always; page-break-inside: avoid; }
   .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
   .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
   .coverbar { display: flex; justify-content: space-between; font-family: var(--mono);
@@ -88,7 +292,6 @@
     text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
   .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
     text-transform: uppercase; text-align: center; margin-top: 28px; border-top: 1px dotted var(--rule); padding-top: 14px; }
-  /* ---------- section headers ---------- */
   .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 30px 0 16px; background: #fff;
     page-break-after: avoid; page-break-inside: avoid; }
   .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
@@ -98,8 +301,8 @@
     text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
   h3.sub { font-size: 14px; font-weight: 700; margin: 20px 0 6px; page-break-after: avoid; }
   h3.sub .n { color: var(--orange); font-family: var(--mono); margin-right: 6px; }
-  p { margin-bottom: 11px; text-align: justify; }
-  /* ---------- pain + guard callouts ---------- */
+  .bp p { text-align: justify; }
+  p { margin-bottom: 11px; }
   .pain { border-left: 3px solid var(--orange); background: var(--orange-faint);
     padding: 9px 13px; margin: 8px 0 16px; page-break-inside: avoid; }
   .pain .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
@@ -107,7 +310,6 @@
   .guard { border-left: 3px solid var(--orange); background: var(--orange-faint);
     padding: 9px 13px; margin: 9px 0; font-size: 12.5px; page-break-inside: avoid; }
   .guard b { color: var(--orange); }
-  /* ---------- system cards ---------- */
   .sys { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
   .sysbar { background: var(--orange); color: #fff; padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; }
   .sysbar .name { font-weight: 700; font-size: 14.5px; letter-spacing: 0.3px; }
@@ -119,7 +321,6 @@
   .sysval { flex: 1; padding: 8px 14px 8px 10px; font-size: 12.5px; border-left: 1px dotted var(--rule); }
   .sysval p { margin-bottom: 6px; }
   .sysval p:last-child { margin-bottom: 0; }
-  /* ---------- phases ---------- */
   .phase { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
   .phasehead { display: flex; align-items: stretch; }
   .phnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
@@ -132,7 +333,6 @@
   .done { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 8px; font-size: 12.5px; }
   .done .dlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
     text-transform: uppercase; font-weight: 700; margin-right: 6px; }
-  /* ---------- numbers table, steps, notes ---------- */
   table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; background: #fff; }
   table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 8px 13px;
     font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
@@ -156,7 +356,268 @@
 </head>
 <body>
 
-<!-- ================= SHEET 1: COVER ================= -->
+<!-- ############################################################### -->
+<!-- PART A · THE INFOGRAPHIC · the one-shot capture, wide sheets    -->
+<!-- ############################################################### -->
+<div class="ig">
+
+  <!-- ===== header ===== -->
+  <div class="ighead">
+    <div class="ightitle">
+      <h1>{{COMPANY}}<br>AI SYSTEMS BLUEPRINT</h1>
+      <div class="standfirst">{{One-sentence portrait plus the shape of the plan, e.g. "70 people. 40-50 orders a month. Every decision still comes back to the owner. Six systems, three phases, six months."}}</div>
+    </div>
+    <div class="igbox">
+      <span class="bl">Prepared for</span><br>
+      {{CLIENT NAME}}, {{ROLE}}<br>
+      Audit call {{DD.MM.YYYY}}<br>
+      Brief: {{X}} of {{Y}} answered
+    </div>
+  </div>
+
+  <!-- ===== P01 · THE NUMBERS · always ===== -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">01</span><span class="ptitle">The Numbers</span><span class="ptag">Dashboard tiles &middot; as provided by client</span></div>
+    <div class="tiles">
+      <div class="tile"><div class="v">{{150&ndash;170}}</div><div class="l">Leads / month</div></div>
+      <div class="tile hot"><div class="v">{{value}}</div><div class="l">{{the figure that carries the finding goes hot}}</div></div>
+      <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+      <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+      <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+      <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+      <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+      <div class="tile"><div class="v">{{value}}</div><div class="l">{{label}}</div></div>
+      <div class="tile hot"><div class="v">{{0}}</div><div class="l">Leaks measured</div></div>
+    </div>
+    <div class="pcap">{{The one-line reading of the tiles, with the finding bolded: e.g. "350-400 quotes against 150-170 leads = <b>heavy re-quoting</b>. Every leak in the brief is costed '?', nothing measures them."}}</div>
+  </div>
+
+  <!-- ===== P02 · THE MONEY PATH TODAY · always ===== -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">02</span><span class="ptitle">The Money Path Today</span><span class="ptag">Flowchart &middot; {{enquiry to handover}}</span></div>
+    <div class="mpath">
+      <div class="mstep"><div class="mn">01</div><div class="mt">{{Station}}</div><div class="ms">{{note}}</div></div>
+      <div class="mstep broken"><div class="mn">02</div><div class="mt">{{Station}}</div><div class="ms">{{what breaks here}}</div></div>
+      <div class="mstep"><div class="mn">03</div><div class="mt">{{Station}}</div><div class="ms">{{note}}</div></div>
+      <div class="mstep broken"><div class="mn">04</div><div class="mt">{{Station}}</div><div class="ms">{{what breaks here}}</div></div>
+      <div class="mstep"><div class="mn">05</div><div class="mt">{{Station}}</div><div class="ms">{{note}}</div></div>
+      <div class="mstep"><div class="mn">06</div><div class="mt">{{Station}}</div><div class="ms">{{note}}</div></div>
+      <!-- add as many .mstep as the client's money path has stations; class "broken" = named breakdown point -->
+    </div>
+    <div class="legend"><span><span class="sw f"></span>Named breakdown point</span><span><span class="sw"></span>Runs, but manually chased</span><span>{{Standing truth of the whole path, e.g. "follow-ups on every item, most by the owner personally"}}</span></div>
+  </div>
+
+  <!-- ===== P03 + P04 · DIAGNOSTIC SLOTS · pick 2-3 chart types from references/infographic-spec.md ===== -->
+  <!-- The variants below are a menu. Keep what this client's evidence supports, delete the rest,     -->
+  <!-- renumber panels so the sequence stays 01..10 with no gaps.                                     -->
+  <div class="duo">
+
+    <!-- VARIANT · FUNNEL: when volume shrinks or inflates between funnel stages -->
+    <div class="panel">
+      <div class="phead"><span class="pnum">03</span><span class="ptitle">{{Where Volume Leaks}}</span><span class="ptag">Funnel</span></div>
+      <div class="funnel">
+        <div class="ftier t1"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">{{150&ndash;170}}</div><div class="fl">{{leads / month}}</div></div></div>
+        <div class="ftier t2 mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">{{350&ndash;400}}</div><div class="fl">{{quotes, 2.3x the leads}}</div></div></div>
+        <div class="ftier t3"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">{{40&ndash;50}}</div><div class="fl">{{orders / month}}</div></div></div>
+      </div>
+      <div class="fverdict">{{&asymp; 88 of every 100 quotes have no follow-up trail}}</div>
+      <div class="mcap">{{Re-quoting inflates the middle; nothing tracks the drop-off.}}</div>
+    </div>
+
+    <!-- VARIANT · LAYER PYRAMID: when an org layer, data layer or process layer is hollow -->
+    <div class="panel">
+      <div class="phead"><span class="pnum">04</span><span class="ptitle">{{The Hollow Middle}}</span><span class="ptag">Pyramid &middot; {{org layers}}</span></div>
+      <div class="pyr">
+        <div class="ptier top"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">{{Strategy}}</div><div class="pl">{{owner, full}}</div></div></div>
+        <div class="ptier mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">{{Management}}</div><div class="pl">{{empty: no KRA/KPI, no HR}}</div></div></div>
+        <div class="ptier base"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">{{Execution}}</div><div class="pl">{{70 people, uncoordinated}}</div></div></div>
+      </div>
+      <div class="fverdict">{{Every system lands on unprepared ground}}</div>
+      <div class="mcap">{{Accountability has no owner until this layer is filled.}}</div>
+    </div>
+
+  </div>
+
+  <!-- VARIANT · COMPARISON BARS: when two or three magnitudes tell the story (e.g. priced leaks). Delete if unused. -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">0X</span><span class="ptitle">{{Panel title}}</span><span class="ptag">Comparison</span></div>
+    <div class="cbars">
+      <div class="cbar max"><div class="cl">{{label}}</div><div class="track"><div class="bar" style="width:100%">{{&#8377;40,000 / month}}</div></div></div>
+      <div class="cbar"><div class="cl">{{label}}</div><div class="track"><div class="bar" style="width:55%">{{value}}</div></div></div>
+      <div class="cbar"><div class="cl">{{label}}</div><div class="track"><div class="bar" style="width:30%">{{value}}</div></div></div>
+    </div>
+    <div class="mcap">{{one-line reading}}</div>
+  </div>
+
+  <!-- VARIANT · SPLIT / ENTITY MAP: when the story is fragmentation (entities, channels, tools, sites). Delete if unused. -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">0X</span><span class="ptitle">{{Panel title}}</span><span class="ptag">The split</span></div>
+    <div class="split">
+      <div class="scard"><div class="sv">{{Entity / tool 1}}</div><div class="sl">{{what lives here}}</div></div>
+      <div class="scard"><div class="sv">{{Entity / tool 2}}</div><div class="sl">{{what lives here}}</div></div>
+      <div class="scard"><div class="sv">{{Entity / tool 3}}</div><div class="sl">{{what lives here}}</div></div>
+      <div class="scard"><div class="sv">{{Entity / tool 4}}</div><div class="sl">{{what lives here}}</div></div>
+    </div>
+    <div class="mcap">{{one-line reading: the same number lives in N places}}</div>
+  </div>
+
+  <!-- VARIANT · BEFORE/AFTER CARDS: when a past failure or a stated fear shapes the build (adoption story) -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">05</span><span class="ptitle">{{Why The Last App Failed}}</span><span class="ptag">Before / after &middot; {{adoption countermeasures}}</span></div>
+    <div class="ba">
+      <div class="bacard"><span class="fl">{{Failure 01}}</span><div class="bt">{{Name}}</div>
+        <p><b class="was">Was:</b> {{what happened.}}</p><p><b class="now">Now:</b> {{the countermeasure designed in.}}</p></div>
+      <div class="bacard"><span class="fl">{{Failure 02}}</span><div class="bt">{{Name}}</div>
+        <p><b class="was">Was:</b> {{what happened.}}</p><p><b class="now">Now:</b> {{countermeasure.}}</p></div>
+      <div class="bacard"><span class="fl">{{Failure 03}}</span><div class="bt">{{Name}}</div>
+        <p><b class="was">Was:</b> {{what happened.}}</p><p><b class="now">Now:</b> {{countermeasure.}}</p></div>
+    </div>
+    <div class="pcap">{{The client's own verdict line, then the design consequence: "...so <b>adoption is a build requirement here, not a hope.</b>"}}</div>
+  </div>
+
+  <!-- ===== footer strip · current state group ===== -->
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Business</span><span class="sv">{{sector &middot; since YYYY}}</span></div>
+    <div class="scell2"><span class="sl">Sites</span><span class="sv">{{locations}}</span></div>
+    <div class="scell2"><span class="sl">Stack kept</span><span class="sv">{{tools kept}}</span></div>
+    <div class="scell2"><span class="sl">Stack dropped</span><span class="sv">{{tools dropped}}</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">Current state</span></div>
+  </div>
+
+  <!-- ===== P06 · RECOMMENDED AI SYSTEMS · always ===== -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">06</span><span class="ptitle">Recommended AI Systems</span><span class="ptag">{{N}} systems &middot; what each one actually does</span></div>
+    <div class="sysgrid">
+
+      <div class="icard">
+        <span class="iwin">SYS-01 &middot; {{MONTH 1}}</span>
+        <div class="iname">{{System Name}}</div>
+        <div class="ibody">
+          <div class="ichain">
+            <div class="ichip first">{{TRIGGER EVENT}}</div><div class="iarrow">&darr;</div>
+            <div class="ichip">{{STEP}}</div><div class="iarrow">&darr;</div>
+            <div class="ichip">{{STEP}}</div><div class="iarrow">&darr;</div>
+            <div class="ichip">{{STEP}}</div><div class="iarrow">&darr;</div>
+            <div class="ichip">{{OUTCOME}}</div>
+          </div>
+          <div class="inotes">
+            <span class="nl">{{Annotation label}}</span><p>{{What makes this step different from today.}}</p>
+            <span class="nl">{{Annotation label}}</span><p>{{Guardrail or adoption note tied to a step.}}</p>
+          </div>
+        </div>
+        <div class="isolve">Solves {{painkiller #1: coordination chaos}}</div>
+      </div>
+
+      <!-- Repeat .icard for every system, 3 per row. Keep chains 5 to 7 chips. -->
+      <div class="icard">
+        <span class="iwin">SYS-02 &middot; {{MONTH 2}}</span>
+        <div class="iname">{{System Name}}</div>
+        <div class="ibody">
+          <div class="ichain">
+            <div class="ichip first">{{TRIGGER}}</div><div class="iarrow">&darr;</div>
+            <div class="ichip">{{STEP}}</div><div class="iarrow">&darr;</div>
+            <div class="ichip">{{STEP}}</div><div class="iarrow">&darr;</div>
+            <div class="ichip">{{OUTCOME}}</div>
+          </div>
+          <div class="inotes">
+            <span class="nl">{{Label}}</span><p>{{Note.}}</p>
+          </div>
+        </div>
+        <div class="isolve">Solves {{painkiller #2}}</div>
+      </div>
+
+    </div>
+    <div class="pcap">{{The tool-disposition line: "Kept: ... Dropped: ...", bolding each tool name.}}</div>
+  </div>
+
+  <!-- ===== P07 · IMPLEMENTATION ROADMAP · always ===== -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">07</span><span class="ptitle">Implementation Roadmap</span><span class="ptag">Gantt &middot; {{M}} phases &middot; {{window}}</span></div>
+    <table class="gantt">
+      <tr><th>Phase</th><th colspan="2">{{P1: NAME}}</th><th colspan="2">{{P2: NAME}}</th><th colspan="2">{{P3: NAME}}</th></tr>
+      <tr><th>System</th><th>{{Month 1}}</th><th>{{Month 2}}</th><th>{{Month 3}}</th><th>{{Month 4}}</th><th>{{Month 5}}</th><th>{{Month 6}}</th></tr>
+      <tr><td class="sysname"><span class="gc">SYS-01</span><span class="gn">{{Name}}</span></td>
+        <td colspan="2"><div class="gbar">{{what happens in this window}}</div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-02</span><span class="gn">{{Name}}</span></td>
+        <td></td><td colspan="1"><div class="gbar">{{note}}</div></td><td></td><td></td><td></td><td></td></tr>
+      <!-- One row per system; place the bar with empty td cells + one colspan td. -->
+    </table>
+    <div class="dwrow">
+      <div class="dw"><span class="dl">P1 done when</span>{{Observable states, middot-separated.}}</div>
+      <div class="dw"><span class="dl">P2 done when</span>{{Observable states.}}</div>
+      <div class="dw"><span class="dl">P3 done when</span>{{Observable states.}}</div>
+    </div>
+  </div>
+
+  <!-- ===== P08 · WHY THIS BUILD ORDER · always ===== -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">08</span><span class="ptitle">Why This Build Order</span><span class="ptag">2&times;2 matrix</span></div>
+    <div class="matrix">
+      <div class="quad build"><span class="qh">{{High impact &middot; runs on its own}}</span>
+        <div class="mc"><span class="mcc">SYS-01</span><span class="mcn">{{Name}}</span></div>
+        <div class="mc"><span class="mcc">SYS-02</span><span class="mcn">{{Name}}</span></div>
+        <div class="qv">&rarr; build first &middot; phase 1</div></div>
+      <div class="quad"><span class="qh">{{High impact &middot; needs people to change}}</span>
+        <div class="mc"><span class="mcc">SYS-03</span><span class="mcn">{{Name}}</span></div>
+        <div class="qv">&rarr; {{what unblocks it}}</div></div>
+      <div class="quad"><span class="qh">{{Compounding &middot; needs clean data}}</span>
+        <div class="mc"><span class="mcc">SYS-05</span><span class="mcn">{{Name}}</span></div>
+        <div class="qv">&rarr; {{after what}}</div></div>
+      <div class="quad"><span class="qh">{{Growth &middot; unblocks scaling}}</span>
+        <div class="mc"><span class="mcc">SYS-06</span><span class="mcn">{{Name}}</span></div>
+        <div class="qv">&rarr; {{timed to what}}</div></div>
+    </div>
+    <div class="axis"><span>&larr; {{low dependence on human change}}</span><span>{{high}} &rarr;</span></div>
+    <div class="pcap">{{Vertical axis meaning, then the sequencing sentence: "Phase 1 ships the two systems that need <b>nobody to change behaviour</b> first."}}</div>
+  </div>
+
+  <!-- ===== P09 · GUARDRAILS · always ===== -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">09</span><span class="ptitle">Guardrails</span><span class="ptag">Swimlane &middot; set by {{FIRST NAME}}</span></div>
+    <div class="swim">
+      <div class="lane"><div class="lanel">AI acts alone</div><div class="lanev">
+        <span class="tag">{{delegated action}}</span><span class="tag">{{delegated action}}</span><span class="tag">{{delegated action}}</span><span class="tag">{{delegated action}}</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Human signs off</div><div class="lanev">
+        <span class="tag">{{sign-off item}}</span><span class="tag">{{sign-off item}}</span><span class="tag">{{sign-off item}}</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Never automated</div><div class="lanev">
+        <span class="tag never">{{hard boundary}}</span><span class="tag never">{{hard boundary}}</span><span class="tag never">{{hard boundary}}</span>
+      </div></div>
+    </div>
+    <div class="pcap">{{Running-cost line where discussed: "Running cost target: <b>under &#8377;X/month</b> total..."}}</div>
+  </div>
+
+  <!-- ===== P10 · NEXT STEPS · always ===== -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">10</span><span class="ptitle">Next Steps</span><span class="ptag">Immediate actions</span></div>
+    <div class="igsteps">
+      <div class="igstep"><div class="n">01</div><div class="b"><b>{{Action}}</b> {{detail with owner.}}</div></div>
+      <div class="igstep"><div class="n">02</div><div class="b"><b>{{Action}}</b> {{detail.}}</div></div>
+      <div class="igstep"><div class="n">03</div><div class="b"><b>{{Action}}</b> {{detail.}}</div></div>
+      <div class="igstep"><div class="n">04</div><div class="b"><b>{{Action}}</b> {{detail.}}</div></div>
+      <div class="igstep"><div class="n">05</div><div class="b"><b>{{Action}}</b> {{detail.}}</div></div>
+    </div>
+  </div>
+
+  <!-- ===== footer strip · build group ===== -->
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Scope</span><span class="sv">{{N}} systems &middot; {{M}} phases</span></div>
+    <div class="scell2"><span class="sl">Window</span><span class="sv">{{timing summary}}</span></div>
+    <div class="scell2"><span class="sl">Sources</span><span class="sv">Audit call + Systems Brief</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">The build</span></div>
+  </div>
+  <div class="igtrace">Every item traces to the audit call ({{DATE}}) or the submitted Systems Brief &middot; unknowns are named, not guessed &middot; the in-depth blueprint follows</div>
+
+</div>
+<!-- ############################ END PART A ############################ -->
+
+<!-- ############################################################### -->
+<!-- PART B · THE IN-DEPTH BLUEPRINT · A4 sheets                     -->
+<!-- ############################################################### -->
+<div class="bp">
+
+<!-- ================= COVER ================= -->
 <div class="coverpage">
   <div class="coverframe"><div class="coverinner">
     <div class="coverbar"><span>Buildour AI</span><span>Client Blueprint</span></div>
@@ -186,7 +647,7 @@
       </tr>
     </table>
 
-    <div class="covernote">Every recommendation in this drawing traces to the audit call or the submitted systems brief</div>
+    <div class="covernote">Sheets 1&ndash;{{K}} are the one-shot capture &middot; every recommendation traces to the audit call or the submitted systems brief</div>
   </div></div>
 </div>
 
@@ -197,6 +658,7 @@
 <p>{{PARAGRAPH 3: what this blueprint recommends (N systems, M phases) and the constraints it respects.}}</p>
 
 <!-- ================= 01 CURRENT STATE ================= -->
+<!-- FULL LENGTH, ALWAYS. The diagnosis in the client's own words is what earns recognition; no chart replaces it. -->
 <div class="sechead"><div class="secnum">01</div><div class="sectitle">CURRENT STATE</div><div class="sectag">How work happens today, and where it hurts</div></div>
 
 <h3 class="sub"><span class="n">1.1</span>{{SUBSECTION TITLE, ALONG THE MONEY PATH}}</h3>
@@ -206,6 +668,7 @@
 <!-- Repeat h3.sub + narrative + .pain for 1.2 ... 1.N (typically 5 to 9 subsections) -->
 
 <!-- ================= 02 RECOMMENDED AI SYSTEMS ================= -->
+<!-- FULL LENGTH, ALWAYS. Panel 06 shows the chain; the cards carry the mechanism, the traceability and the guardrails. -->
 <div class="sechead"><div class="secnum">02</div><div class="sectitle">RECOMMENDED AI SYSTEMS</div><div class="sectag">{{N}} systems</div></div>
 
 <!-- OPTIONAL: foundation card, only when the architecture demands a shared data core. Delete if unused. -->
@@ -232,13 +695,14 @@
 <p><b>D-01 {{NAME}}.</b> {{Reason in the client's terms. Interim carrier. Re-entry condition.}}</p></div>
 
 <!-- ================= 03 IMPLEMENTATION ROADMAP ================= -->
+<!-- COMPRESSED: panel 07 carries the timing. Keep the constraints intro and the phase cards with their
+     rationale and DONE WHEN; drop any prose that only restates the gantt. -->
 <div class="sechead"><div class="secnum">03</div><div class="sectitle">IMPLEMENTATION ROADMAP</div><div class="sectag">{{M}} phases &middot; {{ANCHOR}}</div></div>
 <p>{{Constraints intro: the client's hours per week, the deadline anchor, the busy season, the critical path. Name the internal champion if there is one.}}</p>
 
 <div class="phase">
   <div class="phasehead"><div class="phnum">P1</div><div class="phtitle">{{EVOCATIVE PHASE TITLE}}</div><div class="phtag">{{SYS-01 + SYS-0X &middot; TIMING}}</div></div>
   <div class="phbody">
-    <p>{{What ships in this phase.}}</p>
     <p><b>Why first:</b> {{runs on data that already exists, visible wins, sets the adoption pattern.}}</p>
     <div class="done"><span class="dlbl">Done when</span>{{An observable, testable state, never an activity.}}</div>
   </div>
@@ -247,41 +711,38 @@
 <!-- Repeat .phase for P2 ... PM. The final done-when echoes the client's "worth it if". -->
 
 <!-- ================= 04 GUARDRAILS ================= -->
+<!-- COMPRESSED: panel 09 carries the swimlane. This section keeps only what the panel cannot:
+     the client's verbatim sentences and the error protocol. Quote, do not paraphrase. -->
 <div class="sechead"><div class="secnum">04</div><div class="sectitle">GUARDRAILS</div><div class="sectag">Set by {{FIRST NAME}}, enforced by design</div></div>
 
-<div class="guard"><b>ALWAYS HUMAN SIGN-OFF:</b> {{their exact list from form section 10.}}</div>
+<div class="guard"><b>ALWAYS HUMAN SIGN-OFF:</b> {{their exact list from form section 10, verbatim.}}</div>
 <div class="guard"><b>AI MAY ACT ALONE ON:</b> {{their delegable list, verbatim.}}</div>
 <div class="guard"><b>CUSTOMER-FACING:</b> {{their comfort answer, quoted.}}</div>
 <div class="guard"><b>DATA CAUTION:</b> {{what AI never touches, in their words.}}</div>
 <div class="guard"><b>ERROR PROTOCOL:</b> {{their acceptable way for mistakes to surface and get corrected.}}</div>
 
 <!-- ================= 05 THE NUMBERS ================= -->
-<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE NUMBERS</div><div class="sectag">As provided, with gaps named</div></div>
+<!-- COMPRESSED: panel 01 carries the figures as tiles. This section keeps only what the panel cannot:
+     the flagged contradictions as numbered confirm items, and at most one interpretation paragraph.
+     No table unless a figure needs its exact "(estimate)" wording preserved and the tile could not carry it. -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE NUMBERS</div><div class="sectag">Flagged, not resolved</div></div>
 
-<table class="numbers">
-  <tr><th style="width:44%;">Metric</th><th>Value</th></tr>
-  <tr><td>Leads / month</td><td>{{value, with the client's "(estimate)" marker kept}}</td></tr>
-  <tr><td>Quotes / month</td><td>{{value}}</td></tr>
-  <tr><td>Quote &rarr; order conversion</td><td>{{value}}</td></tr>
-  <tr><td>Orders / month</td><td>{{value}}</td></tr>
-  <tr><td>Average order value</td><td>{{value}}</td></tr>
-  <tr><td>Sales cycle</td><td>{{value}}</td></tr>
-  <tr><td>Repeat customers</td><td>{{value}}</td></tr>
-  <tr><td>Headcount</td><td>{{value}}</td></tr>
-  <tr><td>Busiest / slowest</td><td>{{value}}</td></tr>
-</table>
-
-<p>{{Flagged, not resolved: numbered contradictions to confirm. Then at most one interpretation paragraph reading their numbers back to them. Never introduce a figure the client did not provide.}}</p>
+<p>{{Numbered contradictions to confirm, each phrased as a confirm item: "(1) Headcount: total says 25, the function split sums to 11..."}}</p>
+<p>{{At most one interpretation paragraph reading their numbers back to them. Never introduce a figure the client did not provide.}}</p>
 
 <!-- ================= 06 NEXT STEPS ================= -->
-<div class="sechead"><div class="secnum">06</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Immediate actions</div></div>
+<!-- COMPRESSED: panel 10 carries the actions. This section keeps only steps needing detail the panel
+     could not hold (data homework with column lists, access checklists). If nothing needs expanding,
+     replace the steps with one paragraph pointing at panel 10. -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Detail behind panel 10</div></div>
 
-<div class="step"><div class="stepnum">01</div><div class="stepbody"><p><b>{{Bold action.}}</b> {{Detail, with a named owner.}}</p></div></div>
+<div class="step"><div class="stepnum">01</div><div class="stepbody"><p><b>{{Bold action.}}</b> {{The detail panel 10 could not hold, with a named owner.}}</p></div></div>
 <div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>{{Bold action.}}</b> {{Detail.}}</p></div></div>
-<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>{{Bold action.}}</b> {{Detail.}}</p></div></div>
-<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>{{Bold action.}}</b> {{Detail.}}</p></div></div>
 
 <div class="traceline">Every item in this document traces to the audit call ({{DATE}}) or the submitted Systems Brief ({{DATE}}).<br>No figures added beyond those the client provided; unknowns are named, not guessed.</div>
+
+</div>
+<!-- ############################ END PART B ############################ -->
 
 </body>
 </html>

@@ -1,233 +1,353 @@
 # Master Copy: Creating the AI Systems Blueprint
 
-**BuildOur AI · Master SOP · DWG NO. BOA-2026-MST-01 · REV A**
+**BuildOur AI · Master SOP · DWG NO. BOA-2026-MST-01 · REV B**
 
-| | |
-|---|---|
-| **Purpose** | One repeatable method for turning a filled audit form and an audit call into a client-ready AI Systems Blueprint. Same structure, same design, same quality, whoever writes it: developer, consultant, systems builder, non-technical team member, or the client themselves. |
-| **The standard** | All future blueprints follow the v2 drawing format of **Pranay Aggarwal AI Systems Blueprint v2**: the structure in §07 of this manual, the design in §08. No exceptions without a named reason. |
-| **Prepared by** | BuildOur AI |
-| **Sources** | Distilled from the twelve client blueprints on file (August 2026), their audit forms, call transcripts, client review documents and revision history. |
-| **Output per client** | One blueprint in three files (.md, .html, .pdf), 7 to 10 sheets, Rev A, saved in the client's folder. |
-| **Time budget** | 2 to 3 working days from complete inputs to shipped Rev A. |
+*Rendered from the ai-systems-blueprint skill on 01.09.2026. The skill is the single source of truth: edit the skill, re-run `scripts/render_master.py`, never edit this document directly.*
 
-*Follow this manual and any two writers produce the same blueprint. The client's words, traced, never guessed.*
 
 ---
 
-## 00 · The Job, in One Page *(read me first)*
+# PART 01 · The Method
 
-The AI Systems Blueprint is the first substantial deliverable a client receives after their audit. It does four things in one document: it plays the client's business back to them in their own words, it names exactly where that business hurts and what the pain costs, it prescribes AI systems that each point at a named pain, and it sequences those systems into phases with testable finish lines, wrapped in the safety rules the client themselves set. It is a diagnosis, a proposal and a build contract at once. When it is written well, the client's reaction is recognition: *this is my business, and this is my plan.*
+# Creating the AI Systems Blueprint
 
-> **THE PRIME DIRECTIVE:** every recommendation, figure and quote in a blueprint traces to the audit call, the submitted Systems Brief, or a dated client document. No figures are invented. Unknowns are named, not guessed. Contradictions are flagged, not resolved. A sentence stating this closes every blueprint we ship, and it has to be true.
+The AI Systems Blueprint is the first substantial deliverable a client receives after their audit. It plays the client's business back to them in their own words, names exactly where that business hurts and what the pain costs, prescribes AI systems that each point at a named pain, and sequences those systems into phases with testable finish lines, wrapped in the safety rules the client themselves set. Diagnosis, proposal and build contract in one document, and that document opens with its own one-shot capture: the infographic, ten panels on wide sheets that draw the whole story before the in-depth part argues it.
 
-> **THE ENTRY GATE: both inputs, or no blueprint.** A blueprint is written only when the filled audit form and the audit call are both on file. Neither substitutes for the other. The form supplies the numbers, the guardrails and the client's own build list; the call supplies the reasoning behind those answers, the worked examples, the decisions made live, and the client's exact words. A form-only document is a form with formatting applied, and it will not survive contact with the client, because the questions it failed to ask are the ones the call exists to ask. If either input is missing, say so plainly and chase it. Do not open the template.
+The test of a good one: the client's reaction is recognition. *This is my business, and this is my plan.*
 
-How to use this manual: read it once end to end. When you write your first blueprint, work sections 01 to 06 in order; they follow the pipeline. Sections 07 and 08 are the fixed structure and design, where nothing is left to taste. Sections 09 to 11 are the voice, the revision discipline and the quality gate. Your judgment lives in sections 03 to 05 (what to extract, which systems to design, how to sequence them). Everything else is deliberately mechanical, because mechanical is what makes twelve different clients receive documents that feel like one firm produced them.
+## The entry gate: both inputs, or no blueprint
 
-> **NEVER:** skip the evidence pass, soften or prettify a client quote, guess a number, add a system that has no pain to point at, or ship without running the quality gate in §11.
+A blueprint is written only when **both** the filled audit form and the audit call are on file. Check this before anything else.
 
-## 01 · The Pipeline *(seven steps, form to delivery)*
+Neither input substitutes for the other, because they fail in opposite directions. The form is precise and shallow: real figures, real guardrail answers, often single words, with no explanation behind any of them. The call is rich and imprecise: the stories, the worked examples, the vetoes, the client's own sentences, none of it tabulated. A blueprint needs both halves. A document built on one of them is not a thin blueprint, it is a weaker artefact wearing the format, and it will not survive contact with the client, because the questions it could not ask are exactly the ones the call exists to ask.
 
-The full path from a signed client to a shipped blueprint. Steps 03 to 05 are thinking work; the rest is disciplined mechanics. One person can run the whole pipeline.
+**When an input is missing, do not produce a blueprint, even a labelled or provisional one.** Say plainly what is missing and what it blocks. The genuinely useful thing you can offer instead: run the evidence pass on whatever does exist and turn the gaps into an agenda for the call, so the call comes back sharper. Deliver that as notes, never in the blueprint format, because a document that looks like the deliverable will be read as the deliverable.
 
-1. **Collect the inputs, and check the entry gate.** The client folder must hold both required inputs: the filled Systems Brief export, and the audit call recording with its VTT transcript. Plus every extra asset the client supplied (photos, price sheets, specs, spreadsheets, self-built apps, review documents). Date everything. If either required input is missing, the pipeline stops here: report what is missing and get it. Where only the form exists, the useful work is to run the evidence pass on it and turn the gaps into an agenda for the call, which makes the call sharper. That is preparation, not a blueprint, and it is never formatted as one.
-2. **Clean the transcript.** Convert the raw Zoom VTT into a cleaned transcript: strip cue numbers and end timestamps, merge consecutive lines by the same speaker into single turns, drop pure backchannel noise ("hmm", "okay", ASR artefacts). Never rewrite, never infer: garbled speech stays garbled and the defect gets disclosed in Sources. Save as `{Client} Audit Call (Cleaned).md`.
-3. **Run the evidence pass (§03).** Read the full form and the full transcript once, before writing anything. Extract pains, quotes, numbers, guardrails, constraints and assets into the extraction list. This is the step that separates a traced blueprint from a generic one.
-4. **Design the systems (§04).** Turn the pains into 6 to 9 recommended systems, each with a code, a card, and a SOLVES row pointing at a named pain.
-5. **Sequence the roadmap (§05).** Group the systems into 3 or 4 phases with a testable "done when" each, respecting the client's hours per week, deadline anchor and busy season.
-6. **Write and typeset (§§06-09).** Draft the content in markdown following the sheet-by-sheet structure of §07, pour it into the v2 HTML template, and render the PDF (§08). Read every rendered page.
-7. **Quality gate and deliver (§11).** Run the checklist, save the three files to the client's folder, send the PDF, and book the blueprint review call. What comes back from that call starts the Rev B cycle (§10).
+## The prime directive
 
-## 02 · The Inputs *(what you work from)*
+Every recommendation, figure and quote traces to the audit call, the submitted Systems Brief, or a dated client document. No figures are invented. Unknowns are named, not guessed. Contradictions are flagged, not resolved.
 
-Two inputs are required, and both must be on file before drafting starts: the audit form and the audit call. Everything else on this list is welcome but optional. The rule exists because the two inputs fail in opposite directions. The form is precise and shallow: real figures, real guardrail answers, often in single words, with no explanation behind any of them. The call is rich and imprecise: the stories, the worked examples, the vetoes, the client's own sentences, none of it tabulated. A blueprint needs both halves, so a document built on one of them is not a thin blueprint, it is a different and weaker artefact wearing the format.
+This is not a stylistic preference, it is the whole basis of the document's authority. A blueprint that guesses one number is a blueprint the client cannot trust on any number. Every blueprint closes with a sentence claiming this traceability, and that sentence has to be true.
 
-### 2.1 The audit form: "My Systems Brief"
+Corollary rules, each with its reason:
 
-Every client fills the same 44-question form before their audit call. The export is titled *"My Systems Brief: every question and my answer"* and carries the client's name, business and submission timestamp. Its section numbering jumps from 7 straight to 9 in every export; that is normal, expect it. The form ships localized (Gujarati and other languages exist); the sections map one to one. Each section feeds a specific part of the blueprint:
+- **Never soften or prettify a client quote.** Their sentences name the pains and set the guardrails. Typos, Hindi, Gujarati, all of it stays. Your job is arrangement, not improvement.
+- **Never add a system that has no pain to point at.** A prescription without a diagnosis is a sales pitch.
+- **Never skip the evidence pass.** It is what separates a traced blueprint from a generic one.
+- **No em dashes anywhere.** House rule: commas, colons, periods, middots.
 
-| Form section | What it feeds in the blueprint |
+## The pipeline
+
+Work these in order. Steps 3 to 5 are judgment; the rest is deliberately mechanical, because mechanical is what makes different clients receive documents that feel like one firm produced them.
+
+1. **Collect the inputs and check the entry gate.** The client folder must hold both required inputs, the filled Systems Brief export and the audit call VTT, plus any extra assets the client supplied (specs, price sheets, spreadsheets, self-built apps, review documents). Date everything. If either required input is missing, stop here and report it per the entry gate above.
+2. **Clean the transcript.** Strip cue numbers and end timestamps, merge consecutive lines by the same speaker into single turns, drop backchannel noise ("hmm", "okay", ASR artefacts). Never rewrite, never infer. Garbled speech stays garbled and gets disclosed. Save as `{Client} Audit Call (Cleaned).md`.
+3. **Run the evidence pass.** See below. Read everything before writing a word.
+4. **Design the systems.** See below.
+5. **Sequence the roadmap.** See below.
+6. **Design the infographic.** Fill the fixed spine and pick the 2-3 diagnostic panels the evidence supports. Read `references/infographic-spec.md`: the panel inventory, the diagnostic menu, and the sourcing rules (no figure appears first on a panel).
+7. **Write and typeset.** Draft `{Client} AI Systems Blueprint.md` in the fixed running order (Part A panels, then Part B sections), pour it into the template, render the PDF. Read `references/document-structure.md` for the section-by-section spec, including which written sections compress now that the panels carry them, and `references/design-spec.md` for the template and rendering mechanics.
+8. **Run the quality gate and deliver.** `references/quality-gate.md`. Save the triplet in the client's folder, then book the review call. What comes back starts the Rev B cycle (`references/revisions.md`).
+
+## The inputs
+
+**The audit form ("My Systems Brief")** is the same 44 questions for every client. Its numbering jumps from section 7 straight to 9 in every export; that is normal, do not go hunting for a section 8. It ships localized, so answers may arrive in Gujarati or Hindi. Each section feeds a specific part of the blueprint:
+
+| Form section | Feeds |
 |---|---|
-| 1 · The Wishlist & the Endgame | Executive summary framing. The "I never want to manually ___ again" list seeds the system list. Fears and "what I do NOT want" become design rules. The six-month picture becomes the final "done when". |
-| 2 · The One-Line Business | The BUSINESS field on the cover, and the opening of the executive summary. |
-| 3 · The Money Path | The skeleton of §1 Current State and the cover flow chips. Steps marked ⚙️ are manual: your automation candidates. The owner named per step tells you who each system serves. |
-| 4 · The People Map | Adoption logic, the internal champion candidate, the headcount cross-check, and the owner's hours-per-week constraint for the roadmap. |
-| 5 · Apps and software you pay for | The CURRENT STACK field on the cover, and the keep / retire / supersede dispositions in §2. "Paid but ignored" tools become next steps (activate or cancel). |
-| 6 · The Numbers Panel | The §5 Numbers table, exactly as provided, estimates marked, contradictions flagged. |
-| 7 · The Leak List | The PAIN callouts of §1, priced in rupees where the client priced them. The loudest priced leak usually decides Phase 1. |
-| 9 · Draft Build List + Top 3 Painkillers | The seed of the recommended systems. Painkiller #1 is the strongest single signal in the whole form. |
-| 10 · Guardrails & the Finish Line | The §4 Guardrails section, near-verbatim. Also: the error protocol, the customer-facing comfort level, the "worth it if" sentence, and the deadline anchor. |
+| 1 · Wishlist & Endgame | Executive summary framing. The "I never want to manually ___ again" list seeds the system list. Fears become design rules. The six-month picture becomes the final "done when". |
+| 2 · One-Line Business | Cover BUSINESS field, opening of the executive summary. |
+| 3 · Money Path | The §1 subsection skeleton and the cover flow chips. Steps marked with the gear icon are manual: your automation candidates. |
+| 4 · People Map | Adoption logic, the internal champion, the headcount cross-check, the owner's hours per week. |
+| 5 · Apps you pay for | Cover CURRENT STACK, and the keep / retire / supersede note in §2. Paid-but-ignored tools become next steps. |
+| 6 · Numbers Panel | The §5 table, exactly as provided. |
+| 7 · Leak List | The PAIN callouts, priced where the client priced them. The loudest priced leak usually decides Phase 1. |
+| 9 · Build List + Painkillers | The seed of the system list. Painkiller #1 is the strongest single signal in the form. |
+| 10 · Guardrails & Finish Line | The §4 Guardrails section, near-verbatim, plus the error protocol, customer-facing comfort, "worth it if", and the deadline anchor. |
 
-### 2.2 The audit call
+**The audit call** adds what the form cannot: the stories behind the answers, worked examples with real figures, decisions made live, and the client's exact words. Mark anything that exists only on the call as *(call-only)*.
 
-On the call, our AI experts sit with the client and their team and walk the whole business: workflows, bottlenecks, pains, existing systems, desired systems, and how the client wants things built. The call adds what the form cannot: the stories behind the answers, worked examples with real figures, decisions and vetoes made live, and the client's exact words. Anything that exists only on the call is marked *(call-only)* in the blueprint.
+Audit calls run in Hinglish or regional languages and auto-transcription garbles them, sometimes badly. Lean on the written brief wherever the call is unclear and say so in Sources. Quote verbatim only where the transcript is clean, otherwise mark *(paraphrase)*. Where the transcript fails entirely, recommend a re-listen as a next step. Never present a reconstructed sentence as a quote.
 
-> **Transcript reality.** Audit calls run in Hinglish or regional languages and Zoom's auto-transcription garbles them, sometimes badly. Rules: lean on the written brief wherever the call is unclear, and say so in the Sources field. Quote verbatim only where the transcript is clean; otherwise mark *(paraphrase)*. Where the transcript fails entirely, recommend a re-listen of the audio as a next step. Never present a reconstructed sentence as a quote.
+**Extra client assets** (a self-built app, a costing spec, a vision document, a review reply) are governing sources. Date them, list them in Sources, cite them where they drive a decision. When a newer client document conflicts with an earlier statement, the newer and more specific wins, and the blueprint says so explicitly.
 
-### 2.3 Extra client assets
+## The evidence pass
 
-Some clients arrive with their own material: a self-built app, a costing spec, a die master, a vision document, a scope definition, review replies. Treat these as governing sources: date them, list them in Sources, and cite them by item where they drive a decision. When a newer client document conflicts with an earlier statement, the newer and more specific document wins, and the blueprint states that precedence explicitly.
+Read the full form and the full transcript once, extracting as you go. Note the source of every entry: *(form)*, *(call)*, *(call-only)*, or a dated document. When the pass is done you should be able to write the whole blueprint without reopening the sources, except to verify quotes.
 
-## 03 · The Evidence Pass *(extract before you write)*
+Extract: the business one-liner; the money path step by step; the current stack with dispositions; the pains in the client's words; the rupee-priced leaks; every number with its exact wording including "(estimate)" markers; contradictions and typos; the guardrail answers verbatim; the never-again list and top 3 painkillers; the deadline anchor, hours per week and busy season; adoption signals and the champion; and the client's own system vision if they arrived with one.
 
-Read everything once before writing a word. As you read, build the extraction list below. Every entry needs its source noted: *(form)*, *(call)*, *(call-only)*, or a dated client document. When the pass is done you should be able to write the whole blueprint without opening the sources again, except to verify quotes.
+Three habits carry most of the weight here:
 
-| Extract | Where it lands |
-|---|---|
-| Business one-liner | Cover BUSINESS field, executive summary opening. |
-| Money path, step by step | §1 subsection skeleton and the cover flow chips. |
-| Current stack + dispositions | Cover CURRENT STACK; keep / retire / supersede note in §2. |
-| Pains, in the client's words | One PAIN callout per §1 subsection. Skip the callout only where no pain was named. |
-| Rupee-priced leaks | Phase priorities. Phase 1 attacks the loudest priced pain. |
-| Every number, with its wording | §5 table, "(estimate)" suffixes kept exactly as the client wrote them. |
-| Contradictions and typos | The flagged list in §5 and the confirm items in Next Steps. |
-| Guardrail answers, verbatim | §4 Guardrails, hardened into mechanism. |
-| Never-again list + Painkillers 1-3 | The SOLVES rows of the system cards. |
-| Deadline anchor, hours/week, seasons | Cover DEADLINE ANCHOR and the roadmap intro constraints. |
-| Adoption signals + champion | ADOPTION rows, rollout order, the named champion in the roadmap. |
-| The client's own system vision | The system list itself. If they arrived with a design, build on their structure and credit them. |
+**Flag, don't fix.** A form saying average order value "1000020000", a headcount of 10 beside a function split summing to 27, or "busiest months: 6" is never silently corrected. Each becomes a numbered confirm item in §5 and reappears in Next Steps. Silently fixing a number destroys the client's ability to trust the rest, and the correct value is theirs to supply, not yours to infer.
 
-> **FLAG, DON'T FIX:** a form that says average order value "1000020000", a headcount of 10 beside a function split summing to 27, or "busiest months: 6" is never silently corrected. Each becomes a numbered confirm item: named in §5, repeated in Next Steps.
+**Name unknowns as findings.** A funnel nobody measures is itself a diagnosis, not a gap in your research. The standing formulation: "Not a criticism, a finding: the funnel isn't measured because it isn't in a system." Where a recommended system will produce the missing number as a side effect, say so.
 
-> **NAME THE UNKNOWNS AS FINDINGS:** a funnel nobody measures is itself a diagnosis. The standing formulation: "Not a criticism, a finding: the funnel isn't measured because it isn't in a system." Where a system will produce the missing number as a side effect, say so.
+**Preserve their language.** *"copy-paste, copy-paste. I want one system where one file works from the start"* is worth more than any polished restatement, because it is evidence rather than assertion.
 
-> **PRESERVE THE CLIENT'S LANGUAGE:** quotes keep their typos, their Hindi, their Gujarati, their exact phrasing. *"copy-paste, copy-paste. I want one system where one file works from the start"* is worth more than any polished restatement of it.
+## Designing the systems
 
-## 04 · Designing the Systems *(pains to systems)*
+Aim for 6 to 9. Fewer usually means distinct pains got merged; more than the roadmap can carry.
 
-Systems are prescriptions, and a prescription needs a diagnosis. The design test for every card: point at the §1 subsection it solves. If you cannot, the system gets cut, however clever it is. Aim for 6 to 9 systems: fewer means you probably merged distinct pains, more means the roadmap cannot carry them.
+The design test for every card: point at the §1 subsection it solves. If you cannot, cut it, however clever it is.
 
-### 4.1 Where systems come from
+Where systems come from, in order of authority: the client's own draft build list and painkillers (form §9), their never-again list (form §1), pains named on the call, and only then your own pattern knowledge. Many clients arrive with the system already sketched. The strongest blueprints say so plainly ("Kishore arrived with the system already designed in his head, and it is a good one") and keep the client's structure and sequence. Fix the platform, not their process, unless their process is the pain.
 
-In order of authority: the client's own draft build list and painkillers (form §9), the never-again list (form §1), pains named on the call, and only then your own pattern knowledge. Many clients arrive with the system already sketched; the strongest blueprints say so plainly ("Kishore arrived with the system already designed in his head, and it is a good one") and keep the client's structure and sequence. You fix the platform, not their process, unless their process is the pain.
+Card anatomy:
 
-### 4.2 The card, anatomically
-
-- **Bar:** system name in plain English + function, ALL CAPS, with code on the right (`SYS-0N · STATUS`).
-- **WHAT IT DOES** (always): the mechanism in 2 to 4 sentences, concrete enough that a developer could scope it and the client recognizes their own workflow inside it. Encode formulas and chains as code chips: `event → rule → action → next task → deadline → escalate`.
-- **SOLVES** (always): the named pain with its § reference and, where it exists, the client's own words: "The one-at-a-time manual sending (§1.1), and 'I never want to manually find new markets and buyers again.'"
+- **Bar:** name in plain English plus function, ALL CAPS, code on the right (`SYS-0N`), optionally with a status (`POC AGREED`, `MONTH-1 SYSTEM`, `PROMOTED TO CORE`).
+- **WHAT IT DOES** (always): the mechanism in 2 to 4 sentences, concrete enough that a developer could scope it and the client recognizes their own workflow inside it. Encode chains as code chips: `event -> rule -> action -> next task -> deadline -> escalate`.
+- **SOLVES** (always): the named pain with its § reference plus the client's words where they exist.
 - **GUARDRAIL:** required whenever the system touches money, customers or outbound messages. States the human gate: "AI drafts, the team sends."
-- **Optional rows:** ADOPTION (how the team will actually accept it), ENTRY POINT (the agreed POC), NOTE / OPEN INPUT (a decision still owed), BUILD (dependencies and build type). Use rows selectively; not every card carries every row.
+- **Optional rows,** used selectively: ADOPTION, ENTRY POINT (an agreed POC), NOTE or OPEN INPUT (a decision still owed), BUILD (dependencies and build type).
 
-### 4.3 Codes, foundations and deferrals
+When the architecture needs a shared data core that every system plugs into, it gets the first card as `F-00 · FOUNDATION` with rows WHAT IT IS and WHY FIRST.
 
-Codes: `SYS-01 … SYS-0N` in recommendation order. When the architecture demands a shared data core or workflow engine that every system plugs into, it gets its own card first as `F-00 · FOUNDATION` with rows WHAT IT IS and WHY FIRST. Status suffixes record decisions on the record: `POC AGREED`, `PROMOTED TO CORE`, `MONTH-1 SYSTEM`.
+When the client defers a system it does not vanish: it becomes `D-01` in a dashed note block carrying the reason in their terms, the interim carrier ("the current ChatGPT flow carries this meanwhile"), and the re-entry condition ("revisited after Phase 3 is stable, not assumed"). Parked, not dropped, so the client sees their own decision reflected rather than wondering if you forgot.
 
-> **Deferred by client decision · parked, not dropped.** When the client defers a system, it does not vanish. It gets a code (`D-01`, `D-02`) in a dashed note block with three things: the reason in the client's terms, the interim carrier ("the current ChatGPT flow carries this meanwhile"), and the re-entry condition ("revisited with the client after Phase 3 is stable, not assumed"). Rules already agreed stay pre-bound to it for whenever it is built.
+Close §2 with a tool-disposition note covering every paid app from form §5: what stays, what retires, what is superseded, and what is paid-but-ignored.
 
-Close §2 with a tool-disposition note covering every paid app from form §5: what stays, what retires, what is superseded, and what is paid-but-ignored and should either become a working tool in this build or be cancelled.
+## Sequencing the roadmap
 
-## 05 · Sequencing the Roadmap *(phases and finish lines)*
+3 or 4 phases, coded P1 to P4. The intro paragraph must state the constraints it was sequenced for: the owner's hours per week, the deadline anchor, the busy season, and the critical path.
 
-3 or 4 phases, coded P1 to P4. The roadmap intro must state, in one paragraph, the constraints it was sequenced for: the owner's hours per week, the deadline anchor, the busy season, and the critical path (name it: "the catalogue data work in Phase 2 feeds both the quotation engine and the website").
+**Phase 1 stops the bleeding.** It attacks the loudest daily pain, runs on data that already exists so there is no long digitisation wait, produces wins the team can see in weeks, and sets the adoption pattern early: the system hands people their next task, it does not audit them.
 
-> **PHASE 1 STOPS THE BLEEDING:** it attacks the loudest daily pain, runs on data that already exists (no long digitisation wait), produces wins the team can see in weeks, and sets the adoption pattern early: the system hands people their next task, it does not audit them.
+**Data before dreams.** When the client's data lives on paper, in WhatsApp or in heads, a data foundation runs as Phase 0 or as a parallel Track 0 starting immediately. Say the honest sentence when it is true: "Track 0 is not optional and Phase 1 fails without it."
 
-> **DATA BEFORE DREAMS:** when the client's data lives on paper, in WhatsApp or in heads, a data foundation runs as Phase 0 or as a parallel Track 0 that starts immediately. Say the honest sentence when it is true: "Track 0 is not optional and Phase 1 fails without it." Ship the client a data-gathering pack (sheet + how-to-fill guide, bilingual if needed).
+**Every phase ends in DONE WHEN,** an observable state, never an activity. "Outreach runs weekly without the receptionist sending a single manual email" passes. "Email system implemented" does not, because nobody can stand in front of it and agree it happened. The final phase's done-when should echo the client's own "worth it if" answer.
 
-> **EVERY PHASE ENDS IN "DONE WHEN":** an observable, testable state, never an activity. "Outreach runs weekly without the receptionist sending a single manual email" passes. "Email system implemented" does not. The final phase's done-when should echo the client's own "worth it if" answer from form §10.
+**Trust ramps and parallel runs.** Where trust must be earned, phase it inside the phase: "month 1: AI drafts, humans press send; month 2: autonomous." Nothing existing is switched off until its replacement has run beside it and proven itself.
 
-> **TRUST RAMPS AND PARALLEL RUNS:** where trust must be earned, phase it inside the phase: "month 1: AI drafts, humans press send; month 2: autonomous." Nothing existing is switched off until its replacement has run in parallel and proven itself. Where complexity or trust demands, enter through a narrow POC validated against the client's real past orders.
+Phase card: `P1` plus an evocative title ("STOP THE MANUAL BLEEDING"), a right tag naming systems and timing (`SYS-01 + SYS-04 · FIRST WEEKS`), rationale prose (P1 carries an explicit "Why first:"), then DONE WHEN.
 
-Phase card format: `P1` + an evocative title ("STOP THE MANUAL BLEEDING", "THE WATCHERS & THE NETWORK"), a right tag naming systems and timing (`SYS-01 + SYS-04 · FIRST WEEKS`), rationale prose (P1 carries an explicit "Why first:"), then the DONE WHEN line. Name the internal champion and the department-by-department rollout order in the intro when the client gave you one.
+## Voice
 
-## 06 · The Back Sections *(guardrails · numbers · next steps)*
+- **Diagnose before prescribing.** §1 earns §2. Explain the business back to itself so precisely that the client nods before reaching a single recommendation.
+- **Cross-reference everything.** Every SOLVES points at a §1.x; next steps point at systems; interpretations point at the rows they read. The document is a web, not a list.
+- **Short, declarative, active.** One earned aphorism per section at most; more and it reads like copywriting.
+- **Write for two readers:** the owner who decides and the team member who will run the system. Explain jargon inline the first time (BOM, GRN, KRA). Name real staff so workflows read as the client's actual office.
+- **Price the pain where the client did,** and translate where it lands: "a forgotten order at a 50% repeat rate is a relationship cost, not just one lost bill." Never invent a rupee figure to make a pain sound bigger.
+- **Evidence persuades, selling repels.** No superlatives about our systems, no fear-mongering about AI, no promises without a done-when. The document's confidence is its traceability.
 
-### 6.1 Guardrails
+## Reference files
+
+Read these when you reach the matching step rather than all at once:
+
+- `references/document-structure.md` · the two-part running order, cover anatomy, the compression rules for the written back sections, and their detail. Read before drafting.
+- `references/infographic-spec.md` · Part A: the ten-panel spine, the diagnostic chart menu, sourcing rules and layout mechanics. Read at pipeline step 6.
+- `references/design-spec.md` · design tokens, component inventory, template placeholders, and the render pipeline. Read before typesetting.
+- `references/quality-gate.md` · the 11-check gate. Run before delivering, every time.
+- `references/revisions.md` · Rev B and the delta discipline. Read when new client input lands on a shipped blueprint.
+- `assets/blueprint-template.html` · the v3 template: Part A (infographic, wide sheets) + Part B (in-depth, A4) in one file. Copy it, fill it, do not restyle it.
+- `scripts/render_pdf.py` · renders the HTML to PDF (WeasyPrint if present, else headless Chrome). Run it rather than reinventing the command.
+
+
+---
+
+# PART 02 · Document Structure
+
+# Document Structure
+
+The fixed running order. Section numbers, titles and right-side tags are exactly these; only the bracketed values change per client. Consistency here is what makes twelve different clients receive documents that read as one firm's work.
+
+The document has two parts in one file and one PDF. **Part A, the infographic**, opens it: the one-shot capture on wide sheets, panels 01 to 10 per `references/infographic-spec.md`. **Part B, the in-depth blueprint**, follows on A4 sheets in the running order below. Because Part A carries the figures, the timeline, the guardrail lists and the action list visually, four written sections compress to what the panels cannot hold; the table's Content column states each rule.
+
+| No. | Section title | Right-side tag | Content |
+|---|---|---|---|
+| A | **Infographic** (wide sheets) | – | Panels 01-10 per `infographic-spec.md`: fixed spine plus 2-3 diagnostic panels from the menu. Typically 2-3 wide sheets. |
+| – | **Cover** (first A4 sheet) | – | Opens Part B. See "Cover anatomy" below. |
+| 00 | EXECUTIVE SUMMARY | Overview | 3 to 4 paragraphs: who the client is and what they said plainly; how the business runs and where it leaks; what this blueprint recommends (N systems in M phases) and the anchors it respects. Open with the client's strongest sentence when you have one. |
+| 01 | CURRENT STATE | How work happens today, and where it hurts | Subsections 1.1 to 1.N (typically 5 to 9), ordered along the money path. Each: a short narrative, then a PAIN callout. Mark call-only subsections. |
+| 02 | RECOMMENDED AI SYSTEMS | {N} systems | System cards, plus the tool-disposition note and any deferral note blocks. |
+| 03 | IMPLEMENTATION ROADMAP | {M} phases · {anchor} | COMPRESSED: panel 07 carries the timing. Keep the constraints intro and the phase cards with rationale and DONE WHEN; drop prose that only restates the gantt. |
+| 04 | GUARDRAILS | Set by {first name}, enforced by design | COMPRESSED: panel 09 carries the swimlane. Keep only the client's verbatim sentences and the error protocol, as guard callouts. |
+| 05 | THE NUMBERS | Flagged, not resolved | COMPRESSED: panel 01 carries the figures. Keep only the numbered confirm items and at most one interpretation paragraph. The full table returns only if a figure's exact wording could not survive on a tile. |
+| 06 | NEXT STEPS | Detail behind panel 10 | COMPRESSED: panel 10 carries the actions. Keep only steps needing detail the panel could not hold (data homework with columns, access checklists). If nothing needs expanding, one paragraph pointing at panel 10. |
+| – | Trace line | – | The closing oath, dated. |
+
+Target 8 to 12 sheets total: 2-3 wide sheets for Part A, 6-9 A4 sheets for Part B. Sections 00, 01 and 02 stay full length; the diagnosis and the system cards are what earn the client's recognition, and no chart replaces them.
+
+## Section 01 · Current State
+
+Order the subsections along the client's money path, so the document walks their business the way money actually moves through it: enquiry, quotation, order, production, dispatch, payment, repeat. Each subsection is a short narrative followed by a PAIN callout in the client's own words.
+
+Skip the PAIN callout only where no pain was named. A subsection that exists purely to describe something working fine is legitimate and should not be given an invented complaint.
+
+Mark subsections that rest only on the call as *(call-only)*, so a reader comparing the blueprint against the written brief is never confused about where a finding came from.
+
+## Section 04 · Guardrails
 
 Title: GUARDRAILS. Tag: "Set by {first name}, enforced by design". This section is the client's form §10 answers, near-verbatim, hardened into mechanism. Each guardrail is one orange-barred callout with a bold lead-in. The standing vocabulary, extended per client:
 
 - **ALWAYS HUMAN SIGN-OFF:** their exact list. Quotations and commitments to clients appear here for almost every client.
 - **AI MAY ACT ALONE ON:** their delegable list, verbatim.
-- **CUSTOMER-FACING:** their comfort answer: "AI drafts, my team sends" / "AI can message customers directly" / "Not sure yet" (which means everything drafts-for-approval until they decide).
+- **CUSTOMER-FACING:** their comfort answer, quoted: "AI drafts, my team sends" / "AI can message customers directly" / "Not sure yet" (which means everything is drafts-for-approval until they decide).
 - **DATA CAUTION / UNTOUCHABLE DATA:** what AI never touches, in their words.
 - **ERROR PROTOCOL:** their acceptable way for mistakes to surface and get corrected. Never silent rewrites; an audit trail you cannot trust is worse than none.
-- **NOT ANSWERED:** when a guardrail question was left blank, say so, apply a conservative default, and list it for the kickoff call. Unanswered is information.
+- **NOT ANSWERED:** when a guardrail question was left blank, say so, apply a conservative default, and list it for the kickoff call. Unanswered is information, not an excuse to invent a rule.
 
-### 6.2 The Numbers
+The reason this section quotes rather than paraphrases: these are the rules the client will be held to and will hold us to. Their exact words prevent a later argument about what was agreed.
 
-Title: THE NUMBERS. Tag: "As provided, with gaps named". A two-column METRIC / VALUE table containing only the client's figures, with their "(estimate)" and "stated on call" markers kept. Below the table, two things are allowed: the numbered "flagged, not resolved" contradictions, and at most one interpretation paragraph that reads their numbers back to them ("~160 quotes a month do not convert; speed is the cheapest conversion lever available, which is why P1 leads"). Interpretation never introduces a figure the client did not provide.
+## Section 05 · The Numbers
 
-### 6.3 Next Steps
+Title: THE NUMBERS. Tag: "Flagged, not resolved". Panel 01's tiles now carry the figures with the client's "(estimate)" markers; this section keeps what a tile cannot say. Two things are allowed and nothing else:
 
-Title: NEXT STEPS. Tag: "Immediate actions". 4 to 7 numbered step blocks, each starting with a bold action and carrying a named owner. Standard ingredients, picked as they apply: the blueprint review call ("to contradict, add to, or accept as-is"); the client's data homework; the access checklist (logins, WhatsApp Business, workspaces); commercials and onboarding where payment is open; the flagged numbers to confirm; and the promise of the Phase 1 build plan as the next deliverable, "deliverables and done-when stated up front, no surprises mid-journey."
+1. The numbered "flagged, not resolved" contradictions, each phrased as a confirm item.
+2. At most one interpretation paragraph reading their numbers back to them: "~160 quotes a month do not convert; speed is the cheapest conversion lever available, which is why P1 leads."
 
-## 07 · The Document, Sheet by Sheet *(fixed structure · v2 standard)*
+Interpretation never introduces a figure the client did not provide. Multiplying two of their numbers to produce a third is inventing a figure.
 
-The fixed running order. Section numbers, titles and tags are exactly these; only the bracketed values vary per client:
+## Section 06 · Next Steps
 
-| No. | Section title | Right-side tag | Content |
-|---|---|---|---|
-| – | **Cover** (Sheet 1) | – | See 7.1 below. |
-| 00 | EXECUTIVE SUMMARY | Overview | 3 to 4 paragraphs: who the client is and what they said plainly; how the business runs and where it leaks; what this blueprint recommends (N systems in M phases) and the anchors it respects. Open with the client's strongest sentence when you have one. |
-| 01 | CURRENT STATE | How work happens today, and where it hurts | Subsections 1.1 to 1.N (typically 5 to 9), ordered along the money path. Each: a short narrative, then a PAIN callout. Mark call-only subsections. |
-| 02 | RECOMMENDED AI SYSTEMS | {N} systems | System cards per §04, plus the tool-disposition note and any deferral note blocks. |
-| 03 | IMPLEMENTATION ROADMAP | {M} phases · {anchor} | Constraints intro + phase cards per §05. |
-| 04 | GUARDRAILS | Set by {name}, enforced by design | Guard callouts per 6.1. |
-| 05 | THE NUMBERS | As provided, with gaps named | Table + flags + one reading, per 6.2. |
-| 06 | NEXT STEPS | Immediate actions | Step blocks per 6.3. |
-| – | Trace line | – | The closing oath, dated: "Every item in this document traces to the audit call ({date}) or the submitted Systems Brief ({date}). No figures added beyond those the client provided; unknowns are named, not guessed." |
+Title: NEXT STEPS. Tag: "Immediate actions". 4 to 7 numbered step blocks, each starting with a bold action and carrying a named owner. Standard ingredients, picked as they apply:
 
-### 7.1 Cover anatomy
+- The blueprint review call, framed as "to contradict, add to, or accept as-is".
+- The client's data homework.
+- The access checklist (logins, WhatsApp Business, workspaces, ERP).
+- Commercials and onboarding where payment is still open.
+- The flagged numbers to confirm.
+- The promise of the Phase 1 build plan as the next deliverable, "deliverables and done-when stated up front, no surprises mid-journey."
 
-- **Running head, every sheet:** left `BUILDOUR AI · CLIENT BLUEPRINT`, right `DWG NO. BOA-{YYYY}-{CODE}-01 · REV {A}`. The code is three letters from the company name: VNV for Vinove, MPK for MyPackify, APT for Aptus.
-- **Running foot, every sheet:** left `{COMPANY} · AI SYSTEMS BLUEPRINT`, right `SHEET n / N`. Target 7 to 10 sheets total.
-- **Frame:** double orange border (coverframe + coverinner), cover bar "BUILDOUR AI | CLIENT BLUEPRINT".
+## Cover anatomy
+
+- **Running head, every sheet:** left `BUILDOUR AI · CLIENT BLUEPRINT`, right `DWG NO. BOA-{YYYY}-{CODE}-01 · REV {A}`. The code is three letters from the company name: VNV for Vinove, MPK for MyPackify, APT for Aptus, MST for master documents.
+- **Running foot, every sheet:** left `{COMPANY} · AI SYSTEMS BLUEPRINT`, right `SHEET n / N`.
+- **Frame:** double orange border, cover bar reading "BUILDOUR AI | CLIENT BLUEPRINT".
 - **Title:** AI SYSTEMS in ink, BLUEPRINT in orange. Revisions append "· REV B" at reduced size.
 - **Subtitle:** `{COMPANY} · PREPARED FOR {NAME}, {ROLE}`, the name in orange bold.
-- **Flow chips:** the client's own money path in 5 to 7 stations, dash-connected. The chip where the first build lands is filled orange. This is the client's business drawn as a machine, not a generic pipeline.
+- **Flow chips:** the client's own money path in 5 to 7 stations, dash-connected, with the station where the first build lands filled orange. This is the client's business drawn as a machine, not a generic pipeline, and it is usually the first thing they look at.
 - **Title block:** BUSINESS · CURRENT STACK · PREPARED BY · SOURCES (every input, dated) · SYSTEMS SPECIFIED ("7 systems in 3 phases") · DEADLINE ANCHOR. Optional extra fields when relevant: PROGRAM ("Build For You (DFY)") or ENGAGEMENT MODEL, and PRECEDENCE when client documents govern.
-- **Cover note:** "EVERY RECOMMENDATION IN THIS DRAWING TRACES TO THE AUDIT CALL OR THE SUBMITTED SYSTEMS BRIEF". On revisions, the supersede line with the old rev's date.
+- **Cover note:** "EVERY RECOMMENDATION IN THIS DRAWING TRACES TO THE AUDIT CALL OR THE SUBMITTED SYSTEMS BRIEF". On revisions, the supersede line with the previous rev's date.
 
-## 08 · Design Specification *(colour · type · production)*
+## The trace line
 
-The design is a technical drawing: graph-paper grid, one orange, monospaced labels, framed cards. It is fully specified; nothing is chosen per document. This master copy is itself typeset in it.
+Every blueprint closes with it, dated:
+
+> Every item in this document traces to the audit call ({date}) or the submitted Systems Brief ({date}). No figures added beyond those the client provided; unknowns are named, not guessed.
+
+Adapt the source list to what actually fed the document, including client review documents and working calls where they exist. On a revision, extend it: "… Rev B supersedes Rev A in full."
+
+
+---
+
+# PART 03 · The Infographic
+
+# The Infographic: Part A of the Blueprint
+
+Every blueprint opens with the infographic: the one-shot capture of the whole document, on wide sheets, before the in-depth part begins. A client who reads nothing else should get the diagnosis, the prescription, the sequence and the rules from these sheets alone. It is not a summary bolted on; it is the same evidence, drawn.
+
+The infographic and the written part are one document, one triplet, one DWG number. They render together from one HTML file (the template's Part A and Part B), and the sheet counter runs across both.
+
+## The fixed spine
+
+Ten panel positions. Seven are fixed and appear for every client; three are diagnostic slots filled from a menu. Panels are numbered 01 to 10 in order with no gaps: if a client's evidence supports only two diagnostic panels, the build panels renumber so the sequence stays continuous.
+
+| # | Panel | Chart | Rule |
+|---|---|---|---|
+| 01 | THE NUMBERS | Dashboard tiles | **Fixed.** 8 or 9 tiles, straight from the form's numbers panel, wording preserved. Mark 1 or 2 tiles hot (orange value): the figure that carries the finding, and any zero worth staring at ("0 leaks measured"). One caption line reads the tiles: the single most important arithmetic fact, bolded. |
+| 02 | THE MONEY PATH TODAY | Flowchart | **Fixed.** Every station of the client's money path as a numbered box: name plus a 2-4 word state note. Stations named as breakdown points get the `broken` class (orange fill). Legend row closes with the standing truth of the whole path in the client's terms. |
+| 03-05 | Diagnostic slots | From the menu below | **2 or 3 panels, chosen from evidence.** Two small ones share a row (`.duo`); a full-width one stands alone. Never invent a diagnosis to fill a slot: a client with no failed app gets no before/after panel. |
+| 06 | RECOMMENDED AI SYSTEMS | Chain cards, 3-up grid | **Fixed.** One card per system: code and window, name, a 5-7 chip chain from trigger to outcome, side annotations tying guardrails and adoption fixes to specific steps, and a SOLVES footer naming the painkiller. Closes with the tool-disposition caption (kept / dropped, tools bolded). |
+| 07 | IMPLEMENTATION ROADMAP | Gantt + done-whens | **Fixed.** One row per system, bars placed in month columns with a short note each, phase names spanning the header. Below: one DONE WHEN box per phase, states middot-separated. |
+| 08 | WHY THIS BUILD ORDER | 2x2 matrix | **Fixed.** Axes chosen per client (the recurring pair: impact vertical, dependence-on-human-change horizontal). Phase 1 systems sit in the build-first quadrant with tinted cards; every quadrant carries an arrow verdict line. Caption states the axis meaning and the sequencing sentence. |
+| 09 | GUARDRAILS | Three-lane swimlane | **Fixed.** AI ACTS ALONE / HUMAN SIGNS OFF / NEVER AUTOMATED. Tags condensed from the client's form section 10 answers; never-lane tags render orange-filled. Caption carries the running-cost line where one was discussed. |
+| 10 | NEXT STEPS | Numbered action cards | **Fixed.** The same 4-7 actions as the written section 06, compressed to one line each with owners. |
+
+Two footer strips punctuate the sheets: one after the last diagnostic panel (the current-state group: business, sites, stack kept, stack dropped), one after panel 10 (the build group: scope, window, sources), followed by the infographic trace line ending "the in-depth blueprint follows".
+
+## The diagnostic menu
+
+Pick the 2 or 3 whose evidence is loudest in the section 1 material. Each panel must answer: which pain callout or flagged finding does this draw?
+
+| Chart | Use when | Component |
+|---|---|---|
+| **Funnel** | Volume shrinks or inflates between stages: leads to quotes to orders, and one stage is out of proportion. The mid tier renders orange when it is the anomaly. | `.funnel` |
+| **Layer pyramid** | A layer is hollow: an empty management layer, a missing data layer, a process tier nobody owns. The hollow tier renders orange with a dashed reading. | `.pyr` |
+| **Before/after cards** | A past failure or a stated fear shapes the build: a dead app, an abandoned CRM, a burned agency engagement. Each card: what happened, then the countermeasure designed in. This panel is the adoption argument drawn. | `.ba` |
+| **Comparison bars** | Two or three magnitudes tell the story: priced leaks side by side, one channel dwarfing the rest, time spent vs time available. Widths proportional; the largest bar filled orange. | `.cbars` |
+| **Split / entity map** | The story is fragmentation: four GST companies, five entities, eight tools, data in six places. One card per fragment naming what lives there; the caption states the cost of the split. | `.split` |
+
+If none of the five fits and the evidence begs for a different drawing, draw it in the same language (rule borders, one orange, mono labels) and note the addition; the menu grows by what works, not by whim.
+
+## Sourcing rules, unchanged from the prime directive
+
+- Every figure on every panel already exists in the written part or the form; the infographic introduces no new numbers, no new claims, no new systems.
+- Client wording survives compression. A tile label may shorten "quote to order conversion" to "QUOTE -> ORDER"; it may not change 10-15% to "~12%".
+- Flagged contradictions stay flagged: a disputed figure never appears on a tile as if settled. Use the form's value and let the written section 05 carry the flag.
+- Hot (orange) highlighting marks findings, not preferences. A tile goes hot because the evidence pass made it load-bearing.
+
+## Layout mechanics
+
+- Part A uses the named page `infog` (842pt x 1191pt); content flows across as many wide sheets as it needs, typically 2 or 3. Every `.panel` carries `page-break-inside: avoid`, so panels move whole between sheets.
+- Panel 06's grid is 3 cards per row. 6 systems = 2 rows; 7-9 systems = 3 rows. Keep chains at 5-7 chips; spill detail into the side annotations, not into more chips.
+- The gantt takes one header pair plus one row per system. With more than 4 phases or 8 systems, shrink notes before shrinking type.
+- After rendering, look at every wide sheet: a panel split across sheets, a tile row wrapped, or a chain overflowing its card blocks shipping, same as any Part B defect.
+
+
+---
+
+# PART 04 · Design and Production
+
+# Design Specification and Production
+
+The design is a technical drawing: graph-paper grid, one orange, monospaced labels, framed cards. It is fully specified, so nothing is chosen per document. Do not restyle the template, do not introduce a second accent colour, do not swap fonts. The visual consistency is part of what tells a client they are dealing with a firm that has a method.
+
+## Tokens
 
 | Token | Value | Used for |
 |---|---|---|
-| --orange | `#e8590c` | The only accent: bars, borders, labels, links between ideas. |
-| --orange-soft | `#fdeee2` | Inline code-chip background. |
-| --orange-faint | `#fdf6f0` | PAIN and guardrail callout backgrounds. |
-| --ink | `#1f2430` | Body text. |
-| --grid | `rgba(232,89,12,0.07)` | 24px graph-paper grid on paper `#fdfbf9`. |
-| --rule | `#e9c7ae` | Dotted hairlines inside cards and tables. |
-| --mono | Consolas, Courier New | All labels: uppercase, letter-spaced 1.5-3px, 8.5-10.5px. |
-| --sans | Segoe UI, Helvetica, Arial | Body 13.5px / 1.6, justified. H1 46px weight 800. Section titles 17px bold. |
+| `--orange` | `#e8590c` | The only accent: bars, borders, labels. |
+| `--orange-soft` | `#fdeee2` | Inline code-chip background. |
+| `--orange-faint` | `#fdf6f0` | PAIN and guardrail callout backgrounds. |
+| `--ink` | `#1f2430` | Body text. |
+| `--grid` | `rgba(232,89,12,0.07)` | 24px graph-paper grid on paper `#fdfbf9`. |
+| `--rule` | `#e9c7ae` | Dotted hairlines inside cards and tables. |
+| `--mono` | Consolas, Courier New | All labels: uppercase, letter-spaced 1.5 to 3px, 8.5 to 10.5px. |
+| `--sans` | Segoe UI, Helvetica, Arial | Body 13.5px / 1.6, justified. H1 46px weight 800. Section titles 17px bold. |
 
-Component inventory, all defined in the template: cover frame + title block + flow chips; section head (orange number block + title + right tag); numbered subsections with orange mono numbers; PAIN callout; system card (orange header bar, dotted row rules, mono row labels); phase card; guard callout; METRIC/VALUE table with orange header row; numbered step blocks; dashed note block; trace line; inline code chips.
+## Components
 
-### 8.1 Production pipeline
+**Part B (A4):** cover frame with title block and flow chips; section head (orange number block, title, right tag); numbered subsections with orange mono numbers; PAIN callout; system card (orange header bar, dotted row rules, mono row labels); phase card; guard callout; METRIC / VALUE table with orange header row; numbered step blocks; dashed note block; trace line; inline code chips.
 
-1. **Draft the content** as `{Client Name} AI Systems Blueprint.md`, following §07's running order. The markdown is a deliverable too; keep it clean.
-2. **Pour it into the template.** Use `AI Systems Blueprint Template (v2 design).html` in the Master PDFs folder: copy it, replace every `{{PLACEHOLDER}}`, delete unused optional blocks. Do not restyle. If the template is ever lost, the CSS lives in Puneet Jain AI Systems Blueprint v2.html.
-3. **Render the PDF.** Either headless Chrome: `chrome --headless --no-pdf-header-footer --print-to-pdf="out.pdf" "file:///…/in.html"` (works on any machine with Chrome), or WeasyPrint where it is installed: `python -m weasyprint "in.html" "out.pdf"`. Sheets number themselves either way.
-4. **Read every rendered page.** Check that no card breaks across a sheet, the cover fits one sheet, and the sheet count is 7 to 10. Fix in the HTML, re-render.
-5. **Save the triplet** (.md, .html, .pdf) in the client's folder. Revisions get a new triplet ("… v2" or "… Rev B"); the old one is renamed "(v1 archive)", never deleted.
+**Part A (wide sheets):** infographic header with prepared-for box; panel head (orange number badge, bold title, mono tag, ink rule); dashboard tiles with hot variant; money-path flow boxes with broken variant and legend; funnel and layer pyramid (double-layer clip-path: fill layer in rule colour or orange, inner layer inset 1.5px); before/after cards; comparison bars; split cards; 3-up system chain cards with side annotations; gantt table with bar chips and done-when trio; 2x2 matrix with build-first quadrant; three-lane guardrail swimlane with never-variant tags; two-up next-step cards; footer stripe. All share the same tokens; no new colours, no new fonts.
 
-## 09 · Writing Rules *(voice and style)*
+## Pages
 
-- **THE CLIENT'S WORDS ARE LOAD-BEARING.** Quote them in italics, in whatever language they spoke, typos intact. Their sentences name the pains, justify the systems and set the guardrails. Your job is arrangement, not improvement.
-- **SHORT, DECLARATIVE, ACTIVE. NO EM DASHES,** house rule: use commas, colons, periods and middots instead. One earned aphorism per section at most ("Automating an undocumented process produces an undocumented automation"); more and it reads like copywriting.
-- **DIAGNOSE BEFORE PRESCRIBING.** §1 earns §2. Explain the business back to itself so precisely that the client nods before they reach a single recommendation.
-- **CROSS-REFERENCE EVERYTHING.** Every SOLVES points at a §1.x. Next steps point at systems. Interpretations point at the table rows they read. The document is a web, not a list.
-- **WRITE FOR TWO READERS AT ONCE:** the owner who decides, and the team member who will run the system. Explain jargon inline the first time (BOM, GRN, KRA). Name real staff; workflows should read as the client's actual office, not an org chart.
-- **PRICE THE PAIN WHERE THE CLIENT DID,** and translate where it lands: "a forgotten order at a 50% repeat rate is a relationship cost, not just one lost bill." Never invent a rupee figure to make a pain sound bigger.
-- **EVIDENCE PERSUADES; SELLING REPELS.** No superlatives about our systems, no fear-mongering about AI, no promises without a done-when. The blueprint's confidence is its traceability.
+Two named page sizes in one file: the default `@page` is A4 for Part B, and `@page infog` (842pt x 1191pt) carries Part A via `page: infog` on the `.ig` wrapper. Chrome honours both; the sheet counter runs across the whole document. Both page rules carry the same running head and foot strings, so edit the DWG number and company name in BOTH when filling the template.
 
-## 10 · Revisions *(Rev B and the delta discipline)*
+Structural CSS worth knowing when a page breaks badly: cards carry `page-break-inside: avoid`, section heads carry `page-break-after: avoid`, and the cover carries both so it stays on one sheet. Running heads, feet and sheet numbers come from `@page` margin boxes with `counter(page)` and `counter(pages)`, so sheets number themselves and you never hand-number anything.
 
-A revision triggers when material new input lands: the client's review of the blueprint, a working call, a missing transcript finally exported, delivered data assets, or a client-authored spec. Small corrections do not trigger a rev; they queue for the next one.
+## Production pipeline
 
-1. **Stamp the rev everywhere:** the DWG number on every sheet, the cover title ("· REV B"), every footer, and the cover supersede note: "Rev B supersedes Rev A (14.08.2026). Every change in this revision traces to the client's own review documents or the working call of {date}."
-2. **Replace §01 with the delta record:** section 01 becomes WHAT CHANGED SINCE REV A, tag "Delta record". Open it with the scope note: "Rev A §1 remains valid and is not repeated. This section records only what is new on file." Never rewrite what still stands.
-3. **Answer every client point, traceably.** The executive summary enumerates the structural changes ("This revision makes four structural changes, each traceable to his review or the {date} call: (1)…"). Each of the client's review items maps to the section that satisfies it. What is pending gets a named slot held. What they challenged gets engaged on the record, accepted or argued, never ignored.
-4. **Carry corrections forward.** Client corrections persist across every future revision; keep a standing list so a correction never silently un-happens. If one slipped through, name it and kill it: "The close rate figure that survived into v2 is removed."
-5. **Record decisions as statuses:** `POC AGREED`, `PROMOTED TO CORE`, deferrals to `D-0N` per §4.3. Track Rev A's open items to closure and name the ones still open. Close with the extended trace line: "… Unknowns are named, not guessed. Rev B supersedes Rev A in full."
+1. **Draft the content** as `{Client Name} AI Systems Blueprint.md`, following the fixed running order: Part A's panel content first (tile values, station lists, chain steps, lane tags), then Part B's sections. The markdown is a deliverable in its own right, so keep it clean and complete; it is the editable source for every future revision.
 
-## 11 · The Quality Gate *(before it ships)*
+2. **Pour it into the template.** Copy `assets/blueprint-template.html`, replace every `{{PLACEHOLDER}}`, delete the optional blocks you did not use (the foundation card, the deferral note block). The template's HTML comments mark where each repeating element goes.
 
-Run every check. One failure blocks shipping. This is the gate that makes the outcome repeatable regardless of who wrote the document.
+3. **Render the PDF** with the bundled script, which tries WeasyPrint and falls back to headless Chrome:
+
+   ```bash
+   python scripts/render_pdf.py "{Client} AI Systems Blueprint.html"
+   ```
+
+   Both engines honour the `@page` rules, so output is equivalent. On Windows machines without the GTK libraries, WeasyPrint will fail to import and the script silently uses Chrome instead.
+
+4. **Read every rendered page.** Check that no card or panel breaks across a sheet, the cover fits one sheet, the sheet count lands between 8 and 12 (2-3 wide + 6-9 A4), and the running heads and feet are right on both page sizes. Fix in the HTML, re-render. Rendering without looking at the result is how a broken card reaches a client.
+
+5. **Save the triplet** (.md, .html, .pdf) in the client's folder. Revisions get a new triplet ("… v2" or "… Rev B") and the previous one is renamed "(v1 archive)". Never delete a shipped document: the archive is what lets you answer "what did we tell them in August?"
+
+## Template placeholders
+
+`{{COMPANY}}` `{{NAME}}` `{{ROLE}}` `{{N}}` (system count) `{{M}}` (phase count) `{{ANCHOR}}` (deadline anchor) `{{DATE}}` and the generic `{{PLACEHOLDER}}` markers inside each content block. Search the file for `{{` before rendering; any survivor means an unfilled field, which is the single most common defect in a first draft.
+
+
+---
+
+# PART 05 · The Quality Gate
+
+# The Quality Gate
+
+Run every check before the blueprint leaves the building. One failure blocks shipping. This gate is what makes the outcome repeatable regardless of who wrote the document, and it is deliberately mechanical so that a tired writer at the end of a long draft cannot talk themselves past it.
 
 | # | Check | Passes when |
 |---|---|---|
@@ -235,23 +355,65 @@ Run every check. One failure blocks shipping. This is the gate that makes the ou
 | 1 | Traceability | Every system's SOLVES points at a §1 subsection; every §1 pain is addressed by a system or explicitly deferred. |
 | 2 | Quotes | Every quote verified against the form or transcript: verbatim, or marked (paraphrase). Call-only material marked. |
 | 3 | Guardrails | §4 matches form §10; unanswered guardrails carry a conservative default and appear in Next Steps. |
-| 4 | Numbers | §5 table matches the form character for character, estimates marked; every ₹ and % in the document traces to a source. |
+| 4 | Numbers | §5 table matches the form character for character, estimates marked; every rupee figure and percentage in the document traces to a source. |
 | 5 | Contradictions | Flagged as numbered confirm items in §5 and repeated in Next Steps. None silently resolved. |
-| 6 | Roadmap | Hours/week, deadline anchor and season named in the intro; every phase has a testable DONE WHEN; the final one echoes the client's "worth it if". |
+| 6 | Roadmap | Hours per week, deadline anchor and busy season named in the intro; every phase has a testable DONE WHEN; the final one echoes the client's "worth it if". |
 | 7 | Cover | Chips are the client's money path with the first build highlighted; DWG number correct; Sources complete and dated; deadline anchor present. |
-| 8 | Design | Template untouched; no card broken across sheets; 7 to 10 sheets; running heads and feet correct on every sheet. |
-| 9 | Language | No em dashes; jargon explained; client-language quotes intact; no selling. |
+| 8 | Design | Template untouched; no card or panel broken across sheets; 8 to 12 sheets (2-3 wide + 6-9 A4); running heads and feet correct on every sheet; no `{{` placeholders survive. |
+| 9 | Language | No em dashes; jargon explained on first use; client-language quotes intact; no selling. |
 | 10 | Trace line | Present, dated, and true. |
 | 11 | Files | The .md / .html / .pdf triplet saved in the client's folder; prior revisions archived, not deleted. |
+| 12 | Infographic figures | Every figure, quote and claim on every panel already exists in Part B or the form; nothing appears first on a panel. Hot tiles mark findings the evidence pass named. |
+| 13 | Infographic spine | Panels numbered 01-10 with no gaps; the 7 fixed panels present; each diagnostic panel points at the section 1 evidence that earned it; no diagnostic panel invented to fill a slot. |
+| 14 | Cross-agreement | Panel 06 chains match the system cards; panel 07 bars match the phase cards and done-whens; panel 09 lanes match section 04's verbatim rules; panel 10 matches section 06. One story, two renderings. |
 
-## 12 · Your First Blueprint *(next steps for a new writer)*
+## How to run it honestly
 
-1. **Read two shipped blueprints end to end:** Pranay Aggarwal AI Systems Blueprint v2 (the structure and design standard) and Puneet Jain AI Systems Blueprint v2 / Rev B (the revision standard). Both live in the clients folder.
-2. **Trace ten claims.** Take one client's audit form and cleaned transcript, sit them beside the shipped blueprint, and trace ten of its claims back to their exact sources. This teaches the evidence pass faster than any instruction.
-3. **Draft your first blueprint** with this manual open, working §§01-06 in order, into the template per §08.
-4. **Run the §11 gate,** then have one experienced reviewer walk your draft against the same checklist before it goes anywhere near the client.
-5. **Ship, book the review call, and fold what comes back into Rev B** per §10. The blueprint is not the end of a process; it is the first move of the build.
+Checks 1, 2 and 4 are the ones that actually catch damage, and they cannot be done by skimming. Take the rendered PDF and the source documents side by side:
+
+- For check 1, list every system and write the § number it solves next to it. A system you have to think hard about is a system that does not belong.
+- For check 2, search the draft for every quotation mark and confirm each one against the source text. A quote you cannot find is a quote you reconstructed, which means it has to become a paraphrase or come out.
+- For check 4, take each number in the §5 table back to the form. Then scan the prose for any figure that is not in the table and confirm it too.
+
+If a check fails, fix the document rather than the check. The gate exists because the alternative, a blueprint whose claims cannot be verified, costs the client's trust in everything else the engagement produces.
+
 
 ---
 
-*Every rule in this master copy is distilled from the twelve client blueprints, audit forms and call transcripts on file (August 2026). Where a case this manual does not cover appears, fall back to the prime directive: the client's words, traced, never guessed.*
+# PART 06 · Revisions
+
+# Revisions: Rev B and the Delta Discipline
+
+A revision triggers when material new input lands: the client's written review of the blueprint, a working call, a missing transcript finally exported, delivered data assets, or a client-authored spec. Small corrections do not trigger a revision; they queue for the next one.
+
+The governing idea: a revision is a record of a conversation, not a fresh draft. The client should be able to see exactly what their input changed, which is what makes them keep sending input.
+
+## The five moves
+
+1. **Stamp the rev everywhere.** The DWG number on every sheet, the cover title ("· REV B"), every footer, and the cover supersede note: "Rev B supersedes Rev A (14.08.2026). Every change in this revision traces to the client's own review documents or the working call of {date}."
+
+2. **Replace §01 with the delta record.** Section 01 becomes WHAT CHANGED SINCE REV A, tag "Delta record". Open it with the scope note: "Rev A §1 remains valid and is not repeated. This section records only what is new on file." Never rewrite what still stands. Rewriting valid content wastes the client's reading time and hides the actual changes inside a wall of familiar text.
+
+3. **Answer every client point, traceably.** The executive summary enumerates the structural changes: "This revision makes four structural changes, each traceable to his review or the {date} call: (1)…". Each of the client's review items maps to the section that now satisfies it. What is still pending gets a named slot held. What they challenged gets engaged on the record, accepted or argued, never quietly ignored. A client who took the trouble to write a review will check whether each point landed.
+
+4. **Carry corrections forward.** Client corrections persist across every future revision. Keep a standing list so a correction never silently un-happens between versions. If one slipped through, name it and kill it on the record: "The close rate figure that survived into v2 is removed."
+
+5. **Record decisions as statuses.** System codes carry the outcome of the conversation: `POC AGREED`, `PROMOTED TO CORE`. Deferrals become `D-01`, `D-02` in a dashed note block, parked not dropped, each with the client's reason, the interim carrier, and the re-entry condition. Track the previous rev's open items to closure and name the ones still open. Close with the extended trace line: "… Unknowns are named, not guessed. Rev B supersedes Rev A in full."
+
+## What a good delta section contains
+
+Look at what actually changed and give each item its own subsection under 1.1, 1.2, and so on:
+
+- **Open items closed.** "The Systems Brief (13.08) closes Rev A's open item #1: ~200 leads and ~200 quotes per month…"
+- **New client assets on file.** A costing spec, a die master, size charts. Say what they are and what they unlock.
+- **Risks retired.** "The single biggest project risk named in Rev A, that the costing logic lived only in his head, has been retired by the client himself." Credit the client when they retire their own risk.
+- **Corrections to the record.** "§1.6 Owner role, corrected." Where Rev A got something wrong, say so plainly rather than editing it away.
+- **Client decisions, including deferrals,** with the reasoning they gave.
+
+## The infographic on a revision
+
+Part A re-renders with Part B, always: a Rev B whose panels still show Rev A's numbers is worse than no infographic. Re-run the panel checks (gate 12 to 14). Where the revision changed a system's status or a phase's timing, the matching panel changes with it, and the delta section names the panels that moved.
+
+## Files
+
+Revisions get a new triplet named "… v2" or "… Rev B". The previous triplet is renamed "(v1 archive)" and kept. The archive is what lets anyone answer "what did we tell this client in August, and what changed since?" without reconstructing it from memory.

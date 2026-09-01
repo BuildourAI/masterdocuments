@@ -19,7 +19,3 @@ cp -r "masterdocuments/.claude/skills/ai-systems-blueprint" ~/.claude/skills/
 ```
 
 Then, in any client repo, type `/ai-systems-blueprint` or simply ask for that client's blueprint. This repository stays the single source of truth: after `git pull`, re-run the copy above to take the latest version.
-
-## Start here
-
-New developer? Read **HOW-TO.md**: installing the skill, writing a client blueprint, and which guide to send a client when.

@@ -2,440 +2,685 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Master Copy: Creating the AI Systems Blueprint</title>
+<title>Master Copy - Creating the AI Systems Blueprint</title>
 <style>
-  :root {
-    --orange: #e8590c;
-    --orange-soft: #fdeee2;
-    --orange-faint: #fdf6f0;
-    --ink: #1f2430;
-    --grid: rgba(232, 89, 12, 0.07);
-    --rule: #e9c7ae;
-    --mono: "Consolas", "Courier New", monospace;
-    --sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  @page {
-    size: A4;
-    margin: 84px 44px 84px;
-    @top-left {
-      content: "Buildour AI \00b7 Master SOP";
-      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: bottom; padding-bottom: 24px;
-    }
-    @top-right {
-      content: "DWG NO. BOA-2026-MST-01 \00b7 REV A";
-      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: bottom; padding-bottom: 24px;
-    }
-    @bottom-left {
-      content: "Master Copy \00b7 Creating the AI Systems Blueprint";
-      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: top; padding-top: 20px;
-    }
-    @bottom-right {
-      content: "Sheet " counter(page) " / " counter(pages);
-      font-family: "Consolas", monospace; font-size: 9.5px; letter-spacing: 2px;
-      color: #e8590c; text-transform: uppercase;
-      vertical-align: top; padding-top: 20px;
-    }
-  }
-  html {
-    background:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-      #fdfbf9;
-    background-size: 24px 24px;
-  }
-  body {
-    font-family: var(--sans);
-    color: var(--ink);
-    font-size: 13px;
-    line-height: 1.55;
-  }
-  /* ---------- cover ---------- */
-  .coverpage { page-break-after: always; page-break-inside: avoid; }
-  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
-  .coverinner { border: 1px solid var(--orange); padding: 40px 40px 26px; background: rgba(255,255,255,0.75); }
-  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono);
-    font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase;
-    border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
-  h1.cover { font-size: 43px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
-  h1.cover .accent { color: var(--orange); }
-  .coversub { font-family: var(--mono); font-size: 12px; letter-spacing: 2.5px;
-    text-transform: uppercase; margin: 16px 0 30px; }
-  .coversub b { color: var(--orange); }
-  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 30px; }
-  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono);
-    font-size: 8.5px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 8px; text-align: center; }
-  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
-  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
-  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; }
-  table.titleblock td { border: 1px solid var(--orange); padding: 8px 12px; vertical-align: top; }
-  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
-  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
-    text-transform: uppercase; text-align: center; margin-top: 24px; border-top: 1px dotted var(--rule); padding-top: 13px; }
-  /* ---------- section headers ---------- */
-  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 28px 0 14px; background: #fff;
-    page-break-after: avoid; page-break-inside: avoid; }
-  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
-    font-size: 16px; padding: 8px 14px; display: flex; align-items: center; }
-  .sectitle { padding: 8px 14px; font-size: 16px; font-weight: 700; flex: 1; display: flex; align-items: center; }
-  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
-    text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
-  h3.sub { font-size: 13.5px; font-weight: 700; margin: 18px 0 6px; page-break-after: avoid; }
-  h3.sub .n { color: var(--orange); font-family: var(--mono); margin-right: 6px; }
-  p { margin-bottom: 10px; text-align: justify; }
-  /* ---------- callouts ---------- */
-  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint);
-    padding: 8px 13px; margin: 9px 0; font-size: 12px; page-break-inside: avoid; }
-  .guard b { color: var(--orange); }
-  .noteblock { border: 1.5px dashed var(--orange); background: rgba(255,255,255,0.8);
-    padding: 12px 15px; margin: 14px 0; font-size: 12px; page-break-inside: avoid; }
-  .noteblock .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
-    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 5px; }
-  .noteblock p { margin-bottom: 6px; }
-  .noteblock p:last-child { margin-bottom: 0; }
-  /* ---------- cards (sys/phase reuse) ---------- */
-  .sys { border: 1.5px solid var(--orange); margin: 13px 0; background: #fff; page-break-inside: avoid; }
-  .sysbar { background: var(--orange); color: #fff; padding: 6px 13px; display: flex; justify-content: space-between; align-items: center; }
-  .sysbar .name { font-weight: 700; font-size: 13.5px; letter-spacing: 0.3px; }
-  .sysbar .code { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; }
-  .sysrow { display: flex; border-top: 1px dotted var(--rule); }
-  .sysrow:first-of-type { border-top: none; }
-  .syslbl { flex: 0 0 118px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
-    color: var(--orange); text-transform: uppercase; font-weight: 700; padding: 9px 0 9px 13px; }
-  .sysval { flex: 1; padding: 8px 13px 8px 10px; font-size: 12px; border-left: 1px dotted var(--rule); }
-  .sysval p { margin-bottom: 6px; }
-  .sysval p:last-child { margin-bottom: 0; }
-  /* ---------- tables ---------- */
-  table.numbers { width: 100%; border-collapse: collapse; margin: 11px 0; font-size: 12px; background: #fff; }
-  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 12px;
-    font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
-  table.numbers td { border: 1px solid var(--rule); padding: 6px 12px; vertical-align: top; }
-  table.numbers tr { page-break-inside: avoid; }
-  table.numbers td.k { font-weight: 700; white-space: nowrap; }
-  /* ---------- steps ---------- */
-  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
-  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
-    font-size: 12.5px; padding: 9px 12px; display: flex; align-items: flex-start; }
-  .stepbody { padding: 8px 13px; font-size: 12px; }
-  .stepbody p { margin-bottom: 5px; text-align: left; }
-  .stepbody p:last-child { margin-bottom: 0; }
-  /* ---------- misc ---------- */
-  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
-    text-transform: uppercase; text-align: center; margin-top: 24px; border-top: 1.5px solid var(--orange);
-    padding-top: 12px; line-height: 1.8; }
-  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; }
-  ul.tight { margin: 0 0 10px 20px; }
-  ul.tight li { margin-bottom: 4px; font-size: 12px; }
-  .mlabel { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
-    text-transform: uppercase; font-weight: 700; }
+  :root { --orange:#e8590c; --orange-soft:#fdeee2; --orange-faint:#fdf6f0; --ink:#1f2430;
+    --grid:rgba(232,89,12,0.07); --rule:#e9c7ae;
+    --mono:"Consolas","Courier New",monospace; --sans:"Segoe UI","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  @page { size:A4; margin:84px 44px 84px;
+    @top-left { content:"Buildour AI \00b7 Master SOP"; font-family:"Consolas",monospace; font-size:9.5px;
+      letter-spacing:2px; color:#e8590c; text-transform:uppercase; vertical-align:bottom; padding-bottom:24px; }
+    @top-right { content:"DWG NO. BOA-2026-MST-01 \00b7 REV B"; font-family:"Consolas",monospace; font-size:9.5px;
+      letter-spacing:2px; color:#e8590c; text-transform:uppercase; vertical-align:bottom; padding-bottom:24px; }
+    @bottom-left { content:"Creating the AI Systems Blueprint"; font-family:"Consolas",monospace; font-size:9.5px;
+      letter-spacing:2px; color:#e8590c; text-transform:uppercase; vertical-align:top; padding-top:20px; }
+    @bottom-right { content:"Sheet " counter(page) " / " counter(pages); font-family:"Consolas",monospace;
+      font-size:9.5px; letter-spacing:2px; color:#e8590c; text-transform:uppercase; vertical-align:top; padding-top:20px; } }
+  html { background:linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),#fdfbf9; background-size:24px 24px; }
+  body { font-family:var(--sans); color:var(--ink); font-size:12.5px; line-height:1.6; }
+  .coverpage { page-break-after:always; }
+  .coverframe { border:2.5px solid var(--orange); padding:8px; }
+  .coverinner { border:1px solid var(--orange); padding:42px 42px 28px; background:rgba(255,255,255,0.75); }
+  .coverbar { display:flex; justify-content:space-between; font-family:var(--mono); font-size:10.5px;
+    letter-spacing:3px; color:var(--orange); text-transform:uppercase; border-bottom:1px dotted var(--rule);
+    padding-bottom:12px; margin-bottom:32px; }
+  h1.cover { font-size:40px; line-height:1.06; font-weight:800; letter-spacing:-0.5px; }
+  h1.cover .accent { color:var(--orange); }
+  .coversub { font-family:var(--mono); font-size:11.5px; letter-spacing:2.5px; text-transform:uppercase;
+    margin:16px 0 28px; }
+  table.titleblock { width:100%; border-collapse:collapse; font-size:12px; }
+  table.titleblock td { border:1px solid var(--orange); padding:9px 13px; vertical-align:top; }
+  table.titleblock .lbl { font-family:var(--mono); font-size:9px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--orange); font-weight:700; display:block; margin-bottom:3px; }
+  .covernote { font-family:var(--mono); font-size:9.5px; letter-spacing:1.5px; color:#8a7361;
+    text-transform:uppercase; text-align:center; margin-top:26px; border-top:1px dotted var(--rule); padding-top:14px; }
+  .parthead { display:flex; align-items:stretch; border:1.5px solid var(--orange); margin:30px 0 16px;
+    background:#fff; page-break-after:avoid; page-break-inside:avoid; page-break-before:always; }
+  .parthead:first-of-type { page-break-before:auto; }
+  .partnum { background:var(--orange); color:#fff; font-family:var(--mono); font-weight:700; font-size:16px;
+    padding:8px 14px; display:flex; align-items:center; }
+  .parttitle { padding:8px 14px; font-size:16px; font-weight:700; flex:1; display:flex; align-items:center; }
+  .parttag { font-family:var(--mono); font-size:9px; letter-spacing:2px; color:var(--orange);
+    text-transform:uppercase; display:flex; align-items:center; padding-right:14px; text-align:right; max-width:280px; }
+  .md h1 { display:none; }
+  .md h2 { font-size:15px; font-weight:700; margin:20px 0 8px; padding-bottom:4px;
+    border-bottom:1.5px solid var(--rule); page-break-after:avoid; }
+  .md h3 { font-size:13px; font-weight:700; margin:14px 0 6px; page-break-after:avoid; }
+  .md p { margin-bottom:10px; text-align:justify; }
+  .md ul, .md ol { margin:0 0 10px 22px; }
+  .md li { margin-bottom:5px; }
+  .md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:11.5px; background:#fff; }
+  .md th { background:var(--orange); color:#fff; text-align:left; padding:6px 10px; font-family:var(--mono);
+    font-size:9px; letter-spacing:1.5px; text-transform:uppercase; }
+  .md td { border:1px solid var(--rule); padding:6px 10px; vertical-align:top; }
+  .md tr { page-break-inside:avoid; }
+  .md blockquote { border-left:3px solid var(--orange); background:var(--orange-faint);
+    padding:9px 13px; margin:9px 0 14px; page-break-inside:avoid; }
+  .md blockquote p { margin-bottom:4px; text-align:left; }
+  .md code { font-family:var(--mono); font-size:11px; background:var(--orange-soft); padding:1px 5px; }
+  .md pre { background:#fff; border:1px solid var(--rule); padding:10px 14px; margin:10px 0;
+    font-size:11px; overflow:hidden; page-break-inside:avoid; }
+  .md pre code { background:none; padding:0; }
+  .traceline { font-family:var(--mono); font-size:9.5px; letter-spacing:1.5px; color:#8a7361;
+    text-transform:uppercase; text-align:center; margin-top:24px; border-top:1.5px solid var(--orange);
+    padding-top:12px; line-height:1.8; }
 </style>
 </head>
 <body>
 
-<!-- ================= COVER ================= -->
-<div class="coverpage">
-  <div class="coverframe"><div class="coverinner">
-    <div class="coverbar"><span>Buildour AI</span><span>Master SOP</span></div>
-    <h1 class="cover">AI SYSTEMS<br><span class="accent">BLUEPRINT</span> <span style="font-size:22px; font-weight:600;">&middot; MASTER COPY</span></h1>
-    <div class="coversub">The process manual &nbsp;&middot;&nbsp; How anyone at <b>BuildOur AI</b> creates a client blueprint, from audit to delivery</div>
-
-    <div class="flow">
-      <span class="chip">Client<br>Onboard</span><span class="dash">&ndash;&ndash;</span>
-      <span class="chip">Audit<br>Form</span><span class="dash">&ndash;&ndash;</span>
-      <span class="chip">Audit<br>Call</span><span class="dash">&ndash;&ndash;</span>
-      <span class="chip">Evidence<br>Pass</span><span class="dash">&ndash;&ndash;</span>
-      <span class="chip hot">Blueprint</span><span class="dash">&ndash;&ndash;</span>
-      <span class="chip">Review<br>Call</span><span class="dash">&ndash;&ndash;</span>
-      <span class="chip">Rev B</span><span class="dash">&ndash;&ndash;</span>
-      <span class="chip">Build</span>
-    </div>
-
-    <table class="titleblock">
-      <tr><td colspan="2"><span class="lbl">Purpose</span>One repeatable method for turning a filled audit form and an audit call into a client-ready AI Systems Blueprint. Same structure, same design, same quality, whoever writes it: developer, consultant, systems builder, non-technical team member, or the client themselves.</td></tr>
-      <tr><td colspan="2"><span class="lbl">The Standard</span>All future blueprints follow the v2 drawing format of <b>Pranay Aggarwal AI Systems Blueprint v2</b>: the structure in &sect;07 of this manual, the design in &sect;08. No exceptions without a named reason.</td></tr>
-      <tr>
-        <td style="width:50%;"><span class="lbl">Prepared by</span>BuildOur AI</td>
-        <td><span class="lbl">Sources</span>Distilled from the twelve client blueprints on file (August 2026), their audit forms, call transcripts, client review documents and revision history.</td>
-      </tr>
-      <tr>
-        <td><span class="lbl">Output per client</span>One blueprint in three files (.md, .html, .pdf), 7 to 10 sheets, Rev A, saved in the client&rsquo;s folder</td>
-        <td><span class="lbl">Time budget</span>2 to 3 working days from complete inputs to shipped Rev A</td>
-      </tr>
-    </table>
-
-    <div class="covernote">Follow this manual and any two writers produce the same blueprint. The client&rsquo;s words, traced, never guessed.</div>
-  </div></div>
-</div>
-
-<!-- ================= 00 ================= -->
-<div class="sechead"><div class="secnum">00</div><div class="sectitle">THE JOB, IN ONE PAGE</div><div class="sectag">Read me first</div></div>
-
-<p>The AI Systems Blueprint is the first substantial deliverable a client receives after their audit. It does four things in one document: it plays the client&rsquo;s business back to them in their own words, it names exactly where that business hurts and what the pain costs, it prescribes AI systems that each point at a named pain, and it sequences those systems into phases with testable finish lines, wrapped in the safety rules the client themselves set. It is a diagnosis, a proposal and a build contract at once. When it is written well, the client&rsquo;s reaction is recognition: <em>this is my business, and this is my plan.</em></p>
-
-<div class="guard"><b>THE PRIME DIRECTIVE:</b> every recommendation, figure and quote in a blueprint traces to the audit call, the submitted Systems Brief, or a dated client document. No figures are invented. Unknowns are named, not guessed. Contradictions are flagged, not resolved. A sentence stating this closes every blueprint we ship, and it has to be true.</div>
-
-<div class="guard"><b>THE ENTRY GATE: BOTH INPUTS, OR NO BLUEPRINT.</b> A blueprint is written only when the filled audit form and the audit call are both on file. Neither substitutes for the other. The form supplies the numbers, the guardrails and the client&rsquo;s own build list; the call supplies the reasoning behind those answers, the worked examples, the decisions made live, and the client&rsquo;s exact words. A form-only document is a form with formatting applied, and it will not survive contact with the client, because the questions it failed to ask are the ones the call exists to ask. If either input is missing, say so plainly and chase it. Do not open the template.</div>
-
-<p>How to use this manual: read it once end to end. When you write your first blueprint, work sections 01 to 06 in order; they follow the pipeline. Sections 07 and 08 are the fixed structure and design, where nothing is left to taste. Sections 09 to 11 are the voice, the revision discipline and the quality gate. Your judgment lives in sections 03 to 05 (what to extract, which systems to design, how to sequence them). Everything else is deliberately mechanical, because mechanical is what makes twelve different clients receive documents that feel like one firm produced them.</p>
-
-<div class="guard"><b>NEVER:</b> skip the evidence pass, soften or prettify a client quote, guess a number, add a system that has no pain to point at, or ship without running the quality gate in &sect;11.</div>
-
-<!-- ================= 01 ================= -->
-<div class="sechead"><div class="secnum">01</div><div class="sectitle">THE PIPELINE</div><div class="sectag">Seven steps, form to delivery</div></div>
-
-<p>The full path from a signed client to a shipped blueprint. Steps 03 to 05 are thinking work; the rest is disciplined mechanics. Owners shown are defaults: one person can run the whole pipeline.</p>
-
-<div class="step"><div class="stepnum">01</div><div class="stepbody"><p><b>Collect the inputs, and check the entry gate.</b> The client folder must hold both required inputs: the filled Systems Brief export, and the audit call recording with its VTT transcript. Plus every extra asset the client supplied (photos, price sheets, specs, spreadsheets, self-built apps, review documents). Date everything. If either required input is missing, the pipeline stops here: report what is missing and get it. Where only the form exists, the useful work is to run the evidence pass on it and turn the gaps into an agenda for the call, which makes the call sharper. That is preparation, not a blueprint, and it is never formatted as one.</p></div></div>
-
-<div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>Clean the transcript.</b> Convert the raw Zoom VTT into a cleaned transcript: strip cue numbers and end timestamps, merge consecutive lines by the same speaker into single turns, drop pure backchannel noise (&ldquo;hmm&rdquo;, &ldquo;okay&rdquo;, ASR artefacts). Never rewrite, never infer: garbled speech stays garbled and the defect gets disclosed in Sources. Save as <code class="f">{Client} Audit Call (Cleaned).md</code>.</p></div></div>
-
-<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>Run the evidence pass (&sect;03).</b> Read the full form and the full transcript once, before writing anything. Extract pains, quotes, numbers, guardrails, constraints and assets into the extraction list. This is the step that separates a traced blueprint from a generic one.</p></div></div>
-
-<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>Design the systems (&sect;04).</b> Turn the pains into 6 to 9 recommended systems, each with a code, a card, and a SOLVES row pointing at a named pain.</p></div></div>
-
-<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>Sequence the roadmap (&sect;05).</b> Group the systems into 3 or 4 phases with a testable &ldquo;done when&rdquo; each, respecting the client&rsquo;s hours per week, deadline anchor and busy season.</p></div></div>
-
-<div class="step"><div class="stepnum">06</div><div class="stepbody"><p><b>Write and typeset (&sect;&sect;06&ndash;09).</b> Draft the content in markdown following the sheet-by-sheet structure of &sect;07, pour it into the v2 HTML template, and render the PDF (&sect;08). Read every rendered page.</p></div></div>
-
-<div class="step"><div class="stepnum">07</div><div class="stepbody"><p><b>Quality gate and deliver (&sect;11).</b> Run the checklist, save the three files to the client&rsquo;s folder, send the PDF, and book the blueprint review call. What comes back from that call starts the Rev B cycle (&sect;10).</p></div></div>
-
-<!-- ================= 02 ================= -->
-<div class="sechead"><div class="secnum">02</div><div class="sectitle">THE INPUTS</div><div class="sectag">What you work from</div></div>
-
-<p>Two inputs are required, and both must be on file before drafting starts: the audit form and the audit call. Everything else on this list is welcome but optional. The rule exists because the two inputs fail in opposite directions. The form is precise and shallow: real figures, real guardrail answers, often in single words, with no explanation behind any of them. The call is rich and imprecise: the stories, the worked examples, the vetoes, the client&rsquo;s own sentences, none of it tabulated. A blueprint needs both halves, so a document built on one of them is not a thin blueprint, it is a different and weaker artefact wearing the format.</p>
-
-<h3 class="sub"><span class="n">2.1</span>The audit form: &ldquo;My Systems Brief&rdquo;</h3>
-<p>Every client fills the same 44-question form before their audit call. The export is titled <em>&ldquo;My Systems Brief: every question and my answer&rdquo;</em> and carries the client&rsquo;s name, business and submission timestamp. Its section numbering jumps from 7 straight to 9 in every export; that is normal, expect it. The form ships localized (Gujarati and other languages exist); the sections map one to one. Each section feeds a specific part of the blueprint:</p>
-
-<table class="numbers">
-  <tr><th style="width:38%;">Form section</th><th>What it feeds in the blueprint</th></tr>
-  <tr><td class="k">1 &middot; The Wishlist &amp; the Endgame</td><td>Executive summary framing. The &ldquo;I never want to manually ___ again&rdquo; list seeds the system list. Fears and &ldquo;what I do NOT want&rdquo; become design rules. The six-month picture becomes the final &ldquo;done when&rdquo;.</td></tr>
-  <tr><td class="k">2 &middot; The One-Line Business</td><td>The BUSINESS field on the cover, and the opening of the executive summary.</td></tr>
-  <tr><td class="k">3 &middot; The Money Path</td><td>The skeleton of &sect;1 Current State and the cover flow chips. Steps marked &#9881; are manual: your automation candidates. The owner named per step tells you who each system serves.</td></tr>
-  <tr><td class="k">4 &middot; The People Map</td><td>Adoption logic, the internal champion candidate, the headcount cross-check, and the owner&rsquo;s hours-per-week constraint for the roadmap.</td></tr>
-  <tr><td class="k">5 &middot; Apps and software you pay for</td><td>The CURRENT STACK field on the cover, and the keep / retire / supersede dispositions in &sect;2. &ldquo;Paid but ignored&rdquo; tools become next steps (activate or cancel).</td></tr>
-  <tr><td class="k">6 &middot; The Numbers Panel</td><td>The &sect;5 Numbers table, exactly as provided, estimates marked, contradictions flagged.</td></tr>
-  <tr><td class="k">7 &middot; The Leak List</td><td>The PAIN callouts of &sect;1, priced in rupees where the client priced them. The loudest priced leak usually decides Phase 1.</td></tr>
-  <tr><td class="k">9 &middot; Draft Build List + Top 3 Painkillers</td><td>The seed of the recommended systems. Painkiller #1 is the strongest single signal in the whole form.</td></tr>
-  <tr><td class="k">10 &middot; Guardrails &amp; the Finish Line</td><td>The &sect;4 Guardrails section, near-verbatim. Also: the error protocol, the customer-facing comfort level, the &ldquo;worth it if&rdquo; sentence, and the deadline anchor.</td></tr>
-</table>
-
-<h3 class="sub"><span class="n">2.2</span>The audit call</h3>
-<p>On the call, our AI experts sit with the client and their team and walk the whole business: workflows, bottlenecks, pains, existing systems, desired systems, and how the client wants things built. The call adds what the form cannot: the stories behind the answers, worked examples with real figures, decisions and vetoes made live, and the client&rsquo;s exact words. Anything that exists only on the call is marked <em>(call-only)</em> in the blueprint.</p>
-
-<div class="noteblock"><span class="nlbl">Transcript reality</span>
-<p>Audit calls run in Hinglish or regional languages and Zoom&rsquo;s auto-transcription garbles them, sometimes badly. Rules: lean on the written brief wherever the call is unclear, and say so in the Sources field. Quote verbatim only where the transcript is clean; otherwise mark <em>(paraphrase)</em>. Where the transcript fails entirely, recommend a re-listen of the audio as a next step. Never present a reconstructed sentence as a quote.</p></div>
-
-<h3 class="sub"><span class="n">2.3</span>Extra client assets</h3>
-<p>Some clients arrive with their own material: a self-built app, a costing spec, a die master, a vision document, a scope definition, review replies. Treat these as governing sources: date them, list them in Sources, and cite them by item where they drive a decision. When a newer client document conflicts with an earlier statement, the newer and more specific document wins, and the blueprint states that precedence explicitly.</p>
-
-<!-- ================= 03 ================= -->
-<div class="sechead"><div class="secnum">03</div><div class="sectitle">THE EVIDENCE PASS</div><div class="sectag">Extract before you write</div></div>
-
-<p>Read everything once before writing a word. As you read, build the extraction list below. Every entry needs its source noted: <em>(form)</em>, <em>(call)</em>, <em>(call-only)</em>, or a dated client document. When the pass is done you should be able to write the whole blueprint without opening the sources again, except to verify quotes.</p>
-
-<table class="numbers">
-  <tr><th style="width:40%;">Extract</th><th>Where it lands</th></tr>
-  <tr><td class="k">Business one-liner</td><td>Cover BUSINESS field, executive summary opening.</td></tr>
-  <tr><td class="k">Money path, step by step</td><td>&sect;1 subsection skeleton and the cover flow chips.</td></tr>
-  <tr><td class="k">Current stack + dispositions</td><td>Cover CURRENT STACK; keep / retire / supersede note in &sect;2.</td></tr>
-  <tr><td class="k">Pains, in the client&rsquo;s words</td><td>One PAIN callout per &sect;1 subsection. Skip the callout only where no pain was named.</td></tr>
-  <tr><td class="k">Rupee-priced leaks</td><td>Phase priorities. Phase 1 attacks the loudest priced pain.</td></tr>
-  <tr><td class="k">Every number, with its wording</td><td>&sect;5 table, &ldquo;(estimate)&rdquo; suffixes kept exactly as the client wrote them.</td></tr>
-  <tr><td class="k">Contradictions and typos</td><td>The flagged list in &sect;5 and the confirm items in Next Steps.</td></tr>
-  <tr><td class="k">Guardrail answers, verbatim</td><td>&sect;4 Guardrails, hardened into mechanism.</td></tr>
-  <tr><td class="k">Never-again list + Painkillers 1&ndash;3</td><td>The SOLVES rows of the system cards.</td></tr>
-  <tr><td class="k">Deadline anchor, hours/week, seasons</td><td>Cover DEADLINE ANCHOR and the roadmap intro constraints.</td></tr>
-  <tr><td class="k">Adoption signals + champion</td><td>ADOPTION rows, rollout order, the named champion in the roadmap.</td></tr>
-  <tr><td class="k">The client&rsquo;s own system vision</td><td>The system list itself. If they arrived with a design, build on their structure and credit them.</td></tr>
-</table>
-
-<div class="guard"><b>FLAG, DON&rsquo;T FIX:</b> a form that says average order value &ldquo;1000020000&rdquo;, a headcount of 10 beside a function split summing to 27, or &ldquo;busiest months: 6&rdquo; is never silently corrected. Each becomes a numbered confirm item: named in &sect;5, repeated in Next Steps.</div>
-
-<div class="guard"><b>NAME THE UNKNOWNS AS FINDINGS:</b> a funnel nobody measures is itself a diagnosis. The standing formulation: &ldquo;Not a criticism, a finding: the funnel isn&rsquo;t measured because it isn&rsquo;t in a system.&rdquo; Where a system will produce the missing number as a side effect, say so.</div>
-
-<div class="guard"><b>PRESERVE THE CLIENT&rsquo;S LANGUAGE:</b> quotes keep their typos, their Hindi, their Gujarati, their exact phrasing. <em>&ldquo;copy-paste, copy-paste. I want one system where one file works from the start&rdquo;</em> is worth more than any polished restatement of it.</div>
-
-<!-- ================= 04 ================= -->
-<div class="sechead"><div class="secnum">04</div><div class="sectitle">DESIGNING THE SYSTEMS</div><div class="sectag">Pains to systems</div></div>
-
-<p>Systems are prescriptions, and a prescription needs a diagnosis. The design test for every card: point at the &sect;1 subsection it solves. If you cannot, the system gets cut, however clever it is. Aim for 6 to 9 systems: fewer means you probably merged distinct pains, more means the roadmap cannot carry them.</p>
-
-<h3 class="sub"><span class="n">4.1</span>Where systems come from</h3>
-<p>In order of authority: the client&rsquo;s own draft build list and painkillers (form &sect;9), the never-again list (form &sect;1), pains named on the call, and only then your own pattern knowledge. Many clients arrive with the system already sketched; the strongest blueprints say so plainly (&ldquo;Kishore arrived with the system already designed in his head, and it is a good one&rdquo;) and keep the client&rsquo;s structure and sequence. You fix the platform, not their process, unless their process is the pain.</p>
-
-<h3 class="sub"><span class="n">4.2</span>The card, anatomically</h3>
-<div class="sys">
-  <div class="sysbar"><span class="name">SYSTEM NAME, PLAIN ENGLISH + FUNCTION</span><span class="code">SYS-0N &middot; STATUS</span></div>
-  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Always present. The mechanism in 2 to 4 sentences, concrete enough that a developer could scope it and the client recognizes their own workflow inside it. Encode formulas and chains as chips: <code class="f">event &rarr; rule &rarr; action &rarr; next task &rarr; deadline &rarr; escalate</code>.</p></div></div>
-  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Always present. The named pain with its &sect; reference and, where it exists, the client&rsquo;s own words: &ldquo;The one-at-a-time manual sending (&sect;1.1), and &lsquo;I never want to manually find new markets and buyers again.&rsquo;&rdquo;</p></div></div>
-  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Required whenever the system touches money, customers or outbound messages. States the human gate: &ldquo;AI drafts, the team sends.&rdquo;</p></div></div>
-  <div class="sysrow"><div class="syslbl">Optional rows</div><div class="sysval"><p><b>ADOPTION</b> (how the team will actually accept it), <b>ENTRY POINT</b> (the agreed POC), <b>NOTE</b> / <b>OPEN INPUT</b> (a decision still owed), <b>BUILD</b> (dependencies and build type). Use rows selectively; not every card carries every row.</p></div></div>
-</div>
-
-<h3 class="sub"><span class="n">4.3</span>Codes, foundations and deferrals</h3>
-<p>Codes: <code class="f">SYS-01 &hellip; SYS-0N</code> in recommendation order. When the architecture demands a shared data core or workflow engine that every system plugs into, it gets its own card first as <code class="f">F-00 &middot; FOUNDATION</code> with rows WHAT IT IS and WHY FIRST. Status suffixes record decisions on the record: <code class="f">POC AGREED</code>, <code class="f">PROMOTED TO CORE</code>, <code class="f">MONTH-1 SYSTEM</code>.</p>
-<div class="noteblock"><span class="nlbl">Deferred by client decision &middot; parked, not dropped</span>
-<p>When the client defers a system, it does not vanish. It gets a code (<code class="f">D-01</code>, <code class="f">D-02</code>) in a dashed note block with three things: the reason in the client&rsquo;s terms, the interim carrier (&ldquo;the current ChatGPT flow carries this meanwhile&rdquo;), and the re-entry condition (&ldquo;revisited with the client after Phase 3 is stable, not assumed&rdquo;). Rules already agreed stay pre-bound to it for whenever it is built.</p></div>
-<p>Close &sect;2 with a tool-disposition note covering every paid app from form &sect;5: what stays, what retires, what is superseded, and what is paid-but-ignored and should either become a working tool in this build or be cancelled.</p>
-
-<!-- ================= 05 ================= -->
-<div class="sechead"><div class="secnum">05</div><div class="sectitle">SEQUENCING THE ROADMAP</div><div class="sectag">Phases and finish lines</div></div>
-
-<p>3 or 4 phases, coded P1 to P4. The roadmap intro must state, in one paragraph, the constraints it was sequenced for: the owner&rsquo;s hours per week, the deadline anchor, the busy season, and the critical path (name it: &ldquo;the catalogue data work in Phase 2 feeds both the quotation engine and the website&rdquo;).</p>
-
-<div class="guard"><b>PHASE 1 STOPS THE BLEEDING:</b> it attacks the loudest daily pain, runs on data that already exists (no long digitisation wait), produces wins the team can see in weeks, and sets the adoption pattern early: the system hands people their next task, it does not audit them.</div>
-
-<div class="guard"><b>DATA BEFORE DREAMS:</b> when the client&rsquo;s data lives on paper, in WhatsApp or in heads, a data foundation runs as Phase 0 or as a parallel Track 0 that starts immediately. Say the honest sentence when it is true: &ldquo;Track 0 is not optional and Phase 1 fails without it.&rdquo; Ship the client a data-gathering pack (sheet + how-to-fill guide, bilingual if needed).</div>
-
-<div class="guard"><b>EVERY PHASE ENDS IN &ldquo;DONE WHEN&rdquo;:</b> an observable, testable state, never an activity. &ldquo;Outreach runs weekly without the receptionist sending a single manual email&rdquo; passes. &ldquo;Email system implemented&rdquo; does not. The final phase&rsquo;s done-when should echo the client&rsquo;s own &ldquo;worth it if&rdquo; answer from form &sect;10.</div>
-
-<div class="guard"><b>TRUST RAMPS AND PARALLEL RUNS:</b> where trust must be earned, phase it inside the phase: &ldquo;month 1: AI drafts, humans press send; month 2: autonomous.&rdquo; Nothing existing is switched off until its replacement has run in parallel and proven itself. Where complexity or trust demands, enter through a narrow POC validated against the client&rsquo;s real past orders.</div>
-
-<p>Phase card format: <code class="f">P1</code> + an evocative title (&ldquo;STOP THE MANUAL BLEEDING&rdquo;, &ldquo;THE WATCHERS &amp; THE NETWORK&rdquo;), a right tag naming systems and timing (<code class="f">SYS-01 + SYS-04 &middot; FIRST WEEKS</code>), rationale prose (P1 carries an explicit &ldquo;Why first:&rdquo;), then the DONE WHEN line. Name the internal champion and the department-by-department rollout order in the intro when the client gave you one.</p>
-
-<!-- ================= 06 ================= -->
-<div class="sechead"><div class="secnum">06</div><div class="sectitle">THE BACK SECTIONS</div><div class="sectag">Guardrails &middot; numbers &middot; next steps</div></div>
-
-<h3 class="sub"><span class="n">6.1</span>Guardrails</h3>
-<p>Title: GUARDRAILS. Tag: &ldquo;Set by {first name}, enforced by design&rdquo;. This section is the client&rsquo;s form &sect;10 answers, near-verbatim, hardened into mechanism. Each guardrail is one orange-barred callout with a bold lead-in. The standing vocabulary, extended per client:</p>
-<ul class="tight">
-  <li><b>ALWAYS HUMAN SIGN-OFF:</b> their exact list. Quotations and commitments to clients appear here for almost every client.</li>
-  <li><b>AI MAY ACT ALONE ON:</b> their delegable list, verbatim.</li>
-  <li><b>CUSTOMER-FACING:</b> their comfort answer: &ldquo;AI drafts, my team sends&rdquo; / &ldquo;AI can message customers directly&rdquo; / &ldquo;Not sure yet&rdquo; (which means everything drafts-for-approval until they decide).</li>
-  <li><b>DATA CAUTION / UNTOUCHABLE DATA:</b> what AI never touches, in their words.</li>
-  <li><b>ERROR PROTOCOL:</b> their acceptable way for mistakes to surface and get corrected. Never silent rewrites; an audit trail you cannot trust is worse than none.</li>
-  <li><b>NOT ANSWERED:</b> when a guardrail question was left blank, say so, apply a conservative default, and list it for the kickoff call. Unanswered is information.</li>
+<div class="coverpage"><div class="coverframe"><div class="coverinner">
+  <div class="coverbar"><span>Buildour AI</span><span>Master SOP</span></div>
+  <h1 class="cover">CREATING THE<br><span class="accent">AI SYSTEMS BLUEPRINT</span></h1>
+  <div class="coversub">The method behind every client blueprint: infographic + in-depth, one document</div>
+  <table class="titleblock">
+    <tr><td colspan="2"><span class="lbl">Purpose</span>One repeatable method for turning a client's filled audit
+    form and audit call into their AI Systems Blueprint: the one-shot infographic capture followed by the in-depth
+    document, delivered as a .md / .html / .pdf triplet in the fixed technical-drawing format.</td></tr>
+    <tr><td colspan="2"><span class="lbl">Single source of truth</span>This document is rendered from the
+    ai-systems-blueprint Claude Code skill (SKILL.md plus its reference files) by scripts/render_master.py.
+    Edit the skill, re-render; never edit this document directly.</td></tr>
+    <tr><td style="width:50%;"><span class="lbl">Prepared by</span>BuildOur AI</td>
+    <td><span class="lbl">Rendered</span>01.09.2026 · REV B (supersedes REV A, which predates the infographic)</td></tr>
+    <tr><td><span class="lbl">Parts</span>6: method · structure · infographic · design · gate · revisions</td>
+    <td><span class="lbl">Companion</span>assets/blueprint-template.html (the v3 template) · scripts/render_pdf.py</td></tr>
+  </table>
+  <div class="covernote">The documents govern the code · the guardrails govern the documents · the client's words govern everything</div>
+</div></div></div>
+<div class="parthead"><div class="partnum">01</div><div class="parttitle">THE METHOD</div><div class="parttag">Entry gate, prime directive, pipeline, inputs, evidence pass, system design, roadmap, voice.</div></div>
+<div class="md"><h1>Creating the AI Systems Blueprint</h1>
+<p>The AI Systems Blueprint is the first substantial deliverable a client receives after their audit. It plays the client's business back to them in their own words, names exactly where that business hurts and what the pain costs, prescribes AI systems that each point at a named pain, and sequences those systems into phases with testable finish lines, wrapped in the safety rules the client themselves set. Diagnosis, proposal and build contract in one document, and that document opens with its own one-shot capture: the infographic, ten panels on wide sheets that draw the whole story before the in-depth part argues it.</p>
+<p>The test of a good one: the client's reaction is recognition. <em>This is my business, and this is my plan.</em></p>
+<h2>The entry gate: both inputs, or no blueprint</h2>
+<p>A blueprint is written only when <strong>both</strong> the filled audit form and the audit call are on file. Check this before anything else.</p>
+<p>Neither input substitutes for the other, because they fail in opposite directions. The form is precise and shallow: real figures, real guardrail answers, often single words, with no explanation behind any of them. The call is rich and imprecise: the stories, the worked examples, the vetoes, the client's own sentences, none of it tabulated. A blueprint needs both halves. A document built on one of them is not a thin blueprint, it is a weaker artefact wearing the format, and it will not survive contact with the client, because the questions it could not ask are exactly the ones the call exists to ask.</p>
+<p><strong>When an input is missing, do not produce a blueprint, even a labelled or provisional one.</strong> Say plainly what is missing and what it blocks. The genuinely useful thing you can offer instead: run the evidence pass on whatever does exist and turn the gaps into an agenda for the call, so the call comes back sharper. Deliver that as notes, never in the blueprint format, because a document that looks like the deliverable will be read as the deliverable.</p>
+<h2>The prime directive</h2>
+<p>Every recommendation, figure and quote traces to the audit call, the submitted Systems Brief, or a dated client document. No figures are invented. Unknowns are named, not guessed. Contradictions are flagged, not resolved.</p>
+<p>This is not a stylistic preference, it is the whole basis of the document's authority. A blueprint that guesses one number is a blueprint the client cannot trust on any number. Every blueprint closes with a sentence claiming this traceability, and that sentence has to be true.</p>
+<p>Corollary rules, each with its reason:</p>
+<ul>
+<li><strong>Never soften or prettify a client quote.</strong> Their sentences name the pains and set the guardrails. Typos, Hindi, Gujarati, all of it stays. Your job is arrangement, not improvement.</li>
+<li><strong>Never add a system that has no pain to point at.</strong> A prescription without a diagnosis is a sales pitch.</li>
+<li><strong>Never skip the evidence pass.</strong> It is what separates a traced blueprint from a generic one.</li>
+<li><strong>No em dashes anywhere.</strong> House rule: commas, colons, periods, middots.</li>
 </ul>
-
-<h3 class="sub"><span class="n">6.2</span>The Numbers</h3>
-<p>Title: THE NUMBERS. Tag: &ldquo;As provided, with gaps named&rdquo;. A two-column METRIC / VALUE table containing only the client&rsquo;s figures, with their &ldquo;(estimate)&rdquo; and &ldquo;stated on call&rdquo; markers kept. Below the table, two things are allowed: the numbered &ldquo;flagged, not resolved&rdquo; contradictions, and at most one interpretation paragraph that reads their numbers back to them (&ldquo;~160 quotes a month do not convert; speed is the cheapest conversion lever available, which is why P1 leads&rdquo;). Interpretation never introduces a figure the client did not provide.</p>
-
-<h3 class="sub"><span class="n">6.3</span>Next Steps</h3>
-<p>Title: NEXT STEPS. Tag: &ldquo;Immediate actions&rdquo;. 4 to 7 numbered step blocks, each starting with a bold action and carrying a named owner. Standard ingredients, picked as they apply: the blueprint review call (&ldquo;to contradict, add to, or accept as-is&rdquo;); the client&rsquo;s data homework; the access checklist (logins, WhatsApp Business, workspaces); commercials and onboarding where payment is open; the flagged numbers to confirm; and the promise of the Phase 1 build plan as the next deliverable, &ldquo;deliverables and done-when stated up front, no surprises mid-journey.&rdquo;</p>
-
-<!-- ================= 07 ================= -->
-<div class="sechead"><div class="secnum">07</div><div class="sectitle">THE DOCUMENT, SHEET BY SHEET</div><div class="sectag">Fixed structure &middot; v2 standard</div></div>
-
-<p>The fixed running order. Section numbers, titles and tags are exactly these; only the bracketed values vary per client:</p>
-
-<table class="numbers">
-  <tr><th style="width:8%;">No.</th><th style="width:34%;">Section title</th><th style="width:26%;">Right-side tag</th><th>Content</th></tr>
-  <tr><td class="k">&ndash;</td><td><b>Cover</b> (Sheet 1)</td><td>&ndash;</td><td>See 7.1 below.</td></tr>
-  <tr><td class="k">00</td><td>EXECUTIVE SUMMARY</td><td>Overview</td><td>3 to 4 paragraphs: who the client is and what they said plainly; how the business runs and where it leaks; what this blueprint recommends (N systems in M phases) and the anchors it respects. Open with the client&rsquo;s strongest sentence when you have one.</td></tr>
-  <tr><td class="k">01</td><td>CURRENT STATE</td><td>How work happens today, and where it hurts</td><td>Subsections 1.1 to 1.N (typically 5 to 9), ordered along the money path. Each: a short narrative, then a PAIN callout. Mark call-only subsections.</td></tr>
-  <tr><td class="k">02</td><td>RECOMMENDED AI SYSTEMS</td><td>{N} systems</td><td>System cards per &sect;04, plus the tool-disposition note and any deferral note blocks.</td></tr>
-  <tr><td class="k">03</td><td>IMPLEMENTATION ROADMAP</td><td>{M} phases &middot; {anchor}</td><td>Constraints intro + phase cards per &sect;05.</td></tr>
-  <tr><td class="k">04</td><td>GUARDRAILS</td><td>Set by {name}, enforced by design</td><td>Guard callouts per 6.1.</td></tr>
-  <tr><td class="k">05</td><td>THE NUMBERS</td><td>As provided, with gaps named</td><td>Table + flags + one reading, per 6.2.</td></tr>
-  <tr><td class="k">06</td><td>NEXT STEPS</td><td>Immediate actions</td><td>Step blocks per 6.3.</td></tr>
-  <tr><td class="k">&ndash;</td><td>Trace line</td><td>&ndash;</td><td>The closing oath, dated: &ldquo;Every item in this document traces to the audit call ({date}) or the submitted Systems Brief ({date}). No figures added beyond those the client provided; unknowns are named, not guessed.&rdquo;</td></tr>
+<h2>The pipeline</h2>
+<p>Work these in order. Steps 3 to 5 are judgment; the rest is deliberately mechanical, because mechanical is what makes different clients receive documents that feel like one firm produced them.</p>
+<ol>
+<li><strong>Collect the inputs and check the entry gate.</strong> The client folder must hold both required inputs, the filled Systems Brief export and the audit call VTT, plus any extra assets the client supplied (specs, price sheets, spreadsheets, self-built apps, review documents). Date everything. If either required input is missing, stop here and report it per the entry gate above.</li>
+<li><strong>Clean the transcript.</strong> Strip cue numbers and end timestamps, merge consecutive lines by the same speaker into single turns, drop backchannel noise ("hmm", "okay", ASR artefacts). Never rewrite, never infer. Garbled speech stays garbled and gets disclosed. Save as <code>{Client} Audit Call (Cleaned).md</code>.</li>
+<li><strong>Run the evidence pass.</strong> See below. Read everything before writing a word.</li>
+<li><strong>Design the systems.</strong> See below.</li>
+<li><strong>Sequence the roadmap.</strong> See below.</li>
+<li><strong>Design the infographic.</strong> Fill the fixed spine and pick the 2-3 diagnostic panels the evidence supports. Read <code>references/infographic-spec.md</code>: the panel inventory, the diagnostic menu, and the sourcing rules (no figure appears first on a panel).</li>
+<li><strong>Write and typeset.</strong> Draft <code>{Client} AI Systems Blueprint.md</code> in the fixed running order (Part A panels, then Part B sections), pour it into the template, render the PDF. Read <code>references/document-structure.md</code> for the section-by-section spec, including which written sections compress now that the panels carry them, and <code>references/design-spec.md</code> for the template and rendering mechanics.</li>
+<li><strong>Run the quality gate and deliver.</strong> <code>references/quality-gate.md</code>. Save the triplet in the client's folder, then book the review call. What comes back starts the Rev B cycle (<code>references/revisions.md</code>).</li>
+</ol>
+<h2>The inputs</h2>
+<p><strong>The audit form ("My Systems Brief")</strong> is the same 44 questions for every client. Its numbering jumps from section 7 straight to 9 in every export; that is normal, do not go hunting for a section 8. It ships localized, so answers may arrive in Gujarati or Hindi. Each section feeds a specific part of the blueprint:</p>
+<table>
+<thead>
+<tr>
+<th>Form section</th>
+<th>Feeds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 · Wishlist &amp; Endgame</td>
+<td>Executive summary framing. The "I never want to manually ___ again" list seeds the system list. Fears become design rules. The six-month picture becomes the final "done when".</td>
+</tr>
+<tr>
+<td>2 · One-Line Business</td>
+<td>Cover BUSINESS field, opening of the executive summary.</td>
+</tr>
+<tr>
+<td>3 · Money Path</td>
+<td>The §1 subsection skeleton and the cover flow chips. Steps marked with the gear icon are manual: your automation candidates.</td>
+</tr>
+<tr>
+<td>4 · People Map</td>
+<td>Adoption logic, the internal champion, the headcount cross-check, the owner's hours per week.</td>
+</tr>
+<tr>
+<td>5 · Apps you pay for</td>
+<td>Cover CURRENT STACK, and the keep / retire / supersede note in §2. Paid-but-ignored tools become next steps.</td>
+</tr>
+<tr>
+<td>6 · Numbers Panel</td>
+<td>The §5 table, exactly as provided.</td>
+</tr>
+<tr>
+<td>7 · Leak List</td>
+<td>The PAIN callouts, priced where the client priced them. The loudest priced leak usually decides Phase 1.</td>
+</tr>
+<tr>
+<td>9 · Build List + Painkillers</td>
+<td>The seed of the system list. Painkiller #1 is the strongest single signal in the form.</td>
+</tr>
+<tr>
+<td>10 · Guardrails &amp; Finish Line</td>
+<td>The §4 Guardrails section, near-verbatim, plus the error protocol, customer-facing comfort, "worth it if", and the deadline anchor.</td>
+</tr>
+</tbody>
 </table>
-
-<h3 class="sub"><span class="n">7.1</span>Cover anatomy</h3>
-<ul class="tight">
-  <li><b>Running head, every sheet:</b> left <code class="f">BUILDOUR AI &middot; CLIENT BLUEPRINT</code>, right <code class="f">DWG NO. BOA-{YYYY}-{CODE}-01 &middot; REV {A}</code>. The code is three letters from the company name: VNV for Vinove, MPK for MyPackify, APT for Aptus.</li>
-  <li><b>Running foot, every sheet:</b> left <code class="f">{COMPANY} &middot; AI SYSTEMS BLUEPRINT</code>, right <code class="f">SHEET n / N</code>. Target 7 to 10 sheets total.</li>
-  <li><b>Frame:</b> double orange border (coverframe + coverinner), cover bar &ldquo;BUILDOUR AI | CLIENT BLUEPRINT&rdquo;.</li>
-  <li><b>Title:</b> AI SYSTEMS in ink, BLUEPRINT in orange. Revisions append &ldquo;&middot; REV B&rdquo; at reduced size.</li>
-  <li><b>Subtitle:</b> <code class="f">{COMPANY} &middot; PREPARED FOR {NAME}, {ROLE}</code>, the name in orange bold.</li>
-  <li><b>Flow chips:</b> the client&rsquo;s own money path in 5 to 7 stations, dash-connected. The chip where the first build lands is filled orange. This is the client&rsquo;s business drawn as a machine, not a generic pipeline.</li>
-  <li><b>Title block:</b> BUSINESS &middot; CURRENT STACK &middot; PREPARED BY &middot; SOURCES (every input, dated) &middot; SYSTEMS SPECIFIED (&ldquo;7 systems in 3 phases&rdquo;) &middot; DEADLINE ANCHOR. Optional extra fields when relevant: PROGRAM (&ldquo;Build For You (DFY)&rdquo;) or ENGAGEMENT MODEL, and PRECEDENCE when client documents govern.</li>
-  <li><b>Cover note:</b> &ldquo;EVERY RECOMMENDATION IN THIS DRAWING TRACES TO THE AUDIT CALL OR THE SUBMITTED SYSTEMS BRIEF&rdquo;. On revisions, the supersede line with the old rev&rsquo;s date.</li>
+<p><strong>The audit call</strong> adds what the form cannot: the stories behind the answers, worked examples with real figures, decisions made live, and the client's exact words. Mark anything that exists only on the call as <em>(call-only)</em>.</p>
+<p>Audit calls run in Hinglish or regional languages and auto-transcription garbles them, sometimes badly. Lean on the written brief wherever the call is unclear and say so in Sources. Quote verbatim only where the transcript is clean, otherwise mark <em>(paraphrase)</em>. Where the transcript fails entirely, recommend a re-listen as a next step. Never present a reconstructed sentence as a quote.</p>
+<p><strong>Extra client assets</strong> (a self-built app, a costing spec, a vision document, a review reply) are governing sources. Date them, list them in Sources, cite them where they drive a decision. When a newer client document conflicts with an earlier statement, the newer and more specific wins, and the blueprint says so explicitly.</p>
+<h2>The evidence pass</h2>
+<p>Read the full form and the full transcript once, extracting as you go. Note the source of every entry: <em>(form)</em>, <em>(call)</em>, <em>(call-only)</em>, or a dated document. When the pass is done you should be able to write the whole blueprint without reopening the sources, except to verify quotes.</p>
+<p>Extract: the business one-liner; the money path step by step; the current stack with dispositions; the pains in the client's words; the rupee-priced leaks; every number with its exact wording including "(estimate)" markers; contradictions and typos; the guardrail answers verbatim; the never-again list and top 3 painkillers; the deadline anchor, hours per week and busy season; adoption signals and the champion; and the client's own system vision if they arrived with one.</p>
+<p>Three habits carry most of the weight here:</p>
+<p><strong>Flag, don't fix.</strong> A form saying average order value "1000020000", a headcount of 10 beside a function split summing to 27, or "busiest months: 6" is never silently corrected. Each becomes a numbered confirm item in §5 and reappears in Next Steps. Silently fixing a number destroys the client's ability to trust the rest, and the correct value is theirs to supply, not yours to infer.</p>
+<p><strong>Name unknowns as findings.</strong> A funnel nobody measures is itself a diagnosis, not a gap in your research. The standing formulation: "Not a criticism, a finding: the funnel isn't measured because it isn't in a system." Where a recommended system will produce the missing number as a side effect, say so.</p>
+<p><strong>Preserve their language.</strong> <em>"copy-paste, copy-paste. I want one system where one file works from the start"</em> is worth more than any polished restatement, because it is evidence rather than assertion.</p>
+<h2>Designing the systems</h2>
+<p>Aim for 6 to 9. Fewer usually means distinct pains got merged; more than the roadmap can carry.</p>
+<p>The design test for every card: point at the §1 subsection it solves. If you cannot, cut it, however clever it is.</p>
+<p>Where systems come from, in order of authority: the client's own draft build list and painkillers (form §9), their never-again list (form §1), pains named on the call, and only then your own pattern knowledge. Many clients arrive with the system already sketched. The strongest blueprints say so plainly ("Kishore arrived with the system already designed in his head, and it is a good one") and keep the client's structure and sequence. Fix the platform, not their process, unless their process is the pain.</p>
+<p>Card anatomy:</p>
+<ul>
+<li><strong>Bar:</strong> name in plain English plus function, ALL CAPS, code on the right (<code>SYS-0N</code>), optionally with a status (<code>POC AGREED</code>, <code>MONTH-1 SYSTEM</code>, <code>PROMOTED TO CORE</code>).</li>
+<li><strong>WHAT IT DOES</strong> (always): the mechanism in 2 to 4 sentences, concrete enough that a developer could scope it and the client recognizes their own workflow inside it. Encode chains as code chips: <code>event -&gt; rule -&gt; action -&gt; next task -&gt; deadline -&gt; escalate</code>.</li>
+<li><strong>SOLVES</strong> (always): the named pain with its § reference plus the client's words where they exist.</li>
+<li><strong>GUARDRAIL:</strong> required whenever the system touches money, customers or outbound messages. States the human gate: "AI drafts, the team sends."</li>
+<li><strong>Optional rows,</strong> used selectively: ADOPTION, ENTRY POINT (an agreed POC), NOTE or OPEN INPUT (a decision still owed), BUILD (dependencies and build type).</li>
 </ul>
-
-<!-- ================= 08 ================= -->
-<div class="sechead"><div class="secnum">08</div><div class="sectitle">DESIGN SPECIFICATION</div><div class="sectag">Colour &middot; type &middot; production</div></div>
-
-<p>The design is a technical drawing: graph-paper grid, one orange, monospaced labels, framed cards. It is fully specified; nothing is chosen per document. This master copy is itself typeset in it.</p>
-
-<table class="numbers">
-  <tr><th style="width:26%;">Token</th><th style="width:30%;">Value</th><th>Used for</th></tr>
-  <tr><td class="k">--orange</td><td><code class="f">#e8590c</code></td><td>The only accent: bars, borders, labels, links between ideas.</td></tr>
-  <tr><td class="k">--orange-soft</td><td><code class="f">#fdeee2</code></td><td>Inline code-chip background.</td></tr>
-  <tr><td class="k">--orange-faint</td><td><code class="f">#fdf6f0</code></td><td>PAIN and guardrail callout backgrounds.</td></tr>
-  <tr><td class="k">--ink</td><td><code class="f">#1f2430</code></td><td>Body text.</td></tr>
-  <tr><td class="k">--grid</td><td><code class="f">rgba(232,89,12,0.07)</code></td><td>24px graph-paper grid on paper <code class="f">#fdfbf9</code>.</td></tr>
-  <tr><td class="k">--rule</td><td><code class="f">#e9c7ae</code></td><td>Dotted hairlines inside cards and tables.</td></tr>
-  <tr><td class="k">--mono</td><td>Consolas, Courier New</td><td>All labels: uppercase, letter-spaced 1.5&ndash;3px, 8.5&ndash;10.5px.</td></tr>
-  <tr><td class="k">--sans</td><td>Segoe UI, Helvetica, Arial</td><td>Body 13.5px / 1.6, justified. H1 46px weight 800. Section titles 17px bold.</td></tr>
+<p>When the architecture needs a shared data core that every system plugs into, it gets the first card as <code>F-00 · FOUNDATION</code> with rows WHAT IT IS and WHY FIRST.</p>
+<p>When the client defers a system it does not vanish: it becomes <code>D-01</code> in a dashed note block carrying the reason in their terms, the interim carrier ("the current ChatGPT flow carries this meanwhile"), and the re-entry condition ("revisited after Phase 3 is stable, not assumed"). Parked, not dropped, so the client sees their own decision reflected rather than wondering if you forgot.</p>
+<p>Close §2 with a tool-disposition note covering every paid app from form §5: what stays, what retires, what is superseded, and what is paid-but-ignored.</p>
+<h2>Sequencing the roadmap</h2>
+<p>3 or 4 phases, coded P1 to P4. The intro paragraph must state the constraints it was sequenced for: the owner's hours per week, the deadline anchor, the busy season, and the critical path.</p>
+<p><strong>Phase 1 stops the bleeding.</strong> It attacks the loudest daily pain, runs on data that already exists so there is no long digitisation wait, produces wins the team can see in weeks, and sets the adoption pattern early: the system hands people their next task, it does not audit them.</p>
+<p><strong>Data before dreams.</strong> When the client's data lives on paper, in WhatsApp or in heads, a data foundation runs as Phase 0 or as a parallel Track 0 starting immediately. Say the honest sentence when it is true: "Track 0 is not optional and Phase 1 fails without it."</p>
+<p><strong>Every phase ends in DONE WHEN,</strong> an observable state, never an activity. "Outreach runs weekly without the receptionist sending a single manual email" passes. "Email system implemented" does not, because nobody can stand in front of it and agree it happened. The final phase's done-when should echo the client's own "worth it if" answer.</p>
+<p><strong>Trust ramps and parallel runs.</strong> Where trust must be earned, phase it inside the phase: "month 1: AI drafts, humans press send; month 2: autonomous." Nothing existing is switched off until its replacement has run beside it and proven itself.</p>
+<p>Phase card: <code>P1</code> plus an evocative title ("STOP THE MANUAL BLEEDING"), a right tag naming systems and timing (<code>SYS-01 + SYS-04 · FIRST WEEKS</code>), rationale prose (P1 carries an explicit "Why first:"), then DONE WHEN.</p>
+<h2>Voice</h2>
+<ul>
+<li><strong>Diagnose before prescribing.</strong> §1 earns §2. Explain the business back to itself so precisely that the client nods before reaching a single recommendation.</li>
+<li><strong>Cross-reference everything.</strong> Every SOLVES points at a §1.x; next steps point at systems; interpretations point at the rows they read. The document is a web, not a list.</li>
+<li><strong>Short, declarative, active.</strong> One earned aphorism per section at most; more and it reads like copywriting.</li>
+<li><strong>Write for two readers:</strong> the owner who decides and the team member who will run the system. Explain jargon inline the first time (BOM, GRN, KRA). Name real staff so workflows read as the client's actual office.</li>
+<li><strong>Price the pain where the client did,</strong> and translate where it lands: "a forgotten order at a 50% repeat rate is a relationship cost, not just one lost bill." Never invent a rupee figure to make a pain sound bigger.</li>
+<li><strong>Evidence persuades, selling repels.</strong> No superlatives about our systems, no fear-mongering about AI, no promises without a done-when. The document's confidence is its traceability.</li>
+</ul>
+<h2>Reference files</h2>
+<p>Read these when you reach the matching step rather than all at once:</p>
+<ul>
+<li><code>references/document-structure.md</code> · the two-part running order, cover anatomy, the compression rules for the written back sections, and their detail. Read before drafting.</li>
+<li><code>references/infographic-spec.md</code> · Part A: the ten-panel spine, the diagnostic chart menu, sourcing rules and layout mechanics. Read at pipeline step 6.</li>
+<li><code>references/design-spec.md</code> · design tokens, component inventory, template placeholders, and the render pipeline. Read before typesetting.</li>
+<li><code>references/quality-gate.md</code> · the 11-check gate. Run before delivering, every time.</li>
+<li><code>references/revisions.md</code> · Rev B and the delta discipline. Read when new client input lands on a shipped blueprint.</li>
+<li><code>assets/blueprint-template.html</code> · the v3 template: Part A (infographic, wide sheets) + Part B (in-depth, A4) in one file. Copy it, fill it, do not restyle it.</li>
+<li><code>scripts/render_pdf.py</code> · renders the HTML to PDF (WeasyPrint if present, else headless Chrome). Run it rather than reinventing the command.</li>
+</ul></div>
+<div class="parthead"><div class="partnum">02</div><div class="parttitle">DOCUMENT STRUCTURE</div><div class="parttag">The two-part running order, cover anatomy, and the compression rules.</div></div>
+<div class="md"><h1>Document Structure</h1>
+<p>The fixed running order. Section numbers, titles and right-side tags are exactly these; only the bracketed values change per client. Consistency here is what makes twelve different clients receive documents that read as one firm's work.</p>
+<p>The document has two parts in one file and one PDF. <strong>Part A, the infographic</strong>, opens it: the one-shot capture on wide sheets, panels 01 to 10 per <code>references/infographic-spec.md</code>. <strong>Part B, the in-depth blueprint</strong>, follows on A4 sheets in the running order below. Because Part A carries the figures, the timeline, the guardrail lists and the action list visually, four written sections compress to what the panels cannot hold; the table's Content column states each rule.</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Section title</th>
+<th>Right-side tag</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td><strong>Infographic</strong> (wide sheets)</td>
+<td>–</td>
+<td>Panels 01-10 per <code>infographic-spec.md</code>: fixed spine plus 2-3 diagnostic panels from the menu. Typically 2-3 wide sheets.</td>
+</tr>
+<tr>
+<td>–</td>
+<td><strong>Cover</strong> (first A4 sheet)</td>
+<td>–</td>
+<td>Opens Part B. See "Cover anatomy" below.</td>
+</tr>
+<tr>
+<td>00</td>
+<td>EXECUTIVE SUMMARY</td>
+<td>Overview</td>
+<td>3 to 4 paragraphs: who the client is and what they said plainly; how the business runs and where it leaks; what this blueprint recommends (N systems in M phases) and the anchors it respects. Open with the client's strongest sentence when you have one.</td>
+</tr>
+<tr>
+<td>01</td>
+<td>CURRENT STATE</td>
+<td>How work happens today, and where it hurts</td>
+<td>Subsections 1.1 to 1.N (typically 5 to 9), ordered along the money path. Each: a short narrative, then a PAIN callout. Mark call-only subsections.</td>
+</tr>
+<tr>
+<td>02</td>
+<td>RECOMMENDED AI SYSTEMS</td>
+<td>{N} systems</td>
+<td>System cards, plus the tool-disposition note and any deferral note blocks.</td>
+</tr>
+<tr>
+<td>03</td>
+<td>IMPLEMENTATION ROADMAP</td>
+<td>{M} phases · {anchor}</td>
+<td>COMPRESSED: panel 07 carries the timing. Keep the constraints intro and the phase cards with rationale and DONE WHEN; drop prose that only restates the gantt.</td>
+</tr>
+<tr>
+<td>04</td>
+<td>GUARDRAILS</td>
+<td>Set by {first name}, enforced by design</td>
+<td>COMPRESSED: panel 09 carries the swimlane. Keep only the client's verbatim sentences and the error protocol, as guard callouts.</td>
+</tr>
+<tr>
+<td>05</td>
+<td>THE NUMBERS</td>
+<td>Flagged, not resolved</td>
+<td>COMPRESSED: panel 01 carries the figures. Keep only the numbered confirm items and at most one interpretation paragraph. The full table returns only if a figure's exact wording could not survive on a tile.</td>
+</tr>
+<tr>
+<td>06</td>
+<td>NEXT STEPS</td>
+<td>Detail behind panel 10</td>
+<td>COMPRESSED: panel 10 carries the actions. Keep only steps needing detail the panel could not hold (data homework with columns, access checklists). If nothing needs expanding, one paragraph pointing at panel 10.</td>
+</tr>
+<tr>
+<td>–</td>
+<td>Trace line</td>
+<td>–</td>
+<td>The closing oath, dated.</td>
+</tr>
+</tbody>
 </table>
-
-<p>Component inventory, all defined in the template: cover frame + title block + flow chips; section head (orange number block + title + right tag); numbered subsections with orange mono numbers; PAIN callout; system card (orange header bar, dotted row rules, mono row labels); phase card; guard callout; METRIC/VALUE table with orange header row; numbered step blocks; dashed note block; trace line; inline code chips.</p>
-
-<h3 class="sub"><span class="n">8.1</span>Production pipeline</h3>
-<div class="step"><div class="stepnum">A</div><div class="stepbody"><p><b>Draft the content</b> as <code class="f">{Client Name} AI Systems Blueprint.md</code>, following &sect;07&rsquo;s running order. The markdown is a deliverable too; keep it clean.</p></div></div>
-<div class="step"><div class="stepnum">B</div><div class="stepbody"><p><b>Pour it into the template.</b> Use <code class="f">AI Systems Blueprint Template (v2 design).html</code> in the Master PDFs folder: copy it, replace every <code class="f">{{PLACEHOLDER}}</code>, delete unused optional blocks. Do not restyle. If the template is ever lost, the CSS lives in Puneet Jain AI Systems Blueprint v2.html.</p></div></div>
-<div class="step"><div class="stepnum">C</div><div class="stepbody"><p><b>Render the PDF.</b> Either headless Chrome: <code class="f">chrome --headless --no-pdf-header-footer --print-to-pdf="out.pdf" "file:///&hellip;/in.html"</code> (works on any machine with Chrome), or WeasyPrint where it is installed: <code class="f">python -m weasyprint "in.html" "out.pdf"</code>. Sheets number themselves either way.</p></div></div>
-<div class="step"><div class="stepnum">D</div><div class="stepbody"><p><b>Read every rendered page.</b> Check that no card breaks across a sheet, the cover fits one sheet, and the sheet count is 7 to 10. Fix in the HTML, re-render.</p></div></div>
-<div class="step"><div class="stepnum">E</div><div class="stepbody"><p><b>Save the triplet</b> (.md, .html, .pdf) in the client&rsquo;s folder. Revisions get a new triplet (&ldquo;&hellip; v2&rdquo; or &ldquo;&hellip; Rev B&rdquo;); the old one is renamed &ldquo;(v1 archive)&rdquo;, never deleted.</p></div></div>
-
-<!-- ================= 09 ================= -->
-<div class="sechead"><div class="secnum">09</div><div class="sectitle">WRITING RULES</div><div class="sectag">Voice and style</div></div>
-
-<div class="guard"><b>THE CLIENT&rsquo;S WORDS ARE LOAD-BEARING.</b> Quote them in italics, in whatever language they spoke, typos intact. Their sentences name the pains, justify the systems and set the guardrails. Your job is arrangement, not improvement.</div>
-
-<div class="guard"><b>SHORT, DECLARATIVE, ACTIVE. NO EM DASHES,</b> house rule: use commas, colons, periods and middots instead. One earned aphorism per section at most (&ldquo;Automating an undocumented process produces an undocumented automation&rdquo;); more and it reads like copywriting.</div>
-
-<div class="guard"><b>DIAGNOSE BEFORE PRESCRIBING.</b> &sect;1 earns &sect;2. Explain the business back to itself so precisely that the client nods before they reach a single recommendation.</div>
-
-<div class="guard"><b>CROSS-REFERENCE EVERYTHING.</b> Every SOLVES points at a &sect;1.x. Next steps point at systems. Interpretations point at the table rows they read. The document is a web, not a list.</div>
-
-<div class="guard"><b>WRITE FOR TWO READERS AT ONCE:</b> the owner who decides, and the team member who will run the system. Explain jargon inline the first time (BOM, GRN, KRA). Name real staff; workflows should read as the client&rsquo;s actual office, not an org chart.</div>
-
-<div class="guard"><b>PRICE THE PAIN WHERE THE CLIENT DID,</b> and translate where it lands: &ldquo;a forgotten order at a 50% repeat rate is a relationship cost, not just one lost bill.&rdquo; Never invent a rupee figure to make a pain sound bigger.</div>
-
-<div class="guard"><b>EVIDENCE PERSUADES; SELLING REPELS.</b> No superlatives about our systems, no fear-mongering about AI, no promises without a done-when. The blueprint&rsquo;s confidence is its traceability.</div>
-
-<!-- ================= 10 ================= -->
-<div class="sechead"><div class="secnum">10</div><div class="sectitle">REVISIONS</div><div class="sectag">Rev B and the delta discipline</div></div>
-
-<p>A revision triggers when material new input lands: the client&rsquo;s review of the blueprint, a working call, a missing transcript finally exported, delivered data assets, or a client-authored spec. Small corrections do not trigger a rev; they queue for the next one.</p>
-
-<div class="step"><div class="stepnum">1</div><div class="stepbody"><p><b>Stamp the rev everywhere:</b> the DWG number on every sheet, the cover title (&ldquo;&middot; REV B&rdquo;), every footer, and the cover supersede note: &ldquo;Rev B supersedes Rev A (14.08.2026). Every change in this revision traces to the client&rsquo;s own review documents or the working call of {date}.&rdquo;</p></div></div>
-<div class="step"><div class="stepnum">2</div><div class="stepbody"><p><b>Replace &sect;01 with the delta record:</b> section 01 becomes WHAT CHANGED SINCE REV A, tag &ldquo;Delta record&rdquo;. Open it with the scope note: &ldquo;Rev A &sect;1 remains valid and is not repeated. This section records only what is new on file.&rdquo; Never rewrite what still stands.</p></div></div>
-<div class="step"><div class="stepnum">3</div><div class="stepbody"><p><b>Answer every client point, traceably.</b> The executive summary enumerates the structural changes (&ldquo;This revision makes four structural changes, each traceable to his review or the {date} call: (1)&hellip;&rdquo;). Each of the client&rsquo;s review items maps to the section that satisfies it. What is pending gets a named slot held. What they challenged gets engaged on the record, accepted or argued, never ignored.</p></div></div>
-<div class="step"><div class="stepnum">4</div><div class="stepbody"><p><b>Carry corrections forward.</b> Client corrections persist across every future revision; keep a standing list so a correction never silently un-happens. If one slipped through, name it and kill it: &ldquo;The close rate figure that survived into v2 is removed.&rdquo;</p></div></div>
-<div class="step"><div class="stepnum">5</div><div class="stepbody"><p><b>Record decisions as statuses:</b> <code class="f">POC AGREED</code>, <code class="f">PROMOTED TO CORE</code>, deferrals to <code class="f">D-0N</code> per &sect;4.3. Track Rev A&rsquo;s open items to closure and name the ones still open. Close with the extended trace line: &ldquo;&hellip; Unknowns are named, not guessed. Rev B supersedes Rev A in full.&rdquo;</p></div></div>
-
-<!-- ================= 11 ================= -->
-<div class="sechead"><div class="secnum">11</div><div class="sectitle">THE QUALITY GATE</div><div class="sectag">Before it ships</div></div>
-
-<p>Run every check. One failure blocks shipping. This is the gate that makes the outcome repeatable regardless of who wrote the document.</p>
-
-<table class="numbers">
-  <tr><th style="width:6%;">#</th><th style="width:30%;">Check</th><th>Passes when</th></tr>
-  <tr><td class="k">0</td><td>Entry gate <i>(precondition)</i></td><td>Both required inputs are on file: the filled audit form and the audit call with its transcript. If this fails, nothing below applies, because the document should not exist yet.</td></tr>
-  <tr><td class="k">1</td><td>Traceability</td><td>Every system&rsquo;s SOLVES points at a &sect;1 subsection; every &sect;1 pain is addressed by a system or explicitly deferred.</td></tr>
-  <tr><td class="k">2</td><td>Quotes</td><td>Every quote verified against the form or transcript: verbatim, or marked (paraphrase). Call-only material marked.</td></tr>
-  <tr><td class="k">3</td><td>Guardrails</td><td>&sect;4 matches form &sect;10; unanswered guardrails carry a conservative default and appear in Next Steps.</td></tr>
-  <tr><td class="k">4</td><td>Numbers</td><td>&sect;5 table matches the form character for character, estimates marked; every &#8377; and % in the document traces to a source.</td></tr>
-  <tr><td class="k">5</td><td>Contradictions</td><td>Flagged as numbered confirm items in &sect;5 and repeated in Next Steps. None silently resolved.</td></tr>
-  <tr><td class="k">6</td><td>Roadmap</td><td>Hours/week, deadline anchor and season named in the intro; every phase has a testable DONE WHEN; the final one echoes the client&rsquo;s &ldquo;worth it if&rdquo;.</td></tr>
-  <tr><td class="k">7</td><td>Cover</td><td>Chips are the client&rsquo;s money path with the first build highlighted; DWG number correct; Sources complete and dated; deadline anchor present.</td></tr>
-  <tr><td class="k">8</td><td>Design</td><td>Template untouched; no card broken across sheets; 7 to 10 sheets; running heads and feet correct on every sheet.</td></tr>
-  <tr><td class="k">9</td><td>Language</td><td>No em dashes; jargon explained; client-language quotes intact; no selling.</td></tr>
-  <tr><td class="k">10</td><td>Trace line</td><td>Present, dated, and true.</td></tr>
-  <tr><td class="k">11</td><td>Files</td><td>The .md / .html / .pdf triplet saved in the client&rsquo;s folder; prior revisions archived, not deleted.</td></tr>
+<p>Target 8 to 12 sheets total: 2-3 wide sheets for Part A, 6-9 A4 sheets for Part B. Sections 00, 01 and 02 stay full length; the diagnosis and the system cards are what earn the client's recognition, and no chart replaces them.</p>
+<h2>Section 01 · Current State</h2>
+<p>Order the subsections along the client's money path, so the document walks their business the way money actually moves through it: enquiry, quotation, order, production, dispatch, payment, repeat. Each subsection is a short narrative followed by a PAIN callout in the client's own words.</p>
+<p>Skip the PAIN callout only where no pain was named. A subsection that exists purely to describe something working fine is legitimate and should not be given an invented complaint.</p>
+<p>Mark subsections that rest only on the call as <em>(call-only)</em>, so a reader comparing the blueprint against the written brief is never confused about where a finding came from.</p>
+<h2>Section 04 · Guardrails</h2>
+<p>Title: GUARDRAILS. Tag: "Set by {first name}, enforced by design". This section is the client's form §10 answers, near-verbatim, hardened into mechanism. Each guardrail is one orange-barred callout with a bold lead-in. The standing vocabulary, extended per client:</p>
+<ul>
+<li><strong>ALWAYS HUMAN SIGN-OFF:</strong> their exact list. Quotations and commitments to clients appear here for almost every client.</li>
+<li><strong>AI MAY ACT ALONE ON:</strong> their delegable list, verbatim.</li>
+<li><strong>CUSTOMER-FACING:</strong> their comfort answer, quoted: "AI drafts, my team sends" / "AI can message customers directly" / "Not sure yet" (which means everything is drafts-for-approval until they decide).</li>
+<li><strong>DATA CAUTION / UNTOUCHABLE DATA:</strong> what AI never touches, in their words.</li>
+<li><strong>ERROR PROTOCOL:</strong> their acceptable way for mistakes to surface and get corrected. Never silent rewrites; an audit trail you cannot trust is worse than none.</li>
+<li><strong>NOT ANSWERED:</strong> when a guardrail question was left blank, say so, apply a conservative default, and list it for the kickoff call. Unanswered is information, not an excuse to invent a rule.</li>
+</ul>
+<p>The reason this section quotes rather than paraphrases: these are the rules the client will be held to and will hold us to. Their exact words prevent a later argument about what was agreed.</p>
+<h2>Section 05 · The Numbers</h2>
+<p>Title: THE NUMBERS. Tag: "Flagged, not resolved". Panel 01's tiles now carry the figures with the client's "(estimate)" markers; this section keeps what a tile cannot say. Two things are allowed and nothing else:</p>
+<ol>
+<li>The numbered "flagged, not resolved" contradictions, each phrased as a confirm item.</li>
+<li>At most one interpretation paragraph reading their numbers back to them: "~160 quotes a month do not convert; speed is the cheapest conversion lever available, which is why P1 leads."</li>
+</ol>
+<p>Interpretation never introduces a figure the client did not provide. Multiplying two of their numbers to produce a third is inventing a figure.</p>
+<h2>Section 06 · Next Steps</h2>
+<p>Title: NEXT STEPS. Tag: "Immediate actions". 4 to 7 numbered step blocks, each starting with a bold action and carrying a named owner. Standard ingredients, picked as they apply:</p>
+<ul>
+<li>The blueprint review call, framed as "to contradict, add to, or accept as-is".</li>
+<li>The client's data homework.</li>
+<li>The access checklist (logins, WhatsApp Business, workspaces, ERP).</li>
+<li>Commercials and onboarding where payment is still open.</li>
+<li>The flagged numbers to confirm.</li>
+<li>The promise of the Phase 1 build plan as the next deliverable, "deliverables and done-when stated up front, no surprises mid-journey."</li>
+</ul>
+<h2>Cover anatomy</h2>
+<ul>
+<li><strong>Running head, every sheet:</strong> left <code>BUILDOUR AI · CLIENT BLUEPRINT</code>, right <code>DWG NO. BOA-{YYYY}-{CODE}-01 · REV {A}</code>. The code is three letters from the company name: VNV for Vinove, MPK for MyPackify, APT for Aptus, MST for master documents.</li>
+<li><strong>Running foot, every sheet:</strong> left <code>{COMPANY} · AI SYSTEMS BLUEPRINT</code>, right <code>SHEET n / N</code>.</li>
+<li><strong>Frame:</strong> double orange border, cover bar reading "BUILDOUR AI | CLIENT BLUEPRINT".</li>
+<li><strong>Title:</strong> AI SYSTEMS in ink, BLUEPRINT in orange. Revisions append "· REV B" at reduced size.</li>
+<li><strong>Subtitle:</strong> <code>{COMPANY} · PREPARED FOR {NAME}, {ROLE}</code>, the name in orange bold.</li>
+<li><strong>Flow chips:</strong> the client's own money path in 5 to 7 stations, dash-connected, with the station where the first build lands filled orange. This is the client's business drawn as a machine, not a generic pipeline, and it is usually the first thing they look at.</li>
+<li><strong>Title block:</strong> BUSINESS · CURRENT STACK · PREPARED BY · SOURCES (every input, dated) · SYSTEMS SPECIFIED ("7 systems in 3 phases") · DEADLINE ANCHOR. Optional extra fields when relevant: PROGRAM ("Build For You (DFY)") or ENGAGEMENT MODEL, and PRECEDENCE when client documents govern.</li>
+<li><strong>Cover note:</strong> "EVERY RECOMMENDATION IN THIS DRAWING TRACES TO THE AUDIT CALL OR THE SUBMITTED SYSTEMS BRIEF". On revisions, the supersede line with the previous rev's date.</li>
+</ul>
+<h2>The trace line</h2>
+<p>Every blueprint closes with it, dated:</p>
+<blockquote>
+<p>Every item in this document traces to the audit call ({date}) or the submitted Systems Brief ({date}). No figures added beyond those the client provided; unknowns are named, not guessed.</p>
+</blockquote>
+<p>Adapt the source list to what actually fed the document, including client review documents and working calls where they exist. On a revision, extend it: "… Rev B supersedes Rev A in full."</p></div>
+<div class="parthead"><div class="partnum">03</div><div class="parttitle">THE INFOGRAPHIC</div><div class="parttag">Part A: the ten-panel spine, the diagnostic menu, sourcing rules.</div></div>
+<div class="md"><h1>The Infographic: Part A of the Blueprint</h1>
+<p>Every blueprint opens with the infographic: the one-shot capture of the whole document, on wide sheets, before the in-depth part begins. A client who reads nothing else should get the diagnosis, the prescription, the sequence and the rules from these sheets alone. It is not a summary bolted on; it is the same evidence, drawn.</p>
+<p>The infographic and the written part are one document, one triplet, one DWG number. They render together from one HTML file (the template's Part A and Part B), and the sheet counter runs across both.</p>
+<h2>The fixed spine</h2>
+<p>Ten panel positions. Seven are fixed and appear for every client; three are diagnostic slots filled from a menu. Panels are numbered 01 to 10 in order with no gaps: if a client's evidence supports only two diagnostic panels, the build panels renumber so the sequence stays continuous.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Panel</th>
+<th>Chart</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>THE NUMBERS</td>
+<td>Dashboard tiles</td>
+<td><strong>Fixed.</strong> 8 or 9 tiles, straight from the form's numbers panel, wording preserved. Mark 1 or 2 tiles hot (orange value): the figure that carries the finding, and any zero worth staring at ("0 leaks measured"). One caption line reads the tiles: the single most important arithmetic fact, bolded.</td>
+</tr>
+<tr>
+<td>02</td>
+<td>THE MONEY PATH TODAY</td>
+<td>Flowchart</td>
+<td><strong>Fixed.</strong> Every station of the client's money path as a numbered box: name plus a 2-4 word state note. Stations named as breakdown points get the <code>broken</code> class (orange fill). Legend row closes with the standing truth of the whole path in the client's terms.</td>
+</tr>
+<tr>
+<td>03-05</td>
+<td>Diagnostic slots</td>
+<td>From the menu below</td>
+<td><strong>2 or 3 panels, chosen from evidence.</strong> Two small ones share a row (<code>.duo</code>); a full-width one stands alone. Never invent a diagnosis to fill a slot: a client with no failed app gets no before/after panel.</td>
+</tr>
+<tr>
+<td>06</td>
+<td>RECOMMENDED AI SYSTEMS</td>
+<td>Chain cards, 3-up grid</td>
+<td><strong>Fixed.</strong> One card per system: code and window, name, a 5-7 chip chain from trigger to outcome, side annotations tying guardrails and adoption fixes to specific steps, and a SOLVES footer naming the painkiller. Closes with the tool-disposition caption (kept / dropped, tools bolded).</td>
+</tr>
+<tr>
+<td>07</td>
+<td>IMPLEMENTATION ROADMAP</td>
+<td>Gantt + done-whens</td>
+<td><strong>Fixed.</strong> One row per system, bars placed in month columns with a short note each, phase names spanning the header. Below: one DONE WHEN box per phase, states middot-separated.</td>
+</tr>
+<tr>
+<td>08</td>
+<td>WHY THIS BUILD ORDER</td>
+<td>2x2 matrix</td>
+<td><strong>Fixed.</strong> Axes chosen per client (the recurring pair: impact vertical, dependence-on-human-change horizontal). Phase 1 systems sit in the build-first quadrant with tinted cards; every quadrant carries an arrow verdict line. Caption states the axis meaning and the sequencing sentence.</td>
+</tr>
+<tr>
+<td>09</td>
+<td>GUARDRAILS</td>
+<td>Three-lane swimlane</td>
+<td><strong>Fixed.</strong> AI ACTS ALONE / HUMAN SIGNS OFF / NEVER AUTOMATED. Tags condensed from the client's form section 10 answers; never-lane tags render orange-filled. Caption carries the running-cost line where one was discussed.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>NEXT STEPS</td>
+<td>Numbered action cards</td>
+<td><strong>Fixed.</strong> The same 4-7 actions as the written section 06, compressed to one line each with owners.</td>
+</tr>
+</tbody>
 </table>
-
-<!-- ================= NEXT STEPS ================= -->
-<div class="sechead"><div class="secnum">12</div><div class="sectitle">YOUR FIRST BLUEPRINT</div><div class="sectag">Next steps for a new writer</div></div>
-
-<div class="step"><div class="stepnum">01</div><div class="stepbody"><p><b>Read two shipped blueprints end to end:</b> Pranay Aggarwal AI Systems Blueprint v2 (the structure and design standard) and Puneet Jain AI Systems Blueprint v2 / Rev B (the revision standard). Both live in the clients folder.</p></div></div>
-<div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>Trace ten claims.</b> Take one client&rsquo;s audit form and cleaned transcript, sit them beside the shipped blueprint, and trace ten of its claims back to their exact sources. This teaches the evidence pass faster than any instruction.</p></div></div>
-<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>Draft your first blueprint</b> with this manual open, working &sect;&sect;01&ndash;06 in order, into the template per &sect;08.</p></div></div>
-<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>Run the &sect;11 gate,</b> then have one experienced reviewer walk your draft against the same checklist before it goes anywhere near the client.</p></div></div>
-<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>Ship, book the review call, and fold what comes back into Rev B</b> per &sect;10. The blueprint is not the end of a process; it is the first move of the build.</p></div></div>
-
-<div class="traceline">Every rule in this master copy is distilled from the twelve client blueprints, audit forms and call transcripts on file (August 2026).<br>Where a case this manual does not cover appears, fall back to the prime directive: the client&rsquo;s words, traced, never guessed.</div>
-
+<p>Two footer strips punctuate the sheets: one after the last diagnostic panel (the current-state group: business, sites, stack kept, stack dropped), one after panel 10 (the build group: scope, window, sources), followed by the infographic trace line ending "the in-depth blueprint follows".</p>
+<h2>The diagnostic menu</h2>
+<p>Pick the 2 or 3 whose evidence is loudest in the section 1 material. Each panel must answer: which pain callout or flagged finding does this draw?</p>
+<table>
+<thead>
+<tr>
+<th>Chart</th>
+<th>Use when</th>
+<th>Component</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Funnel</strong></td>
+<td>Volume shrinks or inflates between stages: leads to quotes to orders, and one stage is out of proportion. The mid tier renders orange when it is the anomaly.</td>
+<td><code>.funnel</code></td>
+</tr>
+<tr>
+<td><strong>Layer pyramid</strong></td>
+<td>A layer is hollow: an empty management layer, a missing data layer, a process tier nobody owns. The hollow tier renders orange with a dashed reading.</td>
+<td><code>.pyr</code></td>
+</tr>
+<tr>
+<td><strong>Before/after cards</strong></td>
+<td>A past failure or a stated fear shapes the build: a dead app, an abandoned CRM, a burned agency engagement. Each card: what happened, then the countermeasure designed in. This panel is the adoption argument drawn.</td>
+<td><code>.ba</code></td>
+</tr>
+<tr>
+<td><strong>Comparison bars</strong></td>
+<td>Two or three magnitudes tell the story: priced leaks side by side, one channel dwarfing the rest, time spent vs time available. Widths proportional; the largest bar filled orange.</td>
+<td><code>.cbars</code></td>
+</tr>
+<tr>
+<td><strong>Split / entity map</strong></td>
+<td>The story is fragmentation: four GST companies, five entities, eight tools, data in six places. One card per fragment naming what lives there; the caption states the cost of the split.</td>
+<td><code>.split</code></td>
+</tr>
+</tbody>
+</table>
+<p>If none of the five fits and the evidence begs for a different drawing, draw it in the same language (rule borders, one orange, mono labels) and note the addition; the menu grows by what works, not by whim.</p>
+<h2>Sourcing rules, unchanged from the prime directive</h2>
+<ul>
+<li>Every figure on every panel already exists in the written part or the form; the infographic introduces no new numbers, no new claims, no new systems.</li>
+<li>Client wording survives compression. A tile label may shorten "quote to order conversion" to "QUOTE -&gt; ORDER"; it may not change 10-15% to "~12%".</li>
+<li>Flagged contradictions stay flagged: a disputed figure never appears on a tile as if settled. Use the form's value and let the written section 05 carry the flag.</li>
+<li>Hot (orange) highlighting marks findings, not preferences. A tile goes hot because the evidence pass made it load-bearing.</li>
+</ul>
+<h2>Layout mechanics</h2>
+<ul>
+<li>Part A uses the named page <code>infog</code> (842pt x 1191pt); content flows across as many wide sheets as it needs, typically 2 or 3. Every <code>.panel</code> carries <code>page-break-inside: avoid</code>, so panels move whole between sheets.</li>
+<li>Panel 06's grid is 3 cards per row. 6 systems = 2 rows; 7-9 systems = 3 rows. Keep chains at 5-7 chips; spill detail into the side annotations, not into more chips.</li>
+<li>The gantt takes one header pair plus one row per system. With more than 4 phases or 8 systems, shrink notes before shrinking type.</li>
+<li>After rendering, look at every wide sheet: a panel split across sheets, a tile row wrapped, or a chain overflowing its card blocks shipping, same as any Part B defect.</li>
+</ul></div>
+<div class="parthead"><div class="partnum">04</div><div class="parttitle">DESIGN AND PRODUCTION</div><div class="parttag">Tokens, components, pages, the render pipeline.</div></div>
+<div class="md"><h1>Design Specification and Production</h1>
+<p>The design is a technical drawing: graph-paper grid, one orange, monospaced labels, framed cards. It is fully specified, so nothing is chosen per document. Do not restyle the template, do not introduce a second accent colour, do not swap fonts. The visual consistency is part of what tells a client they are dealing with a firm that has a method.</p>
+<h2>Tokens</h2>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Value</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--orange</code></td>
+<td><code>#e8590c</code></td>
+<td>The only accent: bars, borders, labels.</td>
+</tr>
+<tr>
+<td><code>--orange-soft</code></td>
+<td><code>#fdeee2</code></td>
+<td>Inline code-chip background.</td>
+</tr>
+<tr>
+<td><code>--orange-faint</code></td>
+<td><code>#fdf6f0</code></td>
+<td>PAIN and guardrail callout backgrounds.</td>
+</tr>
+<tr>
+<td><code>--ink</code></td>
+<td><code>#1f2430</code></td>
+<td>Body text.</td>
+</tr>
+<tr>
+<td><code>--grid</code></td>
+<td><code>rgba(232,89,12,0.07)</code></td>
+<td>24px graph-paper grid on paper <code>#fdfbf9</code>.</td>
+</tr>
+<tr>
+<td><code>--rule</code></td>
+<td><code>#e9c7ae</code></td>
+<td>Dotted hairlines inside cards and tables.</td>
+</tr>
+<tr>
+<td><code>--mono</code></td>
+<td>Consolas, Courier New</td>
+<td>All labels: uppercase, letter-spaced 1.5 to 3px, 8.5 to 10.5px.</td>
+</tr>
+<tr>
+<td><code>--sans</code></td>
+<td>Segoe UI, Helvetica, Arial</td>
+<td>Body 13.5px / 1.6, justified. H1 46px weight 800. Section titles 17px bold.</td>
+</tr>
+</tbody>
+</table>
+<h2>Components</h2>
+<p><strong>Part B (A4):</strong> cover frame with title block and flow chips; section head (orange number block, title, right tag); numbered subsections with orange mono numbers; PAIN callout; system card (orange header bar, dotted row rules, mono row labels); phase card; guard callout; METRIC / VALUE table with orange header row; numbered step blocks; dashed note block; trace line; inline code chips.</p>
+<p><strong>Part A (wide sheets):</strong> infographic header with prepared-for box; panel head (orange number badge, bold title, mono tag, ink rule); dashboard tiles with hot variant; money-path flow boxes with broken variant and legend; funnel and layer pyramid (double-layer clip-path: fill layer in rule colour or orange, inner layer inset 1.5px); before/after cards; comparison bars; split cards; 3-up system chain cards with side annotations; gantt table with bar chips and done-when trio; 2x2 matrix with build-first quadrant; three-lane guardrail swimlane with never-variant tags; two-up next-step cards; footer stripe. All share the same tokens; no new colours, no new fonts.</p>
+<h2>Pages</h2>
+<p>Two named page sizes in one file: the default <code>@page</code> is A4 for Part B, and <code>@page infog</code> (842pt x 1191pt) carries Part A via <code>page: infog</code> on the <code>.ig</code> wrapper. Chrome honours both; the sheet counter runs across the whole document. Both page rules carry the same running head and foot strings, so edit the DWG number and company name in BOTH when filling the template.</p>
+<p>Structural CSS worth knowing when a page breaks badly: cards carry <code>page-break-inside: avoid</code>, section heads carry <code>page-break-after: avoid</code>, and the cover carries both so it stays on one sheet. Running heads, feet and sheet numbers come from <code>@page</code> margin boxes with <code>counter(page)</code> and <code>counter(pages)</code>, so sheets number themselves and you never hand-number anything.</p>
+<h2>Production pipeline</h2>
+<ol>
+<li>
+<p><strong>Draft the content</strong> as <code>{Client Name} AI Systems Blueprint.md</code>, following the fixed running order: Part A's panel content first (tile values, station lists, chain steps, lane tags), then Part B's sections. The markdown is a deliverable in its own right, so keep it clean and complete; it is the editable source for every future revision.</p>
+</li>
+<li>
+<p><strong>Pour it into the template.</strong> Copy <code>assets/blueprint-template.html</code>, replace every <code>{{PLACEHOLDER}}</code>, delete the optional blocks you did not use (the foundation card, the deferral note block). The template's HTML comments mark where each repeating element goes.</p>
+</li>
+<li>
+<p><strong>Render the PDF</strong> with the bundled script, which tries WeasyPrint and falls back to headless Chrome:</p>
+</li>
+</ol>
+<p><code>bash
+   python scripts/render_pdf.py "{Client} AI Systems Blueprint.html"</code></p>
+<p>Both engines honour the <code>@page</code> rules, so output is equivalent. On Windows machines without the GTK libraries, WeasyPrint will fail to import and the script silently uses Chrome instead.</p>
+<ol>
+<li>
+<p><strong>Read every rendered page.</strong> Check that no card or panel breaks across a sheet, the cover fits one sheet, the sheet count lands between 8 and 12 (2-3 wide + 6-9 A4), and the running heads and feet are right on both page sizes. Fix in the HTML, re-render. Rendering without looking at the result is how a broken card reaches a client.</p>
+</li>
+<li>
+<p><strong>Save the triplet</strong> (.md, .html, .pdf) in the client's folder. Revisions get a new triplet ("… v2" or "… Rev B") and the previous one is renamed "(v1 archive)". Never delete a shipped document: the archive is what lets you answer "what did we tell them in August?"</p>
+</li>
+</ol>
+<h2>Template placeholders</h2>
+<p><code>{{COMPANY}}</code> <code>{{NAME}}</code> <code>{{ROLE}}</code> <code>{{N}}</code> (system count) <code>{{M}}</code> (phase count) <code>{{ANCHOR}}</code> (deadline anchor) <code>{{DATE}}</code> and the generic <code>{{PLACEHOLDER}}</code> markers inside each content block. Search the file for <code>{{</code> before rendering; any survivor means an unfilled field, which is the single most common defect in a first draft.</p></div>
+<div class="parthead"><div class="partnum">05</div><div class="parttitle">THE QUALITY GATE</div><div class="parttag">The 14 checks run before anything ships.</div></div>
+<div class="md"><h1>The Quality Gate</h1>
+<p>Run every check before the blueprint leaves the building. One failure blocks shipping. This gate is what makes the outcome repeatable regardless of who wrote the document, and it is deliberately mechanical so that a tired writer at the end of a long draft cannot talk themselves past it.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Check</th>
+<th>Passes when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Entry gate (precondition)</td>
+<td>Both required inputs are on file: the filled audit form and the audit call with its transcript. If this fails, nothing below applies, because the document should not exist yet.</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Traceability</td>
+<td>Every system's SOLVES points at a §1 subsection; every §1 pain is addressed by a system or explicitly deferred.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Quotes</td>
+<td>Every quote verified against the form or transcript: verbatim, or marked (paraphrase). Call-only material marked.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Guardrails</td>
+<td>§4 matches form §10; unanswered guardrails carry a conservative default and appear in Next Steps.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Numbers</td>
+<td>§5 table matches the form character for character, estimates marked; every rupee figure and percentage in the document traces to a source.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Contradictions</td>
+<td>Flagged as numbered confirm items in §5 and repeated in Next Steps. None silently resolved.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Roadmap</td>
+<td>Hours per week, deadline anchor and busy season named in the intro; every phase has a testable DONE WHEN; the final one echoes the client's "worth it if".</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Cover</td>
+<td>Chips are the client's money path with the first build highlighted; DWG number correct; Sources complete and dated; deadline anchor present.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Design</td>
+<td>Template untouched; no card or panel broken across sheets; 8 to 12 sheets (2-3 wide + 6-9 A4); running heads and feet correct on every sheet; no <code>{{</code> placeholders survive.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Language</td>
+<td>No em dashes; jargon explained on first use; client-language quotes intact; no selling.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Trace line</td>
+<td>Present, dated, and true.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Files</td>
+<td>The .md / .html / .pdf triplet saved in the client's folder; prior revisions archived, not deleted.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Infographic figures</td>
+<td>Every figure, quote and claim on every panel already exists in Part B or the form; nothing appears first on a panel. Hot tiles mark findings the evidence pass named.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Infographic spine</td>
+<td>Panels numbered 01-10 with no gaps; the 7 fixed panels present; each diagnostic panel points at the section 1 evidence that earned it; no diagnostic panel invented to fill a slot.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Cross-agreement</td>
+<td>Panel 06 chains match the system cards; panel 07 bars match the phase cards and done-whens; panel 09 lanes match section 04's verbatim rules; panel 10 matches section 06. One story, two renderings.</td>
+</tr>
+</tbody>
+</table>
+<h2>How to run it honestly</h2>
+<p>Checks 1, 2 and 4 are the ones that actually catch damage, and they cannot be done by skimming. Take the rendered PDF and the source documents side by side:</p>
+<ul>
+<li>For check 1, list every system and write the § number it solves next to it. A system you have to think hard about is a system that does not belong.</li>
+<li>For check 2, search the draft for every quotation mark and confirm each one against the source text. A quote you cannot find is a quote you reconstructed, which means it has to become a paraphrase or come out.</li>
+<li>For check 4, take each number in the §5 table back to the form. Then scan the prose for any figure that is not in the table and confirm it too.</li>
+</ul>
+<p>If a check fails, fix the document rather than the check. The gate exists because the alternative, a blueprint whose claims cannot be verified, costs the client's trust in everything else the engagement produces.</p></div>
+<div class="parthead"><div class="partnum">06</div><div class="parttitle">REVISIONS</div><div class="parttag">Rev B and the delta discipline.</div></div>
+<div class="md"><h1>Revisions: Rev B and the Delta Discipline</h1>
+<p>A revision triggers when material new input lands: the client's written review of the blueprint, a working call, a missing transcript finally exported, delivered data assets, or a client-authored spec. Small corrections do not trigger a revision; they queue for the next one.</p>
+<p>The governing idea: a revision is a record of a conversation, not a fresh draft. The client should be able to see exactly what their input changed, which is what makes them keep sending input.</p>
+<h2>The five moves</h2>
+<ol>
+<li>
+<p><strong>Stamp the rev everywhere.</strong> The DWG number on every sheet, the cover title ("· REV B"), every footer, and the cover supersede note: "Rev B supersedes Rev A (14.08.2026). Every change in this revision traces to the client's own review documents or the working call of {date}."</p>
+</li>
+<li>
+<p><strong>Replace §01 with the delta record.</strong> Section 01 becomes WHAT CHANGED SINCE REV A, tag "Delta record". Open it with the scope note: "Rev A §1 remains valid and is not repeated. This section records only what is new on file." Never rewrite what still stands. Rewriting valid content wastes the client's reading time and hides the actual changes inside a wall of familiar text.</p>
+</li>
+<li>
+<p><strong>Answer every client point, traceably.</strong> The executive summary enumerates the structural changes: "This revision makes four structural changes, each traceable to his review or the {date} call: (1)…". Each of the client's review items maps to the section that now satisfies it. What is still pending gets a named slot held. What they challenged gets engaged on the record, accepted or argued, never quietly ignored. A client who took the trouble to write a review will check whether each point landed.</p>
+</li>
+<li>
+<p><strong>Carry corrections forward.</strong> Client corrections persist across every future revision. Keep a standing list so a correction never silently un-happens between versions. If one slipped through, name it and kill it on the record: "The close rate figure that survived into v2 is removed."</p>
+</li>
+<li>
+<p><strong>Record decisions as statuses.</strong> System codes carry the outcome of the conversation: <code>POC AGREED</code>, <code>PROMOTED TO CORE</code>. Deferrals become <code>D-01</code>, <code>D-02</code> in a dashed note block, parked not dropped, each with the client's reason, the interim carrier, and the re-entry condition. Track the previous rev's open items to closure and name the ones still open. Close with the extended trace line: "… Unknowns are named, not guessed. Rev B supersedes Rev A in full."</p>
+</li>
+</ol>
+<h2>What a good delta section contains</h2>
+<p>Look at what actually changed and give each item its own subsection under 1.1, 1.2, and so on:</p>
+<ul>
+<li><strong>Open items closed.</strong> "The Systems Brief (13.08) closes Rev A's open item #1: ~200 leads and ~200 quotes per month…"</li>
+<li><strong>New client assets on file.</strong> A costing spec, a die master, size charts. Say what they are and what they unlock.</li>
+<li><strong>Risks retired.</strong> "The single biggest project risk named in Rev A, that the costing logic lived only in his head, has been retired by the client himself." Credit the client when they retire their own risk.</li>
+<li><strong>Corrections to the record.</strong> "§1.6 Owner role, corrected." Where Rev A got something wrong, say so plainly rather than editing it away.</li>
+<li><strong>Client decisions, including deferrals,</strong> with the reasoning they gave.</li>
+</ul>
+<h2>The infographic on a revision</h2>
+<p>Part A re-renders with Part B, always: a Rev B whose panels still show Rev A's numbers is worse than no infographic. Re-run the panel checks (gate 12 to 14). Where the revision changed a system's status or a phase's timing, the matching panel changes with it, and the delta section names the panels that moved.</p>
+<h2>Files</h2>
+<p>Revisions get a new triplet named "… v2" or "… Rev B". The previous triplet is renamed "(v1 archive)" and kept. The archive is what lets anyone answer "what did we tell this client in August, and what changed since?" without reconstructing it from memory.</p></div><div class="traceline">Rendered from the ai-systems-blueprint skill, 01.09.2026. The skill is the single source of truth; this document restates it and never overrides it.</div>
 </body>
 </html>

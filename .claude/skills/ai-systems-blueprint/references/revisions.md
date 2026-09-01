@@ -26,6 +26,10 @@ Look at what actually changed and give each item its own subsection under 1.1, 1
 - **Corrections to the record.** "§1.6 Owner role, corrected." Where Rev A got something wrong, say so plainly rather than editing it away.
 - **Client decisions, including deferrals,** with the reasoning they gave.
 
+## The infographic on a revision
+
+Part A re-renders with Part B, always: a Rev B whose panels still show Rev A's numbers is worse than no infographic. Re-run the panel checks (gate 12 to 14). Where the revision changed a system's status or a phase's timing, the matching panel changes with it, and the delta section names the panels that moved.
+
 ## Files
 
 Revisions get a new triplet named "… v2" or "… Rev B". The previous triplet is renamed "(v1 archive)" and kept. The archive is what lets anyone answer "what did we tell this client in August, and what changed since?" without reconstructing it from memory.
