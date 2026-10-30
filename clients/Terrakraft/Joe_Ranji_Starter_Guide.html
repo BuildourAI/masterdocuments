@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Terrakraft Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Client Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-TER-02 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Terrakraft · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Starter Guide</span></div>
+    <h1 class="cover">STARTER<br><span class="accent">GUIDE</span></h1>
+    <div class="coversub">Terrakraft &nbsp;&middot;&nbsp; Prepared for <b>Joe Ranji</b>, Owner</div>
+    <div class="flow">
+      <span class="chip">CRM export</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Claude Code</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Supabase</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Vercel, live</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Lead Board</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">5 test leads</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Business</span>Human centric flooring for residences, hotels and offices, as a full stack service from supply to installation to after sales. Seven people, &#8377;10&ndash;50 lakh a month, 300 leads a month becoming 50 quotes and 20 orders.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Your build stack, fixed</span><b>Claude Code</b> writes the code &middot; <b>Next.js</b> is the app &middot; <b>Supabase</b> is the database &middot; <b>Vercel</b> puts it online &middot; <b>GitHub</b> keeps the code. Your Terrakraft repository is already set up. Nothing else.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Prepared by</span>BuildOur AI</td>
+        <td><span class="lbl">Sources</span>AI Systems Blueprint BOA-2026-TER-01 Rev A (blueprint audit 29.10.2026) and your Systems Brief.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">First build</span>Phase 1: leads, one row each, first reply in minutes. The Job Record, the message library, the Lead Board and the Follow-up Flow. One phase, not four.</td>
+        <td><span class="lbl">Time budget</span>14 hours a week, as written in your brief. One hour a day building, six days; the rest for the sign-offs only you can give.</td>
+      </tr>
+      <tr><td colspan="2"><span class="lbl">How to use this guide</span>Attach this guide and your blueprint to one Claude Code session and paste the prompt in section 03. Claude Code builds; you decide and test. Section 08 is written to Claude Code; you do not need to read it.</td></tr>
+    </table>
+    <div class="covernote">Build one phase, prove it on five leads, then widen. Nothing else in month one.</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 START HERE ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">START HERE</div><div class="sectag">Read this page before touching a computer</div></div>
+<p>You wrote that you never want to <em class="q">&ldquo;manually delegate common tasks, monitor them and ensure its completing,&rdquo;</em> and that you want the system to be <em class="q">&ldquo;scale ready&rdquo;</em> for online sales and new stores in other cities. Both start in the same place: one true record for every lead, in a database you own. All nine pieces in your blueprint read and write that record. Build it first and build it right, and a second city plugs into it later instead of starting from zero.</p>
+<p>You do not build all nine. You build <b>Phase 1</b> of your blueprint: one row per lead, a message library you sign, one board that shows every lead, and the <b>Follow-up Flow</b> that sends the first reply within minutes. The blueprint marks it as the first domino for a reason: of your 300 leads a month, 250 leave before a quote exists, and today the first reply waits until Nisha types it after you take the call. It runs on the CRM and WhatsApp Business API you already pay for, and the blueprint prices it conservatively at &#8377;15,000 and 30 hours a month returned. Everything else waits its turn.</p>
+<p><b>The one hour a day rule.</b> Your brief gives 14 hours a week. Spend one of them each day, six days, building. Keep the rest for the decisions only you can make: signing message templates, setting the follow-up rhythm, naming who takes over when a lead asks about price. Building is a skill like a language, and daily practice beats one long heroic session. A person who builds one small working thing every evening for a month will pass a person who tries to build everything in one weekend.</p>
+<p><b>Who does what.</b> Claude Code reads this guide and your blueprint, writes the code, saves it into your repository, and walks you through every click it cannot make itself. You do the three things it cannot do: hand it true data, state the rules in your own words, and test what it built against leads you know.</p>
+
+<!-- ================= 01 TOOLKIT ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">YOUR TOOLKIT</div><div class="sectag">Five tools, nothing else</div></div>
+
+<div class="tool"><div class="toolhead">CLAUDE CODE &middot; THE BUILDER<span>TOOL-01</span></div>
+  <div class="toolrow"><div class="k">What it is</div><div class="v">An AI that writes and edits the real code of your app through normal conversation. You describe the business rule in plain English. It writes the files, checks them, fixes its own errors, and saves them into your Terrakraft repository.</div></div>
+  <div class="toolrow"><div class="k">Your job</div><div class="v">Describe the rule, then read and test what it built. You are the manager, not the typist. When you do not understand something it made, tell it: <code class="f">explain this to me in simple words</code>. It will, as many times as you need.</div></div>
+  <div class="toolrow"><div class="k">Note</div><div class="v">On day 4 it writes a file called CLAUDE.md into your repository holding your rules. Every later session reads it first, so a rule you set once holds forever.</div></div>
+</div>
+
+<div class="tool"><div class="toolhead">GITHUB &middot; THE SAFE<span>TOOL-02</span></div>
+  <div class="toolrow"><div class="k">What it is</div><div class="v">Your private repository, the folder online where the code lives, with every past version kept. It is already set up and connected to Claude Code.</div></div>
+  <div class="toolrow"><div class="k">Your job</div><div class="v">Nothing day to day. Two rules: it stays private, and no password or key ever goes into it.</div></div>
+</div>
+
+<div class="tool"><div class="toolhead">SUPABASE &middot; THE DATABASE<span>TOOL-03</span></div>
+  <div class="toolrow"><div class="k">What it is</div><div class="v">Where your information actually lives: every lead, its stage, its consultant, its source, every message drafted and who approved it. Think of it as the filing room of the business, one that never loses a file. In month one it does not replace your CRM. It holds Terrakraft&rsquo;s own clean copy of every lead, so the board and the flow work from one true list.</div></div>
+  <div class="toolrow"><div class="k">Your job</div><div class="v">Create the project and paste in one setup file Claude Code writes (section 04). Your only check: find one lead you know by name and confirm the stage and consultant match reality.</div></div>
+</div>
+
+<div class="tool"><div class="toolhead">NEXT.JS &middot; THE APP ITSELF<span>TOOL-04</span></div>
+  <div class="toolrow"><div class="k">What it is</div><div class="v">The screens your team opens on their phones: the Lead Board, each lead&rsquo;s page with its drafted reply, the template library you sign. It is a web app, so there is nothing to install from any store. Nisha, Antony and Vincent open a link and add it to the home screen, each with their own login.</div></div>
+  <div class="toolrow"><div class="k">Your job</div><div class="v">Say what each screen must show and who may see it. Claude Code writes it. Never accept a screen you would not hand to Nisha tomorrow morning.</div></div>
+</div>
+
+<div class="tool"><div class="toolhead">VERCEL &middot; WHERE IT LIVES ONLINE<span>TOOL-05</span></div>
+  <div class="toolrow"><div class="k">What it is</div><div class="v">The place your app is published, so it runs on your team&rsquo;s phones on site, in the field and in the office. Connected once to your repository, it publishes every later improvement by itself in about two minutes.</div></div>
+  <div class="toolrow"><div class="k">Your job</div><div class="v">Create the account, connect it once (section 04), then forget it exists. The free tier is enough for month one.</div></div>
+</div>
+
+<div class="note"><span class="nlbl">What you are not using, and why</span>
+<p>Nothing new is bought in Phase 1. Your blueprint wires the CRM, ERP, WhatsApp Business API and Repuva you already pay for around one job record, and this app is the thin layer on top that makes them agree. No no-code builders, no second AI tool. You wrote that you want to stop paying for all of them. Your blueprint parks that decision to month 12, when you can see which ones still earn their fee once connected. Code in your own repository and data in your own database can be moved anywhere. That is what scale ready means.</p>
+</div>
+
+<!-- ================= 02 WEEK 1 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">WEEK 1 CHECKLIST</div><div class="sectag">Day by day &middot; one hour each</div></div>
+
+<div class="step"><div class="stepnum">D1</div><div class="stepbody"><p><b>Get the leads out of the CRM.</b> Ask Nisha for one export to Excel or CSV: every open lead with name, phone, type (residence, hotel or office), source, stage, consultant (Antony or Vincent), date of enquiry and date of last contact. Source must say where each lead came from: incoming call, Meta ads landing page, WhatsApp, social media, showroom walk-in, or an architect, designer or contractor by name. The same day, write down two names your blueprint does not have: <b>which CRM</b> you use and <b>which WhatsApp Business API provider</b>. <span class="owner">Owner: Nisha.</span></p></div></div>
+
+<div class="step"><div class="stepnum">D2</div><div class="stepbody"><p><b>Open the doors.</b> Claude Code and your repository are already set up. Create your Supabase and Vercel accounts, signing in to both with the GitHub account that owns the Terrakraft repository. Build nothing today. The whole task is to get in the door and see the screens once, so that day 5 is not the day you fight sign-ups.</p></div></div>
+
+<div class="step"><div class="stepnum">D3</div><div class="stepbody"><p><b>Write your rules on one page.</b> Answer five questions in writing:</p>
+<ol>
+<li>The first reply a new lead receives, word for word, once each for a residence, a hotel and an office lead.</li>
+<li>The follow-up rhythm for a 90+ day cycle: on which days a quiet lead hears from you again, and after how many tries it is marked cold.</li>
+<li>How a new lead is given to Antony or to Vincent.</li>
+<li>The words that mean a person must take over. Start with price, rate, discount, offer and terms, then add any other words your customers use for these.</li>
+<li>Your eight stage names, as your team says them. The blueprint lists them as incoming call, showroom visit, site visit, PI, negotiation, closure and supply, delivery, installation.</li>
+</ol>
+<p>The AI can only build a rule you can state. This is the most valuable hour of your week.</p></div></div>
+
+<div class="step"><div class="stepnum">D4</div><div class="stepbody"><p><b>The one prompt.</b> Open Claude Code on your Terrakraft repository. Attach four files: your blueprint, this guide, the CRM export, your rules page. Paste the prompt from section 03. Read the plan it gives back, ask for simple words on any line you do not understand, then say go. It builds the first screen and the database setup file, and saves both to your repository.</p></div></div>
+
+<div class="step"><div class="stepnum">D5</div><div class="stepbody"><p><b>Connect Supabase and Vercel.</b> Follow section 04 step by step, with Claude Code in the same session talking you through it. At the end the app opens on your phone at its own address, and you are signed in as yourself.</p></div></div>
+
+<div class="step"><div class="stepnum">D6</div><div class="stepbody"><p><b>Load the leads, then test like a businessman.</b> Load the CRM export through the import screen Claude Code built. Open the Lead Board on your phone. Pick one lead you know well and check the stage, the consultant, the source and the days since last contact. If that one lead is true, your foundation is true, and everything later stands on it.</p></div></div>
+
+<div class="step"><div class="stepnum">D7</div><div class="stepbody"><p><b>Pick five, draft five, send none.</b> Choose your five test leads (section 07). Have the system draft a first reply or check-in for each from your rules page. Read every draft and send none of them yet. Write down what felt wrong in the wording, because you know how your customers speak and the machine does not. Keep that note under the title &ldquo;rules I learned&rdquo; and bring it to your weekly review.</p></div></div>
+
+<!-- ================= 03 THE ONE PROMPT ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">THE ONE PROMPT</div><div class="sectag">Paste to Claude Code &middot; day 4</div></div>
+<p>This is the only setup message you send. Claude Code reads both documents and does the rest one step at a time, stopping to ask whenever it needs something only you have.</p>
+
+<div class="step"><div class="stepnum">01</div><div class="stepbody"><span class="voice">You do this</span>
+<p><b>Open the session and attach four files.</b> Open Claude Code on your Terrakraft repository and start a new session. Drag these into the message box, or use the attach button:</p>
+<ol>
+<li>Your <b>AI Systems Blueprint</b> (PDF).</li>
+<li>This <b>Starter Guide</b> (PDF).</li>
+<li>The <b>CRM export</b> from day 1 (Excel or CSV).</li>
+<li>Your <b>rules page</b> from day 3. A clear photo of a handwritten page is fine.</li>
+</ol>
+<p>If your Claude Code screen has no attach button, upload the blueprint, this guide and the rules page on github.com into a folder named <code class="f">docs</code> in your repository (<b>Add file &rarr; Upload files</b>, then <b>Commit changes</b>). Do not upload the CRM export, which holds customer phone numbers. Copy only its top row of column headings into your message.</p>
+</div></div>
+
+<div style="page-break-inside: avoid;">
+<div class="step"><div class="stepnum">02</div><div class="stepbody"><span class="voice ai">Paste to Claude Code</span>
+<p><b>Paste this whole block</b> as your first message, with the files attached.</p></div></div>
+
+<div class="paste"><span class="plbl">Paste &middot; Message 1</span>
+<p>I am Joe Ranji, owner of Terrakraft. Attached are my AI Systems Blueprint, my Starter Guide, my CRM export and my rules page. This repository is where my business platform lives, for life.</p>
+<p>Read the Starter Guide first, especially section 08, &ldquo;The Build Brief&rdquo;, which is written to you. It sets what you build, how you build it, and what you must never do. Then read the blueprint so you know my business.</p>
+<p>Then work one step at a time, telling me in simple words what you did after each step:</p>
+<ol>
+<li>Tell me in five lines or fewer what you understood: my business, what we build first, and what we are not building yet. Then ask me the open questions from section 08 that you need answered now, one at a time.</li>
+<li>Make a plan in small phases, each ending with something I can see on my phone. Do not write any code until I say ok.</li>
+<li>Build the first phase exactly as section 08 describes, and save it to my repository.</li>
+<li>Walk me through section 04 of the Starter Guide, connecting Supabase and Vercel, one step at a time. Wait for me to say done after each step. Never ask me to paste a secret key into this chat.</li>
+<li>When the app opens on my phone, help me load my CRM export and check one lead I know.</li>
+<li>Finish by writing what we did, what comes next and any open questions into NOTES.md, and save it.</li>
+</ol>
+</div>
+</div>
+
+<div class="guard"><b>READ WHAT IT SAYS BACK.</b> If its five-line summary is wrong about your business, correct it before you say ok. A wrong understanding on day 4 becomes a wrong screen on day 6.</div>
+
+<div class="note"><span class="nlbl">Every session after day 4</span>
+<p>Open Claude Code on the same repository and start with: <code class="f">Read CLAUDE.md and NOTES.md, tell me where we are and what is next, then make a plan and wait for my ok.</code> Work on one small finished thing per sitting. When it works, say <code class="f">save it to the repository</code>, and the live app updates itself. When something breaks, paste the error or a screenshot and say <code class="f">explain this in simple words and fix it</code>. Close every sitting with <code class="f">update NOTES.md</code>.</p>
+</div>
+
+<!-- ================= 04 CONNECT ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">CONNECT SUPABASE AND VERCEL</div><div class="sectag">You do this &middot; day 5 &middot; about 30 minutes</div></div>
+<p>By now Claude Code has filled your repository with the app and one setup file for the database. Now you give the app a database and a public address. Three things travel between the two sites: <b>one address and two keys</b>. They are typed only into Supabase&rsquo;s and Vercel&rsquo;s own screens. Never put them in a chat, an email or a file.</p>
+
+<div class="step"><div class="stepnum">S1</div><div class="stepbody"><p><b>Create the database project.</b> On supabase.com, sign in with GitHub and press <b>New project</b>. Name it <code class="f">terrakraft</code>. For the database password, press <b>Generate</b> and save the password somewhere safe; you will rarely need it. Region: <b>South Asia (Mumbai)</b>. Press <b>Create new project</b> and wait a couple of minutes while it sets up.</p></div></div>
+
+<div class="step"><div class="stepnum">S2</div><div class="stepbody"><p><b>Build the tables.</b> In Supabase&rsquo;s left menu, open <b>SQL Editor</b> and press <b>New query</b>. In a second tab, open your repository on github.com, open the file <code class="f">supabase/setup.sql</code> and press the <b>copy raw file</b> button. Paste it into the SQL Editor and press <b>Run</b>. You should see <em>Success</em>. Then open <b>Table Editor</b> in the left menu: the tables Claude Code named (leads, templates, messages, activity_log and others) are there. If a red error appears instead, copy its text into Claude Code, ask it to fix the file, then run it again.</p></div></div>
+
+<div class="step"><div class="stepnum">S3</div><div class="stepbody"><p><b>Find the address and the two keys.</b> Press the <b>Connect</b> button at the top of the project, or open <b>Project Settings &rarr; API Keys</b>. Find three values, but do not copy them anywhere yet:</p>
+<ul>
+<li><b>Project URL</b>, which looks like <code class="f">https://abcd.supabase.co</code></li>
+<li><b>Publishable key</b>, starting <code class="f">sb_publishable_</code></li>
+<li><b>Secret key</b>, starting <code class="f">sb_secret_</code> (press Reveal, or create one if none is listed)</li>
+</ul>
+<p>If your screen shows the older names, <b>anon</b> is the publishable key and <b>service_role</b> is the secret key. Treat the secret key like a bank password: it goes only into Vercel, in step S6.</p></div></div>
+
+<div class="step"><div class="stepnum">S4</div><div class="stepbody"><p><b>Make sure the work is on main.</b> Vercel publishes whatever is on your repository&rsquo;s <b>main</b> branch. If Claude Code saved its work on a separate branch, it gives you a pull request link. Open it, press <b>Merge pull request</b>, then <b>Confirm merge</b>. If unsure, ask Claude Code: <code class="f">is all the work on main?</code></p></div></div>
+
+<div class="step"><div class="stepnum">S5</div><div class="stepbody"><p><b>Import the repository into Vercel.</b> On vercel.com, sign in with GitHub, then press <b>Add New&hellip; &rarr; Project</b>. Find the Terrakraft repository in the list and press <b>Import</b>. If it is not listed, press <b>Adjust GitHub App Permissions</b>, give Vercel access to that one repository, and come back. Leave the framework (Next.js) and the build settings exactly as Vercel fills them in.</p></div></div>
+
+<div class="step"><div class="stepnum">S6</div><div class="stepbody"><p><b>Add the three values, then deploy.</b> On the same screen, open <b>Environment Variables</b> and add three rows. Copy the names exactly:</p>
+<table class="numbers">
+<tr><th style="width:55%;">Name</th><th>Value, from step S3</th></tr>
+<tr><td><code class="f">NEXT_PUBLIC_SUPABASE_URL</code></td><td>Project URL</td></tr>
+<tr><td><code class="f">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code></td><td>Publishable key (or anon)</td></tr>
+<tr><td><code class="f">SUPABASE_SECRET_KEY</code></td><td>Secret key (or service_role)</td></tr>
+</table>
+<p>Press <b>Deploy</b>. About two minutes later Vercel shows a finished page with a picture of your app. Open it: your address ends in <code class="f">.vercel.app</code>. Copy that address.</p></div></div>
+
+<div class="step"><div class="stepnum">S7</div><div class="stepbody"><p><b>Tell Supabase the address.</b> Back in Supabase, open <b>Authentication &rarr; URL Configuration</b>. Set <b>Site URL</b> to your <code class="f">.vercel.app</code> address. Under <b>Redirect URLs</b>, add the same address followed by <code class="f">/**</code>. Save. Login emails now point to your live app, not to a test address.</p></div></div>
+
+<div class="step"><div class="stepnum">S8</div><div class="stepbody"><p><b>Create your login.</b> In Supabase, open <b>Authentication &rarr; Users &rarr; Add user &rarr; Create new user</b>. Enter your business email and a password, and tick <b>Auto Confirm User</b>. Then paste the one line Claude Code gives you into the SQL Editor and run it; that line makes your login the owner. Open the live address on your phone, sign in, and choose <b>Add to Home Screen</b>. Nisha, Antony and Vincent get their logins the same way in week 2, each their own. Never a shared password.</p></div></div>
+
+<div class="guard"><b>CONNECTED WHEN:</b> the app opens on your phone at its <code class="f">.vercel.app</code> address and you are signed in as yourself; the Table Editor in Supabase shows the tables; the three values sit only in Vercel&rsquo;s settings; and the repository is still private. From now on, every time Claude Code saves to main, the live app updates itself in about two minutes. If you ever change a value in Vercel, open <b>Deployments</b>, press the three dots on the latest one and choose <b>Redeploy</b>.</div>
+
+<div class="note"><span class="nlbl">If a screen looks different from this page</span>
+<p>Supabase and Vercel move their buttons from time to time; the steps stay the same. Take a screenshot, give it to Claude Code and ask: <code class="f">where do I click now?</code></p>
+</div>
+</div>
+
+<!-- ================= 05 FIRST BUILD ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE FIRST BUILD</div><div class="sectag">Phase 1 &middot; weeks 1 to 4</div></div>
+<p>Week 1 is the opening of a four week build, and the order matters more than the speed. You earn trust before you hand over control: nothing sends by itself until you have watched it draft correctly for a full week. This is also how Nisha stops fearing it, because she sees it help before she sees it act.</p>
+
+<div class="wk"><div class="wkhead"><div class="wknum">W1</div><div class="wktitle">THE LIST THAT IS TRUE</div><div class="wktag">Job Record + Lead Board</div></div><div class="wkbody">
+<p>Every open lead loaded from the CRM export, one row each, with a stage, a consultant and a source. One board on your phone shows every lead by stage, source and days since last contact.</p>
+<p><b>Why first:</b> it runs on data that already exists. Nothing new for the team, no new habit, so you hold a real result inside seven days.</p>
+<p class="done"><b>Done when</b> you open one page on your phone and can name every quiet lead without opening the CRM or the WhatsApp group.</p>
+</div></div>
+
+<div class="wk"><div class="wkhead"><div class="wknum">W2</div><div class="wktitle">THE LIBRARY YOU SIGN</div><div class="wktag">Consultation Skill &middot; templates</div></div><div class="wkbody">
+<p>Your rules page becomes the message library: first reply for residence, hotel and office; showroom invitation; consultation reminder; post site visit note; quiet lead check-in; and a warm track for architects, designers and contractors. Each template stays <b>Draft</b> until you tap <b>Sign</b>. The system drafts only from signed templates, and a person still presses send.</p>
+<p><b>Start a clock this week:</b> on the WhatsApp Business API, a message to a lead who has not written in the last 24 hours must use a template approved by Meta, and approval can take from minutes to a few days. Submit the first reply and the check-in as soon as you sign them.</p>
+<p class="done"><b>Done when</b> five test leads have received a first reply drafted from a template you signed, and Nisha did not compose a single one.</p>
+</div></div>
+
+<div class="wk"><div class="wkhead"><div class="wknum">W3</div><div class="wktitle">THE RHYTHM THAT REMEMBERS</div><div class="wktag">Follow-up &middot; price stop</div></div><div class="wkbody">
+<p>Every lead carries its next follow-up date from your rhythm. A quiet lead comes back on its day with its history attached, and when the rhythm is used up it is marked cold. The moment a lead mentions price, discount or terms, the flow stops writing, flags the lead and puts it in front of Vincent or Antony. Until your CRM is connected, Nisha loads new leads each morning with the same import; this week Claude Code checks with you whether your CRM can send new leads straight to the app.</p>
+<p class="done"><b>Done when</b> no lead goes quiet without coming back on its date, and every price question reached Vincent or Antony with none answered by the system.</p>
+</div></div>
+
+<div class="wk"><div class="wkhead"><div class="wknum">W4</div><div class="wktitle">FIRST REPLY BY ITSELF</div><div class="wktag">Automatic &middot; one lead type at a time</div></div><div class="wkbody">
+<p>For the lead types you have tested, the signed first reply goes out on the WhatsApp Business API within minutes of a new lead, without anyone pressing send. One switch, yours, turns all automatic sending off. Widen from five leads to every new lead of one type, then the next.</p>
+<p>This week depends on two things outside the build: your WhatsApp Business API provider letting the app send, and Meta approving your templates. If either is late, the system keeps drafting for a person to send. Customer messages never go from a personal number.</p>
+<p class="done"><b>Done when</b> a full week passes in which every new lead got its first reply within minutes without Nisha typing it, and you can name every quiet lead from the Lead Board. That is your blueprint&rsquo;s Phase 1 done line.</p>
+</div></div>
+
+<!-- ================= 06 RULES ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">RULES OF THE ROAD</div><div class="sectag">Set by Joe, enforced by design</div></div>
+<div class="rule"><b>BUILD ONE PHASE:</b> Phase 1 only. Your blueprint holds nine pieces across four phases, and the Room Scanner, Site Scout, Rounds Agent and Lead Desk are months away. Attempting them now is the single most common way a build like this dies. Leads first, because 250 of every 300 leave before a quote.</div>
+<div class="rule"><b>TEMPLATES NEED YOUR SIGNATURE:</b> your guardrail, from the brief: templates for communications need a person to sign off. Nothing reaches a lead from a template you have not signed.</div>
+<div class="rule"><b>MONEY STAYS HUMAN:</b> your rule. Pricing and negotiation stay with Vincent and Antony, and payments are never automated. The AI engages, books and reminds; the moment price is mentioned, it stops and hands over.</div>
+<div class="rule"><b>FIVE BEFORE THREE HUNDRED:</b> prove every change on five leads before all 300. A system that works for five and grows will beat a complete system that nobody trusts.</div>
+<div class="rule"><b>KEEP WHAT YOU PAY FOR:</b> nothing new is bought in these twelve weeks. The app sits on top of your CRM, ERP, WhatsApp Business API and Repuva. Which ones stay is your month 12 decision.</div>
+<div class="rule"><b>WHEN YOU ARE STUCK, ASK THE BUILDER:</b> paste the error or a screenshot into Claude Code and ask it to explain in simple words and fix it. Being stuck is not a sign you chose the wrong path; it is the normal texture of building, and this is the one tool that answers at midnight.</div>
+
+<!-- ================= 07 NEXT STEPS ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Start today, in this order</div></div>
+<div class="step"><div class="stepnum">01</div><div class="stepbody"><p><b>Ask Nisha for the CRM export today.</b> Open leads with phone, type, source, stage, consultant and dates, plus the names of your CRM and your WhatsApp Business API provider. This one request blocks every other step, so make it before you close this document. <span class="owner">Owner: Nisha.</span></p></div></div>
+<div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>Pick your five test leads.</b> A mix of residence, hotel and office, at least one referred by an architect or designer, all genuinely open, all people you know well enough to phone personally if a message lands wrong. <span class="owner">Owner: you, with Nisha.</span></p></div></div>
+<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>Confirm what the blueprint printed.</b> The eight money-path steps, the seven names and roles, the 300 / 50 / 40 / 20 figures and the three guardrails (blueprint next step 01). Add any correction to your rules page so Claude Code builds on the truth. <span class="owner">Owner: you.</span></p></div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>Start the reporting-line clock.</b> Your general manager fills in who reports to whom, the line your brief left blank. Month one does not need it, but no escalation rule in Phase 2 can switch on without it, and your people-management deadline is 30 November 2026. <span class="owner">Owner: general manager.</span></p></div></div>
+<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>Book the weekly review.</b> One call a week with Romana Parkar, your AI expert, carrying your build questions and your &ldquo;rules I learned&rdquo; note: <code class="f">calendly.com/romana-buildour/30min</code>. Six hours of building plus one hour of review beats seven hours of building alone. <span class="owner">Owner: you, with BuildOur AI.</span></p></div></div>
+
+<!-- ================= 08 BUILD BRIEF ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">08</div><div class="sectitle">THE BUILD BRIEF</div><div class="sectag">Written to Claude Code &middot; Joe can skip this</div></div>
+<p>You are building Terrakraft&rsquo;s business platform with its owner, Joe Ranji, who is not a programmer. Treat this section as standing instructions for this session and every later one. On your first build, copy B1, B3, B6, B7 and B8 into <code class="f">CLAUDE.md</code> at the root of the repository so they hold in every later session. Where this brief and the blueprint differ, this brief decides scope and the blueprint decides facts about the business.</p>
+
+<div class="brief"><h3>B1 &middot; Scope: Phase 1 only</h3>
+<table class="numbers">
+<tr><th style="width:13%;">ID</th><th style="width:30%;">System</th><th>What you build in month one</th></tr>
+<tr><td>F-00</td><td>Job Record</td><td>One row per lead. The record every later system reads and writes.</td></tr>
+<tr><td>SYS-01</td><td>Consultation Skill and message library</td><td>Lead questions and message templates stored in the database, each Draft or Signed; only Joe signs.</td></tr>
+<tr><td>SYS-03</td><td>Lead Board</td><td>Every open lead by stage, source, consultant and days since last contact. Mobile first.</td></tr>
+<tr><td>SYS-02</td><td>Follow-up Flow</td><td>Drafts first replies and check-ins from signed templates, runs the follow-up rhythm, stops on price. Automatic sending only behind the switch.</td></tr>
+</table>
+<p>Do not build SYS-04 to SYS-08, the Room Scanner, Scan to Quote Flow, Site Board, Site Scout, Rounds Agent, Lead Desk agent or Partner Desk. In month one a partner (architect, designer, contractor) exists only as a lead source with a name and firm. If Joe asks for a parked item, tell him his own plan parks it and note it in NOTES.md.</p>
+</div>
+
+<div class="brief"><h3>B2 &middot; Stack and repository</h3>
+<p>Next.js with the App Router and TypeScript, Tailwind for styling, Supabase (Postgres, Auth, Row Level Security) through <code class="f">@supabase/ssr</code> and <code class="f">@supabase/supabase-js</code>, deployed on Vercel from the <b>main</b> branch. No other services, no paid libraries, no second app or database. The repository already exists and is connected to this session; it may be empty. If you cannot push to main, push your branch, open a pull request, and give Joe the link with one sentence on pressing Merge. Write a short README.md a non-programmer can read: what the app is, where it runs, where the setup file is.</p>
+</div>
+
+<div class="brief"><h3>B3 &middot; Keys and environment</h3>
+<p>Use exactly three variables with these names, so that section 04 of the guide matches: <code class="f">NEXT_PUBLIC_SUPABASE_URL</code>, <code class="f">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code>, <code class="f">SUPABASE_SECRET_KEY</code>. The legacy anon and service_role keys must also work in the same variables. Commit a <code class="f">.env.example</code> with the names and no values. Use the secret key only in server code. Never ask Joe to paste a key into chat; keys go into Vercel only. If a later phase needs another variable (the WhatsApp provider), add it to <code class="f">.env.example</code> and tell Joe exactly where to add it in Vercel and to redeploy.</p>
+</div>
+
+<div class="brief"><h3>B4 &middot; Database</h3>
+<p>Write migrations in <code class="f">supabase/migrations/</code>, and also one file, <code class="f">supabase/setup.sql</code>, that Joe pastes once into the SQL Editor. It must be safe to run twice. Starting shape, adjusted to the real columns of the CRM export:</p>
+<ul>
+<li><b>profiles</b>: one per login; name and role (owner, general_manager, crm, consultant, accounts).</li>
+<li><b>leads</b> (the Job Record): name, phone, lead_type (residence, hotel, office), source, partner_name, stage, consultant, enquiry_date, last_contact_at, next_followup_at, followup_step, status (open, cold, won, lost), needs_person with a reason, crm_ref.</li>
+<li><b>stage</b> uses Joe&rsquo;s eight rungs in his order and his own wording from the rules page: incoming call, showroom visit and product selection, site visit, PI making, negotiation, closure and supply, delivery, installation.</li>
+<li><b>templates</b>: key, lead_type, purpose, body, status (draft, signed), signed_by, signed_at. Editing a signed template returns it to draft.</li>
+<li><b>messages</b>: lead, template, body, channel, status (drafted, approved, sent, held), approved_by, sent_at.</li>
+<li><b>settings</b>: auto_send, off by default. This is the one switch.</li>
+<li><b>activity_log</b>: append-only record of who did what, to which lead, when. No update or delete for anyone.</li>
+</ul>
+<p>Row Level Security on every table and no anonymous access. Owner and general manager see everything; crm (Nisha) sees all leads; a consultant sees the leads assigned to them. Give Joe one copy-paste SQL line that makes his login the owner.</p>
+</div>
+
+<div class="brief"><h3>B5 &middot; Screens, in build order</h3>
+<ol>
+<li><b>Sign in.</b> Email and password; each person their own login.</li>
+<li><b>Import</b> (owner and crm only): upload the CRM export as CSV or Excel, preview it, list rows that could not be read as &ldquo;needs review&rdquo;, then load. Safe to rerun each morning without duplicates (match on crm_ref, else phone).</li>
+<li><b>Lead Board</b>, the week 1 screen: filters by stage, source and consultant; days since last contact highlighted when the rhythm is missed.</li>
+<li><b>Lead page:</b> history, stage, the drafted message with Approve, Copy and Mark sent.</li>
+<li><b>Templates:</b> Joe reads and signs.</li>
+<li><b>Settings:</b> the automatic switch, owner only.</li>
+</ol>
+<p>Mobile first, because the team works on site, in the field and in the office. Plain words on every screen, no jargon, no empty dashboards.</p>
+</div>
+
+<div class="brief"><h3>B6 &middot; Guardrails: code them, do not promise them</h3>
+<p>From blueprint section 09, set by Joe:</p>
+<ul>
+<li><b>AI may act alone:</b> engagement with leads and consultation scheduling, only from signed templates, and only once the switch is on for that message type.</li>
+<li><b>Human signs off:</b> pricing and negotiation, quote confirmation, orders, final confirmations, installation scheduling, communication templates. The system may draft and remind; it never sends or decides any of these.</li>
+<li><b>Never automated:</b> payments. Phase 1 shows no payment action at all.</li>
+<li><b>Price stop:</b> any reply or note mentioning price, rate, cost, discount, offer, terms or negotiation (plus the words on Joe&rsquo;s rules page) sets needs_person, stops the flow for that lead and alerts its consultant. When unsure, stop.</li>
+<li><b>No invented numbers:</b> Phase 1 shows no prices or quantities.</li>
+<li><b>Diary:</b> every send, approval, signature, import and switch change writes to activity_log.</li>
+</ul>
+</div>
+
+<div class="brief"><h3>B7 &middot; Open inputs: ask, never guess</h3>
+<p>The blueprint names these as unknown. Ask Joe one at a time when the build needs them; until answered, show them in the app as &ldquo;needs Joe&rdquo; rather than filling them in.</p>
+<ul>
+<li>Which CRM, its export columns, and whether it can send new leads to the app directly (check in week 3).</li>
+<li>Which WhatsApp Business API provider, whether it allows sending from the app, and which templates Meta has approved.</li>
+<li>Follow-up rhythm days and the cold point; the first reply wording per lead type (his rules page).</li>
+<li>How a new lead is assigned to Antony or Vincent.</li>
+<li>Who reports to whom. Not needed in Phase 1: build no escalation.</li>
+<li>The repeat customers figure &ldquo;2&rdquo; has no unit. Do not use it.</li>
+</ul>
+</div>
+
+<div class="brief"><h3>B8 &middot; The six house rules (BuildOur AI standard)</h3>
+<p>Put these in CLAUDE.md word for word. If a request would bend one, say so plainly and wait for Joe&rsquo;s decision.</p>
+<ol>
+<li><b>One home.</b> This repository, this database and this app are the only ones this business will ever have. Every new system is a new room in the same house: a new section of the app reading the same leads, the same customers, the same logins.</li>
+<li><b>Every person their own key.</b> Every team member gets their own login and sees exactly what their work needs; the owner sees everything. No shared passwords, ever.</li>
+<li><b>A human yes before anything reaches a customer.</b> Nothing is sent, and no price, discount or commitment is given, without a named person approving it, except message types the owner has switched on after testing. One switch turns all automatic behaviour off without touching code.</li>
+<li><b>The diary nobody can edit.</b> Every action the system takes is written to a log that can only be added to.</li>
+<li><b>Secrets stay in the cupboard.</b> Keys live only in the hosting settings (and <code class="f">.env.local</code> on a machine). Never in code, in chat, or in any file that goes to GitHub.</li>
+<li><b>Money is calculated, never guessed.</b> Prices, quantities and totals come from exact rules written as code from the owner&rsquo;s own numbers. AI reads, matches, drafts and reminds; it never invents a number.</li>
+</ol>
+</div>
+
+<div class="brief"><h3>B9 &middot; How to work with Joe</h3>
+<ul>
+<li>One step at a time, in simple words, one question at a time. Plan first and wait for his ok.</li>
+<li>End every phase with something he can open on his phone, and ask him to check one lead he knows.</li>
+<li>Commit and push at the end of every phase. Close every sitting by updating NOTES.md: done, next, open questions.</li>
+<li>Never commit customer data. The CRM export and any file with phone numbers stays out of the repository; add those patterns to .gitignore.</li>
+<li>Before showing Joe any rule that decides who gets a message or when, test it against a few real leads from the export.</li>
+<li>If a file this prompt mentions is missing, ask for it before you start.</li>
+</ul>
+</div>
+</div>
+
+<div class="traceline">This guide follows the AI Systems Blueprint BOA-2026-TER-01 Rev A (blueprint audit 29.10.2026)<br>and traces to the submitted Systems Brief. Build stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub.</div>
+
+</body>
+</html>
