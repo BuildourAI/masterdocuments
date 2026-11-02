@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kedia Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-KED-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Kedia Groups · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Kedia Groups</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">KEDIA STARTER GUIDE:<br><span class="accent">DAY 1</span></h1>
+    <div class="coversub">Prepared for <b>Rounakk Ajay Kedia</b>. From a Claude Max account and nothing else to a <b>live app</b>, the clocks started, your <b>look chosen</b> and your <b>first system</b> planned.</div>
+    <div class="flow">
+      <span class="chip">Install</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Accounts</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Folder</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Starter<br>prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Live on<br>your phone</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose<br>the UI</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Continue<br>building</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">What you finish with</span>An empty Kedia app live on your phone. <code class="f">CLAUDE.md</code> holding the house rules and your guardrails. A list of things to start today (<code class="f">docs/START-NOW.md</code>). Your design direction in <code class="f">docs/design/</code>. Your first build written up as a First Build Card.</td></tr>
+      <tr><td colspan="2"><span class="lbl">What you already have</span><b>Claude Max.</b> It gives you the Claude app and <b>Claude Code</b>, the builder. It does not give you GitHub, Supabase or Vercel. You create those three today, on the business email, in about thirty minutes.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Your stack, fixed</span><b>Claude Code</b> writes the code &middot; <b>Next.js</b> is the app &middot; <b>Supabase</b> is the database &middot; <b>Vercel</b> puts it online &middot; <b>GitHub</b> keeps the code safe. Nothing else. All accounts are yours.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Build order</span>Your blueprint&rsquo;s order: <b>Shared Record + Indent and PO Skill</b> first, then PO Reconciler, Procurement Board, Buy Plan to PO Flow, Entry Skill, Match Tool. One at a time.</td>
+        <td><span class="lbl">The two documents</span>This guide, once (day 1) &rarr; <b>Kedia Continue Building Guide</b>, every sitting after today, one system at a time.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Time</span>One sitting of about three hours if you start from zero. Do it in one go.</td>
+        <td><span class="lbl">Sources</span>AI Systems Blueprint BOA-2026-KED-01 Rev A (blueprint audit 30.10.2026) and your Systems Brief.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices, marked on every step: YOU DO THIS (a step in a browser or on your computer, done by you) &middot; PASTE TO CLAUDE CODE (copy the whole box).</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 READ FIRST ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Five minutes, before any click</div></div>
+<p>Your blueprint names six systems and one foundation for the first twelve weeks, and many more for the year. You will build every one of them, but <b>one at a time</b>, in the blueprint&rsquo;s order, each finished and switched on before the next begins. You tried ChatGPT once and it did not stick because it had nothing of yours to hold. This time every system is built from your real indents, pricing sheets, POs and masters, so the drafts come out the Kedia way.</p>
+<p><b>Who builds.</b> Your brief says you give 10 hours a week and work at management level. If you hand the building to one trusted person, they sit with these two guides and do every step. Two things stay with you whoever builds: the accounts are opened on the business email, and every signature the blueprint gives you stays yours.</p>
+<div class="note"><span class="nlbl">What this costs, honestly</span>
+<p>Your blueprint buys no new business software in the first ninety days. The build stack is separate. GitHub and Supabase are free at your size. Vercel&rsquo;s free plan is for personal, non-commercial use, so a business app belongs on <b>Vercel Pro</b>, about $20 a month (check vercel.com/pricing on the day). Claude Max covers Claude Code; it does not cover the <b>Claude API</b>, which a system needs only when the app itself must read a PDF or message with nobody at the computer. That starts around System 4, and Claude Code must tell you the cost and wait for your yes before adding it.</p>
+</div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Install three things on the computer you will build from</b></p>
+<ol>
+<li><b>Claude Code.</b> Install the Claude desktop app from claude.com/download and sign in with your Claude Max account; Claude Code is its <b>Code</b> tab. If you prefer a terminal, follow the install line at claude.com/claude-code instead. Either way, you sign in with the same Max account.</li>
+<li><b>Node.js LTS</b> from nodejs.org. Accept every default.</li>
+<li><b>Git</b> from git-scm.com (on a Mac, the first time you type <code class="f">git</code> it offers to install itself). Accept every default.</li>
+</ol>
+<p>If anything here goes wrong, carry on. In Step 4 Claude checks all three and tells you exactly what to click.</p>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Three accounts, in this order</b> <em>(all on the business email)</em></p>
+<ol>
+<li><b>GitHub</b> (github.com): <b>Sign up</b> with the business email. Choose the free plan. Turn on two-factor authentication under <b>Settings &rarr; Password and authentication</b>. This is where your code lives, privately.</li>
+<li><b>Supabase</b> (supabase.com): press <b>Start your project</b> and <b>Continue with GitHub</b>. Press <b>New project</b>, name it <code class="f">kedia</code>, press <b>Generate a password</b> and save it somewhere safe, and pick the region <b>South Asia (Mumbai)</b>. Create it and wait two minutes. Then open <b>Project Settings &rarr; API Keys</b> and leave that tab open: Claude will ask you for the <b>Project URL</b>, the <b>publishable key</b> (<code class="f">sb_publishable_&hellip;</code>) and the <b>secret key</b> (<code class="f">sb_secret_&hellip;</code>). If your screen shows the older names, use <b>anon</b> and <b>service_role</b>. Treat the secret key like a bank password.</li>
+<li><b>Vercel</b> (vercel.com): <b>Sign up</b> and <b>Continue with GitHub</b>. Choose <b>Pro</b> for business use. This is what puts your app online.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>The folder, and the paper it learns from</b></p>
+<ol>
+<li>Make one folder for life: <code class="f">Documents\kedia-os</code>. Every Kedia system goes in here, never in a second folder.</li>
+<li>Inside it make <code class="f">docs</code>, and put your <b>AI Blueprint.pdf</b> in it.</li>
+<li>Inside <code class="f">docs</code> make <code class="f">samples</code>, and ask the back office for <b>five real sets</b>: a manufacturer offer, the indent made from it, the buyer pricing sheet and the manufacturer PO, plus the <b>manufacturer master</b>. Photos and PDFs are fine. If they are not ready today, the starter prompt puts them on your START-NOW list with an owner.</li>
+<li>Open Claude Code on this folder: in the desktop app, open the <b>Code</b> tab and choose <code class="f">kedia-os</code>; in a terminal, go to the folder and type <code class="f">claude</code>. Every sitting starts this way from now on.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 4 ================= -->
+<div class="step"><div class="stepnum">STEP 4</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>The starter prompt</b>: two messages. Paste Message 1 now. Paste Message 2 when Claude asks for the rules in Stage 2.</p>
+</div></div>
+
+<div class="paste long"><span class="plbl">Paste &middot; Message 1</span>
+<p>You are setting up the Kedia Groups platform from zero. I am Rounakk Ajay Kedia, owner of Kedia Groups: textile and garment manufacturing, a wholesale desk, retail, and the EcomHub24 e-commerce arm with 10 brands, across a factory, a sales office, a back office and a warehouse. I have Claude Max and nothing else set up; I opened GitHub, Supabase and Vercel accounts today. Work in five stages, in order. At the end of each stage, tell me in simple words what you did, then <b>stop and wait for my OK</b>. Whenever you need something only I have, ask me.</p>
+<p><b>Stage 1: Read.</b> Read docs/AI Blueprint.pdf in full, and look at what is in docs/samples. Then tell me in ten lines or fewer: what Kedia Groups is, the three problems, and the build order. List the points the blueprint itself says are unsettled: 5 out of 100 quotes versus 5 orders from 500 quotes; 5 orders at &#8377;50,000 against a &#8377;50 lakh to &#8377;1 crore turnover; who does the work in the 70 headcount; and the blank I left for what AI may do alone. Do not settle any of them yourself.</p>
+<p><b>Stage 2: Set up.</b> (1) Check Node.js and Git. If either is missing, tell me exactly what to download and click. (2) Create a Next.js app with TypeScript in this folder and show me the local address. (3) Set up Git and make the first commit. The .gitignore must keep out .env.local and docs/samples, because the samples carry rates and party details. (4) Help me create a <b>private</b> GitHub repository called kedia-os and push to it; walk me through every login in the browser. (5) Create .env.local and ask me one at a time for my Supabase Project URL, publishable key and secret key. Use the names NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY and SUPABASE_SECRET_KEY. Never repeat the keys back, never write them in any other file, never commit them. (6) Create CLAUDE.md. I will paste the house rules and Kedia rules as my next message; put them in word for word, then continue to Stage 3.</p>
+<p><b>Stage 3: Start the clocks.</b> Create docs/START-NOW.md: a checklist with an owner, a start date and a tick box for each item below, longest first. For each item, tell me the exact first action to take today. From now on, start every session by reading this file and reminding me of anything not yet ticked.</p>
+<ol>
+<li><b>Name one procurement approver below me, and confirm the accounts head</b> who signs vouchers. Without them every approval still ends at my desk. Owner: me.</li>
+<li><b>WhatsApp API access</b> for the PO approval step and the manufacturer send: which provider, who holds the login, and the message templates Meta must approve. 1 to 3 weeks. Owner: me with the build team.</li>
+<li><b>Five real sets</b> (offer, indent, buyer pricing sheet, manufacturer PO) and the <b>manufacturer master</b> in docs/samples. Owner: back office.</li>
+<li>The <b>indent and PO numbering rules</b>, written once, and the <b>supplier and customer master with GST and TDS</b>. Owner: back office.</li>
+<li>The <b>chart of accounts for each Kedia company</b>. Owner: accounts team.</li>
+<li><b>Same-day GRN and QC posting at the factory gate</b>, agreed with the factory and warehouse leads, and the columns they will post. Owner: factory and warehouse leads.</li>
+<li>The <b>QC reject threshold</b> and the <b>dispatch delay days</b> for the Procurement Board. Owner: me.</li>
+<li><b>One company&rsquo;s Tally day book, Vasy transactions and last month&rsquo;s bank statement</b> for the first Match Tool run. Owner: accounts team.</li>
+<li><b>The blueprint&rsquo;s figures and blanks:</b> I confirm or correct the numbers and fill in what AI may do alone. Owner: me.</li>
+</ol>
+<p><b>Stage 4: Go live.</b> Tell me the exact environment variable names for Vercel, then wait while I import the repository into Vercel and deploy (the guide&rsquo;s Step 5). When I give you the live address, confirm the app opens and tell me the Supabase sign-in setting to update.</p>
+<p><b>Stage 5: Plan the first build.</b> Following the blueprint, the first build is <b>F-00 Kedia Shared Record</b> with <b>SYS-01 Kedia Indent and PO Skill</b> as its first piece. Build the skill as a Claude skill inside this project, so it runs in Claude Code on my Max account with no extra cost; it writes its drafts into the database, and the app shows them for checking and signing. Write docs/FIRST-BUILD-CARD.md covering: the slice sentence (&ldquo;When X happens, the system does Y, and Z sees it&rdquo;); what is kept and what is deferred (channels, roles, documents, automation level, integrations); the guardrails that apply, copied word for word from the blueprint; the data it needs and who supplies it; and a done-when I can check on my phone. The rate column always stays blank for a person to fill. Do not write any feature code yet. Finish by telling me to choose the UI (Step 6) before the first real screen is built, and to switch to the Kedia Continue Building Guide.</p>
+</div>
+
+<div class="paste"><span class="plbl">Paste &middot; Message 2 &middot; when Claude asks for the rules</span>
+<p><b>Put this in CLAUDE.md, word for word, as standing rules for everything ever built in this folder:</b></p>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this folder, repository, database and app are the only ones Kedia Groups will ever have; every new system is a new section of the same app. 2 &middot; EVERY PERSON THEIR OWN KEY: every team member has their own login and sees only what their work needs; the owner sees everything; no shared passwords. 3 &middot; A HUMAN YES BEFORE ANYTHING LEAVES THE BUILDING: nothing goes to a buyer, a manufacturer or Tally without a named person approving it; one switch turns all automatic behaviour off without code. 4 &middot; THE DIARY NOBODY CAN EDIT: every action the system takes is written to a log that can only be added to. 5 &middot; SECRETS STAY IN THE CUPBOARD: keys live only in .env.local and in Vercel&rsquo;s settings, never in code, in chat or on GitHub. 6 &middot; MONEY IS CALCULATED, NEVER GUESSED: totals, quantities and tax working come from exact tested rules; AI reads, drafts, matches and reminds, and never invents a number. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>Kedia rules.</b> No system sets, fills or suggests a rate, price or discount: every rate column stays blank until a person signs. Everything needs approval for now: indents, buyer pricing sheets, manufacturer POs, claims, vouchers and bank matches are drafts until a named person signs. Until I fill the blank in my blueprint, AI may only read, consolidate, draft, match and remind inside the business; nothing leaves the building and no figure becomes final on a machine&rsquo;s authority. Banks and payments are never automated: no system logs in to a bank, makes a transfer, sets a credit limit or writes off a balance; flows list what is due and a person pays. Every record carries the Kedia company it belongs to. Until I name a procurement approver and an accounts head, every approval comes to me; when I name them, record them here. The figures 500 leads, 500 quotes, 5 orders and 5 out of 100, and the 70 headcount, are unconfirmed, so never hard-code them. docs/samples and any export with rates, bank lines or party details never go to GitHub. Build in the blueprint&rsquo;s order, and do not start the next system until the current one meets its done-when. Start every session by reading docs/START-NOW.md and the latest note in docs/sessions/.</p>
+</div>
+
+<!-- ================= STEP 5 ================= -->
+<div class="step"><div class="stepnum">STEP 5</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put it online</b> <em>(when Claude reaches Stage 4)</em></p>
+<ol>
+<li>On vercel.com press <b>Add New&hellip; &rarr; Project</b>, find <code class="f">kedia-os</code> and press <b>Import</b>. If it is not listed, press <b>Adjust GitHub App Permissions</b>, give Vercel access to that one repository, and come back.</li>
+<li>Leave the framework (Next.js) as Vercel sets it. Open <b>Environment Variables</b> and add the three names Claude gave you, with the same three values from Supabase.</li>
+<li>Press <b>Deploy</b>. About two minutes later your app is live at an address ending in <code class="f">.vercel.app</code>. Give that address to Claude Code.</li>
+<li>In Supabase, open <b>Authentication &rarr; URL Configuration</b>, set <b>Site URL</b> to that address and save, as Claude tells you.</li>
+<li>Open the address on your phone and choose <b>Add to Home Screen</b>. From today, every time Claude commits and pushes, the live app updates itself.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 6 ================= -->
+<div class="step"><div class="stepnum">STEP 6</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Choose the UI: before the first real screen</b></p>
+<p>Claude builds what you say, but it designs what you show it. Show it nothing and your team gets the average of every app on the internet, which is what they already ignore. Ten minutes now decides whether your back office opens the app or keeps opening Excel.</p>
+<ol>
+<li><b>Collect.</b> On pinterest.com, search <code class="f">minimalist UI design web app</code>. Download 10 to 15 screens your back office would understand at a glance. Skip anything crowded, dark or clever.</li>
+<li><b>Let the strongest model choose.</b> Open a new chat in the <b>Claude app</b> (chat, not Claude Code), pick the strongest model in the model list, attach every screenshot, and paste the chooser prompt below.</li>
+<li><b>Get the direction in writing.</b> Re-upload only the winning one or two designs and ask: <em>&ldquo;I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.&rdquo;</em> Download the .md file.</li>
+<li><b>Hand it over.</b> Save the winning images and the .md file in <code class="f">docs/design/</code>, then tell Claude Code: <em>&ldquo;The design direction is in docs/design. Add a line to CLAUDE.md saying every screen follows it.&rdquo;</em></li>
+</ol>
+</div></div>
+
+<div class="paste"><span class="plbl">Paste &middot; Claude app chat &middot; the chooser prompt</span>
+<p>I have shared some powerful, minimal UI designs with you. I am building the interface for my company: we are Kedia Groups, a textile and garment manufacturer with a wholesale desk, retail and the EcomHub24 e-commerce arm with 10 brands. The screens are used by the back office on computers, by factory and warehouse staff on their phones at the gate, and by me on my phone to approve. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.</p>
+</div>
+
+<div class="guard"><b>IF THE DIRECTION COMES BACK TOO NARROW</b> (&ldquo;a procurement dashboard&rdquo;), correct it in one line: <em>&ldquo;This is not only procurement. It is the business centre of Kedia Groups: procurement, factory, accounts and EcomHub24, everything.&rdquo;</em></div>
+
+<table class="numbers">
+<tr><th style="width:34%;">The five screen laws</th><th>What to check on every screen Claude shows you</th></tr>
+<tr><td><b>1 &middot; Nobody reads, everyone scans</b></td><td>The one thing the user must see first is the biggest and boldest thing on the screen.</td></tr>
+<tr><td><b>2 &middot; One screen, one job</b></td><td>Exactly one main button, visible without scrolling, in the one colour kept for action.</td></tr>
+<tr><td><b>3 &middot; Consistency is trust</b></td><td>The same thing looks the same on every screen.</td></tr>
+<tr><td><b>4 &middot; The default is the decision</b></td><td>Whatever is filled in again and again is already filled in: company, manufacturer, today&rsquo;s date.</td></tr>
+<tr><td><b>5 &middot; Silence is an error</b></td><td>Every tap answers at once with a change, a tick or a message.</td></tr>
+</table>
+<p><b>The two-minute rule:</b> a new employee opens any screen and understands what it is and what to do in under two minutes, with no training. If a screen needs explaining, the screen is wrong, not the employee.</p>
+
+<!-- ================= STEP 7 ================= -->
+<div class="step"><div class="stepnum">STEP 7</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Switch to the Continue Building Guide when all of this is true</b></p>
+<ul class="ticks">
+<li>The app opens on your phone at its <code class="f">.vercel.app</code> address, and it is saved to your home screen.</li>
+<li>The GitHub repository is <b>private</b>, and the three keys are only in <code class="f">.env.local</code> and Vercel.</li>
+<li><code class="f">CLAUDE.md</code> holds the house rules and the Kedia rules.</li>
+<li><code class="f">docs/START-NOW.md</code> exists, every item has a named owner, and naming the procurement approver has started.</li>
+<li><code class="f">docs/FIRST-BUILD-CARD.md</code> is written and you have read and corrected every line.</li>
+<li><code class="f">docs/design/</code> holds your UI direction, and CLAUDE.md says every screen follows it.</li>
+<li><code class="f">docs/samples/</code> holds the five real sets, or START-NOW names who brings them and by when.</li>
+</ul>
+</div></div>
+
+<div class="guard"><b>ALL SEVEN TICKED:</b> put the <b>Kedia Continue Building Guide</b> into <code class="f">docs/</code> and use it from your next sitting onwards. If one is not ticked, paste it into Claude Code and say <em>&ldquo;fix this before we continue.&rdquo;</em></div>
+
+<div class="traceline">Prepared for Rounakk Ajay Kedia &middot; Kedia Groups &middot; traces to blueprint BOA-2026-KED-01 Rev A,<br>Builder Guides 00&ndash;01 and the UI Guide. Stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub.</div>
+
+</body>
+</html>

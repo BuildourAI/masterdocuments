@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kedia Continue Building</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-KED-C1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Kedia Groups · Continue Building"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Kedia Groups</span><span>Continue Building &middot; Rev A</span></div>
+    <h1 class="cover">KEDIA<br><span class="accent">CONTINUE BUILDING</span></h1>
+    <div class="coversub">Prepared for <b>Rounakk Ajay Kedia</b>. Every sitting after the starter guide: one system at a time, from <b>Build Sheet</b> to <b>switched on</b>, in the blueprint&rsquo;s order.</div>
+    <div class="flow">
+      <span class="chip">Build<br>sheet</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Screens<br>+ UI</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Plan</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">One phase<br>per sitting</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Five real<br>cases</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Watch<br>week</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Switch<br>on</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Next<br>system</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Use it when</span>Every box in Step 7 of the Kedia Starter Guide is ticked. Keep this file in <code class="f">docs/</code>.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The loop</span>For every system: Build Sheet &rarr; screens and UI &rarr; plan &rarr; one phase per sitting &rarr; five real cases &rarr; watch week &rarr; switch on &rarr; next system.</td>
+        <td><span class="lbl">Your time</span>Your 10 hours a week, mostly reading drafts and signing. If someone builds for you, their hours are separate; your signatures are not.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">First system</span>F-00 Kedia Shared Record + SYS-01 Kedia Indent and PO Skill, from your First Build Card.</td>
+        <td><span class="lbl">Sources</span>AI Systems Blueprint BOA-2026-KED-01 Rev A (blueprint audit 30.10.2026).</td>
+      </tr>
+    </table>
+    <div class="covernote">Condensed from Builder Guides 02&ndash;04 and the UI Guide against the Kedia Groups AI Systems Blueprint.</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">EVERY SITTING STARTS WITH THIS</div><div class="sectag">Paste to Claude Code</div></div>
+<div class="paste"><span class="plbl">Paste &middot; Start of every sitting</span>
+<p>Read CLAUDE.md, docs/START-NOW.md, the latest note in docs/sessions/ and the Build Sheet for the system we are on. First, remind me of anything in START-NOW that is still not ticked. Then tell me in five lines where we are and what the one finished thing for today should be. Make a plan and wait for my OK before touching any files.</p>
+</div>
+<p><b>Five habits:</b> plan first &middot; one small finished thing per sitting &middot; <em>&ldquo;commit and push&rdquo;</em> when it works &middot; when it breaks, paste the error and say <em>&ldquo;explain in simple words and fix it&rdquo;</em> &middot; close the sitting with the prompt in &sect;07.</p>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">START A SYSTEM: THE BUILD SHEET</div><div class="sectag">Paste to Claude Code</div></div>
+<div class="paste"><span class="plbl">Paste &middot; New system</span>
+<p>We are starting <b>[system number and name from &sect;05]</b>. Using the blueprint, the First Build Card (or the deferred list from the last system) and the real documents in docs/samples, draft docs/build-sheets/[system].md with seven fields: the system and its slice sentence; what starts it; what it shows, drafts or says, <b>word for word</b> in the format and language the team already uses; what happens on silence, delay or a mismatch; when a human steps in and who that is by name; what it must never do (copied from the blueprint&rsquo;s guardrails and CLAUDE.md); and done-when, copied from &sect;05 of the Continue Building Guide. Mark every line you are unsure of. Write no code.</p>
+</div>
+<p>Correct every line of the sheet yourself. Only you and your team know how a Kedia indent, pricing sheet or PO really reads. A sheet that says &ldquo;draft the PO&rdquo; is not a rule; the actual columns, clauses and numbering are.</p>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">CHOOSE THE SCREENS AND THEIR LOOK</div><div class="sectag">Before the first screen of every system</div></div>
+<p>Your look was chosen once, in Step 6 of the starter guide, and lives in <code class="f">docs/design/</code>. What changes with each system is <b>which screens it needs</b> and who holds them. Settle that on paper before any code, then let the plan follow.</p>
+<div class="paste"><span class="plbl">Paste &middot; Screens for this system</span>
+<p>Read docs/design and the Build Sheet for this system. List every screen this system needs. For each one give: the one question it answers; its one main button; who uses it; and on what device (back office computer, factory or warehouse phone, my phone). Draw each as a simple text sketch. Keep to the five screen laws and the two-minute rule. Then give me a plan of small phases: every phase must end with something I can test on my phone, and the first phase is always &ldquo;load my real data and show me one true list&rdquo;. Write no code until I approve the screens and the plan.</p>
+</div>
+<table class="numbers">
+<tr><th style="width:27%;">System</th><th style="width:33%;">Main screen and its one question</th><th>Who, on what</th></tr>
+<tr><td>F-00 + SYS-01</td><td><b>Drafts to check:</b> &ldquo;which indent, pricing sheet or PO is waiting for me, and is every line right?&rdquo;</td><td>Back office on a computer; the approver signs on a phone</td></tr>
+<tr><td>SYS-02 PO Reconciler</td><td><b>Gate entry:</b> &ldquo;which PO did this lot come in against, and how many passed?&rdquo;</td><td>Factory and warehouse staff on a phone at the gate</td></tr>
+<tr><td>SYS-03 Procurement Board</td><td><b>Exceptions first:</b> &ldquo;what is late, short or mismatched today?&rdquo;</td><td>You and the back office; sales see the buyer view</td></tr>
+<tr><td>SYS-04 Buy Plan to PO</td><td><b>Approval queue:</b> &ldquo;which POs wait for my yes before they go out?&rdquo;</td><td>The procurement approver, on a phone</td></tr>
+<tr><td>SYS-05 Entry Skill</td><td><b>Voucher queue:</b> &ldquo;is this draft voucher right, yes or no?&rdquo;</td><td>The accounts head, on a computer</td></tr>
+<tr><td>SYS-06 Match Tool</td><td><b>Four lists:</b> &ldquo;what matched, and what still needs a person?&rdquo;</td><td>The accounts team, on a computer</td></tr>
+</table>
+<div class="guard"><b>IF A SCREEN LOOKS LIKE HOMEWORK,</b> it is the screen that is wrong. Send Claude a screenshot and say: <em>&ldquo;Change only the design, following docs/design. Do not touch the features.&rdquo;</em></div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILD, TEST, SWITCH ON</div><div class="sectag">Shadow before send</div></div>
+<ol class="tight">
+<li><b>One phase per sitting.</b> After each phase: commit and push, open the live app <b>on your phone</b>, and check one buy plan, PO or bill you know well against reality. Note every surprise in <code class="f">docs/rules-i-learned.md</code>, and update the Build Sheet the same day.</li>
+<li><b>Five real cases.</b> Run five real cases through the system while a person presses every button. For the Indent and PO Skill: five live buy plans, each checked line by line by the back office against what they would have typed. For the Reconciler: five POs with their GRNs and QC. For the Entry Skill: five real bills.</li>
+<li><b>Watch week.</b> For one full week the system drafts everything in its lane while the team keeps working the old way in Excel, Sheets and WhatsApp beside it. Compare every day. Any mismatch is a fix or a missing rule.</li>
+<li><b>Switch on</b> only what passed the watch week. For Kedia that means the approved step runs by itself after a person signs: a signed PO goes to the manufacturer without anyone retyping it. The signature itself never switches off. Widen in rings: one manufacturer, then one buyer, then all; one Kedia company, then the next.</li>
+<li><b>Retire the old way</b> only after the new one has held. The Excel consolidation stops when the back office stops opening it on its own; keep the old file in a drawer for one more month.</li>
+</ol>
+<div class="guard"><b>IF A SITTING GOES WRONG:</b> say <em>&ldquo;Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to the last commit.&rdquo;</em></div>
+
+<!-- ================= 05 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">KEDIA BUILD ORDER</div><div class="sectag">From your blueprint, one at a time</div></div>
+<table class="numbers">
+<tr><th style="width:9%;">Weeks</th><th style="width:22%;">System</th><th style="width:30%;">Before you start (START-NOW)</th><th>Done when</th></tr>
+<tr><td>1&ndash;2</td><td><b>F-00 Kedia Shared Record + SYS-01 Kedia Indent and PO Skill</b></td><td>Five real sets and the manufacturer master in docs/samples; numbering rules; supplier and customer master with GST and TDS; chart of accounts per company</td><td>A live buy plan has gone in, and the indent, buyer pricing sheet and manufacturer PO have come out in your own format with the rate column blank, and the back office has checked every line against what they would have typed</td></tr>
+<tr><td>3&ndash;6</td><td><b>SYS-02 Kedia PO Reconciler</b></td><td>Factory and warehouse leads agreed same-day GRN and QC posting at the gate</td><td>The factory has posted at least one week of GRNs and QC on the entry screen, and the claim register holds every shortage with its GRN attached</td></tr>
+<tr><td>4&ndash;6</td><td><b>SYS-03 Kedia Procurement Board</b></td><td>Your QC reject threshold and dispatch delay days</td><td>Every open manufacturer PO shows on the board with ordered, received, passed and pending</td></tr>
+<tr><td>5&ndash;10</td><td><b>SYS-04 Kedia Buy Plan to PO Flow</b></td><td><b>A procurement approver named below you</b>; WhatsApp API access and approved templates; your yes on any Claude API cost (&sect;06)</td><td>A customer PO has arrived on the WhatsApp API, been drafted into manufacturer POs, waited in the queue, been signed by your named approver and gone out, with no one retyping a line</td></tr>
+<tr><td>8&ndash;12</td><td><b>SYS-05 Kedia Entry Skill</b></td><td><b>The accounts head named</b>; chart of accounts for the first company</td><td>For one Kedia company, every bill of the month exists as a drafted voucher the accounts head said yes or no to</td></tr>
+<tr><td>9&ndash;12</td><td><b>SYS-06 Kedia Match Tool</b></td><td>That company&rsquo;s Tally day book, Vasy export, bank statement and GSTR-2B</td><td>The bank statement has a matched list and an unidentified list, and no payment has moved without a human hand</td></tr>
+</table>
+<p><b>Months 4&ndash;12, same house:</b> Bill to Book Flow and the Money Board, then Kedia Munim on a fixed morning run (months 4&ndash;6) &rarr; EcomHub24 Brand Review Skill and Margin Checker, then the Ten Brand Board (months 5&ndash;8) &rarr; Dispatch Munshi and the Breach and Stockout Flow (months 7&ndash;10) &rarr; Brand Watch and the central chat (months 9&ndash;12). Each starts at &sect;02 of this guide.</p>
+<div class="guard"><b>THE THREE HARD GATES:</b> SYS-04 does not start until a procurement approver below you is named; without that name the approval queue only moves from WhatsApp to a dashboard and nothing changes. SYS-05 does not start until the accounts head is named. Nothing, at any stage, connects to a bank, sets a credit limit or writes off a balance.</div>
+</div>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">WHEN A SYSTEM NEEDS MORE THAN CLAUDE MAX</div><div class="sectag">Decide before it is built</div></div>
+<p>Systems 1 to 3 run on what you already have: the skill drafts inside Claude Code on your Max account, and the app shows and stores. Three needs appear later. Each one is a decision you make, never one Claude makes for you.</p>
+<table class="numbers">
+<tr><th style="width:30%;">Need</th><th style="width:22%;">First appears</th><th>What it means for you</th></tr>
+<tr><td><b>Claude API key</b></td><td>SYS-04, SYS-05</td><td>The app reads a buy plan or a bill by itself when it arrives, with nobody at the computer. Billed separately from Max, per use. Claude Code shows you the expected monthly cost first.</td></tr>
+<tr><td><b>WhatsApp API login</b></td><td>SYS-04</td><td>The signed PO goes to the manufacturer from the number you already pay for. Templates need Meta&rsquo;s approval; the clock started on day 1.</td></tr>
+<tr><td><b>Google Drive and Sheets read access</b></td><td>SYS-02, SYS-04</td><td>The app reads the sheets and folders your team already uses. Read only, never written to, unless you decide otherwise.</td></tr>
+</table>
+<div class="paste"><span class="plbl">Paste &middot; Before any new connection</span>
+<p>Before you connect anything new, tell me in simple words: what it is, why this system needs it, what it costs each month at our volume, and what happens if I say no. Then wait for my yes. Any key goes only into .env.local and Vercel, and you tell me exactly where to add it in Vercel and to redeploy.</p>
+</div>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">STANDING PROMPTS</div><div class="sectag">Keep these handy</div></div>
+<ul class="tight">
+<li><b>Close every sitting:</b> <em>&ldquo;Summarise what we did today and what comes next, and save it as today&rsquo;s note in docs/sessions/.&rdquo;</em></li>
+<li><b>Next system:</b> once the current system has switched on and held for a week, go back to &sect;02 with the next row of &sect;05.</li>
+<li><b>New approver named:</b> <em>&ldquo;[Name] is now the [procurement approver / accounts head]. Record it in CLAUDE.md and route those approvals to them, with a copy of every exception to me.&rdquo;</em></li>
+<li><b>Monthly audit:</b> <em>&ldquo;Audit this project against CLAUDE.md, the house rules and the Kedia rules, and report anything that breaks them, in simple words.&rdquo;</em></li>
+<li><b>Make a correction stick:</b> <em>&ldquo;Make this correction permanent so it applies to everything we build from now on.&rdquo;</em></li>
+</ul>
+<div class="guard"><b>THE MONTHLY TEST:</b> open the app on your phone and ask three questions. Is every open PO&rsquo;s status still true? Did anything reach a buyer, a manufacturer or Tally without the yes it needed? Does the diary explain the week better than your memory does? If all three are yes, build the next system. If any is no, fix that first.</div>
+
+<div class="traceline">Prepared for Rounakk Ajay Kedia &middot; Kedia Groups. Condensed from Builder Guides 02&ndash;04 and the UI Guide against<br>the Kedia Groups AI Systems Blueprint (BOA-2026-KED-01). Shadow before send, always. Every rate, payment and signature stays human.</div>
+
+</body>
+</html>
