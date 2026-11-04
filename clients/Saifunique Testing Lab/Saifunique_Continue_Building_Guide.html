@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saifunique Continue Building</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-SAI-C1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Saifunique · Continue Building"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  table.numbers.split { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Saifunique</span><span>Continue Building &middot; Rev A</span></div>
+    <h1 class="cover">SAIFUNIQUE<br><span class="accent">CONTINUE BUILDING</span></h1>
+    <div class="coversub">Prepared for <b>Dr. Fatima Saifee</b>. Every sitting after the starter guide: one system at a time, from <b>Build Sheet</b> to <b>switched on</b>, your <b>CRM and sales funnel</b> first.</div>
+    <div class="flow">
+      <span class="chip">Build<br>sheet</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Screens<br>+ UI</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Plan</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">One phase<br>per sitting</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Five real<br>cases</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Watch<br>week</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Switch<br>on</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Next<br>system</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Use it when</span>Every box in Step 7 of the Saifunique Starter Guide is ticked. Keep this file in <code class="f">docs/</code>.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The loop</span>For every system: Build Sheet &rarr; screens and UI &rarr; plan &rarr; one phase per sitting &rarr; five real cases &rarr; watch week &rarr; switch on &rarr; next system.</td>
+        <td><span class="lbl">Your time</span>Your 5 hours a week, mostly approving quotations, ticking reminders and reading the boards. Building pauses in bulk-project and audit weeks.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">First system</span>Your CRM: F-00 Shared Record + SYS-01 Lead Card and Enquiry and Quotation Skill, from your First Build Card.</td>
+        <td><span class="lbl">Sources</span>AI Systems Blueprint BOA-2026-SAI-01 Rev A (blueprint audit 02.11.2026).</td>
+      </tr>
+    </table>
+    <div class="covernote">Condensed from Builder Guides 02&ndash;04 and the UI Guide against the Saifunique AI Systems Blueprint.</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">EVERY SITTING STARTS WITH THIS</div><div class="sectag">Paste to Claude Code</div></div>
+<div class="paste"><span class="plbl">Paste &middot; Start of every sitting</span>
+<p>Read CLAUDE.md, docs/START-NOW.md, the latest note in docs/sessions/ and the Build Sheet for the system we are on. First, remind me of anything in START-NOW that is still not ticked. Then tell me in five lines where we are and what the one finished thing for today should be. Make a plan and wait for my OK before touching any files.</p>
+</div>
+<p><b>Five habits:</b> plan first &middot; one small finished thing per sitting &middot; <em>&ldquo;commit and push&rdquo;</em> when it works &middot; when it breaks, paste the error and say <em>&ldquo;explain in simple words and fix it&rdquo;</em> &middot; close the sitting with the prompt in &sect;07.</p>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">START A SYSTEM: THE BUILD SHEET</div><div class="sectag">Paste to Claude Code</div></div>
+<div class="paste"><span class="plbl">Paste &middot; New system</span>
+<p>We are starting <b>[system number and name from &sect;05]</b>. Using the blueprint, the First Build Card (or the deferred list from the last system) and the real documents in docs/samples, draft docs/build-sheets/[system].md with seven fields: the system and its slice sentence; what starts it; what it shows, drafts or says, <b>word for word</b> in the words my team and customers actually use; what happens on silence, delay or a mismatch; when a human steps in and who that is by name; what it must never do (copied from the blueprint&rsquo;s guardrails and CLAUDE.md); and done-when, copied from &sect;05 of the Continue Building Guide. Mark every line you are unsure of. Write no code.</p>
+</div>
+<p>Correct every line of the sheet yourself. Only you and your team know how a Saifunique quotation reads, what the day 2 follow-up should say, and how an industrial customer&rsquo;s accounts department expects to be reminded. &ldquo;Send a polite follow-up&rdquo; is not a rule; the actual sentence is.</p>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">CHOOSE THE SCREENS AND THEIR LOOK</div><div class="sectag">Before the first screen of every system</div></div>
+<p>Your look was chosen once, in Step 6 of the starter guide, and lives in <code class="f">docs/design/</code>. What changes with each system is <b>which screens it needs</b> and who holds them. Settle that on paper before any code, then let the plan follow.</p>
+<div class="paste"><span class="plbl">Paste &middot; Screens for this system</span>
+<p>Read docs/design and the Build Sheet for this system. List every screen this system needs. For each one give: the one question it answers; its one main button; who uses it; and on what device (lab desktop, a phone in the lab, my phone). Draw each as a simple text sketch. Keep to the five screen laws and the two-minute rule. Then give me a plan of small phases: every phase must end with something I can test on my phone, and the first phase is always &ldquo;load my real data and show me one true list&rdquo;. Write no code until I approve the screens and the plan.</p>
+</div>
+<table class="numbers">
+<tr><th style="width:26%;">System</th><th style="width:38%;">Main screen and its one question</th><th>Who, on what</th></tr>
+<tr><td>SYS-01 Lead Card <em>(CRM)</em></td><td><b>New enquiry:</b> &ldquo;who is this, what do they need, and what happens next?&rdquo;</td><td>Admin staff, lab desktop or a phone at the door</td></tr>
+<tr><td>SYS-02 Quote Chaser <em>(follow-up)</em></td><td><b>Today&rsquo;s follow-ups:</b> &ldquo;which quotations need a nudge today?&rdquo;</td><td>The assigned employee, on a phone</td></tr>
+<tr><td>SYS-03 Pipeline Board <em>(funnel)</em></td><td><b>The funnel:</b> &ldquo;where are enquiries coming from, and where are we losing them?&rdquo;</td><td>You on your phone; the technical manager sees his team</td></tr>
+<tr><td>SYS-04 Sample Tracker + Lab Board</td><td><b>Samples by stage:</b> &ldquo;where is this sample, and what is late?&rdquo;</td><td>Admin and technical staff; you look</td></tr>
+<tr><td>SYS-05 Report Release Chain</td><td><b>Review queue:</b> &ldquo;which reports wait for my review today?&rdquo;</td><td>The technical manager, lab desktop</td></tr>
+<tr><td>SYS-06 Rehan</td><td><b>My day:</b> &ldquo;what do I test today, and what is overdue?&rdquo;</td><td>Each employee, on a phone</td></tr>
+<tr><td>SYS-07 Cash Board</td><td><b>The money picture:</b> &ldquo;what did we earn, receive, spend and owe?&rdquo;</td><td>You, on your phone</td></tr>
+<tr><td>SYS-08 Collections Chaser</td><td><b>The 9 AM list:</b> &ldquo;which reminders wait for my tick?&rdquo;</td><td>You, on your phone</td></tr>
+</table>
+<div class="guard"><b>IF A SCREEN LOOKS LIKE HOMEWORK,</b> it is the screen that is wrong. Send Claude a screenshot and say: <em>&ldquo;Change only the design, following docs/design. Do not touch the features.&rdquo;</em></div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILD, TEST, SWITCH ON</div><div class="sectag">Shadow before send</div></div>
+<ol class="tight">
+<li><b>One phase per sitting.</b> After each phase: commit and push, open the live app <b>on your phone</b>, and check one enquiry, sample or invoice you know well against reality. Note every surprise in <code class="f">docs/rules-i-learned.md</code>, and update the Build Sheet the same day.</li>
+<li><b>Five real cases.</b> Run five real cases through the system while a person presses every button. For the Lead Card: five enquiries from five different channels. For the Quote Chaser: five quotations through their day 2, 4, 7 and 10 steps. For the Sample Tracker: five samples from registration to delivery. For the Collections Chaser: five overdue invoices.</li>
+<li><b>Watch week.</b> For one full week the system works beside the old way: the register, the Excel sheets and WhatsApp carry on. Compare every day. Any mismatch is a fix or a missing rule.</li>
+<li><b>Switch on</b> only what passed the watch week, and only what is on your &ldquo;AI may do alone&rdquo; list: classifying leads, internal reminders, task lists, reports. Every message to a customer is still sent by a person in one tap, or after your tick. Nothing ever switches on for test results, reports or signatures.</li>
+<li><b>Retire the old way</b> only after the new one has held. The enquiry register goes in a drawer when admin staff stop opening it on their own, and stays there one more month.</li>
+</ol>
+<div class="guard"><b>IF A SITTING GOES WRONG:</b> say <em>&ldquo;Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to the last commit.&rdquo;</em></div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">SAIFUNIQUE BUILD ORDER</div><div class="sectag">From your blueprint, one at a time</div></div>
+<table class="numbers split">
+<tr><th style="width:9%;">Weeks</th><th style="width:23%;">System</th><th style="width:28%;">Before you start (START-NOW)</th><th>Done when</th></tr>
+<tr><td colspan="4"><b>PHASE 1 &middot; YOUR CRM AND SALES FUNNEL: NO ENQUIRY FORGOTTEN, NO QUOTATION WAITING</b></td></tr>
+<tr><td>1&ndash;4</td><td><b>F-00 Shared Record + SYS-01 Lead Card and Enquiry and Quotation Skill</b></td><td>Rate list and industry-to-test map; hot, warm and cold rules; objection answers; who is who in the six</td><td>Every enquiry from any channel exists as a Lead Card with a source, an owner and a next follow-up date, and every quotation amount came from the rate list</td></tr>
+<tr><td>3&ndash;6</td><td><b>SYS-02 Quote Chaser</b> <em>(first domino)</em></td><td>Day 2, 4, 7 and 10 wording; lost-reason choices</td><td>Every quotation sent has a chase running inside your one week cycle</td></tr>
+<tr><td>4&ndash;6</td><td><b>SYS-03 Pipeline Board</b></td><td>Lost-reason choices; the conversion figure settled</td><td>The board shows lost reasons and conversion by channel against your own 40 of 100</td></tr>
+<tr><td colspan="4"><b>PHASE 2 &middot; LAB OPERATIONS: ONE TRACKER INSTEAD OF REGISTERS</b></td></tr>
+<tr><td>5&ndash;10</td><td><b>SYS-04 Sample Tracker + Lab Board</b></td><td><b>The authorized technical signatory named</b>; lab ID format; test categories and turnaround</td><td>Every sample received exists once in the Sample Tracker with a lab ID and an assigned analyst</td></tr>
+<tr><td>7&ndash;10</td><td><b>SYS-05 Report Release Chain</b></td><td>The report template; the signatory named</td><td>No report is marked Delivered without the technical manager&rsquo;s Reviewed stamp</td></tr>
+<tr><td>8&ndash;10</td><td><b>SYS-06 Lab Coordinator, Rehan</b></td><td>Your yes on any Claude API or WhatsApp API cost (&sect;06)</td><td>Each employee has a morning task list and an evening update without you asking</td></tr>
+<tr><td colspan="4"><b>PHASE 3 &middot; THE MONEY PICTURE: DAILY, WITHOUT EXCEL</b></td></tr>
+<tr><td>8&ndash;12</td><td><b>SYS-07 Cash Board + Ledger Rules + Job Profit Calculator</b></td><td>The money path written, with where invoicing sits; expense heads and budgets; payment terms</td><td>At 9 AM one phone screen shows revenue, collections, expenses and profitability, built only from entries admin staff made once</td></tr>
+<tr><td>11&ndash;12</td><td><b>SYS-08 Collections Chaser + Munim</b></td><td>Reminder wording in first, second and final tone</td><td>Payment reminders wait for your tick each morning, and the Munim&rsquo;s evening note closes the day</td></tr>
+</table>
+<p><b>Months 4&ndash;12, same house:</b> Rafiq, the AI lead desk, takes over enquiry capture across WhatsApp, email, LinkedIn and website forms and builds weekly target lists, with the first monthly profit report by service and customer (months 4&ndash;6) &rarr; Stock and Calibration Board (months 6&ndash;8) &rarr; NABL Readiness Board (months 8&ndash;10) &rarr; Intern Register and repeat-testing reminders for every past customer (months 10&ndash;12). Each starts at &sect;02 of this guide.</p>
+<div class="guard"><b>THE HARD GATES:</b> SYS-04 and SYS-05 do not start until the authorized technical signatory is named. SYS-07 does not start until the money path is written, including where invoicing sits. At no stage does any system touch a test result, raw data, a calibration record or a signature.</div>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">WHEN A SYSTEM NEEDS MORE THAN CLAUDE MAX</div><div class="sectag">Decide before it is built</div></div>
+<p>Your CRM and sales funnel (Systems 1 to 3) and the Sample Tracker run on what you already have: quotations come from your rate list, follow-ups go from your team&rsquo;s WhatsApp in one tap, and the app shows and stores. Two needs appear later. Each is a decision you make, never one Claude makes for you.</p>
+<table class="numbers">
+<tr><th style="width:28%;">Need</th><th style="width:22%;">First appears</th><th>What it means for you</th></tr>
+<tr><td><b>Claude API key</b></td><td>Rehan, the Munim, Rafiq</td><td>An AI worker runs by itself at 8.30 AM or at closing time, with nobody at the computer. Billed separately from Max, per use. Claude Code shows you the expected monthly cost first.</td></tr>
+<tr><td><b>WhatsApp Business API</b></td><td>Rehan, Collections Chaser, Rafiq</td><td>Messages go out from the lab&rsquo;s number by themselves (internal task lists) or after your tick (reminders), and incoming enquiries are read automatically. Needs Meta business verification and approved templates, which take 1 to 3 weeks, so start it when Phase 2 begins.</td></tr>
+</table>
+<div class="paste"><span class="plbl">Paste &middot; Before any new connection</span>
+<p>Before you connect anything new, tell me in simple words: what it is, why this system needs it, what it costs each month at our volume, and what happens if I say no. Then wait for my yes. Any key goes only into .env.local and Vercel, and you tell me exactly where to add it in Vercel and to redeploy.</p>
+</div>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">STANDING PROMPTS</div><div class="sectag">Keep these handy</div></div>
+<ul class="tight">
+<li><b>Close every sitting:</b> <em>&ldquo;Summarise what we did today and what comes next, and save it as today&rsquo;s note in docs/sessions/.&rdquo;</em></li>
+<li><b>Next system:</b> once the current system has switched on and held for a week, go back to &sect;02 with the next row of &sect;05.</li>
+<li><b>Bulk project or audit week:</b> <em>&ldquo;We pause building this week. Note where we stopped in docs/sessions/ and remind me where to restart.&rdquo;</em></li>
+<li><b>Monthly audit:</b> <em>&ldquo;Audit this project against CLAUDE.md, the house rules and the Saifunique rules, and report anything that breaks them, in simple words.&rdquo;</em></li>
+<li><b>Make a correction stick:</b> <em>&ldquo;Make this correction permanent so it applies to everything we build from now on.&rdquo;</em></li>
+</ul>
+<div class="guard"><b>THE MONTHLY TEST:</b> open the app on your phone and ask three questions. Is every enquiry and quotation on the board still true? Did anything reach a customer without the yes it needed? Does the diary explain the week better than your memory does? If all three are yes, build the next system. If any is no, fix that first.</div>
+
+<div class="traceline">Prepared for Dr. Fatima Saifee &middot; Saifunique Testing Lab LLP. Condensed from Builder Guides 02&ndash;04 and the UI Guide against<br>the Saifunique AI Systems Blueprint (BOA-2026-SAI-01). Shadow before send, always. Every result, price and payment stays human.</div>
+
+</body>
+</html>

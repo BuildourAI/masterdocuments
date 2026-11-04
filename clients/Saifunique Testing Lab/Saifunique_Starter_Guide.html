@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Saifunique Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-SAI-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Saifunique · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  table.numbers.split { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Saifunique</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">SAIFUNIQUE STARTER GUIDE:<br><span class="accent">DAY 1</span></h1>
+    <div class="coversub">Prepared for <b>Dr. Fatima Saifee</b>. From a Claude Max account and nothing else to a <b>live app</b>, the clocks started, your <b>look chosen</b> and your <b>CRM</b> planned as the first build.</div>
+    <div class="flow">
+      <span class="chip">Install</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Accounts</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Folder</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Starter<br>prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Live on<br>your phone</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose<br>the UI</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Continue<br>building</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">What you finish with</span>An empty Saifunique app live on your phone. <code class="f">CLAUDE.md</code> holding the house rules and your lab guardrails. A list of things to start today (<code class="f">docs/START-NOW.md</code>). Your design direction in <code class="f">docs/design/</code>. Your first build, the CRM, written up as a First Build Card.</td></tr>
+      <tr><td colspan="2"><span class="lbl">What you already have</span><b>Claude Max.</b> It gives you the Claude app and <b>Claude Code</b>, the builder. It does not give you GitHub, Supabase or Vercel. You create those three today, on the lab&rsquo;s email, in about thirty minutes.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Your stack, fixed</span><b>Claude Code</b> writes the code &middot; <b>Next.js</b> is the app &middot; <b>Supabase</b> is the database &middot; <b>Vercel</b> puts it online &middot; <b>GitHub</b> keeps the code safe. Nothing else. All accounts are yours.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Build order</span><b>Your CRM and sales funnel first:</b> Lead Card, Quote Chaser, Pipeline Board. Then the lab: Sample Tracker, Report Release Chain, Rehan. Then money: Cash Board, Collections Chaser and Munim.</td>
+        <td><span class="lbl">The two documents</span>This guide, once (day 1) &rarr; <b>Saifunique Continue Building Guide</b>, every sitting after today, one system at a time.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Time</span>One sitting of about three hours. After that, your 5 hours a week.</td>
+        <td><span class="lbl">Sources</span>AI Systems Blueprint BOA-2026-SAI-01 Rev A (blueprint audit 02.11.2026) and your Systems Brief.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices, marked on every step: YOU DO THIS (a step in a browser or on your computer) &middot; PASTE TO CLAUDE CODE (copy the whole box).</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Five minutes, before any click</div></div>
+<p>You wrote that almost every important activity depends on you, and that there is no one centralised system to monitor the business. Your blueprint answers that with eight systems on one shared record, built <b>one at a time</b>, each finished and switched on before the next begins. Nothing in any of them ever touches a test result, a calibration record or an authorised signature.</p>
+
+<div class="note"><span class="nlbl">Your CRM and sales funnel: already in your blueprint, and built first</span>
+<p><b>The CRM</b> is the <b>Saifunique Lead Card</b>: every enquiry from phone, WhatsApp, LinkedIn, email or a walk-in becomes one card with a source, an owner, a hot, warm or cold tag, a next follow-up date and the customer&rsquo;s full history. <b>The sales funnel</b> is the <b>Quote Chaser</b>, which follows up every quotation on day 2, 4, 7 and 10 so none goes quiet, and the <b>Pipeline Board</b>, which shows enquiries by channel, quotations waiting, lost reasons and conversion against your own 40 of 100. These three are Phase 1, weeks 1 to 6. Later, <b>Rafiq</b>, an AI lead desk, captures enquiries from WhatsApp, email, LinkedIn and website forms by himself and builds target lists for marketing (months 4 to 6).</p>
+</div>
+
+<p><b>Who builds.</b> If you hand the building to one trusted person, they sit with these two guides and do every step. Two things stay with you whoever builds: the accounts are opened on the lab&rsquo;s email, and every approval the blueprint gives you stays yours.</p>
+<div class="note"><span class="nlbl">What this costs, honestly</span>
+<p>GitHub and Supabase are free at your size. Vercel&rsquo;s free plan is for personal, non-commercial use, so a business app belongs on <b>Vercel Pro</b>, about $20 a month (check vercel.com/pricing on the day). Your whole CRM and sales funnel runs on Claude Max with nothing extra: quotations come from your rate list, and follow-ups go from your team&rsquo;s WhatsApp in one tap. The <b>Claude API</b>, billed separately from Max, is needed only later, when Rehan, the Munim or Rafiq run by themselves on a schedule. Claude Code must tell you the cost and wait for your yes before adding it.</p>
+</div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Install three things on the computer you will build from</b></p>
+<ol>
+<li><b>Claude Code.</b> Install the Claude desktop app from claude.com/download and sign in with your Claude Max account; Claude Code is its <b>Code</b> tab. If you prefer a terminal, follow the install line at claude.com/claude-code instead.</li>
+<li><b>Node.js LTS</b> from nodejs.org. Accept every default.</li>
+<li><b>Git</b> from git-scm.com (on a Mac, the first time you type <code class="f">git</code> it offers to install itself). Accept every default.</li>
+</ol>
+<p>If anything here goes wrong, carry on. In Step 4 Claude checks all three and tells you exactly what to click.</p>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Three accounts, in this order</b> <em>(all on the lab&rsquo;s email)</em></p>
+<ol>
+<li><b>GitHub</b> (github.com): <b>Sign up</b> with the lab&rsquo;s email. Choose the free plan. Turn on two-factor authentication under <b>Settings &rarr; Password and authentication</b>. This is where your code lives, privately.</li>
+<li><b>Supabase</b> (supabase.com): press <b>Start your project</b> and <b>Continue with GitHub</b>. Press <b>New project</b>, name it <code class="f">saifunique</code>, press <b>Generate a password</b> and save it somewhere safe, and pick the region <b>South Asia (Mumbai)</b>. Create it and wait two minutes. Then open <b>Project Settings &rarr; API Keys</b> and leave that tab open: Claude will ask you for the <b>Project URL</b>, the <b>publishable key</b> (<code class="f">sb_publishable_&hellip;</code>) and the <b>secret key</b> (<code class="f">sb_secret_&hellip;</code>). If your screen shows the older names, use <b>anon</b> and <b>service_role</b>. Treat the secret key like a bank password.</li>
+<li><b>Vercel</b> (vercel.com): <b>Sign up</b> and <b>Continue with GitHub</b>. Choose <b>Pro</b> for business use. This is what puts your app online.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>The folder, and the paper it learns from</b></p>
+<ol>
+<li>Make one folder for life: <code class="f">Documents\saifunique-os</code>. Every Saifunique system goes in here, never in a second folder.</li>
+<li>Inside it make <code class="f">docs</code>, and put two files in it: your <b>AI Blueprint.pdf</b> and this <b>Starter Guide.pdf</b>.</li>
+<li>Inside <code class="f">docs</code> make <code class="f">samples</code>, and put in what you already have: your <b>rate list</b>, <b>one real quotation</b> you sent, and a photo or copy of the <b>enquiry register or Excel sheet</b> your admin staff keep. If something is not ready, the starter prompt puts it on your START-NOW list with an owner.</li>
+<li>Open Claude Code on this folder: in the desktop app, open the <b>Code</b> tab and choose <code class="f">saifunique-os</code>; in a terminal, go to the folder and type <code class="f">claude</code>. Every sitting starts this way from now on.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 4 ================= -->
+<div class="step"><div class="stepnum">STEP 4</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>The starter prompt</b>: one message. Attach your <b>AI Blueprint.pdf</b> and this <b>Starter Guide.pdf</b> to the message (drag both into the chat box), then paste the whole box below. Claude reads the rules and the clocks from pages R1 and R2 of this guide, so there is nothing else to paste.</p>
+</div></div>
+
+<div class="paste long"><span class="plbl">Paste &middot; The starter prompt</span>
+<p>You are setting up the Saifunique platform from zero. I am Dr. Fatima Saifee, director of Saifunique Testing Lab LLP, a six-person NABL laboratory in Mumbai testing water, wastewater, chemicals, detergents, food and agriculture samples for industrial and institutional customers. I have Claude Max and nothing else set up; I opened GitHub, Supabase and Vercel accounts today. Attached, and saved in docs/, are my AI Systems Blueprint and my Starter Guide. Read the Starter Guide first: its reference pages R1 and R2 are written for you. Work in five stages, in order. At the end of each stage, tell me in simple words what you did, then <b>stop and wait for my OK</b>. Whenever you need something only I have, ask me, one question at a time.</p>
+<p><b>Stage 1: Read.</b> Read the blueprint in full and the Starter Guide. Then tell me in ten lines or fewer: what Saifunique is, the three problems, and the build order, starting with my CRM and sales funnel. List the points the blueprint says are unsettled, including the unconfirmed figures in R2. Do not settle any of them yourself.</p>
+<p><b>Stage 2: Set up.</b> (1) Check Node.js and Git. If either is missing, tell me exactly what to download and click. (2) Create a Next.js app with TypeScript in this folder and show me the local address. (3) Set up Git and make the first commit. The .gitignore must keep out .env.local and docs/samples, because customer, sample and rate details are confidential. (4) Help me create a <b>private</b> GitHub repository called saifunique-os and push to it; walk me through every login in the browser. (5) Create .env.local and ask me one at a time for my Supabase Project URL, publishable key and secret key. Use the names NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY and SUPABASE_SECRET_KEY. Never repeat the keys back, never write them in any other file, never commit them. (6) Create CLAUDE.md holding the house rules and the Saifunique rules from page R2 of the Starter Guide, word for word. Read them back to me in five lines.</p>
+<p><b>Stage 3: Start the clocks.</b> Create docs/START-NOW.md from page R1 of the Starter Guide: an owner, a start date and a tick box for each item, longest first. For each item, tell me the exact first action to take today. From now on, start every session by reading this file and reminding me of anything not yet ticked.</p>
+<p><b>Stage 4: Go live.</b> Tell me the exact environment variable names for Vercel, then wait while I import the repository into Vercel and deploy (Step 5 of the guide). When I give you the live address, confirm the app opens and tell me the Supabase sign-in setting to update.</p>
+<p><b>Stage 5: Plan the first build.</b> Following the blueprint, the first build is my CRM: <b>F-00 Saifunique Shared Record</b> with <b>SYS-01 Saifunique Lead Card + Enquiry and Quotation Skill</b>. The Quote Chaser and the Pipeline Board, the rest of my sales funnel, come straight after it. Write docs/FIRST-BUILD-CARD.md covering: the slice sentence (&ldquo;When X happens, the system does Y, and Z sees it&rdquo;); what is kept and what is deferred (channels, roles, documents, automation level, integrations); the guardrails that apply, copied word for word from the blueprint; the data it needs and who supplies it; and a done-when I can check on my phone. Quotation amounts come only from my approved rate list. Do not write any feature code yet. Finish by telling me to choose the UI (Step 6) before the first real screen is built, and to switch to the Saifunique Continue Building Guide.</p>
+</div>
+
+<!-- ================= STEP 5 ================= -->
+<div class="step"><div class="stepnum">STEP 5</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put it online</b> <em>(when Claude reaches Stage 4)</em></p>
+<ol>
+<li>On vercel.com press <b>Add New&hellip; &rarr; Project</b>, find <code class="f">saifunique-os</code> and press <b>Import</b>. If it is not listed, press <b>Adjust GitHub App Permissions</b>, give Vercel access to that one repository, and come back.</li>
+<li>Leave the framework (Next.js) as Vercel sets it. Open <b>Environment Variables</b> and add the three names Claude gave you, with the same three values from Supabase.</li>
+<li>Press <b>Deploy</b>. About two minutes later your app is live at an address ending in <code class="f">.vercel.app</code>. Give that address to Claude Code.</li>
+<li>In Supabase, open <b>Authentication &rarr; URL Configuration</b>, set <b>Site URL</b> to that address and save, as Claude tells you.</li>
+<li>Open the address on your phone and choose <b>Add to Home Screen</b>. From today, every time Claude commits and pushes, the live app updates itself.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 6 ================= -->
+<div class="step"><div class="stepnum">STEP 6</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Choose the UI: before the first real screen</b></p>
+<p>Claude builds what you say, but it designs what you show it. Show it nothing and your team gets the average of every app on the internet, which is what they already ignore. Ten minutes now decides whether your admin staff open the app or keep opening the register.</p>
+<ol>
+<li><b>Collect.</b> On pinterest.com, search <code class="f">minimalist UI design web app</code>. Download 10 to 15 screens your admin staff would understand at a glance. Skip anything crowded, dark or clever.</li>
+<li><b>Let the strongest model choose.</b> Open a new chat in the <b>Claude app</b> (chat, not Claude Code), pick the strongest model in the model list, attach every screenshot, and paste the chooser prompt below.</li>
+<li><b>Get the direction in writing.</b> Re-upload only the winning one or two designs and ask: <em>&ldquo;I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.&rdquo;</em> Download the .md file.</li>
+<li><b>Hand it over.</b> Save the winning images and the .md file in <code class="f">docs/design/</code>, then tell Claude Code: <em>&ldquo;The design direction is in docs/design. Add a line to CLAUDE.md saying every screen follows it.&rdquo;</em></li>
+</ol>
+</div></div>
+
+<div class="paste"><span class="plbl">Paste &middot; Claude app chat &middot; the chooser prompt</span>
+<p>I have shared some powerful, minimal UI designs with you. I am building the interface for my company: we are Saifunique Testing Lab, a six-person NABL laboratory in Mumbai testing water, wastewater, chemicals, detergents, food and agriculture samples. The screens are used by admin staff and the technical manager on the lab desktop, by technical staff on their phones in the lab, and by me on my phone to approve and to see the whole business. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.</p>
+</div>
+
+<div class="guard"><b>IF THE DIRECTION COMES BACK TOO NARROW</b> (&ldquo;a CRM dashboard&rdquo;), correct it in one line: <em>&ldquo;This is not only a CRM. It is the business centre of Saifunique: sales, the lab, money and the team, everything.&rdquo;</em></div>
+
+<table class="numbers">
+<tr><th style="width:34%;">The five screen laws</th><th>What to check on every screen Claude shows you</th></tr>
+<tr><td><b>1 &middot; Nobody reads, everyone scans</b></td><td>The one thing the user must see first is the biggest and boldest thing on the screen.</td></tr>
+<tr><td><b>2 &middot; One screen, one job</b></td><td>Exactly one main button, visible without scrolling, in the one colour kept for action.</td></tr>
+<tr><td><b>3 &middot; Consistency is trust</b></td><td>The same thing looks the same on every screen.</td></tr>
+<tr><td><b>4 &middot; The default is the decision</b></td><td>Whatever is filled in again and again is already filled in: today&rsquo;s date, the channel, the assigned employee.</td></tr>
+<tr><td><b>5 &middot; Silence is an error</b></td><td>Every tap answers at once with a change, a tick or a message.</td></tr>
+</table>
+<p><b>The two-minute rule:</b> a new employee opens any screen and understands what it is and what to do in under two minutes, with no training. If a screen needs explaining, the screen is wrong, not the employee.</p>
+
+<!-- ================= STEP 7 ================= -->
+<div class="step"><div class="stepnum">STEP 7</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Switch to the Continue Building Guide when all of this is true</b></p>
+<ul class="ticks">
+<li>The app opens on your phone at its <code class="f">.vercel.app</code> address, and it is saved to your home screen.</li>
+<li>The GitHub repository is <b>private</b>, and the three keys are only in <code class="f">.env.local</code> and Vercel.</li>
+<li><code class="f">CLAUDE.md</code> holds the house rules and the Saifunique rules from page R2.</li>
+<li><code class="f">docs/START-NOW.md</code> exists and every item has a named owner.</li>
+<li><code class="f">docs/FIRST-BUILD-CARD.md</code> is written and you have read and corrected every line.</li>
+<li><code class="f">docs/design/</code> holds your UI direction, and CLAUDE.md says every screen follows it.</li>
+<li>The rate list is in <code class="f">docs/samples/</code>, or START-NOW names the technical manager and a date for it.</li>
+</ul>
+</div></div>
+
+<div class="guard"><b>ALL SEVEN TICKED:</b> put the <b>Saifunique Continue Building Guide</b> into <code class="f">docs/</code> and use it from your next sitting onwards. If one is not ticked, paste it into Claude Code and say <em>&ldquo;fix this before we continue.&rdquo;</em></div>
+
+<!-- ================= R1 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">R1</div><div class="sectitle">THE CLOCKS: FOR docs/START-NOW.md</div><div class="sectag">Read by Claude Code in Stage 3</div></div>
+<p>Things that take calendar time or wait on a person. Each one becomes a line in <code class="f">docs/START-NOW.md</code> with its owner, a start date and a tick box.</p>
+<table class="numbers">
+<tr><th style="width:5%;">#</th><th>Item</th><th style="width:22%;">Owner</th><th style="width:17%;">Needed for</th></tr>
+<tr><td>1</td><td><b>Confirm the order and the figures.</b> Sales first and lab operations second, against the phase order you wrote. Settle the two conversion figures: 40 of 100 quotations convert, but orders are 35 a month.</td><td>Dr. Fatima</td><td>Day 1</td></tr>
+<tr><td>2</td><td><b>The approved rate list and the industry-to-test map</b>, written once, so the Enquiry and Quotation Skill never invents an amount.</td><td>Technical manager</td><td>SYS-01</td></tr>
+<tr><td>3</td><td><b>The hot, warm and cold rules</b> (NABL report needed, sample count, decision date), the qualifying questions, and your answers to the three objections: trust, pricing, competition.</td><td>Dr. Fatima</td><td>SYS-01</td></tr>
+<tr><td>4</td><td><b>Who is who in the six:</b> each person&rsquo;s name and role (admin staff, technical staff, the marketing employee), for their own logins.</td><td>Dr. Fatima</td><td>SYS-01</td></tr>
+<tr><td>5</td><td><b>One list of every enquiry from today</b>, whatever the channel, until the Lead Card is live. From then on, a card for every enquiry and no second entry into a register or Excel.</td><td>Admin staff</td><td>SYS-01</td></tr>
+<tr><td>6</td><td><b>The follow-up wording</b> for day 2, day 4, day 7 and day 10, and the lost-reason choices: pricing, competitor, trust, delayed decision, requirement changed.</td><td>Dr. Fatima</td><td>SYS-02, SYS-03</td></tr>
+<tr><td>7</td><td><b>Name the authorized technical signatory</b> in the Sample Tracker, so Reviewed and Delivered carry a real name from day one.</td><td>Technical manager</td><td>SYS-04, SYS-05</td></tr>
+<tr><td>8</td><td><b>The lab facts:</b> the report template, the lab ID format, the test categories with their turnaround, and the third-party labs you use.</td><td>Technical manager</td><td>SYS-04, SYS-05</td></tr>
+<tr><td>9</td><td><b>The rest of the money path</b>, enquiry to final payment: each station and who does it by hand today, where invoicing sits, and whether the invoice is raised at report release.</td><td>Dr. Fatima</td><td>SYS-07</td></tr>
+<tr><td>10</td><td><b>Expense heads with a monthly budget</b>, and payment terms per customer type (immediate pay or 60 to 90 days).</td><td>Dr. Fatima</td><td>SYS-07, SYS-08</td></tr>
+<tr><td>11</td><td><b>The calendar of bulk projects and audit weeks</b>, when building pauses.</td><td>Dr. Fatima</td><td>Planning</td></tr>
+</table>
+</div>
+
+<!-- ================= R2 ================= -->
+<div class="sechead"><div class="secnum">R2</div><div class="sectitle">THE RULES: FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by Claude Code in Stage 2</div></div>
+<div class="paste long"><span class="plbl">Standing rules for everything ever built in this folder</span>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this folder, repository, database and app are the only ones Saifunique will ever have; every new system is a new section of the same app. 2 &middot; EVERY PERSON THEIR OWN KEY: every team member has their own login and sees only what their work needs; the director sees everything; no shared passwords. 3 &middot; A HUMAN YES BEFORE ANYTHING REACHES A CUSTOMER: nothing is sent to a customer without a named person approving it, except message types the director has switched on after testing; one switch turns all automatic behaviour off without code. 4 &middot; THE DIARY NOBODY CAN EDIT: every action the system takes is written to a log that can only be added to. 5 &middot; SECRETS STAY IN THE CUPBOARD: keys live only in .env.local and in Vercel&rsquo;s settings, never in code, in chat or on GitHub. 6 &middot; MONEY IS CALCULATED, NEVER GUESSED: amounts come only from the approved rate list and exact tested rules; AI reads, drafts and reminds, and never invents a number. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>Saifunique rules: the lab.</b> No system ever generates, modifies, approves or interprets a laboratory test result, alters raw analytical data, releases or signs a final test report, changes a calibration record, or falsifies or backdates NABL documentation. Results are entered by technical staff and reviewed by the authorized technical signatory. Nothing bypasses ISO/IEC 17025:2017, authorized signatories, confidentiality or quality procedures, and no technical decision is made without qualified personnel. A sample cannot be marked Delivered until the authorized technical signatory has marked it Reviewed.</p>
+<p><b>Saifunique rules: money and customers.</b> A responsible person (Dr. Fatima or the technical manager) approves every quotation, price change, discount, purchase order, payment, refund, financial transaction, customer commitment (including a promised report date) and important external communication before it goes. Quotation amounts come only from the approved rate list; any amount below it, or any discount, locks the card until Dr. Fatima approves. No reminder ever carries a new amount or a discount; if a customer asks for a lower price or a revised quotation, the follow-up stops and the card goes to Dr. Fatima. An invoice is marked paid only when Dr. Fatima or admin staff confirm the bank or UPI entry. No system makes a purchase or a financial commitment.</p>
+<p><b>Saifunique rules: what AI may do alone.</b> Capture and organise customer enquiries; classify leads hot, warm or cold; assign tasks to employees and send internal reminders; track quotation follow-ups; prepare draft customer responses; generate daily and monthly business reports; monitor pending payments and identify overdue invoices; track chemical stock and expiry dates; monitor calibration due dates; remind employees about training and audit schedules; highlight pending lab work. Everything else waits for a person. Recruitment, termination, salary changes and major business decisions stay with management, and no screen recommends an action on a person&rsquo;s job.</p>
+<p><b>Saifunique rules: how we build.</b> Customer, sample and result details are confidential: docs/samples and any export never go to GitHub. The figures less than 150 leads a month (a ceiling), 100 quotations, 40 of 100 converting, 35 orders, an order value of &#8377;2,000 to &#8377;30,000, 5 to 7 repeat customers and the split of the 6 people are unconfirmed, so never hard-code them. Build in the blueprint&rsquo;s order, CRM and sales funnel first, and do not start the next system until the current one meets its done-when. Building pauses during bulk projects and audit weeks. Start every session by reading docs/START-NOW.md and the latest note in docs/sessions/.</p>
+</div>
+
+<div class="traceline">Prepared for Dr. Fatima Saifee &middot; Saifunique Testing Lab LLP &middot; traces to blueprint BOA-2026-SAI-01 Rev A,<br>Builder Guides 00&ndash;01 and the UI Guide. Stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub.</div>
+
+</body>
+</html>
