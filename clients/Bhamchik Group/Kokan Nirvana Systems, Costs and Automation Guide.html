@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kokan Nirvana Systems and Costs</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BHA-K1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Kokan Nirvana · Systems, Costs, Automation"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Kokan Nirvana</span><span>Systems, Costs, Automation &middot; Rev A</span></div>
+    <h1 class="cover">YOUR SYSTEMS,<br><span class="accent">WHAT THEY COST</span></h1>
+    <div class="coversub">Prepared for <b>Shubham Manjunath Anvekar</b>. Each system in plain words, <b>every rupee it adds</b>, how the <b>AI agents</b> are built, and what <b>n8n</b> automates.</div>
+    <div class="flow">
+      <span class="chip">8 systems</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Monthly<br>costs</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Pay per<br>use</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">AI agents</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">n8n<br>automations</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">How to read the prices</span>Prices are the providers&rsquo; published prices in November 2026, in their own currency, with a rough rupee figure at about &#8377;88 to the dollar before GST. They change: check each provider&rsquo;s pricing page on the day you buy. Usage figures are estimates at your volume of 800 to 1000 leads a month; Claude Code shows you the real figure after the first week of each system.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">One correction</span>The call summary wrote Claude Max as &ldquo;$10,000/month&rdquo;. Claude Max is <b>about $100 a month</b> (Max 5x) or <b>about $200</b> (Max 20x), roughly &#8377;10,000 or &#8377;20,000 with GST.</td>
+        <td><span class="lbl">Sources</span>Blueprint BOA-2026-BHA-01 Rev B; providers&rsquo; published prices, November 2026.</td>
+      </tr>
+    </table>
+    <div class="covernote">Nothing on this sheet is bought by Claude Code without your yes</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">YOUR SYSTEMS IN PLAIN WORDS</div><div class="sectag">What each one does for you</div></div>
+<table class="numbers">
+<tr><th style="width:24%;">System</th><th>What it does for you</th><th style="width:20%;">Runs on</th><th style="width:16%;">Adds to your bill</th></tr>
+<tr><td><b>F-00 Single Record</b></td><td>Your own CRM: every lead, property, unit, visit, quotation, token and receipt in one place, entered once.</td><td>Supabase</td><td>Nothing extra</td></tr>
+<tr><td><b>SYS-01 Lead-to-Visit Flow</b></td><td>A new Meta, landing page or portal lead gets your project details and tutorial on WhatsApp in minutes; follow-ups go out on their own; visits are booked and reminded; the quotation waits for your price.</td><td>App + n8n + your WhatsApp API</td><td>n8n; WhatsApp messages</td></tr>
+<tr><td><b>SYS-02 Property Tutorial Library</b></td><td>One approved pack per property (walkthrough video, location, units, FAQs) that the flow sends at the right moment.</td><td>App + Supabase storage</td><td>Nothing extra; AI video tool optional</td></tr>
+<tr><td><b>SYS-03 Sales Skill</b></td><td>Your sales manager&rsquo;s best words, written once, so every message sounds like Kokan Nirvana.</td><td>Claude Code (writing)</td><td>Nothing extra</td></tr>
+<tr><td><b>SYS-04 Receipt and Ledger App</b></td><td>Money lands, someone ticks, a numbered receipt goes out on WhatsApp and the ledger updates.</td><td>App</td><td>WhatsApp messages (small)</td></tr>
+<tr><td><b>SYS-05 Payment Reminder Flow</b></td><td>Instalment reminders on schedule; stops the moment the money is receipted.</td><td>App + n8n + WhatsApp</td><td>WhatsApp messages (small)</td></tr>
+<tr><td><b>SYS-06 Funnel Board</b></td><td>Which Meta campaign brings buyers who visit, overdue follow-ups by name, quotation age, cost per visit.</td><td>App + n8n (reads Meta)</td><td>Nothing extra</td></tr>
+<tr><td><b>SYS-07 Finance Board</b></td><td>Cash, dues by unit, salary and incentive owed, and a running profit and loss.</td><td>App</td><td>Nothing extra</td></tr>
+<tr><td><b>SYS-08 Team Desk</b></td><td>15 logins, a task page each morning, a day-close summary each evening, leavers off in one click.</td><td>App + n8n</td><td>WhatsApp nudges (small)</td></tr>
+<tr><td><b>AI agents</b> (month 4 on)</td><td>Lead Qualifier, Funnel Keeper, Munshi, Desk Keeper: AI workers that run on a schedule (&sect;04).</td><td>App + n8n + Claude API</td><td>Claude API usage</td></tr>
+</table>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">THE MONTHLY BILLS</div><div class="sectag">Fixed, whatever the volume</div></div>
+<table class="numbers">
+<tr><th style="width:22%;">Service</th><th style="width:22%;">Plan</th><th style="width:20%;">About</th><th>When and why</th></tr>
+<tr><td><b>Claude Max</b></td><td>Max 5x, or Max 20x</td><td>$100 or $200 a month</td><td>From day 1. Builds everything, with several sessions at once. After the foundation and main systems are built, you may move down to Pro ($20) for small changes, as Romana suggested.</td></tr>
+<tr><td><b>GitHub</b></td><td>Free</td><td>&#8377;0</td><td>From day 1. Private repository included.</td></tr>
+<tr><td><b>Supabase</b></td><td>Free, then Pro</td><td>&#8377;0, then $25 a month</td><td>Free while building. Move to Pro before real customer and money data go in (Phase 2): daily backups, and free projects pause after a quiet week.</td></tr>
+<tr><td><b>Vercel</b></td><td>Pro</td><td>$20 a month</td><td>From day 1. The free plan is for non-commercial use only.</td></tr>
+<tr><td><b>n8n</b></td><td>Cloud Starter, or Pro</td><td>about &euro;24, or &euro;60 a month</td><td>From SYS-01. Starter fits about 2,500 runs a month, enough if follow-ups and reminders run as daily batches; move to Pro if Executions shows you near the limit.</td></tr>
+<tr><td><b>Web address</b> (optional)</td><td>Your own domain</td><td>&#8377;0 to connect</td><td>If you own kokannirvana.com, the OS can live at an address such as <code class="f">os.</code> on it. Vercel connects it free.</td></tr>
+</table>
+<div class="note"><span class="nlbl">Already paid, unchanged</span><p>Your <b>WhatsApp API provider</b> (its monthly fee), <b>Meta ads</b> spend, the <b>landing page</b> and <b>portal</b>, and the <b>current CRM</b> until the OS has held for a month and you decide to stop it. <b>Base44</b> is not used in this build; keep or cancel it after Phase 1.</p></div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">PAY AS YOU USE</div><div class="sectag">Grows with leads and messages</div></div>
+<h3 class="sub">WhatsApp messages, charged by Meta</h3>
+<p>Meta charges per template message delivered, by category; your provider may add its own fee per message. Approximate India rates: <b>marketing</b> about &#8377;0.80 a message, <b>utility</b> (receipts, reminders, visit confirmations) about &#8377;0.12, <b>replies within 24 hours</b> of the customer writing to you are free. Check Meta&rsquo;s rate card for India on the day.</p>
+<table class="numbers">
+<tr><th>Message</th><th style="width:20%;">Category</th><th style="width:22%;">Volume a month</th><th style="width:18%;">About</th></tr>
+<tr><td>Project details + tutorial, and up to 5 follow-ups to a lead who has not replied</td><td>Marketing</td><td>~4,000 (1000 leads &times; ~4)</td><td>&#8377;3,200</td></tr>
+<tr><td>Visit confirmations and reminders</td><td>Utility</td><td>~200</td><td>&#8377;25</td></tr>
+<tr><td>Receipts and instalment reminders</td><td>Utility</td><td>~100</td><td>&#8377;12</td></tr>
+<tr><td>Team nudges (if sent on WhatsApp)</td><td>Utility</td><td>~300</td><td>&#8377;36</td></tr>
+<tr><td>Anything sent while the lead is talking to you</td><td>Service</td><td>any</td><td>Free</td></tr>
+</table>
+<p>The follow-ups are the big line, and they pause the moment a lead replies, so a better first message also lowers the bill. Meta, not us, decides each template&rsquo;s category.</p>
+
+<h3 class="sub">The Claude API, for the AI agents only</h3>
+<p>Claude Max covers you building in Claude Code. It does <b>not</b> cover the app calling Claude by itself at 8 AM with nobody at the computer: that uses the <b>Claude API</b>, paid per use, on a separate account at platform.claude.com with prepaid credit and a monthly spend limit you set. Price per million tokens (a token is about three-quarters of a word): <b>Claude Haiku 5.5</b> $0.10 in, $0.50 out; <b>Claude Sonnet 5.5</b> $2 in, $10 out; <b>Claude Opus 5.5</b> $4 in, $20 out.</p>
+
+<h3 class="sub">Optional</h3>
+<p><b>AI video for tutorials:</b> a phone walkthrough costs nothing; AI presenter video tools start at roughly $30 a month if you want polished videos. <b>Meta ad data</b> for the Funnel Board: free, through a Meta developer app the builder session walks you through.</p>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">HOW THE AI AGENTS ARE BUILT</div><div class="sectag">Month 4 onward &middot; one per builder session</div></div>
+<p>An &ldquo;AI employee&rdquo; is four simple parts: <b>a clock</b> (n8n wakes it at 8 AM, at 6 PM, or when a lead replies), <b>its rulebook</b> (the Sales Skill and CLAUDE.md&rsquo;s rules), <b>eyes on your record</b> (it may read the leads, visits and ledger it needs, nothing else), and <b>an out-tray</b> (it writes drafts and reports into an approval list). It never holds a key to send money things: code decides what may go out by itself, and anything with a price waits for you.</p>
+<p><code class="f">n8n clock &rarr; your app&rsquo;s agent route &rarr; reads the record &rarr; Claude API with the rulebook &rarr; drafts and report &rarr; approval list or WhatsApp &rarr; diary</code></p>
+<table class="numbers">
+<tr><th style="width:17%;">Agent</th><th>What it does</th><th style="width:15%;">Wakes</th><th style="width:15%;">Model</th><th style="width:13%;">About a month</th></tr>
+<tr><td><b>Lead Qualifier</b></td><td>Tags each new lead hot, warm or cold on the sales manager&rsquo;s rules; suggests the property and the staff member.</td><td>Every new lead</td><td>Haiku 5.5</td><td>under $1</td></tr>
+<tr><td><b>Funnel Keeper</b></td><td>8 AM overdue list to each staff member; reads lead replies and drafts answers to project questions from the Sales Skill; parks any price question for you; 6 PM report.</td><td>8 AM, 6 PM, each reply</td><td>Sonnet 5.5</td><td>$30 to $40</td></tr>
+<tr><td><b>Munshi</b></td><td>Evening: checks the day&rsquo;s receipts and expenses against the bank, lists gaps. Month-end: salary, incentive and P&amp;L drafts for your signature.</td><td>Evening, 1st of month</td><td>Sonnet 5.5</td><td>about $3</td></tr>
+<tr><td><b>Desk Keeper</b></td><td>Answers staff on where things are, nudges once when a task is overdue, evening team report.</td><td>Working hours, evening</td><td>Haiku 5.5 + Sonnet 5.5</td><td>about $2</td></tr>
+</table>
+<p>All four together: roughly <b>$40 to $50 a month</b> at 1000 leads, less with the caching Claude Code sets up. Using Opus 5.5 for every agent roughly doubles it. Claude Code shows the real figure after the first week.</p>
+<div class="paste"><span class="plbl">Paste &middot; New builder session &middot; build one agent</span>
+<p>You are the builder session for the <b>[agent name]</b> agent in the Kokan Nirvana OS, on the branch <b>[agent-short-name]</b>. Read CLAUDE.md, the blueprint&rsquo;s note on the AI employees, and section 04 of the Systems, Costs and Automation Guide. Build it as: an n8n workflow file that wakes it; one protected app route that reads only the records it needs, calls the Claude API with the Sales Skill and CLAUDE.md&rsquo;s rules as its instructions, and writes its drafts and report to the approval list and the diary. Code, not the AI, decides what may be sent without a person: nothing with a price, discount, payment plan, token amount, salary or incentive ever goes out by itself. Before writing code: tell me which model you propose and why, the expected monthly cost at our volume, and how I set a monthly spend limit on the Claude API account. Wait for my yes. Run it for one week as drafts only before anything is sent.</p>
+</div>
+<div class="note"><span class="nlbl">Setting up the Claude API account, once</span><p>Go to <b>platform.claude.com</b>, sign in with the business email, add a payment card under <b>Billing</b>, buy a small prepaid credit (for example $20), and set a <b>monthly spend limit</b> (for example $75). Create an API key under <b>API Keys</b>, then paste it only into Vercel&rsquo;s Environment Variables as <code class="f">ANTHROPIC_API_KEY</code>, never into a chat. Claude Code tells you when.</p></div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">WHAT n8n AUTOMATES</div><div class="sectag">One workflow file each, written by Claude Code</div></div>
+<table class="numbers">
+<tr><th style="width:24%;">Workflow</th><th style="width:20%;">Starts when</th><th>What it does</th><th style="width:11%;">System</th></tr>
+<tr><td><b>New Meta lead</b></td><td>A lead form is filled on Facebook or Instagram</td><td>Creates the record, assigns the staff member, sends the details and tutorial, creates the call task.</td><td>SYS-01</td></tr>
+<tr><td><b>New landing page or portal lead</b></td><td>The form sends a web hook, or a daily email or export</td><td>Same as above, with the source marked.</td><td>SYS-01</td></tr>
+<tr><td><b>Follow-up runner</b></td><td>Every morning</td><td>Sends today&rsquo;s due follow-ups, skips anyone who replied, moves quiet leads on, marks cold after the last one.</td><td>SYS-01</td></tr>
+<tr><td><b>Visit reminders</b></td><td>Every evening</td><td>Reminds tomorrow&rsquo;s visitors and the staff member taking them.</td><td>SYS-01</td></tr>
+<tr><td><b>Lead reply catcher</b></td><td>A lead writes on WhatsApp</td><td>Logs the reply on the record, pauses the follow-ups, alerts the staff member; later wakes the Funnel Keeper.</td><td>SYS-01</td></tr>
+<tr><td><b>Receipt sender</b></td><td>A receipt is ticked in the app</td><td>Sends the numbered receipt PDF on WhatsApp and logs it.</td><td>SYS-04</td></tr>
+<tr><td><b>Instalment reminders</b></td><td>Every morning</td><td>Checks the ledger, sends due reminders, flags overdue units to the sales manager and you.</td><td>SYS-05</td></tr>
+<tr><td><b>Meta ad spend</b></td><td>Every morning</td><td>Reads yesterday&rsquo;s spend by campaign into the Funnel Board.</td><td>SYS-06</td></tr>
+<tr><td><b>Day open and close</b></td><td>Fixed morning and evening times</td><td>Refreshes task pages, nudges anyone not logged in, sends the day-close summary.</td><td>SYS-08</td></tr>
+<tr><td><b>Agent clocks</b></td><td>8 AM, 6 PM, evening</td><td>Wake the AI agents in &sect;04.</td><td>Month 4+</td></tr>
+</table>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">WHAT IS NEVER AUTOMATED</div><div class="sectag">Your guardrails, in force everywhere</div></div>
+<ul class="tight">
+<li><b>Price or any financial decision:</b> every quotation price, discount, payment plan, token amount, extension or waiver is set by you or the sales manager.</li>
+<li><b>Money moving:</b> no system pays anyone; salary and incentive sheets are drafts until you sign.</li>
+<li><b>Receipts:</b> only after a person ticks that the money has landed.</li>
+<li><b>Meta ad spend:</b> the board shows; you decide.</li>
+<li><b>People decisions:</b> hiring, letting go, roles and access stay with you and the sales manager until you write your third guardrail.</li>
+</ul>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">YOUR BUDGET, PHASE BY PHASE</div><div class="sectag">Approximate, before GST</div></div>
+<table class="numbers">
+<tr><th style="width:26%;">Item</th><th>Phase 1 (weeks 1&ndash;3)</th><th>Phases 2&ndash;4 (weeks 3&ndash;12)</th><th>Month 4+ with agents</th></tr>
+<tr><td>Claude Max</td><td>$100 (or $200)</td><td>$100 (or $200)</td><td>$20 to $100</td></tr>
+<tr><td>Vercel Pro</td><td>$20</td><td>$20</td><td>$20</td></tr>
+<tr><td>Supabase</td><td>$0</td><td>$25</td><td>$25</td></tr>
+<tr><td>n8n Cloud</td><td>&euro;24</td><td>&euro;24 (&euro;60 if busy)</td><td>&euro;24 to &euro;60</td></tr>
+<tr><td>WhatsApp messages</td><td>about &#8377;3,300</td><td>about &#8377;3,300</td><td>about &#8377;3,300</td></tr>
+<tr><td>Claude API (agents)</td><td>$0</td><td>$0</td><td>$40 to $50</td></tr>
+<tr><td><b>Total, roughly</b></td><td><b>&#8377;16,000 to &#8377;25,000</b></td><td><b>&#8377;18,000 to &#8377;31,000</b></td><td><b>&#8377;15,000 to &#8377;27,000</b></td></tr>
+</table>
+<p>Plus what you already pay: the WhatsApp provider&rsquo;s fee, Meta ads, the landing page, and the old CRM until you retire it. Against this, your blueprint counts about &#8377;76,000 a month in conservative savings before hours, from Rev A, plus the hours your 15 people get back.</p>
+
+<div class="traceline">Prepared for Shubham Manjunath Anvekar &middot; Kokan Nirvana Seashore property &middot; companion to blueprint BOA-2026-BHA-01 Rev B.<br>Prices are providers&rsquo; published prices in November 2026 and change; check on the day. Estimates are marked as estimates.</div>
+
+</body>
+</html>

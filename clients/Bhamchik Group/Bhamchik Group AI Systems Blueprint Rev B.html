@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Systems Blueprint: Bhamchik Group, Rev B</title>
+<style>
+
+  :root {
+    --orange: #e8590c;
+    --orange-soft: #fdeee2;
+    --orange-faint: #fdf6f0;
+    --ink: #1f2430;
+    --grid: rgba(232, 89, 12, 0.07);
+    --rule: #e9c7ae;
+    --mono: "Consolas", "JetBrains Mono", "Courier New", monospace;
+    --sans: "Segoe UI", "Noto Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ---------- PART B pages: A4, in-depth blueprint ---------- */
+  @page {
+    size: A4;
+    margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right {
+      /* EDIT ME: DWG NO. BOA-{year}-{3-letter company code}-01 · REV A */
+      content: "DWG NO. BOA-2026-BHA-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "Bhamchik Group · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+  }
+
+  /* ---------- PART A pages: wide infographic sheets ---------- */
+  @page infog {
+    size: 842pt 1191pt;
+    margin: 64px 40px 64px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @top-right {
+      /* EDIT ME: same DWG string as above */
+      content: "DWG NO. BOA-2026-BHA-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "Bhamchik Group · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+  }
+
+  html {
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      #fdfbf9;
+    background-size: 24px 24px;
+  }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13.5px; line-height: 1.6; }
+
+  /* ================= PART A · INFOGRAPHIC COMPONENTS ================= */
+  .ig { page: infog; font-size: 12px; line-height: 1.45; }
+  .ig p { text-align: left; }
+
+  /* header block, top of sheet 1 */
+  .ighead { display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2.5px solid var(--ink); padding-bottom: 18px; margin-bottom: 8px; }
+  .ightitle h1 { font-size: 40px; line-height: 1.02; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
+  .ightitle .standfirst { font-size: 13px; margin-top: 10px; max-width: 480px; color: #46556b; }
+  .igbox { border: 1.5px solid var(--orange); background: #fff; padding: 10px 14px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.9; }
+  .igbox .bl { color: var(--orange); font-weight: 700; }
+
+  /* panel scaffold */
+  .panel { margin: 22px 0 6px; page-break-inside: avoid; }
+  .phead { display: flex; align-items: baseline; gap: 10px; border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 12px; page-break-after: avoid; }
+  .pnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; padding: 2px 8px; }
+  .ptitle { font-size: 17px; font-weight: 800; letter-spacing: 0.2px; text-transform: uppercase; }
+  .ptag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+  .pcap { font-size: 11px; font-style: italic; color: #46556b; margin-top: 8px; }
+  .pcap b { color: var(--orange); font-style: normal; }
+  .mcap { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #8a7361; margin-top: 8px; }
+
+  /* P01 · dashboard tiles */
+  .tiles { display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid var(--rule); background: #fff; }
+  .tile { padding: 12px 10px 10px; border-right: 1px dotted var(--rule); }
+  .tile:last-child { border-right: none; }
+  .tile .v { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+  .tile.hot .v { color: var(--orange); }
+  .tile .l { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361;
+    text-transform: uppercase; margin-top: 3px; }
+
+  /* P02 · money path flow */
+  .mpath { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+  .mstep { border: 1px solid var(--rule); background: #fff; padding: 8px 10px; }
+  .mstep .mn { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #8a7361; }
+  .mstep .mt { font-weight: 700; font-size: 12px; margin: 1px 0; }
+  .mstep .ms { font-family: var(--mono); font-size: 8px; letter-spacing: 0.8px; color: #46556b; text-transform: lowercase; }
+  .mstep.broken { border: 1.5px solid var(--orange); background: var(--orange-faint); }
+  .mstep.broken .ms { color: var(--orange); }
+  .legend { display: flex; gap: 22px; font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #46556b; margin-top: 9px; align-items: center; }
+  .sw { display: inline-block; width: 9px; height: 9px; border: 1px solid var(--orange); margin-right: 5px; vertical-align: -1px; }
+  .sw.f { background: var(--orange-faint); border-width: 1.5px; }
+
+  /* duo row: two diagnostic panels side by side */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* diagnostic · funnel */
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 2px; }
+  .ftier { position: relative; text-align: center; padding: 11px 0 9px; }
+  .ftier .fill { position: absolute; inset: 0; }
+  .ftier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ftier .tx { position: relative; }
+  .ftier .fv { font-size: 19px; font-weight: 800; }
+  .ftier .fl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #46556b; text-transform: uppercase; }
+  .ftier.t1 { width: 88%; } .ftier.t2 { width: 66%; } .ftier.t3 { width: 46%; }
+  .ftier .fill, .ftier .inner { clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .ftier .fill { background: var(--rule); }
+  .ftier.mid .fill { background: var(--orange); }
+  .ftier.mid .inner { background: var(--orange-faint); }
+  .ftier.mid .fv, .ftier.mid .fl { color: var(--orange); }
+  .fverdict { text-align: center; font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 8px; }
+
+  /* diagnostic · layer pyramid */
+  .pyr { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 2px; }
+  .ptier { position: relative; text-align: center; padding: 10px 0 8px; }
+  .ptier .fill { position: absolute; inset: 0; background: var(--rule); }
+  .ptier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ptier .tx { position: relative; }
+  .ptier .pv { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+  .ptier .pl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #46556b; text-transform: uppercase; }
+  .ptier.top { width: 40%; } .ptier.top .fill, .ptier.top .inner { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .ptier.top { padding-top: 22px; }
+  .ptier.mid { width: 66%; } .ptier.mid .fill, .ptier.mid .inner { clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%); }
+  .ptier.mid .fill { background: var(--orange); } .ptier.mid .inner { background: var(--orange-faint); }
+  .ptier.mid .pv, .ptier.mid .pl { color: var(--orange); }
+  .ptier.base { width: 88%; } .ptier.base .fill, .ptier.base .inner { clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+
+  /* diagnostic · before/after cards */
+  .ba { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .bacard { border: 1px solid var(--rule); background: #fff; padding: 10px 13px; }
+  .bacard .fl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .bacard .bt { font-weight: 700; font-size: 12.5px; margin-bottom: 5px; }
+  .bacard p { font-size: 11px; margin-bottom: 4px; }
+  .bacard b.was { color: var(--ink); } .bacard b.now { color: var(--orange); }
+
+  /* diagnostic · comparison bars */
+  .cbars { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+  .cbar { display: flex; align-items: center; gap: 10px; }
+  .cbar .cl { flex: 0 0 170px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: right; color: #46556b; }
+  .cbar .track { flex: 1; }
+  .cbar .bar { height: 20px; border: 1px solid var(--orange); background: var(--orange-faint);
+    display: flex; align-items: center; padding: 0 8px; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 1px; color: var(--orange); font-weight: 700; }
+  .cbar.max .bar { background: var(--orange); color: #fff; }
+
+  /* diagnostic · split/entity map */
+  .split { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .scard { border: 1px solid var(--rule); background: #fff; padding: 9px 11px; text-align: center; }
+  .scard .sv { font-weight: 800; font-size: 14px; }
+  .scard .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361; text-transform: uppercase; }
+
+  /* P06 · system cards grid */
+  .sysgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .icard { border: 1px solid var(--rule); background: #fff; padding: 11px 13px 9px; page-break-inside: avoid; }
+  .icard .iwin { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; }
+  .icard .iname { font-weight: 700; font-size: 13.5px; margin: 2px 0 9px; }
+  .ibody { display: grid; grid-template-columns: 55% 45%; gap: 4px 10px; }
+  .ichain { display: flex; flex-direction: column; align-items: stretch; }
+  .ichip { border: 1px solid var(--orange); background: #fff; font-family: var(--mono); font-size: 7.5px;
+    letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 5px 4px; color: var(--ink); }
+  .ichip.first { background: var(--orange-faint); border-width: 1.5px; color: var(--orange); font-weight: 700; }
+  .iarrow { text-align: center; color: var(--orange); font-size: 10px; line-height: 1.4; }
+  .inotes .nl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-top: 7px; }
+  .inotes .nl:first-child { margin-top: 0; }
+  .inotes p { font-size: 10px; line-height: 1.4; margin-bottom: 2px; }
+  .isolve { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 6px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange); text-transform: uppercase; }
+
+  /* P07 · gantt */
+  table.gantt { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.gantt th, table.gantt td { border: 1px solid var(--rule); padding: 5px 8px; }
+  table.gantt th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; background: #fff; }
+  table.gantt td.sysname { width: 17%; }
+  table.gantt td.sysname .gc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  table.gantt td.sysname .gn { font-weight: 700; font-size: 10.5px; }
+  .gbar { border: 1px solid var(--orange); background: var(--orange-faint); font-family: var(--mono);
+    font-size: 8px; letter-spacing: 0.8px; color: var(--ink); padding: 2px 7px; white-space: nowrap; overflow: hidden; }
+  .dwrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+  .dw { border: 1.5px solid var(--orange); background: #fff; padding: 9px 12px; font-size: 11px; }
+  .dw .dl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+  /* P08 · 2x2 matrix */
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); background: #fff; }
+  .quad { border: 1px solid var(--rule); padding: 10px 13px; min-height: 108px; }
+  .quad .qh { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #46556b;
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 7px; }
+  .mc { border: 1px solid var(--orange); background: #fff; padding: 4px 9px; margin-bottom: 5px; }
+  .mc .mcc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  .mc .mcn { font-weight: 700; font-size: 11px; }
+  .quad.build .mc { background: var(--orange-faint); border-width: 1.5px; }
+  .quad .qv { font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange);
+    text-transform: uppercase; margin-top: 4px; }
+  .axis { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; margin-top: 6px; display: flex; justify-content: space-between; }
+
+  /* P09 · guardrails swimlane */
+  .swim { border: 1px solid var(--rule); background: #fff; }
+  .lane { display: flex; border-top: 1px dotted var(--rule); }
+  .lane:first-child { border-top: none; }
+  .lanel { flex: 0 0 140px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); font-weight: 700; text-transform: uppercase; padding: 11px 0 11px 13px; }
+  .lanev { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 13px; border-left: 1px dotted var(--rule); }
+  .tag { border: 1px solid var(--rule); background: #fff; font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: 0.8px; padding: 3px 9px; }
+  .tag.never { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* P10 · next steps */
+  .igsteps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .igstep { display: flex; border: 1px solid var(--orange); background: #fff; page-break-inside: avoid; }
+  .igstep .n { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 11px; padding: 8px 10px; display: flex; align-items: flex-start; }
+  .igstep .b { padding: 7px 12px; font-size: 11px; }
+
+  /* footer strip, end of each infographic group */
+  .stripe { display: flex; border-top: 2px solid var(--ink); margin: 20px 0 4px; background: #fff; }
+  .scell2 { flex: 1; border-left: 1px dotted var(--rule); padding: 7px 12px; }
+  .scell2:first-child { border-left: none; }
+  .scell2 .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; }
+  .scell2 .sv { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+  .igtrace { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 12px; }
+
+  /* ================= PART B · IN-DEPTH BLUEPRINT COMPONENTS (unchanged v2) ================= */
+  .coverpage { page-break-before: always; page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase;
+    border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 12.5px; letter-spacing: 2.5px;
+    text-transform: uppercase; margin: 16px 0 32px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 32px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono);
+    font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 28px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 30px 0 16px; background: #fff;
+    page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 17px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 17px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  h3.sub { font-size: 14px; font-weight: 700; margin: 20px 0 6px; page-break-after: avoid; }
+  h3.sub .n { color: var(--orange); font-family: var(--mono); margin-right: 6px; }
+  .bp p { text-align: justify; }
+  p { margin-bottom: 11px; }
+  .pain { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 8px 0 16px; page-break-inside: avoid; }
+  .pain .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 2px; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 9px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .sys { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .sysbar { background: var(--orange); color: #fff; padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .sysbar .name { font-weight: 700; font-size: 14.5px; letter-spacing: 0.3px; }
+  .sysbar .code { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; }
+  .sysrow { display: flex; border-top: 1px dotted var(--rule); }
+  .sysrow:first-of-type { border-top: none; }
+  .syslbl { flex: 0 0 118px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; padding: 9px 0 9px 14px; }
+  .sysval { flex: 1; padding: 8px 14px 8px 10px; font-size: 12.5px; border-left: 1px dotted var(--rule); }
+  .sysval p { margin-bottom: 6px; }
+  .sysval p:last-child { margin-bottom: 0; }
+  .phase { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .phasehead { display: flex; align-items: stretch; }
+  .phnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .phtitle { padding: 7px 13px; font-weight: 700; font-size: 14.5px; flex: 1; display: flex; align-items: center; }
+  .phtag { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; }
+  .phbody { padding: 10px 14px 12px; border-top: 1px solid var(--rule); font-size: 12.5px; }
+  .phbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 8px; font-size: 12.5px; }
+  .done .dlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; font-weight: 700; margin-right: 6px; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 8px 13px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 13px; }
+  table.numbers tr { page-break-inside: avoid; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 10px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 13px; padding: 10px 13px; display: flex; align-items: flex-start; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; }
+  .noteblock { border: 1.5px dashed var(--orange); background: rgba(255,255,255,0.8);
+    padding: 13px 16px; margin: 16px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .noteblock .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 26px; border-top: 1.5px solid var(--orange);
+    padding-top: 12px; line-height: 1.8; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+  ul.tight { margin: 0 0 10px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  /* Rev B fit overrides */
+  .quad { min-height: 0; }
+  .ig .panel { margin: 16px 0 4px; }
+  .coverinner { padding: 30px 36px 20px; }
+  .coverbar { margin-bottom: 22px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin: 0 0 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  .covernote { margin-top: 16px; }
+  .bp { font-size: 12.5px; line-height: 1.55; }
+  .sys { margin: 11px 0; }
+
+  .ichip { padding: 3px 4px; }
+  .iarrow { line-height: 1.1; font-size: 9px; }
+  .icard { padding: 9px 11px 7px; }
+  .sysgrid { gap: 12px; }
+  .quad { padding: 8px 12px; }
+  .mc { padding: 3px 8px; margin-bottom: 4px; }
+  .bp p { margin-bottom: 9px; }
+  .sysval { padding: 6px 12px 6px 10px; font-size: 12px; }
+  .syslbl { padding: 7px 0 7px 12px; }
+  h3.sub { margin: 14px 0 5px; }
+  .pain { margin: 6px 0 12px; }
+  .sechead { margin: 22px 0 12px; }
+
+</style>
+
+</style>
+</head>
+<body>
+<!-- ############################ PART A · THE INFOGRAPHIC ############################ -->
+<div class="ig">
+
+  <div class="ighead">
+    <div class="ightitle">
+      <h1>Bhamchik Group &middot; Kokan Nirvana<br>AI Systems Blueprint &middot; Rev B</h1>
+      <div class="standfirst">One second-home brand, Kokan Nirvana Seashore property. 800 to 1000 leads a month, every call, message, visit and receipt done by hand. One Real Estate OS on Shubham&rsquo;s own code: a foundation and eight systems in four phases over twelve weeks, the lead flow first.</div>
+    </div>
+    <div class="igbox">
+      <span class="bl">Prepared for</span><br>
+      Shubham Manjunath Anvekar, Owner<br>
+      Blueprint audit 07.11.2026<br>
+      Working call 09.11.2026<br>
+      Rev B supersedes Rev A
+    </div>
+  </div>
+
+  <!-- P01 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">01</span><span class="ptitle">The Numbers</span><span class="ptag">Dashboard tiles &middot; as provided by client</span></div>
+    <div class="tiles">
+      <div class="tile"><div class="v">800 to 1000</div><div class="l">Leads a month</div></div>
+      <div class="tile hot"><div class="v">10 to 15</div><div class="l">Quotes a month</div></div>
+      <div class="tile"><div class="v">20 to 30</div><div class="l">Out of 100 quotes, orders</div></div>
+      <div class="tile"><div class="v">6</div><div class="l">Orders a month</div></div>
+      <div class="tile"><div class="v">3000000</div><div class="l">Average order value</div></div>
+      <div class="tile"><div class="v">2 to 3 month</div><div class="l">Sales cycle</div></div>
+      <div class="tile"><div class="v">10%</div><div class="l">Repeat customers</div></div>
+      <div class="tile"><div class="v">15</div><div class="l">Total headcount</div></div>
+      <div class="tile hot"><div class="v">50,000</div><div class="l">Meta ads a month (call-only, currency to confirm)</div></div>
+    </div>
+    <div class="pcap">800 to 1000 leads become 10 to 15 quotes: <b>roughly one or two in a hundred reach a quotation</b>, and nothing today shows which Meta spend brings the buyers who visit. Three of the form&rsquo;s figures do not sit together; section 05 lists them for Shubham to settle.</div>
+  </div>
+
+  <!-- P02 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">02</span><span class="ptitle">The Money Path Today</span><span class="ptag">Flowchart &middot; enquiry to final payment</span></div>
+    <div class="mpath" style="grid-template-columns: repeat(7, 1fr);">
+      <div class="mstep"><div class="mn">01</div><div class="mt">Come in CRM</div><div class="ms">meta, landing page, portal</div></div>
+      <div class="mstep broken"><div class="mn">02</div><div class="mt">Send details by watspp</div><div class="ms">typed by hand, no tutorial</div></div>
+      <div class="mstep broken"><div class="mn">03</div><div class="mt">5 to 6 follow up</div><div class="ms">call and whatsapp, from memory</div></div>
+      <div class="mstep broken"><div class="mn">04</div><div class="mt">Shedual to visit</div><div class="ms">phone calls, no calendar</div></div>
+      <div class="mstep"><div class="mn">05</div><div class="mt">Quotation</div><div class="ms">price stays with the owner</div></div>
+      <div class="mstep broken"><div class="mn">06</div><div class="mt">Token receipt</div><div class="ms">typed by hand, no ledger</div></div>
+      <div class="mstep"><div class="mn">07</div><div class="mt">All follow up</div><div class="ms">instalments, whoever remembers</div></div>
+    </div>
+    <div class="legend"><span><span class="sw f"></span>Named breakdown point</span><span><span class="sw"></span>Runs, but by hand</span><span>Seven stations, seven by hand: &ldquo;manually phone, manually message, manually receipt&rdquo;</span></div>
+  </div>
+
+  <!-- P03 + P04 -->
+  <div class="duo">
+    <div class="panel">
+      <div class="phead"><span class="pnum">03</span><span class="ptitle">Where The Volume Goes</span><span class="ptag">Funnel</span></div>
+      <div class="funnel">
+        <div class="ftier t1"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">800 to 1000</div><div class="fl">leads a month</div></div></div>
+        <div class="ftier t2 mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">10 to 15</div><div class="fl">quotes a month</div></div></div>
+        <div class="ftier t3"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">6</div><div class="fl">orders a month</div></div></div>
+      </div>
+      <div class="fverdict">The steep drop is the first step: lead to quotation</div>
+      <div class="mcap">Every lead gets the same hand-typed treatment, so speed and the tutorial are the first levers.</div>
+    </div>
+    <div class="panel">
+      <div class="phead"><span class="pnum">04</span><span class="ptitle">Who Holds The Work</span><span class="ptag">Pyramid &middot; org layers</span></div>
+      <div class="pyr">
+        <div class="ptier top"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Owner</div><div class="pl">every deal/operation/audit &middot; 7 to 10 h a week to build</div></div></div>
+        <div class="ptier mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Management</div><div class="pl">one sales manager &middot; no finance, admin or ops lead</div></div></div>
+        <div class="ptier base"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Execution</div><div class="pl">staff in office and on site, reporting by phone</div></div></div>
+      </div>
+      <div class="fverdict">Finance, HR and audit land on the owner</div>
+      <div class="mcap">Each system puts a named process where a manager would otherwise sit.</div>
+    </div>
+  </div>
+
+  <!-- P05 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">05</span><span class="ptitle">What Was Tried, And What Changes</span><span class="ptag">Before / after &middot; why Rev B exists</span></div>
+    <div class="ba">
+      <div class="bacard"><span class="fl">Tried</span><div class="bt">ChatGPT, Base44, Cloud, Gemini</div>
+        <p><b class="was">Was:</b> &ldquo;all trending AI tools&rdquo; opened, none wired to the CRM, WhatsApp API or Meta ads. Nothing on the money path changed.</p>
+        <p><b class="now">Now:</b> one Real Estate OS in Shubham&rsquo;s own code and database, built by him in Claude Code, step by step with Romana.</p></div>
+      <div class="bacard"><span class="fl">Rev A</span><div class="bt">A blueprint that read generic</div>
+        <p><b class="was">Was:</b> on the 09.11 call Shubham said the depth of his plan had not come through: the brand, the tutorials, the whole sales process.</p>
+        <p><b class="now">Now:</b> Kokan Nirvana is named, property tutorials get their own system, and Meta and the landing page feed one record.</p></div>
+      <div class="bacard"><span class="fl">Manual</span><div class="bt">Phone, message, receipt</div>
+        <p><b class="was">Was:</b> &ldquo;manually phone, manually message, manually receipt&rdquo; for every visit and every token.</p>
+        <p><b class="now">Now:</b> the flow sends details, tutorials, reminders and receipts; people make the calls and every price decision.</p></div>
+    </div>
+    <div class="pcap">Tools failed here because nothing was connected, so <b>the build starts with one record that every system reads</b>, not with another tool.</div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Business</span><span class="sv">Second homes &middot; Kokan Nirvana Seashore property</span></div>
+    <div class="scell2"><span class="sl">Sites</span><span class="sv">Office and on-site</span></div>
+    <div class="scell2"><span class="sl">Stack kept</span><span class="sv">CRM (parallel), WhatsApp API, Meta ads, portal, landing page</span></div>
+    <div class="scell2"><span class="sl">Stack added</span><span class="sv">Claude Max, GitHub, Supabase, Vercel, n8n</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">Current state</span></div>
+  </div>
+
+  <!-- P06 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">06</span><span class="ptitle">Recommended AI Systems</span><span class="ptag">Foundation + 8 systems &middot; one Real Estate OS</span></div>
+    <div class="sysgrid">
+
+      <div class="icard"><span class="iwin">F-00 &middot; Weeks 1&ndash;2</span><div class="iname">Kokan Nirvana Single Record</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Lead lands once</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Property, unit, visit linked</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Quote, token, receipt linked</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Staff owner named</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Every system reads it</div></div>
+          <div class="inotes"><span class="nl">Why first</span><p>&ldquo;crm of my own&rdquo;: the OS becomes the CRM.</p><span class="nl">Parallel run</span><p>Old CRM kept until the new record holds.</p></div></div>
+        <div class="isolve">Solves no single place for a lead</div></div>
+
+      <div class="icard"><span class="iwin">SYS-01 &middot; Weeks 1&ndash;3</span><div class="iname">Lead-to-Visit Flow</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Meta, landing page, portal lead</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Record + details in minutes</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Call task to staff</div><div class="iarrow">&darr;</div>
+          <div class="ichip">5 to 6 follow-ups, paused on reply</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Visit booked, reminded</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Quote parked for price</div></div>
+          <div class="inotes"><span class="nl">Runs on</span><p>n8n plus the WhatsApp API already paid for.</p><span class="nl">Guardrail</span><p>No price, discount or plan; owner fills price.</p></div></div>
+        <div class="isolve">Solves manual call, message, visit</div></div>
+
+      <div class="icard"><span class="iwin">SYS-02 &middot; Weeks 1&ndash;4 &middot; New</span><div class="iname">Property Tutorial Library</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">One pack per property</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Walkthrough video + location</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Units, FAQs, objections</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Owner approves pack</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Flow sends it at the right step</div></div>
+          <div class="inotes"><span class="nl">His words</span><p>&ldquo;हर एक प्रॉपर्टी का टिटोरियल&rdquo;, fully automated.</p><span class="nl">Guardrail</span><p>No price inside a pack.</p></div></div>
+        <div class="isolve">Solves details sent by hand</div></div>
+
+      <div class="icard"><span class="iwin">SYS-03 &middot; Weeks 1&ndash;2</span><div class="iname">Second Home Sales Skill</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Sales manager dictates</div><div class="iarrow">&darr;</div>
+          <div class="ichip">First reply, follow-ups written</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Objections answered once</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Owner signs the script</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Flows read it</div></div>
+          <div class="inotes"><span class="nl">Adoption</span><p>Two or three hours of the sales manager&rsquo;s words.</p><span class="nl">Lane</span><p>Writing only: runs beside the code.</p></div></div>
+        <div class="isolve">Solves each staff writing from memory</div></div>
+
+      <div class="icard"><span class="iwin">SYS-04 &middot; Weeks 3&ndash;6</span><div class="iname">Receipt and Ledger App</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Money lands in bank</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Owner or manager ticks</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Entered once</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Numbered receipt on WhatsApp</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Ledger + outstanding updated</div></div>
+          <div class="inotes"><span class="nl">Guardrail</span><p>Receipt only after the money has landed.</p><span class="nl">Adoption</span><p>Expenses entered with a bill photo.</p></div></div>
+        <div class="isolve">Solves no accounting system</div></div>
+
+      <div class="icard"><span class="iwin">SYS-05 &middot; Weeks 4&ndash;6</span><div class="iname">Payment Reminder Flow</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Instalment date near</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Ledger checked</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Reminder on WhatsApp</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Unpaid: flag to manager</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Receipt stops it</div></div>
+          <div class="inotes"><span class="nl">Guardrail</span><p>No waiver, extension or late charge by the flow.</p><span class="nl">Open input</span><p>Standard instalment schedule.</p></div></div>
+        <div class="isolve">Solves instalment follow-up by memory</div></div>
+
+      <div class="icard"><span class="iwin">SYS-06 &middot; Weeks 7&ndash;10</span><div class="iname">Funnel Board</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Leads by Meta campaign</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Calls, tutorials, visits</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Overdue follow-ups by name</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Quotation age</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Cost per lead, per visit</div></div>
+          <div class="inotes"><span class="nl">Guardrail</span><p>Ad spend changes are the owner&rsquo;s, never the board&rsquo;s.</p></div></div>
+        <div class="isolve">Solves no view of which spend brings visits</div></div>
+
+      <div class="icard"><span class="iwin">SYS-07 &middot; Weeks 7&ndash;10</span><div class="iname">Finance Board</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Ledger read in</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Paid, due, overdue by unit</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Salary, incentive, bills owed</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Running profit and loss</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Red mark: bank mismatch</div></div>
+          <div class="inotes"><span class="nl">Guardrail</span><p>Nothing moves from the board.</p><span class="nl">Open input</span><p>Incentive rules, signed once.</p></div></div>
+        <div class="isolve">Solves P&amp;L known only at year end</div></div>
+
+      <div class="icard"><span class="iwin">SYS-08 &middot; Weeks 9&ndash;12</span><div class="iname">Team Desk</div>
+        <div class="ibody"><div class="ichain">
+          <div class="ichip first">Roles signed by owner</div><div class="iarrow">&darr;</div>
+          <div class="ichip">15 logins, own pages</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Day opens: task page</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Day closes: summary</div><div class="iarrow">&darr;</div>
+          <div class="ichip">Leavers off in one click</div></div>
+          <div class="inotes"><span class="nl">Merged</span><p>Rev A Login Desk + Day Open and Close.</p><span class="nl">Guardrail</span><p>Every login and role change waits for the owner.</p></div></div>
+        <div class="isolve">Solves HR and tracking by phone</div></div>
+
+    </div>
+    <div class="pcap">Kept: <b>WhatsApp API</b>, <b>Meta ads</b>, <b>portal</b>, <b>landing page</b>; the <b>current CRM</b> runs beside the OS until the new record holds. Added for the build: <b>Claude Max</b>, <b>GitHub</b>, <b>Supabase</b>, <b>Vercel</b>, <b>n8n</b>. <b>Base44</b>: paid, not used in this build; keep or cancel after Phase 1.</div>
+  </div>
+
+  <!-- P07 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">07</span><span class="ptitle">Implementation Roadmap</span><span class="ptag">Gantt &middot; 4 phases &middot; twelve weeks from 10.11.2026</span></div>
+    <table class="gantt">
+      <tr><th>Phase</th><th colspan="2">P1 &middot; Leads to visits, by themselves</th><th>P2 &middot; Every rupee receipted</th><th colspan="2">P3 &middot; The two boards</th><th>P4 &middot; One desk for 15</th></tr>
+      <tr><th>System</th><th>Wk 1&ndash;2</th><th>Wk 3&ndash;4</th><th>Wk 5&ndash;6</th><th>Wk 7&ndash;8</th><th>Wk 9&ndash;10</th><th>Wk 11&ndash;12</th></tr>
+      <tr><td class="sysname"><span class="gc">F-00</span><span class="gn">Single Record</span></td><td><div class="gbar">One record, CRM imported</div></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-01</span><span class="gn">Lead-to-Visit Flow</span></td><td colspan="2"><div class="gbar">Meta + landing page in, details out in minutes</div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-02</span><span class="gn">Property Tutorial Library</span></td><td colspan="2"><div class="gbar">One tutorial pack per property</div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-03</span><span class="gn">Second Home Sales Skill</span></td><td><div class="gbar">Script signed</div></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-04</span><span class="gn">Receipt and Ledger App</span></td><td></td><td colspan="2"><div class="gbar">Every rupee entered once</div></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-05</span><span class="gn">Payment Reminder Flow</span></td><td></td><td></td><td><div class="gbar">Instalments chased</div></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-06</span><span class="gn">Funnel Board</span></td><td></td><td></td><td></td><td colspan="2"><div class="gbar">Leads to orders, cost per visit</div></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-07</span><span class="gn">Finance Board</span></td><td></td><td></td><td></td><td colspan="2"><div class="gbar">Cash, dues, P&amp;L daily</div></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-08</span><span class="gn">Team Desk</span></td><td></td><td></td><td></td><td></td><td colspan="2"><div class="gbar">15 logins, day opens and closes</div></td></tr>
+    </table>
+    <div class="dwrow" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="dw"><span class="dl">P1 done when</span>Every Meta, landing-page and portal lead is one record within minutes &middot; details and the right property tutorial sent without staff typing &middot; follow-ups and visit date on the record &middot; every quotation waits for the owner&rsquo;s price.</div>
+      <div class="dw"><span class="dl">P2 done when</span>Every token and instalment from week 5 has a numbered receipt sent after a tick, a ledger entry and an updated unit outstanding &middot; every instalment due is reminded without staff sending it.</div>
+      <div class="dw"><span class="dl">P3 done when</span>At 9 AM the owner and sales manager see leads by campaign, cost per visit, overdue follow-ups, quotation age, cash, dues and the month&rsquo;s P&amp;L without a phone call.</div>
+      <div class="dw"><span class="dl">P4 done when</span>All 15 have their own login and pages &middot; the day opens and closes with one summary &middot; manual chq report, quotation, follow up and deal tracking no longer sit with a person.</div>
+    </div>
+  </div>
+
+  <!-- P08 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">08</span><span class="ptitle">Why This Build Order</span><span class="ptag">2&times;2 matrix</span></div>
+    <div class="matrix">
+      <div class="quad build"><span class="qh">High impact &middot; runs without anyone changing</span>
+        <div class="mc"><span class="mcc">F-00</span><span class="mcn">Single Record</span></div>
+        <div class="mc"><span class="mcc">SYS-01</span><span class="mcn">Lead-to-Visit Flow</span></div>
+        <div class="mc"><span class="mcc">SYS-02</span><span class="mcn">Property Tutorial Library</span></div>
+        <div class="qv">&rarr; build first &middot; phase 1</div></div>
+      <div class="quad"><span class="qh">High impact &middot; needs people to change</span>
+        <div class="mc"><span class="mcc">SYS-03</span><span class="mcn">Second Home Sales Skill</span></div>
+        <div class="mc"><span class="mcc">SYS-04</span><span class="mcn">Receipt and Ledger App</span></div>
+        <div class="qv">&rarr; the sales manager&rsquo;s script, staff entering receipts</div></div>
+      <div class="quad"><span class="qh">Compounding &middot; needs clean data</span>
+        <div class="mc"><span class="mcc">SYS-05</span><span class="mcn">Payment Reminder Flow</span></div>
+        <div class="mc"><span class="mcc">SYS-06</span><span class="mcn">Funnel Board</span></div>
+        <div class="mc"><span class="mcc">SYS-07</span><span class="mcn">Finance Board</span></div>
+        <div class="qv">&rarr; after the record and the ledger hold</div></div>
+      <div class="quad"><span class="qh">Growth &middot; unblocks scaling</span>
+        <div class="mc"><span class="mcc">SYS-08</span><span class="mcn">Team Desk</span></div>
+        <div class="qv">&rarr; last, so the desk opens onto boards with figures</div></div>
+    </div>
+    <div class="axis"><span>&larr; low dependence on human change</span><span>high &rarr;</span></div>
+    <div class="pcap">Phase 1 ships the systems that run on leads already arriving and need <b>nobody to change how they work</b>. The Sales Skill runs beside them as a writing lane, because the flows read its words.</div>
+  </div>
+
+  <!-- P09 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">09</span><span class="ptitle">Guardrails</span><span class="ptag">Swimlane &middot; set by Shubham</span></div>
+    <div class="swim">
+      <div class="lane"><div class="lanel">AI acts alone</div><div class="lanev">
+        <span class="tag">MANAGE SALE FUNNEL</span><span class="tag">GENERATE AI AGENT FOR MANAGE ALL THIS WITH POSSIBLE</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Human signs off</div><div class="lanev">
+        <span class="tag">PRICE OR ANY FINANCIAL DECISION</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Never automated</div><div class="lanev">
+        <span class="tag never">NOT SET: THIS ANSWER WAS LEFT BLANK</span><span class="tag never">CAREFUL DEFAULT: HIRING, LETTING GO, ROLE OR ACCESS CHANGES, INCENTIVE RULES STAY WITH THE OWNER AND SALES MANAGER</span>
+      </div></div>
+    </div>
+    <div class="pcap">Every flow stops at price, discount, payment plan, token amount, salary, incentive and any payment: it drafts, parks and waits. <b>Running costs are listed system by system</b> in the Systems, Costs and Automation Guide that ships with this revision.</div>
+  </div>
+
+  <!-- P10 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">10</span><span class="ptitle">Next Steps</span><span class="ptag">Immediate actions</span></div>
+    <div class="igsteps">
+      <div class="igstep"><div class="n">01</div><div class="b"><b>Confirm or correct Rev B,</b> especially the Meta spend currency, what &ldquo;before DEC&rdquo; means, and the three figures in section 05. Owner.</div></div>
+      <div class="igstep"><div class="n">02</div><div class="b"><b>Buy Claude Max and hold the build</b> until the live setup session with Romana; laptop and connection ready. Owner.</div></div>
+      <div class="igstep"><div class="n">03</div><div class="b"><b>Gather one tutorial pack per property:</b> photos, a phone walkthrough, location, unit list, brochure. Owner with sales manager.</div></div>
+      <div class="igstep"><div class="n">04</div><div class="b"><b>Export the CRM leads and name the CRM;</b> give admin access to Meta ads, the landing page form and the WhatsApp API provider. Owner.</div></div>
+      <div class="igstep"><div class="n">05</div><div class="b"><b>Dictate the sales script:</b> first reply, 5 to 6 follow-ups, visit pitch, objections, in weeks 1 to 2. Sales manager.</div></div>
+      <div class="igstep"><div class="n">06</div><div class="b"><b>Write the instalment schedule, receipt format and incentive rules</b> before week 3; P2 cannot start without them. Owner.</div></div>
+      <div class="igstep"><div class="n">07</div><div class="b"><b>Decide the third guardrail,</b> what is never automated, in your own words. Owner.</div></div>
+    </div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Scope</span><span class="sv">1 foundation + 8 systems &middot; 4 phases</span></div>
+    <div class="scell2"><span class="sl">Window</span><span class="sv">Twelve weeks from 10.11.2026</span></div>
+    <div class="scell2"><span class="sl">Sources</span><span class="sv">Systems Brief, Rev A, call 09.11.2026</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">The build</span></div>
+  </div>
+  <div class="igtrace">Every item traces to the Systems Brief, the Rev A blueprint audit (07.11.2026) or the working call (09.11.2026) &middot; unknowns are named, not guessed &middot; the in-depth blueprint follows</div>
+
+</div>
+
+<!-- ############################ PART B · IN-DEPTH ############################ -->
+<div class="bp">
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Client Blueprint</span></div>
+    <h1 class="cover">AI SYSTEMS<br><span class="accent">BLUEPRINT</span> <span style="font-size:24px;">&middot; REV B</span></h1>
+    <div class="coversub">Bhamchik Group &middot; Kokan Nirvana Seashore property &nbsp;&middot;&nbsp; Prepared for <b>Shubham Manjunath Anvekar</b>, Owner</div>
+    <div class="flow">
+      <span class="chip">Lead in</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Details + tutorial</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Follow-ups</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Site visit</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Quotation</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Token receipt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Instalments</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Business</span>Real Estate, for 2nd home buyer: Kokan Nirvana Seashore property, under Bhamchik Group. HandCraft and Construction are group lines outside this document, on the owner&rsquo;s instruction: &ldquo;BUT I M DOING FOR REAL ESTATE&rdquo;.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Current Stack</span>CRM, WhatsApp API, Meta ads, portal, landing page (call), Base44 subscription (call). Added for the build: Claude Max, GitHub, Supabase, Vercel, n8n.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Prepared by</span>BuildOur AI &middot; AI expert Romana Parkar</td>
+        <td><span class="lbl">Sources</span>Systems Brief &middot; Rev A blueprint audit (07.11.2026) &middot; working call (09.11.2026, recording and summary)</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Systems Specified</span>1 foundation + 8 systems in 4 phases, one Real Estate OS</td>
+        <td><span class="lbl">Deadline Anchor</span>Before DEC (form); Phase 1 lands in weeks 1 to 3, inside November 2026</td>
+      </tr>
+      <tr><td colspan="2"><span class="lbl">Build model</span>Built by Shubham on his own Claude Max, in Claude Code, with several sessions running side by side, following the Kokan Nirvana Starter Guide and Continue Building Guide. Romana leads the first setup live on a shared screen.</td></tr>
+    </table>
+    <div class="covernote">Rev B supersedes Rev A (07.11.2026). Every change in this revision traces to the working call of 09.11.2026.<br>Sheets 1&ndash;3 are the one-shot capture &middot; every recommendation traces to the sources above</div>
+  </div></div>
+</div>
+
+<!-- 00 -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">EXECUTIVE SUMMARY</div><div class="sectag">Overview</div></div>
+<p>&ldquo;Need to do sales and marketing setup for our company. CRM setup needs to do crm of my own and a follow-up system for customers, from generating leads to handing over the product to the customer retention process.&rdquo; Shubham wrote that in his Systems Brief, and on the working call of 09.11.2026 he made it specific: the business is <b>Kokan Nirvana Seashore property</b>, a second-home brand inside Bhamchik Group, and what he wants is a real estate operating system that runs the whole sales process (paraphrase), with a tutorial for every property, &ldquo;पूरा एटोमेटेड&rdquo;.</p>
+<p>Today 800 to 1000 leads a month arrive from Meta ads, the landing page and the portal, and every one of them is worked by hand: &ldquo;विजिट के लिए हम मैन्योली फोन लगाते मैन्योली मैसेज करते मैन्योली रिसिट बेजते&rdquo;. Ten to fifteen of them reach a quotation. There is no accounting system, no login for the 15 people, and the owner personally handles every deal, operation and audit.</p>
+<p>This revision makes five structural changes, each traceable to the 09.11 call: (1) the brand and the goal are named, and every system now serves Kokan Nirvana; (2) a new system, the <b>Property Tutorial Library</b>, carries the tutorials he asked for; (3) the build is his own Real Estate OS in his own code and database, so the record becomes &ldquo;crm of my own&rdquo; and the current CRM runs beside it until the new one holds; (4) <b>n8n</b> becomes the automation layer for Meta leads, WhatsApp sends and schedules; (5) Rev A&rsquo;s Login Desk and Day Open and Close Routine merge into one <b>Team Desk</b> for HR. The result is one foundation and eight systems in four phases over twelve weeks, with the lead flow live in weeks 1 to 3, inside his &ldquo;before DEC&rdquo; anchor.</p>
+<p>It is built by Shubham himself, on his own Claude Max subscription, with several Claude Code sessions running side by side, one per system. Three companion documents ship with this revision: the Starter Guide (day 1, with Romana), the Continue Building Guide (every sitting after), and the Systems, Costs and Automation Guide (what each system costs to run, how the AI agents are built, and what n8n automates).</p>
+
+<!-- 01 delta -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">WHAT CHANGED SINCE REV A</div><div class="sectag">Delta record</div></div>
+<p>Rev A&rsquo;s current state (money path, funnel, people map, tools tried) remains valid and is carried in panels 01 to 05. This section records only what is new on file from the working call of 09.11.2026. The call ran in Hindi, Marathi and English and its transcript is garbled in places; quotes below are verbatim where the transcript is clean, and marked <em>(paraphrase)</em> where it is not.</p>
+
+<h3 class="sub"><span class="n">1.1</span>The brand and the goal, named <em>(call-only)</em></h3>
+<p>&ldquo;So I focus the real estate, which is Kokan Nirvana Seashore property. So that second home selling business for real estate.&rdquo; Bhamchik Group holds real estate, handcraft, construction and a rent-out facility the group is &ldquo;going to explore&rdquo;; Shubham&rsquo;s focus is Kokan Nirvana. The transcript renders the location being promoted as &ldquo;Dappul&rdquo;; the spelling is for Shubham to confirm. What he asked for is one system for the whole sales process, an operating system for this one brand (paraphrase). Rev A described a generic second-home funnel; Rev B names the brand on every system.</p>
+<div class="pain"><span class="plbl">Pain</span>&ldquo;Shubham&rsquo;s blueprint is too generic for his specific goal&rdquo; (call summary): the depth of the plan in his head did not reach Rev A.</div>
+
+<h3 class="sub"><span class="n">1.2</span>The sales path, in his words</h3>
+<p>The call confirms Rev A&rsquo;s seven stations and says plainly which ones hurt: &ldquo;अभी हम लोग सब मैन्योली रे रहे&rdquo;, then &ldquo;विजिट के लिए हम मैन्योली फोन लगाते मैन्योली मैसेज करते मैन्योली रिसिट बेजते&rdquo;. The visit is set up by phone, the details go by hand-typed message, and the receipt is made and sent by hand. These map to stations 02, 04 and 06 on panel 02.</p>
+<div class="pain"><span class="plbl">Pain</span>Every one of 800 to 1000 leads a month is phoned, messaged and later receipted by hand, so speed depends on who is free.</div>
+
+<h3 class="sub"><span class="n">1.3</span>Property tutorials, new <em>(call-only)</em></h3>
+<p>&ldquo;हर एक प्रॉपर्टी का टिटोरियल बनाऊंगा और पूरा एटोमेटेड रहेगा&rdquo;: a tutorial for every property, and fully automated. This is new since Rev A, where project details were a WhatsApp message. Rev B gives it its own system (SYS-02): each property has one approved pack, and the Lead-to-Visit Flow sends the right pack at the right step without anyone typing.</p>
+<div class="pain"><span class="plbl">Pain</span>A second-home buyer decides from far away; today the only material reaching them is whatever a staff member types that day.</div>
+
+<h3 class="sub"><span class="n">1.4</span>Where the leads come from: Meta ads and a landing page <em>(call-only)</em></h3>
+<p>The call adds two facts. A landing page exists (&ldquo;We have landing page.&rdquo;), and Meta ads run at &ldquo;month of $50,000 investment&rdquo;. The transcript writes the currency as dollars; for a ₹10 to 50 lakh a month business that is far more likely to be ₹50,000, and it is listed in section 05 to confirm, not corrected here. Either way, nothing today shows which campaign brings buyers who actually visit, which is what SYS-06 is for.</p>
+
+<h3 class="sub"><span class="n">1.5</span>The build model: his own Claude Max, several sessions at once <em>(call-only)</em></h3>
+<p>Shubham builds the OS himself in Claude Code, with Romana guiding the first setup live on a shared screen, and does not start before that session. The call agreed a Claude Max subscription for the first month, because Max allows several Claude Code sessions to run together without stalling, and Pro would run out after a couple of sessions (paraphrase). <b>Correction to the record:</b> the call summary states the Max plan at &ldquo;$10,000/month&rdquo;. Claude Max is billed at about $100 a month (Max 5x) or $200 a month (Max 20x), roughly ₹10,000 or ₹20,000 with GST, so the summary&rsquo;s figure reads as rupees, not dollars. The Systems, Costs and Automation Guide carries the exact line.</p>
+
+<h3 class="sub"><span class="n">1.6</span>Tools already paid for <em>(call-only)</em></h3>
+<p>Beyond Rev A&rsquo;s list (ChatGPT, Base44, Cloud, Gemini), the call confirms a running <b>Base44</b> subscription (&ldquo;just have a subscription. base 44&rdquo;) and no Claude subscription yet. Base44 is a no-code app builder; this build does not use it, so whether to keep paying is Shubham&rsquo;s decision after Phase 1.</p>
+
+<h3 class="sub"><span class="n">1.7</span>One centre for leads, HR and accounting <em>(call-only)</em></h3>
+<p>The call returns to the form&rsquo;s central dashboard: lead management, HR and accounting in one place, every employee logging in to their own page (paraphrase), and on accounts, &ldquo;Accounting is not happening.&rdquo; Rev A already carried this across its finance and desk systems. Rev B keeps them and merges the two desk systems into one Team Desk, because they share one login and one daily routine.</p>
+
+<h3 class="sub"><span class="n">1.8</span>n8n as the automation layer</h3>
+<p>BuildOur&rsquo;s notes of the call record that Shubham wants to automate with n8n; the transcript does not carry the word legibly, so this rests on those notes. Rev B adopts it where it fits: n8n runs the pipes (Meta lead intake, WhatsApp sends, schedules, reminders), the app holds the record and the screens, and anything that calculates money stays in tested code. Claude Code writes each n8n workflow as a file Shubham imports.</p>
+
+<!-- 02 systems -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">RECOMMENDED AI SYSTEMS</div><div class="sectag">Foundation + 8 systems</div></div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA SINGLE RECORD</span><span class="code">F-00 &middot; FOUNDATION</span></div>
+  <div class="sysrow"><div class="syslbl">What it is</div><div class="sysval"><p>The Real Estate OS&rsquo;s one database: every lead, property, unit, site visit, quotation, token, instalment, receipt and staff member, each stored once and linked. <code class="f">lead &rarr; property &rarr; visit &rarr; quotation &rarr; token &rarr; instalments &rarr; handover</code>. The current CRM&rsquo;s leads are imported once, and the CRM runs beside the OS until the new record holds.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Why first</div><div class="sysval"><p>&ldquo;CRM setup needs to do crm of my own&rdquo;. Every later system reads and writes this record; built once, it lets several systems be built at the same time without each keeping its own copy.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Open input</div><div class="sysval"><p>The CRM&rsquo;s name, and an export of its leads (section 06).</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA LEAD-TO-VISIT FLOW</span><span class="code">SYS-01 &middot; FIRST DOMINO</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>A new lead from Meta lead ads, the landing page form, the portal or a walk-in becomes a record within minutes. The WhatsApp API sends the project details and the matching property tutorial in the Kokan Nirvana script, and a call task lands with the assigned staff member. The 5 to 6 follow-ups go out on set days and pause when the lead replies. When the lead says yes to a visit, slots are offered, booked, confirmed and reminded the day before. After the visit, the quotation is drafted with the price line blank and parked for the owner. <code class="f">lead &rarr; details + tutorial &rarr; call task &rarr; follow-ups &rarr; visit &rarr; quotation parked</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.2: &ldquo;मैन्योली फोन लगाते मैन्योली मैसेज करते&rdquo;; Rev A station 02 to 04.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>No price, discount, payment plan or token amount is ever set by the flow; the owner fills the price and taps approve. Messages use only templates the owner has signed.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Build</div><div class="sysval"><p>App screens and record in Next.js and Supabase; Meta intake, WhatsApp sends and the follow-up schedule in n8n.</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA PROPERTY TUTORIAL LIBRARY</span><span class="code">SYS-02 &middot; NEW IN REV B</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>One tutorial pack per property: a short walkthrough video (recorded on a phone, or produced with an AI video tool if Shubham chooses), location and distance from the city, unit or plot options, maintenance and rental-yield answers, and FAQs. AI drafts the script and the FAQ from the brochure and the Sales Skill; the owner approves each pack once. The Lead-to-Visit Flow sends the right pack automatically: on first contact, before a visit, and to a quiet lead. <code class="f">property &rarr; pack drafted &rarr; owner approves &rarr; sent by the flow &rarr; opened? logged</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.3: &ldquo;हर एक प्रॉपर्टी का टिटोरियल बनाऊंगा और पूरा एटोमेटेड रहेगा&rdquo;.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>No price, offer or payment plan appears in any pack; those stay in the quotation the owner fills.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Open input</div><div class="sysval"><p>The list of Kokan Nirvana properties and their material (section 06, step 03).</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA SECOND HOME SALES SKILL</span><span class="code">SYS-03</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>The written sales rulebook the flows read: the questions for a new lead, the first WhatsApp reply, the 5 to 6 follow-ups spaced across the 2 to 3 month cycle, the visit pitch, the post-visit note, the handover checklist, the retention touches for the 10% who come back, and Kokan Nirvana&rsquo;s answers to the second-home objections (maintenance, rental yield, distance from the city).</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Rev A: each staff member writing their own WhatsApp messages from memory, with no fixed script from lead to handover.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Any price, offer or payment plan in a drafted message is typed in by the owner or sales manager before it goes out.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Adoption</div><div class="sysval"><p>Two or three hours of the sales manager dictating in weeks 1 to 2. It is a writing lane: it runs in its own session beside the code from day 1.</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA RECEIPT AND LEDGER APP</span><span class="code">SYS-04</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>When money lands in the Bhamchik bank account and the owner or sales manager ticks it, the receipt is entered once: customer, unit, amount, mode, date. A numbered receipt PDF goes out on WhatsApp, the credit is posted to the ledger and the unit&rsquo;s outstanding updates. Salary, incentive, brokerage, site and office expenses are entered with a photo of the bill. <code class="f">money lands &rarr; tick &rarr; entered once &rarr; receipt sent &rarr; ledger + outstanding</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.2 &ldquo;मैन्योली रिसिट बेजते&rdquo;; &sect;1.7 &ldquo;Accounting is not happening.&rdquo;; the form&rsquo;s &ldquo;No accounting system in our company&rdquo;.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>A receipt is generated only after a person ticks that the money has actually landed. Receipt numbers and totals are calculated by tested code, never by AI.</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA PAYMENT REMINDER FLOW</span><span class="code">SYS-05</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Runs off each unit&rsquo;s instalment schedule in the ledger. Before a due date it checks nothing has been received, sends the reminder with name, unit, amount and date on WhatsApp, sends a second reminder if the date passes and flags the unit to the sales manager and owner, and stops the moment a receipt is generated.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Rev A station 07: instalment follow-up by whoever remembers.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Any extension, waiver, late charge or change to an amount is never sent by the flow; the owner writes it.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Open input</div><div class="sysval"><p>The standard instalment schedule for a sale (section 06, step 06).</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA FUNNEL BOARD</span><span class="code">SYS-06</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>One screen for the owner and sales manager: leads by Meta campaign, landing page and portal; calls made, tutorials sent and opened, visits booked, quotations out and their age; overdue follow-ups by staff name; handovers and retention touches due; cost per lead and per visit by campaign, read from the Meta ad account.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.4 and Rev A: no view of which campaign brings buyers who visit; the owner checking every deal by phone.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Any change to Meta ad spend is made by the owner, never by the board.</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA FINANCE BOARD</span><span class="code">SYS-07</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Built on the ledger: cash in bank, money due this week and month unit by unit, salary and incentive owed, brokerage and site bills, a running profit and loss for the month, and a red mark wherever the ledger and the bank disagree.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>The form&rsquo;s &ldquo;all credit debit entry / profit &amp; loss&rdquo; and the owner auditing every deal personally.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Nothing moves from the board. Any payment, release of incentive or change to a schedule happens only when the owner marks it approved.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Open input</div><div class="sysval"><p>The incentive rules, written and signed once before any incentive figure is drafted.</p></div></div>
+</div>
+
+<div class="sys">
+  <div class="sysbar"><span class="name">KOKAN NIRVANA TEAM DESK</span><span class="code">SYS-08 &middot; MERGED IN REV B</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>The roles and access sheet, signed by the owner (owner, sales manager, staff; office and on-site); a login for each of the 15 with only their own pages; a task page refreshed each morning; one WhatsApp nudge to anyone not logged in by the set time; undone items rolled forward each evening and a day-close summary to the owner and sales manager; leaving staff switched off in one click. Merges Rev A&rsquo;s Login Desk and Day Open and Close Routine.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>The form&rsquo;s &ldquo;one central dashboard for my company... employee login to dashboard user ID and password&rdquo; and &sect;1.7.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Every new login, role change and access to finance pages waits for the owner&rsquo;s approval. No staff page shows a money figure.</p></div></div>
+</div>
+
+<div class="noteblock"><span class="nlbl">Note: the existing stack</span>
+<p><b>WhatsApp API:</b> kept; every customer message goes from it. <b>Meta ads:</b> kept; leads come in through n8n and spend is read for the Funnel Board. <b>Portal and landing page:</b> kept as lead sources; their forms feed the record. <b>Current CRM:</b> runs beside the OS until the new record has held for a full month, then Shubham decides whether to keep paying. <b>Base44:</b> paid, not used in this build; keep or cancel after Phase 1. <b>ChatGPT, Gemini:</b> not part of the build. <b>Added:</b> Claude Max (to build), GitHub (code), Supabase (database), Vercel (app online), n8n (automations).</p></div>
+
+<div class="noteblock"><span class="nlbl">AI employees &middot; months 4 to 9, after the record is clean</span>
+<p>Carried from Rev A, unchanged in purpose: <b>Lead Qualifier</b> (tags each lead hot, warm or cold on rules the sales manager sets), <b>Funnel Keeper</b> (8 AM overdue lists per staff member, reads lead replies, answers project questions from the Sales Skill, 6 PM report), <b>Munshi</b> (evening bookkeeping, monthly salary and incentive drafts, P&amp;L draft), <b>Desk Keeper</b> (answers staff on where things are, nudges once, evening report). Each runs on the Claude API, billed apart from Claude Max; how they are built and what they cost is in the Systems, Costs and Automation Guide.</p></div>
+
+<div class="noteblock"><span class="nlbl">Deferred by client decision &middot; parked, not dropped</span>
+<p><b>D-01 HandCraft and Construction.</b> &ldquo;BUT I M DOING FOR REAL ESTATE&rdquo;. Re-entry: after month 9, only once the Funnel Board has been reviewed against the owner&rsquo;s own figures. <b>D-02 Rent-out facility.</b> Named on the call as &ldquo;going to explore&rdquo;. Re-entry: when Shubham decides to start it; the Single Record is built so it can carry rentals later.</p></div>
+
+<!-- 03 roadmap -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">IMPLEMENTATION ROADMAP</div><div class="sectag">4 phases &middot; before DEC for phase 1</div></div>
+<p>Sequenced for <b>7 to 10 hours a week</b> of the owner&rsquo;s time, the form&rsquo;s anchor <b>before DEC</b>, and a build that Shubham runs himself in Claude Code from the live setup on 10.11.2026. The critical path is the Single Record: no system can be built until its core tables exist, which takes the first sittings of week 1. After that, Claude Max lets him run up to three sessions side by side, one per system, so P1&rsquo;s three systems are built together and land in weeks 1 to 3. The sales manager is the second person the plan depends on, for the script in weeks 1 to 2.</p>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P1</div><div class="phtitle">LEADS TO VISITS, BY THEMSELVES</div><div class="phtag">F-00 + SYS-01 + SYS-02 + SYS-03 &middot; weeks 1&ndash;3</div></div>
+  <div class="phbody"><p><b>Why first:</b> it runs on the 800 to 1000 leads already arriving, needs nobody to change how they work, and removes the most hand work on the sheet. Messages are drafted for approval in week 1 and go out on their own only after five real leads have passed.</p>
+  <div class="done"><span class="dlbl">Done when</span>Every new lead from Meta, the landing page and the portal exists as one record within minutes, has received the project details and the right property tutorial on WhatsApp without staff typing, and its follow-ups and visit date are visible on that record; every quotation is parked waiting for the owner&rsquo;s price.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P2</div><div class="phtitle">EVERY RUPEE RECEIPTED AND CHASED</div><div class="phtag">SYS-04 + SYS-05 &middot; weeks 3&ndash;6</div></div>
+  <div class="phbody"><p>Needs the instalment schedule, receipt format and incentive rules from the owner before week 3, and one named person on staff who enters receipts and expenses.</p>
+  <div class="done"><span class="dlbl">Done when</span>Every token and instalment received from week 5 onward has a numbered receipt sent after a tick, a ledger entry and an updated unit outstanding, and every instalment due has been reminded on WhatsApp without a staff member sending it.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P3</div><div class="phtitle">THE TWO BOARDS THE OWNER ASKED FOR</div><div class="phtag">SYS-06 + SYS-07 &middot; weeks 7&ndash;10</div></div>
+  <div class="phbody"><p>Two read-only boards on data the first two phases already write; they build well side by side in two sessions.</p>
+  <div class="done"><span class="dlbl">Done when</span>The owner and sales manager open the Funnel Board and the Finance Board at 9 AM and see leads by campaign, cost per visit, overdue follow-ups, quotation age, cash in bank, dues and the month&rsquo;s profit and loss without a single phone call.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P4</div><div class="phtitle">ONE DESK FOR ALL 15</div><div class="phtag">SYS-08 &middot; weeks 9&ndash;12</div></div>
+  <div class="phbody"><p>Last, so the desk opens onto boards that already carry figures; the roles sheet is signed first.</p>
+  <div class="done"><span class="dlbl">Done when</span>All 15 people have their own login and see only their role&rsquo;s pages, the day opens and closes with one summary to the owner, and the owner can point at the desk and say this is the big thing we started: manual chq report, quotation, follow up and deal tracking no longer sit with a person.</div></div></div>
+
+<!-- 04 guardrails -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">GUARDRAILS</div><div class="sectag">Set by Shubham, enforced by design</div></div>
+<div class="guard"><b>ALWAYS HUMAN SIGN-OFF:</b> &ldquo;PRICE OR ANY FINANCIAL DECISION&rdquo;.</div>
+<div class="guard"><b>AI MAY ACT ALONE ON:</b> &ldquo;MANAGE SALE FUNNEL&rdquo; &middot; &ldquo;GENERATE AI AGENT FOR MANAGE ALL THIS WITH POSSIBLE&rdquo;.</div>
+<div class="guard"><b>NEVER AUTOMATED: NOT ANSWERED.</b> The careful default applies until Shubham writes his own: hiring, letting go, changing a person&rsquo;s role or access, and writing the incentive rules stay with the owner and sales manager.</div>
+<div class="guard"><b>CUSTOMER-FACING:</b> not stated on the form. Until it is, customers receive only messages from templates the owner has signed, and nothing carrying a price, discount, payment plan or token amount goes out without a person.</div>
+<div class="guard"><b>ERROR PROTOCOL:</b> every action the system takes is written to a log nobody can edit; one switch turns all automatic sending off without code; a wrong message is fixed by changing the template, tested on five leads, then switched back on.</div>
+
+<!-- 05 numbers -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE NUMBERS</div><div class="sectag">Flagged, not resolved</div></div>
+<p>(1) <b>Quotes and orders:</b> 10 to 15 quotes a month at 20 to 30 out of 100 gives roughly 2 to 4 orders, not the 6 stated. (2) <b>Order value and turnover:</b> 6 orders at 3000000 each is about ₹1.8 crore a month, outside the ₹10 to 50 lakh band ticked on the form; either the order value, the order count or the band is off, or the figure counts booking value rather than money received. (3) <b>Leads to quotes:</b> 800 to 1000 leads producing 10 to 15 quotes is one or two in a hundred; not a contradiction, but the number that decides the first build. (4) <b>Meta spend, new:</b> &ldquo;month of $50,000 investment&rdquo; on the call; confirm the currency. (5) <b>Deadline, new:</b> &ldquo;before DEC&rdquo; with a twelve-week build from 10.11.2026; if DEC means December 2026, Phase 1 meets it and the rest follows; confirm. (6) <b>Headcount:</b> 15, against a people map of one owner, one sales manager and staff; the split by role is not stated.</p>
+<p>The funnel is steepest at the very first step, which is why Phase 1 is speed and material at first contact: the details and the tutorial within minutes, not a better quotation.</p>
+
+<!-- 06 next steps -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Detail behind panel 10</div></div>
+<p>Panel 10 carries all seven actions; the three below need detail the panel could not hold, numbered as on the panel.</p>
+<div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>Before the live setup:</b> Claude Max bought on the business email (Max 5x to start; move to Max 20x only if three sessions at once keep hitting the limit), laptop charged, a stable connection, the business email open, and the Rev B PDF and Starter Guide PDF downloaded. Do not start the setup alone; it runs on the call with Romana. Owner.</p></div></div>
+<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>One tutorial pack per property,</b> in a folder per property: name and location, distance from the city, unit or plot list with sizes (no prices), 10 to 20 photos, a 2 to 3 minute phone walkthrough video, the brochure PDF, and the five questions buyers ask most. Owner with sales manager.</p></div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>Data and access:</b> an export of the current CRM&rsquo;s leads as Excel or CSV (name, phone, source, campaign, date, stage, staff member, notes) and the CRM&rsquo;s name; admin access to the Meta ad account and lead forms; the landing page&rsquo;s form or the tool it is built on; the WhatsApp API provider&rsquo;s name, login and the message templates already approved. Owner.</p></div></div>
+
+<div class="traceline">Every item in this document traces to the Systems Brief, the Rev A blueprint audit (07.11.2026) or the working call of 09.11.2026 (recording and summary).<br>No figures added beyond those the client provided; unknowns are named, not guessed. Rev B supersedes Rev A in full.</div>
+
+</div>
+
+</body>
+</html>

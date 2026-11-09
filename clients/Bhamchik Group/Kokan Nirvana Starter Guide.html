@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kokan Nirvana Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BHA-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Kokan Nirvana · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Kokan Nirvana</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">KOKAN NIRVANA OS<br><span class="accent">STARTER GUIDE</span></h1>
+    <div class="coversub">Prepared for <b>Shubham Manjunath Anvekar</b>, Bhamchik Group. Day 1, done live with <b>Romana</b>: from a Claude Max account to <b>your own Real Estate OS online</b>, ready to build system by system.</div>
+    <div class="flow">
+      <span class="chip">Install</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">GitHub +<br>repo</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Supabase</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Starter<br>prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Vercel,<br>live</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose<br>the look</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Continue<br>building</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">What you finish with</span>Your Kokan Nirvana OS live on your phone at its own web address, with your login. Your code saved privately on GitHub. Your database on Supabase. The house rules and your guardrails written into the project. A list of things to start today. Your look chosen. Ready for the Continue Building Guide.</td></tr>
+      <tr><td colspan="2"><span class="lbl">The one rule for today</span><b>Do not start alone.</b> Do Steps 1 to 4 before the call if you like; do Step 5 onwards on the live call with Romana, on your own screen.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Your stack, fixed</span><b>Claude Code</b> writes the code &middot; <b>Next.js</b> is the app &middot; <b>Supabase</b> is the database &middot; <b>Vercel</b> puts it online &middot; <b>GitHub</b> keeps the code safe &middot; <b>n8n</b> runs the automations (connected later). All accounts are yours, on the business email.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The four documents</span>1 &middot; AI Systems Blueprint Rev B<br>2 &middot; This Starter Guide (day 1, once)<br>3 &middot; Continue Building Guide (every sitting after)<br>4 &middot; Systems, Costs and Automation Guide</td>
+        <td><span class="lbl">Time</span>About 3 hours on day 1. After that, your 7 to 10 hours a week.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-BHA-01 Rev B and the call of 09.11.2026.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS (a click in a browser or on your computer) &middot; PASTE TO CLAUDE CODE (copy the whole box)</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Five minutes, before any click</div></div>
+<p>You told us exactly what you want: one system for the whole Kokan Nirvana sales process, a tutorial for every property, and no more calling, messaging and sending receipts by hand. Your blueprint turns that into one foundation and eight systems. You will not build them all at once, and you will not build them one long system after another either: with Claude Max you can run <b>several Claude Code sessions side by side, one per system</b>, the way a site has one engineer per building.</p>
+<div class="note"><span class="nlbl">You need no coding knowledge</span>
+<p>Claude Code writes every line. Your job is three things only: open the accounts in your name, tell Claude your business rules in your own words, and check what it built against leads and units you know. When you do not understand something, type: <code class="f">explain this to me in simple words</code>. When something breaks, paste the error or a screenshot and type: <code class="f">explain this in simple words and fix it</code>.</p>
+</div>
+<div class="note"><span class="nlbl">Words you will see</span>
+<p><b>Repository (repo):</b> the private folder on GitHub where your code is kept, with every past version. <b>Session:</b> one Claude Code chat working on your project; you can have several open. <b>Deploy:</b> putting the latest version online. <b>Keys:</b> passwords that let your app talk to your database; they never go in a chat. <b>Branch:</b> a separate copy of the code where one session works without disturbing the others.</p>
+</div>
+<p><b>Cost on day 1:</b> Claude Max (you buy this), GitHub free, Supabase free, Vercel Pro about $20 a month for a business app. Everything else, and when it starts, is in the <b>Systems, Costs and Automation Guide</b>.</p>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Claude Max, and three installs on your laptop</b></p>
+<ol>
+<li><b>Claude Max.</b> On claude.ai, sign in with the business email, open <b>Settings &rarr; Billing</b> (or <b>Upgrade</b>) and choose <b>Max</b>. Start with <b>Max 5x</b> (about $100 a month); move to <b>Max 20x</b> (about $200) only if running three sessions at once keeps hitting the limit.</li>
+<li><b>The Claude desktop app</b> from claude.com/download. Install it and sign in with the same account. <b>Claude Code</b> is its <b>Code</b> tab.</li>
+<li><b>Node.js</b>: go to nodejs.org, download the <b>LTS</b> version, install, accept every default.</li>
+<li><b>Git</b>: go to git-scm.com, download for your computer, install, accept every default. (On a Mac it may offer to install itself the first time it is needed; say yes.)</li>
+</ol>
+<p>If any install gives trouble, carry on. In Step 5 Claude checks all of them and tells you exactly what to click.</p>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>GitHub: your account and your private repository</b></p>
+<ol>
+<li>Go to <b>github.com</b> and press <b>Sign up</b>. Use the business email, choose a password and a username (for example <code class="f">bhamchik</code>), and choose the <b>Free</b> plan.</li>
+<li>Turn on two-step login: click your photo (top right) &rarr; <b>Settings</b> &rarr; <b>Password and authentication</b> &rarr; <b>Enable two-factor authentication</b>, and follow the steps with an authenticator app on your phone. Save the recovery codes somewhere safe.</li>
+<li>Make the repository: press the <b>+</b> at the top right &rarr; <b>New repository</b>.
+  <ul>
+  <li><b>Repository name:</b> <code class="f">kokan-nirvana-os</code></li>
+  <li>Choose <b>Private</b>. This matters: your code stays visible only to you.</li>
+  <li>Leave <b>Add a README</b>, <b>.gitignore</b> and <b>license</b> all off. The repository must start empty.</li>
+  <li>Press <b>Create repository</b>.</li>
+  </ul></li>
+<li>Copy the web address of the page you land on. It looks like <code class="f">https://github.com/bhamchik/kokan-nirvana-os</code>. You will give it to Claude in Step 5.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Supabase: your database</b></p>
+<ol>
+<li>Go to <b>supabase.com</b>, press <b>Start your project</b>, then <b>Continue with GitHub</b>, and allow it.</li>
+<li>If it asks for an organization, name it <code class="f">Bhamchik Group</code> and pick the <b>Free</b> plan.</li>
+<li>Press <b>New project</b>. Name: <code class="f">kokan-nirvana</code>. Database password: press <b>Generate a password</b>, then copy it and save it somewhere safe (not in WhatsApp). Region: <b>South Asia (Mumbai)</b>. Press <b>Create new project</b> and wait two minutes.</li>
+<li>Open <b>Project Settings</b> (the gear at the bottom left) &rarr; <b>API Keys</b>, and keep this tab open. Claude will ask for three things one by one: the <b>Project URL</b> (looks like <code class="f">https://abcd.supabase.co</code>), the <b>publishable key</b> (starts <code class="f">sb_publishable_</code>) and the <b>secret key</b> (starts <code class="f">sb_secret_</code>; press <b>Reveal</b>, or create one if none is listed). If your screen shows the older names, use <b>anon</b> for the publishable key and <b>service_role</b> for the secret key.</li>
+</ol>
+<p>Treat the secret key like your bank password. It goes only into the place Claude names on your own computer, and into Vercel in Step 6.</p>
+</div></div>
+
+<!-- ================= STEP 4 ================= -->
+<div class="step"><div class="stepnum">STEP 4</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Vercel account, and your project folder</b></p>
+<ol>
+<li>Go to <b>vercel.com</b>, press <b>Sign Up</b>, choose <b>Continue with GitHub</b>, and allow it. When it asks for a plan, choose <b>Pro</b>: the free plan is for personal, non-commercial use only.</li>
+<li>On your laptop, make one folder for life: <code class="f">Documents\kokan-nirvana-os</code>. Every Kokan Nirvana system goes in here, never in a second folder.</li>
+<li>Inside it, make a folder called <code class="f">docs</code>. Put in it: the <b>Blueprint Rev B PDF</b>, this <b>Starter Guide PDF</b>, and the <b>Systems, Costs and Automation Guide PDF</b>. Keep the Continue Building Guide aside until Step 9.</li>
+<li>Inside <code class="f">docs</code>, make a folder called <code class="f">samples</code>, and put in whatever you have now: the CRM export, one real receipt you sent, one brochure. Anything missing goes on your START-NOW list in Step 5.</li>
+</ol>
+</div></div>
+
+<div class="guard"><b>STOP HERE.</b> Steps 5 to 9 happen on the live call with Romana, on your screen.</div>
+
+<!-- ================= STEP 5 ================= -->
+<div class="step"><div class="stepnum">STEP 5</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>The starter prompt.</b> Open the Claude desktop app, go to the <b>Code</b> tab, start a new session and choose the folder <code class="f">kokan-nirvana-os</code>. Attach <b>two files</b> to the message, the <b>Blueprint Rev B PDF</b> and this <b>Starter Guide PDF</b> (drag them into the chat box), then paste the whole box below. Replace the GitHub address in brackets with yours from Step 2.</p>
+</div></div>
+
+<div class="paste long"><span class="plbl">Paste &middot; The starter prompt (Main session)</span>
+<p>You are setting up the Kokan Nirvana OS, the real estate operating system for Kokan Nirvana Seashore property, the second-home brand of Bhamchik Group. I am Shubham Anvekar, the owner. I am not a programmer. Attached, and saved in docs/, are my AI Systems Blueprint Rev B and my Starter Guide. Read the Starter Guide first: its pages R1, R2 and R3 are written for you. This session is the <b>Main session</b>: it sets up the project, owns the database changes and later joins the other sessions&rsquo; work together. Work in six stages, in order. At the end of each stage, tell me in simple words what you did, then <b>stop and wait for my OK</b>. Ask me one question at a time whenever you need something only I have.</p>
+<p><b>Stage 1: Read.</b> Read the blueprint in full and the Starter Guide. Tell me in ten lines or fewer: what Kokan Nirvana is, my main pains, the foundation and the eight systems, and the order we build them. List the points the blueprint says I still have to settle. Do not settle any yourself.</p>
+<p><b>Stage 2: Set up.</b> (1) Check that Node.js and Git work; if not, tell me exactly what to download and click. (2) Create a Next.js app with TypeScript and Tailwind in this folder, and show me the local address to open. (3) Set up Git and make the first commit. The .gitignore must keep out .env.local, docs/samples and any export with customer phone numbers. (4) Connect this folder to my private GitHub repository at [paste your GitHub address here] and push. Walk me through any GitHub sign-in in the browser, step by step. (5) Create .env.local and ask me one at a time for my Supabase Project URL, publishable key and secret key; use the variable names in R3. Never repeat a key back to me, never write keys in any other file, never commit them. (6) Create CLAUDE.md holding page R2 of the Starter Guide word for word, plus the session rules in R3. Read them back to me in five lines.</p>
+<p><b>Stage 3: The foundation.</b> Build F-00 Kokan Nirvana Single Record as R3 describes: the core tables, sign-in, and Row Level Security. Write it as a migration file and give me exactly what to paste into the Supabase SQL Editor and where to click. Then add my owner login and confirm I can sign in on the local address.</p>
+<p><b>Stage 4: Start the clocks.</b> Create docs/START-NOW.md from page R1: each item with its owner, a start date and a tick box, longest first. For each, tell me the exact first action to take today. Start every future session by reading it and reminding me of anything not ticked.</p>
+<p><b>Stage 5: Go live.</b> Tell me the exact environment variable names for Vercel, then wait while I do Step 6 of the guide. When I give you the live address, confirm the app opens and tell me what to set in Supabase so sign-in works there.</p>
+<p><b>Stage 6: Plan the sessions.</b> Write docs/SESSIONS.md: the build order from the blueprint, which systems are built side by side in separate sessions (R3), and the branch name for each. Write one docs/build-sheets/ file per system for P1 (SYS-01, SYS-02, SYS-03), each listing what the system does, what it must never do (copied from the blueprint), the data it needs and its done-when. Write no feature code for them yet. Finish by telling me to choose the look (Step 7) and to switch to the Continue Building Guide.</p>
+</div>
+
+<!-- ================= STEP 6 ================= -->
+<div class="step"><div class="stepnum">STEP 6</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put it online with Vercel</b> <em>(when Claude reaches Stage 5)</em></p>
+<ol>
+<li>On vercel.com press <b>Add New&hellip; &rarr; Project</b>. Find <code class="f">kokan-nirvana-os</code> and press <b>Import</b>. If it is not in the list, press <b>Adjust GitHub App Permissions</b>, choose <b>Only select repositories</b>, pick <code class="f">kokan-nirvana-os</code>, save, and come back.</li>
+<li>Leave the framework as <b>Next.js</b> and the build settings exactly as Vercel fills them in.</li>
+<li>Open <b>Environment Variables</b> and add the three names Claude gave you, with the same three values from Supabase. Leave all environments ticked.</li>
+<li>Press <b>Deploy</b>. About two minutes later you see a picture of your app. Press it: your address ends in <code class="f">.vercel.app</code>. Copy it and give it to Claude.</li>
+<li>In Supabase: <b>Authentication &rarr; URL Configuration</b>. Set <b>Site URL</b> to your <code class="f">.vercel.app</code> address; under <b>Redirect URLs</b> add the same address followed by <code class="f">/**</code>. Press <b>Save</b>.</li>
+<li>Open the address on your phone, sign in, and choose <b>Add to Home Screen</b>.</li>
+</ol>
+<p>From now on, everything saved to the <b>main</b> branch goes live by itself in about two minutes. Work on other branches gets its own test address, so you can check it on your phone before it goes live.</p>
+</div></div>
+
+<!-- ================= STEP 7 ================= -->
+<div class="step"><div class="stepnum">STEP 7</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Choose the look, before the first real screen</b></p>
+<p>Claude builds what you say, but it designs what you show it. Show it nothing and your team gets the average of every app on the internet. Ten minutes now decides whether your staff open the OS or keep calling you.</p>
+<ol>
+<li><b>Collect.</b> On pinterest.com search <code class="f">minimalist UI design web app</code> and also <code class="f">real estate CRM dashboard minimal</code>. Download 10 to 15 screens your staff would understand at a glance. Skip anything crowded, dark or clever.</li>
+<li><b>Let the strongest model choose.</b> Open a new chat in the <b>Claude app</b> (Chat, not Code), choose the strongest model in the model list, attach every screenshot and paste the chooser prompt below.</li>
+<li><b>Get the direction in writing.</b> Upload only the winning one or two designs again and ask: <em>&ldquo;I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.&rdquo;</em> Download the .md file.</li>
+<li><b>Hand it over.</b> Save the images and the .md file in <code class="f">docs/design/</code>, then tell the Main session: <em>&ldquo;The design direction is in docs/design. Add a line to CLAUDE.md saying every screen in every session follows it.&rdquo;</em></li>
+</ol>
+</div></div>
+
+<div class="paste"><span class="plbl">Paste &middot; Claude app chat &middot; the chooser prompt</span>
+<p>I have shared some powerful, minimal UI designs with you. I am building the interface for my company: Kokan Nirvana Seashore property, a second-home real estate brand in the Konkan, part of Bhamchik Group. The screens are used by my sales staff on their phones in the office and at site visits, by my sales manager on a laptop, and by me on my phone to approve prices, see leads, visits and money, and check on my 15 people. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.</p>
+</div>
+<div class="guard"><b>IF THE DIRECTION COMES BACK TOO NARROW</b> (&ldquo;a CRM dashboard&rdquo;), correct it in one line: <em>&ldquo;This is not only a CRM. It is the operating system of Kokan Nirvana: leads, visits, tutorials, receipts, money and the team, everything.&rdquo;</em></div>
+
+<table class="numbers">
+<tr><th style="width:34%;">The five screen laws</th><th>Check every screen Claude shows you against these</th></tr>
+<tr><td><b>1 &middot; Nobody reads, everyone scans</b></td><td>The one thing the user must see first is the biggest and boldest thing on the screen.</td></tr>
+<tr><td><b>2 &middot; One screen, one job</b></td><td>One main button, visible without scrolling, in the one colour kept for action.</td></tr>
+<tr><td><b>3 &middot; Consistency is trust</b></td><td>The same thing looks the same on every screen.</td></tr>
+<tr><td><b>4 &middot; The default is the decision</b></td><td>What is filled in again and again is already filled in: today&rsquo;s date, the property, the staff member.</td></tr>
+<tr><td><b>5 &middot; Silence is an error</b></td><td>Every tap answers at once with a change, a tick or a message.</td></tr>
+</table>
+
+<!-- ================= STEP 8 ================= -->
+<div class="step"><div class="stepnum">STEP 8</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Learn the session buttons</b> <em>(two minutes, with Romana)</em></p>
+<ol>
+<li>In the Claude app&rsquo;s <b>Code</b> tab you can start a <b>new session</b> on the same folder while another is still working. Each session shows in the list on the left; click one to switch to it.</li>
+<li>Name each session after its job so you never mix them up: <code class="f">MAIN</code>, <code class="f">SYS-01 Lead flow</code>, <code class="f">SYS-02 Tutorials</code>, <code class="f">SYS-03 Sales script</code>.</li>
+<li>When Claude asks permission to run something, read the one line it shows. If you do not understand it, type <code class="f">what will this do, in simple words?</code> before saying yes.</li>
+</ol>
+<p>How the sessions share the work without stepping on each other is explained in the Continue Building Guide. You do not need to understand it; each session&rsquo;s prompt tells Claude what to do.</p>
+</div></div>
+
+<!-- ================= STEP 9 ================= -->
+<div class="step"><div class="stepnum">STEP 9</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Switch to the Continue Building Guide when all of this is true</b></p>
+<ul class="ticks">
+<li>The OS opens on your phone at its <code class="f">.vercel.app</code> address, you can sign in, and it is on your home screen.</li>
+<li>The GitHub repository <code class="f">kokan-nirvana-os</code> is <b>private</b>, and the three keys are only in <code class="f">.env.local</code> and Vercel.</li>
+<li><code class="f">CLAUDE.md</code> holds the rules from R2 and R3.</li>
+<li>The foundation tables show in Supabase&rsquo;s <b>Table Editor</b>.</li>
+<li><code class="f">docs/START-NOW.md</code> exists and every item has a named owner.</li>
+<li><code class="f">docs/SESSIONS.md</code> and the three P1 build sheets are written, and you have read and corrected them.</li>
+<li><code class="f">docs/design/</code> holds your chosen look.</li>
+</ul>
+</div></div>
+<div class="guard"><b>ALL SEVEN TICKED:</b> put the <b>Continue Building Guide PDF</b> into <code class="f">docs/</code>, and from your next sitting follow it. If one is not ticked, paste it into the Main session and say <em>&ldquo;fix this before we continue.&rdquo;</em></div>
+
+<!-- ================= R1 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">R1</div><div class="sectitle">THE CLOCKS: FOR docs/START-NOW.md</div><div class="sectag">Read by Claude Code in Stage 4</div></div>
+<p>Things that wait on a person or on an outside company. Each becomes a line in <code class="f">docs/START-NOW.md</code> with its owner, a start date and a tick box.</p>
+<table class="numbers">
+<tr><th style="width:5%;">#</th><th>Item</th><th style="width:20%;">Owner</th><th style="width:15%;">Needed for</th></tr>
+<tr><td>1</td><td><b>Confirm Rev B:</b> the Meta spend currency (&ldquo;$50,000&rdquo; on the call), what &ldquo;before DEC&rdquo; means, the three figures in the blueprint&rsquo;s section 05, and the third guardrail (what is never automated).</td><td>Shubham</td><td>Day 1</td></tr>
+<tr><td>2</td><td><b>CRM export and name:</b> every lead as Excel or CSV: name, phone, source, campaign, date, stage, staff member, notes.</td><td>Shubham</td><td>F-00, SYS-01</td></tr>
+<tr><td>3</td><td><b>WhatsApp API:</b> the provider&rsquo;s name, admin login, the business number, and which message templates Meta has already approved. New templates take minutes to a few days to approve, so list the first ones now: project details, follow-up 1 to 5, visit confirmation, visit reminder.</td><td>Shubham</td><td>SYS-01</td></tr>
+<tr><td>4</td><td><b>Meta access:</b> admin on the ad account and the Facebook page that owns the lead forms; the landing page&rsquo;s form or the tool it is built on.</td><td>Shubham</td><td>SYS-01, SYS-06</td></tr>
+<tr><td>5</td><td><b>One tutorial pack per property:</b> name, location, distance from the city, unit or plot list with sizes (no prices), 10 to 20 photos, a 2 to 3 minute phone walkthrough, the brochure, the five questions buyers ask most.</td><td>Shubham with sales manager</td><td>SYS-02</td></tr>
+<tr><td>6</td><td><b>The sales script, dictated:</b> first reply, 5 to 6 follow-ups over the 2 to 3 month cycle, the visit pitch, post-visit note, objections (maintenance, rental yield, distance).</td><td>Sales manager</td><td>SYS-03</td></tr>
+<tr><td>7</td><td><b>Visit slots:</b> which days and times site visits can happen, and who takes them.</td><td>Sales manager</td><td>SYS-01</td></tr>
+<tr><td>8</td><td><b>Money rules, written once:</b> the standard instalment schedule for a sale, the receipt format and numbering, the incentive rules. Before week 3.</td><td>Shubham</td><td>SYS-04, SYS-05, SYS-07</td></tr>
+<tr><td>9</td><td><b>One person who enters receipts and expenses</b> from week 3.</td><td>Shubham with sales manager</td><td>SYS-04</td></tr>
+<tr><td>10</td><td><b>An n8n account</b> (n8n.io, Cloud Starter), on the business email, when SYS-01 starts. The Continue Building Guide shows the clicks.</td><td>Shubham</td><td>SYS-01</td></tr>
+<tr><td>11</td><td><b>The 15 people:</b> name, role, office or site, mobile, for their own logins. Before week 9.</td><td>Shubham</td><td>SYS-08</td></tr>
+</table>
+</div>
+
+<!-- ================= R2 ================= -->
+<div class="sechead"><div class="secnum">R2</div><div class="sectitle">THE RULES: FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by Claude Code in Stage 2</div></div>
+<div class="paste long"><span class="plbl">Standing rules for everything ever built in this folder, in every session</span>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this folder, repository, database and app are the only ones Kokan Nirvana will ever have; every system is a new section of the same app reading the same leads, properties and logins. 2 &middot; EVERY PERSON THEIR OWN KEY: every team member has their own login and sees only what their work needs; the owner sees everything; no shared passwords. 3 &middot; A HUMAN YES BEFORE ANYTHING REACHES A CUSTOMER WITH MONEY IN IT: no price, discount, payment plan, token amount or commitment goes to a customer without the owner or sales manager approving it; customer messages use only templates the owner has signed; one switch turns all automatic sending off without code. 4 &middot; THE DIARY NOBODY CAN EDIT: every action the system takes is written to a log that can only be added to. 5 &middot; SECRETS STAY IN THE CUPBOARD: keys live only in .env.local, in Vercel&rsquo;s settings and in n8n&rsquo;s credentials, never in code, in chat or on GitHub. 6 &middot; MONEY IS CALCULATED, NEVER GUESSED: amounts, totals, instalments and receipt numbers come from exact tested code; AI reads, drafts, matches and reminds, and never invents a number. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>Kokan Nirvana rules.</b> Price or any financial decision is always signed off by a person: the flows draft, park and wait. AI may act alone only to manage the sale funnel (capture, record, send approved details and tutorials, schedule follow-ups and visits, remind, report) and to run the AI agents named in the blueprint within these rules. Until I write my third guardrail, hiring, letting go, changing a person&rsquo;s role or access, and writing incentive rules stay with me and the sales manager. A receipt is generated only after a person ticks that the money has landed in the bank. Payment reminders never offer an extension, waiver, late charge or changed amount. No property tutorial contains a price. Any change to Meta ad spend is mine, never the system&rsquo;s. The figures in the blueprint&rsquo;s section 05 are unconfirmed: never hard-code them. Customer phone numbers, exports and docs/samples never go to GitHub. The current CRM keeps running beside the OS until I say otherwise. Build in the blueprint&rsquo;s order; a system starts only when its build sheet is approved by me.</p>
+</div>
+
+<!-- ================= R3 ================= -->
+<div class="sechead"><div class="secnum">R3</div><div class="sectitle">THE BUILD BRIEF: FOR CLAUDE CODE</div><div class="sectag">Shubham can skip this page</div></div>
+<div class="brief"><h3>Stack and keys</h3>
+<p>Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres, Auth, Row Level Security) through <code class="f">@supabase/ssr</code> and <code class="f">@supabase/supabase-js</code>, deployed on Vercel from <code class="f">main</code>; branches get Vercel preview deployments. Automations run in n8n (Cloud), written by Claude Code as workflow JSON files in <code class="f">n8n/</code> for Shubham to import; n8n talks to the app through authenticated API routes, never straight to the secret key. Environment variables: <code class="f">NEXT_PUBLIC_SUPABASE_URL</code>, <code class="f">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code>, <code class="f">SUPABASE_SECRET_KEY</code> (legacy anon and service_role values must work in them), and later <code class="f">AUTOMATION_SHARED_SECRET</code> for n8n calls and <code class="f">ANTHROPIC_API_KEY</code> for the agents. Commit <code class="f">.env.example</code> with names only. Write a README.md a non-programmer can read.</p></div>
+<div class="brief"><h3>F-00 Single Record: the starting shape</h3>
+<p>Tables: <b>profiles</b> (one per login: name, role owner / sales_manager / staff / accounts, office or site, active); <b>properties</b> (name, location, distance, status); <b>units</b> (property, label, size, status; no price column until SYS-04); <b>leads</b> (name, phone, source meta / landing_page / portal / walk_in / crm_import, campaign, property interest, assigned staff, stage, next_followup_at, followup_step, needs_owner with reason, crm_ref); <b>visits</b>; <b>activities</b> (every call, message and note against a lead); <b>templates</b> (body, status draft / signed, signed_by); <b>settings</b> (auto_send off by default: the one switch); <b>audit_log</b> (append only, no update or delete for anyone). Row Level Security on every table: owner and sales manager see all; staff see their assigned leads. Stages follow the money path: new, details sent, follow-up, visit booked, visited, quotation parked, quotation sent, token, instalments, handed over, lost. Each later system adds its own tables in its own migration.</p></div>
+<div class="brief"><h3>Sessions: how several Claude Code sessions build at once</h3>
+<ul>
+<li><b>One Main session</b> owns <code class="f">main</code>, CLAUDE.md, docs/SESSIONS.md and the database. It applies migrations in order and merges finished work.</li>
+<li><b>One builder session per system</b>, at most three at a time. Each works only in its own git worktree on its own branch, <code class="f">sys-0N-short-name</code>, never on <code class="f">main</code>, and touches only its own folders: <code class="f">app/(sys-0N)/</code>, <code class="f">lib/sys-0N/</code>, <code class="f">n8n/sys-0N-*.json</code>.</li>
+<li>A builder never edits another system&rsquo;s files or an existing migration. It adds new tables or columns only in a new file <code class="f">supabase/migrations/&lt;timestamp&gt;_sys0N_&lt;what&gt;.sql</code>, and only adds, never drops or renames.</li>
+<li>Shared files (the sign-in, the menu, CLAUDE.md, shared types) change only in the Main session. A builder that needs one changed writes the request in <code class="f">docs/requests/</code> and tells Shubham.</li>
+<li>When a builder finishes a phase it commits, pushes its branch, writes a short handover in <code class="f">docs/handovers/sys-0N.md</code>, and tells Shubham to switch to the Main session to merge.</li>
+<li>The writing lane (SYS-03 Sales Skill, the tutorial scripts) writes only in <code class="f">docs/</code> and <code class="f">content/</code> and can run from day 1.</li>
+</ul></div>
+<div class="brief"><h3>How to work with Shubham</h3>
+<ul>
+<li>One step at a time, in simple words, one question at a time. Plan first and wait for his OK before writing files.</li>
+<li>End every phase with something he can open on his phone, and ask him to check one lead or unit he knows.</li>
+<li>Before any message to customers is switched to send by itself, run it on five real leads with a person pressing send.</li>
+<li>Before adding anything that costs money (an API key, a paid plan, a new service), tell him what it is, why, the monthly cost at his volume, and what happens if he says no. Wait for his yes.</li>
+<li>Close every sitting by writing a dated note in <code class="f">docs/sessions/</code>: done, next, open questions.</li>
+</ul></div>
+
+<div class="traceline">Prepared for Shubham Manjunath Anvekar &middot; Bhamchik Group &middot; Kokan Nirvana Seashore property &middot; traces to blueprint BOA-2026-BHA-01 Rev B<br>and the working call of 09.11.2026. Stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub, n8n.</div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kokan Nirvana Continue Building</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BHA-C1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Kokan Nirvana · Continue Building"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Kokan Nirvana</span><span>Continue Building &middot; Rev A</span></div>
+    <h1 class="cover">KOKAN NIRVANA OS<br><span class="accent">CONTINUE BUILDING</span></h1>
+    <div class="coversub">Prepared for <b>Shubham Manjunath Anvekar</b>. Every sitting after day 1: <b>several Claude Code sessions at once</b>, one per system, joined by one <b>Main session</b>, in the blueprint&rsquo;s order.</div>
+    <div class="flow">
+      <span class="chip">Main<br>session</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Builder<br>sessions</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Test on<br>phone</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Five real<br>cases</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Merge,<br>live</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Switch<br>on</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Next<br>system</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Use it when</span>Every box in Step 9 of the Starter Guide is ticked. Keep this file in <code class="f">docs/</code> next to the blueprint.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The idea</span>A site has one site engineer and one team per building. Your project has one <b>Main session</b> (the engineer) and up to three <b>builder sessions</b> (the teams), each on its own system and its own branch.</td>
+        <td><span class="lbl">Your time</span>7 to 10 hours a week: start the sessions, answer their questions, test on your phone, approve. The sessions do the building.</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Sources</span>Blueprint BOA-2026-BHA-01 Rev B; the Starter Guide&rsquo;s R1 to R3.</td>
+        <td><span class="lbl">Also read</span>The Systems, Costs and Automation Guide, before connecting n8n, WhatsApp or the AI agents.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS &middot; PASTE TO CLAUDE CODE</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">HOW THE SESSIONS WORK</div><div class="sectag">Read once</div></div>
+<table class="numbers">
+<tr><th style="width:24%;">Session</th><th>What it does</th><th style="width:28%;">Name it in the app</th></tr>
+<tr><td><b>Main</b> (always one)</td><td>Keeps the master copy (<code class="f">main</code>), owns the database, joins finished work, keeps CLAUDE.md and START-NOW up to date. Never builds a system itself.</td><td><code class="f">MAIN</code></td></tr>
+<tr><td><b>Builder</b> (up to three)</td><td>Builds one system, on its own branch, in its own copy of the folder. Touches only that system&rsquo;s files. Hands over to Main when a phase is done.</td><td><code class="f">SYS-01 Lead flow</code>, <code class="f">SYS-02 Tutorials</code>&hellip;</td></tr>
+<tr><td><b>Writing lane</b></td><td>Writes words, not code: the sales script, tutorial scripts, message templates. Can run from day 1.</td><td><code class="f">SYS-03 Sales script</code></td></tr>
+</table>
+<div class="note"><span class="nlbl">Why this does not get messy</span>
+<p>Each builder session works in its own copy of the code (Git calls it a <b>worktree</b>) on its own <b>branch</b>, so two sessions never type into the same file. Each branch gets its own test address on Vercel, so you test a system on your phone before it reaches the live app. Only the Main session joins work into the live copy, one system at a time. The rules for this are already in your CLAUDE.md (Starter Guide R3).</p>
+</div>
+<div class="guard"><b>THREE AT A TIME, NOT MORE.</b> Three builder sessions is the most you can follow, test and answer in a sitting. More sessions do not mean faster: unanswered questions and untested screens pile up. On Max 5x, if sessions start pausing for limits, run two builders, or move to Max 20x.</div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">EVERY SITTING</div><div class="sectag">Same routine, every day</div></div>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><span class="voice ai">Paste to the Main session</span><p><b>Open the day.</b> Open the Claude app &rarr; Code &rarr; click your <code class="f">MAIN</code> session (or start one on the <code class="f">kokan-nirvana-os</code> folder) and paste the box below.</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; Main session &middot; start of every sitting</span>
+<p>You are the Main session for the Kokan Nirvana OS. Read CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/ and the latest note in docs/sessions/. Then tell me in simple words, in ten lines or fewer: what is not yet ticked in START-NOW; which systems are in progress and on which branch; any handover waiting to be merged; any request in docs/requests/ waiting for you; and which builder sessions I should run today (at most three). Do nothing else until I say OK.</p>
+</div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><span class="voice">You do this</span><p><b>Open the builder sessions Main named.</b> If a session for that system already exists in the list on the left, click it and paste the <b>continue</b> box from &sect;03. If not, start a new session on the same folder, name it, and paste the <b>new system</b> box from &sect;03.</p></div></div>
+<div class="step"><div class="stepnum">3</div><div class="stepbody"><span class="voice">You do this</span><p><b>Go round the sessions.</b> Answer whichever session is waiting. Each one builds one small finished thing per sitting and shows you its test address. Open it on your phone and check one real lead, unit or receipt you know.</p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><span class="voice ai">Paste to each session, then Main</span><p><b>Close the day.</b> In each builder: <code class="f">Commit and push your branch, update your handover file and today's note.</code> Then in Main: <code class="f">Read today's handovers. Merge anything marked ready, apply its migrations in order, and tell me what changed on the live app.</code></p></div></div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">THE BUILDER SESSION PROMPTS</div><div class="sectag">Paste to a builder session</div></div>
+<p>Replace the brackets with the system from &sect;05, for example <b>SYS-01 Kokan Nirvana Lead-to-Visit Flow</b> and <code class="f">sys-01-lead-flow</code>.</p>
+<div class="paste"><span class="plbl">Paste &middot; New builder session &middot; first message for a system</span>
+<p>You are the builder session for <b>[SYS-0N and system name]</b> in the Kokan Nirvana OS. Read CLAUDE.md, docs/SESSIONS.md, the blueprint in docs/, and docs/build-sheets/[sys-0N].md (write it first, from the blueprint, if it does not exist, and wait for my approval). Work only in your own git worktree on the branch <b>[sys-0N-short-name]</b>, never on main, and touch only this system&rsquo;s folders, as R3 of the Starter Guide sets out. Database changes go only in new migration files for this system, adding, never dropping or renaming. If you need a shared file changed, write the request in docs/requests/ and tell me.</p>
+<p>Before any code: (1) read docs/design/ and list every screen this system needs: the one question it answers, its one main button, who uses it and on what device, as simple text sketches; (2) give me a plan in small phases, each ending with something I can test on my phone at your branch&rsquo;s test address, the first phase always &ldquo;load my real data and show me one true list&rdquo;; (3) list anything this system needs from outside (n8n, WhatsApp templates, Meta access, an API key) and what it costs, from the Systems, Costs and Automation Guide. Wait for my OK before writing files.</p>
+</div>
+<div class="paste"><span class="plbl">Paste &middot; Existing builder session &middot; continue</span>
+<p>Read CLAUDE.md, your build sheet and your handover file. Tell me in five lines where this system stands and what the one finished thing for today is. Make a plan and wait for my OK.</p>
+</div>
+<div class="paste"><span class="plbl">Paste &middot; Writing lane &middot; SYS-03 Sales Skill (day 1 onwards)</span>
+<p>You are the writing session for SYS-03 Kokan Nirvana Second Home Sales Skill. You write only in docs/ and content/, never code. Interview my sales manager through me, one question at a time, and write content/sales-skill.md: the questions for a new lead, the first WhatsApp reply, the 5 to 6 follow-ups across a 2 to 3 month cycle, the visit pitch, the post-visit note, the handover checklist, the retention touches, and the answers to maintenance, rental yield and distance. Keep the language my team actually uses, Hindi, Marathi or English. Leave every price, offer and payment plan as a blank for a person. Then write each customer message as a WhatsApp template in content/templates/ ready for Meta approval, marked draft until I sign it.</p>
+</div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILD, TEST, SWITCH ON</div><div class="sectag">The same five moves for every system</div></div>
+<ol class="tight">
+<li><b>One finished thing per sitting.</b> Each builder ends its sitting with something you can open on your phone at its test address. Check one lead, unit or receipt you know against reality. Write every surprise in <code class="f">docs/rules-i-learned.md</code>.</li>
+<li><b>Merge when a phase is done.</b> The builder writes its handover; Main merges, applies the database change, and the live app updates in about two minutes.</li>
+<li><b>Five real cases.</b> Run five real leads (or units, or receipts) through the system while a person presses every send button. Fix every wrong word or date the same day.</li>
+<li><b>Watch week.</b> For one week the system works beside the old way: the old CRM and the team&rsquo;s WhatsApp carry on. Compare every day.</li>
+<li><b>Switch on</b> only what passed, and only what your guardrails allow AI to do alone: sending details and tutorials, follow-ups, visit reminders, internal reminders. Anything with a price, discount, payment plan or token amount stays with a person forever. One switch in Settings turns all sending off.</li>
+</ol>
+<div class="guard"><b>IF A SESSION GOES WRONG:</b> in that session say <em>&ldquo;Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to your last commit.&rdquo;</em> Because each system has its own branch, one broken session never breaks the live app or the others.</div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE BUILD ORDER, SESSION BY SESSION</div><div class="sectag">From the blueprint &middot; up to three at once</div></div>
+<table class="numbers">
+<tr><th style="width:11%;">Weeks</th><th style="width:22%;">Main session</th><th style="width:22%;">Builder A</th><th style="width:22%;">Builder B</th><th>Builder C / writing lane</th></tr>
+<tr><td>1</td><td>F-00 Single Record (done on day 1); CRM leads imported</td><td colspan="2"><em>Wait until F-00 is merged</em></td><td>SYS-03 Sales script (writing)</td></tr>
+<tr><td>1&ndash;3</td><td>Merges, migrations, n8n account</td><td><b>SYS-01</b> Lead-to-Visit Flow <code class="f">sys-01-lead-flow</code></td><td><b>SYS-02</b> Property Tutorial Library <code class="f">sys-02-tutorials</code></td><td>SYS-03, then WhatsApp templates sent for Meta approval</td></tr>
+<tr><td>3&ndash;6</td><td>Merges; SYS-01 watch week fixes</td><td><b>SYS-04</b> Receipt and Ledger App <code class="f">sys-04-ledger</code></td><td><b>SYS-05</b> Payment Reminder Flow <code class="f">sys-05-reminders</code>, after SYS-04&rsquo;s tables merge</td><td>SYS-01 and SYS-02: five cases, watch week, switch on</td></tr>
+<tr><td>7&ndash;10</td><td>Merges</td><td><b>SYS-06</b> Funnel Board <code class="f">sys-06-funnel</code></td><td><b>SYS-07</b> Finance Board <code class="f">sys-07-finance</code></td><td>SYS-04 and SYS-05: watch week, switch on</td></tr>
+<tr><td>9&ndash;12</td><td>Roles sheet signed; merges</td><td><b>SYS-08</b> Team Desk <code class="f">sys-08-team-desk</code></td><td>Free, or the first AI agent (month 4)</td><td>15 logins handed out, one person first</td></tr>
+</table>
+<table class="numbers">
+<tr><th style="width:22%;">System</th><th>Done when (from the blueprint)</th></tr>
+<tr><td>SYS-01 + SYS-02 + SYS-03</td><td>Every new lead from Meta, the landing page and the portal exists as one record within minutes, has received the project details and the right property tutorial on WhatsApp without staff typing, and its follow-ups and visit date are on that record; every quotation is parked waiting for your price.</td></tr>
+<tr><td>SYS-04 + SYS-05</td><td>Every token and instalment from week 5 has a numbered receipt sent after a tick, a ledger entry and an updated unit outstanding, and every instalment due has been reminded without a staff member sending it.</td></tr>
+<tr><td>SYS-06 + SYS-07</td><td>At 9 AM you and the sales manager see leads by campaign, cost per visit, overdue follow-ups, quotation age, cash, dues and the month&rsquo;s profit and loss without a phone call.</td></tr>
+<tr><td>SYS-08</td><td>All 15 have their own login and see only their pages; the day opens and closes with one summary to you.</td></tr>
+</table>
+<div class="guard"><b>THE GATES:</b> no builder starts before F-00 is merged. SYS-05 waits for SYS-04&rsquo;s tables. SYS-04 waits for your instalment schedule, receipt format and incentive rules (START-NOW item 8). Customer sending on WhatsApp waits for Meta to approve the templates; until then the flow drafts and a person sends.</div>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">CONNECT n8n, META AND WHATSAPP</div><div class="sectag">When SYS-01 asks &middot; about 40 minutes</div></div>
+<p>n8n is the automation layer: it catches each new Meta lead, sends the WhatsApp messages and runs the timed jobs (follow-ups, reminders, the morning and evening runs). Claude Code writes every n8n workflow as a file; you import it and add the passwords inside n8n.</p>
+<div class="step"><div class="stepnum">N1</div><div class="stepbody"><p><b>Open n8n.</b> Go to <b>n8n.io</b>, press <b>Get started</b>, sign up with the business email and choose the <b>Starter</b> Cloud plan. Name your workspace <code class="f">kokan-nirvana</code>.</p></div></div>
+<div class="step"><div class="stepnum">N2</div><div class="stepbody"><p><b>Import a workflow.</b> In n8n press <b>Create workflow</b>, then the three dots at the top right &rarr; <b>Import from File</b>, and choose the file the builder session names, for example <code class="f">n8n/sys-01-new-lead.json</code> from your project folder. It appears as boxes joined by lines.</p></div></div>
+<div class="step"><div class="stepnum">N3</div><div class="stepbody"><p><b>Add the passwords inside n8n, never in chat.</b> Each box with a red warning needs a credential: click it &rarr; <b>Credential</b> &rarr; <b>Create new</b>, and paste the value the session tells you where to find. <b>Facebook Lead Ads:</b> press <b>Connect</b> and sign in with the Facebook account that is admin of your page. <b>WhatsApp:</b> your provider&rsquo;s token and phone number ID. <b>Your app:</b> the automation secret the Main session gives you, which also goes into Vercel.</p></div></div>
+<div class="step"><div class="stepnum">N4</div><div class="stepbody"><p><b>Test, then switch on.</b> Press <b>Execute workflow</b> with one test lead (your own phone number). When it works, turn the switch at the top to <b>Active</b>. Every run is listed under <b>Executions</b>; if one fails, screenshot it and give it to the builder session.</p></div></div>
+<div class="note"><span class="nlbl">WhatsApp templates</span><p>A message to a lead who has not written to you in the last 24 hours must use a template Meta has approved. Submit the writing lane&rsquo;s templates in your WhatsApp provider&rsquo;s dashboard as soon as you sign them; approval takes minutes to a few days. Until a template is approved, the flow drafts that message and a person sends it.</p></div>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">STANDING PROMPTS</div><div class="sectag">Keep these handy</div></div>
+<ul class="tight">
+<li><b>A new person, new login:</b> to Main: <em>&ldquo;[Name] is joining as [role], [office or site]. Draft the login request for my approval.&rdquo;</em></li>
+<li><b>A rule changed:</b> to Main: <em>&ldquo;From today [the rule]. Make this permanent in CLAUDE.md and tell me which systems it touches.&rdquo;</em></li>
+<li><b>Before anything new that costs money:</b> <em>&ldquo;Before you connect this, tell me what it is, why, what it costs each month at our volume, and what happens if I say no. Wait for my yes.&rdquo;</em></li>
+<li><b>Monthly check:</b> to Main: <em>&ldquo;Audit the project against CLAUDE.md and the blueprint&rsquo;s guardrails and report anything that breaks them, in simple words.&rdquo;</em></li>
+<li><b>Start the AI agents (month 4 onward):</b> follow &sect;04 of the Systems, Costs and Automation Guide, one agent per builder session.</li>
+</ul>
+<div class="guard"><b>THE MONTHLY TEST:</b> open the OS on your phone and ask three questions. Is every lead, visit and receipt on it true? Did anything with a price or payment reach a customer without a person&rsquo;s yes? Does the diary explain the week better than your memory does? Three yeses: start the next system. Any no: fix that first.</div>
+
+<div class="traceline">Prepared for Shubham Manjunath Anvekar &middot; Kokan Nirvana Seashore property. Condensed from BuildOur Builder Guides 02&ndash;04 and the UI Guide<br>against blueprint BOA-2026-BHA-01 Rev B. One record, one app, several sessions. Every price, payment and signature stays human.</div>
+
+</body>
+</html>
