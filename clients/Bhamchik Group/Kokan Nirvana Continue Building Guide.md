@@ -15,7 +15,7 @@ system
 
 |                                                                                                                                                                                                                   |                                                                                                                                       |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| Use it whenEvery box in Step 9 of the Starter Guide is ticked. Keep this file in `docs/` next to the blueprint.                                                                                                   |                                                                                                                                       |
+| Use it whenEvery box in Step 4 of the Starter Guide is ticked. Keep this file in `docs/` next to the blueprint, and come back to section 02 at the start of every sitting.                                        |                                                                                                                                       |
 | The ideaA site has one site engineer and one team per building. Your project has one **Main session** (the engineer) and up to three **builder sessions** (the teams), each on its own system and its own branch. | Your time7 to 10 hours a week: start the sessions, answer their questions, test on your phone, approve. The sessions do the building. |
 | SourcesBlueprint BOA-2026-BHA-01 Rev B; the Starter Guide’s R1 to R3.                                                                                                                                             | Also readThe Systems, Costs and Automation Guide, before connecting n8n, WhatsApp or the AI agents.                                   |
 
@@ -36,6 +36,10 @@ Read once
 Why this does not get messy
 
 Each builder session works in its own copy of the code (Git calls it a **worktree**) on its own **branch**, so two sessions never type into the same file. Each branch gets its own test address on Vercel, so you test a system on your phone before it reaches the live app. Only the Main session joins work into the live copy, one system at a time. The rules for this are already in your CLAUDE.md (Starter Guide R3).
+
+The session buttons
+
+In the Claude app’s **Code** tab, start a **new session** on the same `kokan-nirvana-os` folder while another is still working; each one shows in the list on the left, and you click to switch. Name each after its job (`MAIN`, `SYS-01 Lead flow`, `SYS-02 Tutorials`, `SYS-03 Sales script`) so you never mix them up.
 
 **THREE AT A TIME, NOT MORE.** Three builder sessions is the most you can follow, test and answer in a sitting. More sessions do not mean faster: unanswered questions and untested screens pile up. On Max 5x, if sessions start pausing for limits, run two builders, or move to Max 20x.
 

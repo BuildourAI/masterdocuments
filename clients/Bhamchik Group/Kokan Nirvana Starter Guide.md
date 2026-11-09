@@ -1,183 +1,89 @@
-Buildour AI · Kokan NirvanaStarter Guide · Rev A
+Buildour AI · Kokan NirvanaStarter Guide · Rev B
 
 # KOKAN NIRVANA OS STARTER GUIDE
 
-Prepared for **Shubham Manjunath Anvekar**, Bhamchik Group. Day 1, done live with **Romana**: from a Claude Max account to **your own Real Estate OS online**, ready to build system by system.
+Prepared for **Shubham Manjunath Anvekar**, Bhamchik Group. Your accounts are connected. Now **upload two files, paste one prompt**, and Claude Code lays the foundation of your Real Estate OS.
 
-Install–– GitHub +  
-repo–– Supabase–– Starter  
-prompt–– Vercel,  
-live–– Choose  
+Accounts  
+connected–– Files in  
+docs–– Starter  
+prompt–– Choose  
 the look–– Continue  
 building
 
 [TABLE]
 
-Two voices on every step: YOU DO THIS (a click in a browser or on your computer) · PASTE TO CLAUDE CODE (copy the whole box)
+Two voices on every step: YOU DO THIS (a click on your computer) · PASTE TO CLAUDE CODE (copy the whole box)
 
 00
 
 READ THIS FIRST
 
-Five minutes, before any click
+Two minutes
 
-You told us exactly what you want: one system for the whole Kokan Nirvana sales process, a tutorial for every property, and no more calling, messaging and sending receipts by hand. Your blueprint turns that into one foundation and eight systems. You will not build them all at once, and you will not build them one long system after another either: with Claude Max you can run **several Claude Code sessions side by side, one per system**, the way a site has one engineer per building.
-
-You need no coding knowledge
-
-Claude Code writes every line. Your job is three things only: open the accounts in your name, tell Claude your business rules in your own words, and check what it built against leads and units you know. When you do not understand something, type: `explain this to me in simple words`. When something breaks, paste the error or a screenshot and type: `explain this in simple words and fix it`.
-
-Words you will see
-
-**Repository (repo):** the private folder on GitHub where your code is kept, with every past version. **Session:** one Claude Code chat working on your project; you can have several open. **Deploy:** putting the latest version online. **Keys:** passwords that let your app talk to your database; they never go in a chat. **Branch:** a separate copy of the code where one session works without disturbing the others.
-
-**Cost on day 1:** Claude Max (you buy this), GitHub free, Supabase free, Vercel Pro about \$20 a month for a business app. Everything else, and when it starts, is in the **Systems, Costs and Automation Guide**.
+You need no coding knowledge. Claude Code writes every line. Your job is to answer its questions in your own words, say OK when you agree, and check what it built against leads and units you know. When you do not understand something, type `explain this to me in simple words`. When something breaks, paste the error or a screenshot and type `explain this in simple words and fix it`. When Claude asks permission to run something you do not understand, type `what will this do, in simple words?` before saying yes.
 
 STEP 1
 
 You do this
 
-**Claude Max, and three installs on your laptop**
+**Put the files in your project folder**
 
-1.  **Claude Max.** On claude.ai, sign in with the business email, open **Settings → Billing** (or **Upgrade**) and choose **Max**. Start with **Max 5x** (about \$100 a month); move to **Max 20x** (about \$200) only if running three sessions at once keeps hitting the limit.
-2.  **The Claude desktop app** from claude.com/download. Install it and sign in with the same account. **Claude Code** is its **Code** tab.
-3.  **Node.js**: go to nodejs.org, download the **LTS** version, install, accept every default.
-4.  **Git**: go to git-scm.com, download for your computer, install, accept every default. (On a Mac it may offer to install itself the first time it is needed; say yes.)
-
-If any install gives trouble, carry on. In Step 5 Claude checks all of them and tells you exactly what to click.
+1.  Open the folder Romana set up with you: `Documents\kokan-nirvana-os`. Make a folder inside it called `docs`.
+2.  Put in `docs`: the **Blueprint Rev B PDF**, this **Starter Guide PDF** and the **Systems, Costs and Automation Guide PDF**. Keep the Continue Building Guide aside until Step 4.
+3.  Inside `docs`, make a folder `samples` and put in what you have: the CRM export, one receipt you sent, one brochure. These never go online; Claude keeps them out of GitHub.
 
 STEP 2
 
-You do this
+Paste to Claude Code
 
-**GitHub: your account and your private repository**
+**The starter prompt.** Open the Claude app → **Code** → start a new session on the `kokan-nirvana-os` folder and name it `MAIN`. Drag the **Blueprint Rev B PDF** and this **Starter Guide PDF** into the message box, paste the box below, and send.
 
-1.  Go to **github.com** and press **Sign up**. Use the business email, choose a password and a username (for example `bhamchik`), and choose the **Free** plan.
-2.  Turn on two-step login: click your photo (top right) → **Settings** → **Password and authentication** → **Enable two-factor authentication**, and follow the steps with an authenticator app on your phone. Save the recovery codes somewhere safe.
-3.  Make the repository: press the **+** at the top right → **New repository**.
-    - **Repository name:** `kokan-nirvana-os`
-    - Choose **Private**. This matters: your code stays visible only to you.
-    - Leave **Add a README**, **.gitignore** and **license** all off. The repository must start empty.
-    - Press **Create repository**.
-4.  Copy the web address of the page you land on. It looks like `https://github.com/bhamchik/kokan-nirvana-os`. You will give it to Claude in Step 5.
+Paste · The starter prompt (MAIN session)
+
+You are setting up the Kokan Nirvana OS, the real estate operating system for Kokan Nirvana Seashore property, the second-home brand of Bhamchik Group. I am Shubham Anvekar, the owner, and I am not a programmer. Attached, and saved in docs/, are my AI Systems Blueprint Rev B and my Starter Guide; pages R1, R2 and R3 of the Starter Guide are written for you. This folder is already connected to my private GitHub repository, my Vercel project and my Supabase keys in .env.local. This session is the **MAIN session**. Work in five stages. After each stage, tell me in simple words what you did, then **stop and wait for my OK**. Ask me one question at a time.
+
+**Stage 1: Read and check.** Read the blueprint and the Starter Guide. Tell me in ten lines or fewer: what Kokan Nirvana is, my main pains, the foundation and eight systems, and the build order. List what the blueprint says I still have to settle; do not settle it yourself. Then check quietly that GitHub, Vercel and the Supabase keys work, and tell me only if something needs fixing.
+
+**Stage 2: The rules.** Create CLAUDE.md holding page R2 of the Starter Guide word for word, plus the build brief and session rules in R3. Make sure .gitignore keeps out .env.local, docs/samples and any file with customer phone numbers. Read the rules back to me in five lines.
+
+**Stage 3: The foundation.** Build F-00 Kokan Nirvana Single Record as R3 describes: the tables, sign-in and Row Level Security. Tell me exactly what to paste into the Supabase SQL Editor and where to click, and what to set in Supabase so sign-in works on my live address. Add my owner login, push, and confirm I can sign in on my phone at the live address.
+
+**Stage 4: My list for today.** Create docs/START-NOW.md from page R1: each item with its owner, a start date and a tick box, longest first, and tell me the first action for each. Start every future session by reminding me of anything not ticked.
+
+**Stage 5: Plan the sessions.** Write docs/SESSIONS.md: the build order, which systems are built side by side in separate sessions (R3), and each one’s branch name. Write one docs/build-sheets/ file for each P1 system (SYS-01, SYS-02, SYS-03): what it does, what it must never do (from the blueprint), the data it needs and its done-when. No feature code yet. Finish by telling me to choose the look (Step 3 of the Starter Guide) and then open the Continue Building Guide (Step 4).
 
 STEP 3
 
 You do this
 
-**Supabase: your database**
-
-1.  Go to **supabase.com**, press **Start your project**, then **Continue with GitHub**, and allow it.
-2.  If it asks for an organization, name it `Bhamchik Group` and pick the **Free** plan.
-3.  Press **New project**. Name: `kokan-nirvana`. Database password: press **Generate a password**, then copy it and save it somewhere safe (not in WhatsApp). Region: **South Asia (Mumbai)**. Press **Create new project** and wait two minutes.
-4.  Open **Project Settings** (the gear at the bottom left) → **API Keys**, and keep this tab open. Claude will ask for three things one by one: the **Project URL** (looks like `https://abcd.supabase.co`), the **publishable key** (starts `sb_publishable_`) and the **secret key** (starts `sb_secret_`; press **Reveal**, or create one if none is listed). If your screen shows the older names, use **anon** for the publishable key and **service_role** for the secret key.
-
-Treat the secret key like your bank password. It goes only into the place Claude names on your own computer, and into Vercel in Step 6.
-
-STEP 4
-
-You do this
-
-**Vercel account, and your project folder**
-
-1.  Go to **vercel.com**, press **Sign Up**, choose **Continue with GitHub**, and allow it. When it asks for a plan, choose **Pro**: the free plan is for personal, non-commercial use only.
-2.  On your laptop, make one folder for life: `Documents\kokan-nirvana-os`. Every Kokan Nirvana system goes in here, never in a second folder.
-3.  Inside it, make a folder called `docs`. Put in it: the **Blueprint Rev B PDF**, this **Starter Guide PDF**, and the **Systems, Costs and Automation Guide PDF**. Keep the Continue Building Guide aside until Step 9.
-4.  Inside `docs`, make a folder called `samples`, and put in whatever you have now: the CRM export, one real receipt you sent, one brochure. Anything missing goes on your START-NOW list in Step 5.
-
-**STOP HERE.** Steps 5 to 9 happen on the live call with Romana, on your screen.
-
-STEP 5
-
-Paste to Claude Code
-
-**The starter prompt.** Open the Claude desktop app, go to the **Code** tab, start a new session and choose the folder `kokan-nirvana-os`. Attach **two files** to the message, the **Blueprint Rev B PDF** and this **Starter Guide PDF** (drag them into the chat box), then paste the whole box below. Replace the GitHub address in brackets with yours from Step 2.
-
-Paste · The starter prompt (Main session)
-
-You are setting up the Kokan Nirvana OS, the real estate operating system for Kokan Nirvana Seashore property, the second-home brand of Bhamchik Group. I am Shubham Anvekar, the owner. I am not a programmer. Attached, and saved in docs/, are my AI Systems Blueprint Rev B and my Starter Guide. Read the Starter Guide first: its pages R1, R2 and R3 are written for you. This session is the **Main session**: it sets up the project, owns the database changes and later joins the other sessions’ work together. Work in six stages, in order. At the end of each stage, tell me in simple words what you did, then **stop and wait for my OK**. Ask me one question at a time whenever you need something only I have.
-
-**Stage 1: Read.** Read the blueprint in full and the Starter Guide. Tell me in ten lines or fewer: what Kokan Nirvana is, my main pains, the foundation and the eight systems, and the order we build them. List the points the blueprint says I still have to settle. Do not settle any yourself.
-
-**Stage 2: Set up.** (1) Check that Node.js and Git work; if not, tell me exactly what to download and click. (2) Create a Next.js app with TypeScript and Tailwind in this folder, and show me the local address to open. (3) Set up Git and make the first commit. The .gitignore must keep out .env.local, docs/samples and any export with customer phone numbers. (4) Connect this folder to my private GitHub repository at \[paste your GitHub address here\] and push. Walk me through any GitHub sign-in in the browser, step by step. (5) Create .env.local and ask me one at a time for my Supabase Project URL, publishable key and secret key; use the variable names in R3. Never repeat a key back to me, never write keys in any other file, never commit them. (6) Create CLAUDE.md holding page R2 of the Starter Guide word for word, plus the session rules in R3. Read them back to me in five lines.
-
-**Stage 3: The foundation.** Build F-00 Kokan Nirvana Single Record as R3 describes: the core tables, sign-in, and Row Level Security. Write it as a migration file and give me exactly what to paste into the Supabase SQL Editor and where to click. Then add my owner login and confirm I can sign in on the local address.
-
-**Stage 4: Start the clocks.** Create docs/START-NOW.md from page R1: each item with its owner, a start date and a tick box, longest first. For each, tell me the exact first action to take today. Start every future session by reading it and reminding me of anything not ticked.
-
-**Stage 5: Go live.** Tell me the exact environment variable names for Vercel, then wait while I do Step 6 of the guide. When I give you the live address, confirm the app opens and tell me what to set in Supabase so sign-in works there.
-
-**Stage 6: Plan the sessions.** Write docs/SESSIONS.md: the build order from the blueprint, which systems are built side by side in separate sessions (R3), and the branch name for each. Write one docs/build-sheets/ file per system for P1 (SYS-01, SYS-02, SYS-03), each listing what the system does, what it must never do (copied from the blueprint), the data it needs and its done-when. Write no feature code for them yet. Finish by telling me to choose the look (Step 7) and to switch to the Continue Building Guide.
-
-STEP 6
-
-You do this
-
-**Put it online with Vercel** *(when Claude reaches Stage 5)*
-
-1.  On vercel.com press **Add New… → Project**. Find `kokan-nirvana-os` and press **Import**. If it is not in the list, press **Adjust GitHub App Permissions**, choose **Only select repositories**, pick `kokan-nirvana-os`, save, and come back.
-2.  Leave the framework as **Next.js** and the build settings exactly as Vercel fills them in.
-3.  Open **Environment Variables** and add the three names Claude gave you, with the same three values from Supabase. Leave all environments ticked.
-4.  Press **Deploy**. About two minutes later you see a picture of your app. Press it: your address ends in `.vercel.app`. Copy it and give it to Claude.
-5.  In Supabase: **Authentication → URL Configuration**. Set **Site URL** to your `.vercel.app` address; under **Redirect URLs** add the same address followed by `/**`. Press **Save**.
-6.  Open the address on your phone, sign in, and choose **Add to Home Screen**.
-
-From now on, everything saved to the **main** branch goes live by itself in about two minutes. Work on other branches gets its own test address, so you can check it on your phone before it goes live.
-
-STEP 7
-
-You do this
-
 **Choose the look, before the first real screen**
 
-Claude builds what you say, but it designs what you show it. Show it nothing and your team gets the average of every app on the internet. Ten minutes now decides whether your staff open the OS or keep calling you.
+Claude builds what you say, but it designs what you show it. Ten minutes here decides whether your staff open the OS or keep calling you.
 
-1.  **Collect.** On pinterest.com search `minimalist UI design web app` and also `real estate CRM dashboard minimal`. Download 10 to 15 screens your staff would understand at a glance. Skip anything crowded, dark or clever.
-2.  **Let the strongest model choose.** Open a new chat in the **Claude app** (Chat, not Code), choose the strongest model in the model list, attach every screenshot and paste the chooser prompt below.
-3.  **Get the direction in writing.** Upload only the winning one or two designs again and ask: *“I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.”* Download the .md file.
-4.  **Hand it over.** Save the images and the .md file in `docs/design/`, then tell the Main session: *“The design direction is in docs/design. Add a line to CLAUDE.md saying every screen in every session follows it.”*
+1.  **Collect.** On pinterest.com search `minimalist UI design web app` and `real estate CRM dashboard minimal`. Download 10 to 15 clean screens your staff would understand at a glance.
+2.  **Let the strongest model choose.** In the Claude app open **Chat** (not Code), choose the strongest model, attach the screenshots and paste the chooser prompt below.
+3.  **Get it in writing.** Upload only the winning one or two designs again and ask: *“Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.”* Download the file.
+4.  **Hand it over.** Save the images and the .md file in `docs/design/` and tell MAIN: *“The design direction is in docs/design. Add a line to CLAUDE.md saying every screen in every session follows it.”*
 
 Paste · Claude app chat · the chooser prompt
 
 I have shared some powerful, minimal UI designs with you. I am building the interface for my company: Kokan Nirvana Seashore property, a second-home real estate brand in the Konkan, part of Bhamchik Group. The screens are used by my sales staff on their phones in the office and at site visits, by my sales manager on a laptop, and by me on my phone to approve prices, see leads, visits and money, and check on my 15 people. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.
 
-**IF THE DIRECTION COMES BACK TOO NARROW** (“a CRM dashboard”), correct it in one line: *“This is not only a CRM. It is the operating system of Kokan Nirvana: leads, visits, tutorials, receipts, money and the team, everything.”*
-
-| The five screen laws                 | Check every screen Claude shows you against these                                                     |
-|--------------------------------------|-------------------------------------------------------------------------------------------------------|
-| **1 · Nobody reads, everyone scans** | The one thing the user must see first is the biggest and boldest thing on the screen.                 |
-| **2 · One screen, one job**          | One main button, visible without scrolling, in the one colour kept for action.                        |
-| **3 · Consistency is trust**         | The same thing looks the same on every screen.                                                        |
-| **4 · The default is the decision**  | What is filled in again and again is already filled in: today’s date, the property, the staff member. |
-| **5 · Silence is an error**          | Every tap answers at once with a change, a tick or a message.                                         |
-
-STEP 8
+STEP 4
 
 You do this
 
-**Learn the session buttons** *(two minutes, with Romana)*
+**Now open the Continue Building Guide**
 
-1.  In the Claude app’s **Code** tab you can start a **new session** on the same folder while another is still working. Each session shows in the list on the left; click one to switch to it.
-2.  Name each session after its job so you never mix them up: `MAIN`, `SYS-01 Lead flow`, `SYS-02 Tutorials`, `SYS-03 Sales script`.
-3.  When Claude asks permission to run something, read the one line it shows. If you do not understand it, type `what will this do, in simple words?` before saying yes.
+This Starter Guide is used once. From here on, the **Continue Building Guide** is the one you use: at the start of every sitting, to start each system, to run several sessions at once, and to connect n8n, Meta and WhatsApp. Put its PDF into `docs/` when all of this is true:
 
-How the sessions share the work without stepping on each other is explained in the Continue Building Guide. You do not need to understand it; each session’s prompt tells Claude what to do.
-
-STEP 9
-
-You do this
-
-**Switch to the Continue Building Guide when all of this is true**
-
-- The OS opens on your phone at its `.vercel.app` address, you can sign in, and it is on your home screen.
-- The GitHub repository `kokan-nirvana-os` is **private**, and the three keys are only in `.env.local` and Vercel.
-- `CLAUDE.md` holds the rules from R2 and R3.
-- The foundation tables show in Supabase’s **Table Editor**.
-- `docs/START-NOW.md` exists and every item has a named owner.
-- `docs/SESSIONS.md` and the three P1 build sheets are written, and you have read and corrected them.
+- You can sign in to the OS on your phone at your `.vercel.app` address.
+- `CLAUDE.md` holds your rules, and the foundation tables show in Supabase’s **Table Editor**.
+- `docs/START-NOW.md`, `docs/SESSIONS.md` and the three P1 build sheets are written, and you have read and corrected them.
 - `docs/design/` holds your chosen look.
 
-**ALL SEVEN TICKED:** put the **Continue Building Guide PDF** into `docs/`, and from your next sitting follow it. If one is not ticked, paste it into the Main session and say *“fix this before we continue.”*
+Then open its section 02, **Every sitting**, and follow it. If a box is not ticked, paste it into MAIN and say *“fix this before we continue.”*
 
 R1
 
@@ -185,7 +91,7 @@ THE CLOCKS: FOR docs/START-NOW.md
 
 Read by Claude Code in Stage 4
 
-Things that wait on a person or on an outside company. Each becomes a line in `docs/START-NOW.md` with its owner, a start date and a tick box.
+Things that wait on a person or on an outside company. Romana may already have ticked some on the call. Each becomes a line in `docs/START-NOW.md` with its owner, a start date and a tick box.
 
 | \#  | Item                                                                                                                                                                                                                                                                                    | Owner                      | Needed for             |
 |-----|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|------------------------|
@@ -198,7 +104,7 @@ Things that wait on a person or on an outside company. Each becomes a line in `d
 | 7   | **Visit slots:** which days and times site visits can happen, and who takes them.                                                                                                                                                                                                       | Sales manager              | SYS-01                 |
 | 8   | **Money rules, written once:** the standard instalment schedule for a sale, the receipt format and numbering, the incentive rules. Before week 3.                                                                                                                                       | Shubham                    | SYS-04, SYS-05, SYS-07 |
 | 9   | **One person who enters receipts and expenses** from week 3.                                                                                                                                                                                                                            | Shubham with sales manager | SYS-04                 |
-| 10  | **An n8n account** (n8n.io, Cloud Starter), on the business email, when SYS-01 starts. The Continue Building Guide shows the clicks.                                                                                                                                                    | Shubham                    | SYS-01                 |
+| 10  | **An n8n account** (n8n.io, Cloud Starter), on the business email, when SYS-01 starts. The Continue Building Guide, section 06, shows the clicks.                                                                                                                                       | Shubham                    | SYS-01                 |
 | 11  | **The 15 people:** name, role, office or site, mobile, for their own logins. Before week 9.                                                                                                                                                                                             | Shubham                    | SYS-08                 |
 
 R2
