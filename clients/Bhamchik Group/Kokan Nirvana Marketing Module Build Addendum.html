@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kokan Nirvana Marketing Module</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BHA-M1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Kokan Nirvana · Marketing Module"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Kokan Nirvana</span><span>Marketing Module &middot; Rev A</span></div>
+    <h1 class="cover">THE MARKETING MODULE<br><span class="accent">BUILD ADDENDUM</span></h1>
+    <div class="coversub">Prepared for <b>Shubham Manjunath Anvekar</b>. Adds a complete <b>Marketing module</b> and <b>Call Review</b> to the Kokan Nirvana OS you are already building: <b>same OS, same login, same customer record</b>. Attach it to your MAIN session.</div>
+    <div class="flow">
+      <span class="chip">Marketing<br>desk</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Content +<br>posting</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Meta ads</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Ads watch<br>agent</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Google,<br>LinkedIn, YT</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Call<br>review</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Why inside the same OS</span>The number that matters is <b>ad &rarr; lead &rarr; visit &rarr; booking</b>. That only works if marketing and sales share one record. Your marketing team gets its own logins and pages in the Team Desk, the same way sales does. One home: your own house rule.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Adds to Blueprint Rev B</span>Six systems, SYS-09 to SYS-14, in two phases. Phase A starts after Phase 1 (the lead flow) is live. Rev B is not replaced: this addendum sits beside it.</td>
+        <td><span class="lbl">Companion</span>Marketing and Calling: Approvals and Setup, the list of what you must get approved by Meta, Google and others.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS &middot; PASTE TO CLAUDE CODE</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">ADD IT TO YOUR OS</div><div class="sectag">Once, in the MAIN session</div></div>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><span class="voice">You do this</span><p>Put this PDF and the <b>Approvals and Setup</b> PDF into <code class="f">docs/</code> in your <code class="f">kokan-nirvana-os</code> folder.</p></div></div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><span class="voice ai">Paste to the MAIN session</span><p>Open your existing <code class="f">MAIN</code> session, attach this PDF, and paste the box below. You can do this now even while Phase 1 is being built: it only adds plans and rules, no code.</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; MAIN session &middot; add the Marketing module</span>
+<p>Attached and saved in docs/ is the Kokan Nirvana Marketing Module Build Addendum. It adds SYS-09 to SYS-14 to my blueprint Rev B; it does not replace anything. Read it fully, especially sections 02 and 03, which are written for you. Then, one step at a time, waiting for my OK after each: (1) tell me in ten lines what the module adds and in what order, and confirm it starts only after Phase 1 is live; (2) add section 02 to CLAUDE.md word for word; (3) add SYS-09 to SYS-14 to docs/SESSIONS.md with their branches and phases, keeping the rule of at most three builder sessions at a time across sales and marketing; (4) add the approvals from the Approvals and Setup guide to docs/START-NOW.md with me as owner; (5) add a &ldquo;marketing&rdquo; and a &ldquo;marketing_head&rdquo; role to the plan for the Team Desk. Write no feature code. Finish by asking me my monthly ad spend cap for Meta and Google, and who approves campaigns.</p>
+</div>
+<div class="guard"><b>WHEN TO BUILD:</b> Phase A starts when Phase 1&rsquo;s done-when is met (every lead gets details, tutorial and follow-ups by itself). Until then, the MAIN session holds the plan and your approvals run in the background.</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">THE MODULE AT A GLANCE</div><div class="sectag">Six systems, two phases</div></div>
+<table class="numbers">
+<tr><th style="width:24%;">System</th><th>What it does</th><th style="width:17%;">When</th><th style="width:20%;">Needs approved first</th></tr>
+<tr><td colspan="4"><b>PHASE A &middot; META, CONTENT, TEAM &middot; after Phase 1 is live, about weeks 4 to 12</b></td></tr>
+<tr><td><b>SYS-09 Marketing Desk</b></td><td>Marketing logins and roles; every Meta campaign&rsquo;s spend and results linked to leads, visits and bookings; the content calendar; the brand kit.</td><td>1 to 2 weeks</td><td>Meta system user (read only is enough)</td></tr>
+<tr><td><b>SYS-10 Content Studio + Auto-posting</b></td><td>AI drafts posts, promotions and festival greetings; creative briefs and ready prompts for your team&rsquo;s ChatGPT, Claude or Canva; branded greeting images from templates; approve, then publish to Facebook and Instagram on schedule.</td><td>2 weeks</td><td>Meta business verification, app, page and Instagram permissions</td></tr>
+<tr><td><b>SYS-11 Meta Ads Builder</b></td><td>AI drafts a full campaign (objective, audience, copy, creative, budget); it is created <b>paused</b> in your ad account; it goes live when you or the marketing head approve.</td><td>2 to 3 weeks</td><td>Meta ads permissions; your monthly cap</td></tr>
+<tr><td><b>SYS-12 Ads Watch Agent</b></td><td>Checks every ad daily; pauses badly performing ads by your rules; suggests budget moves for approval; weekly report on cost per lead, per visit, per booking.</td><td>2 weeks</td><td>Claude API key and spend limit</td></tr>
+<tr><td colspan="4"><b>PHASE B &middot; MORE CHANNELS AND CALLS &middot; month 4 onward</b></td></tr>
+<tr><td><b>SYS-13 More Channels</b></td><td>Google Ads campaigns the same way as Meta (drafted, paused, approved); LinkedIn and YouTube posting; each one switched on as its approval arrives.</td><td>As approved</td><td>Google developer token; LinkedIn API; YouTube audit</td></tr>
+<tr><td><b>SYS-14 Call Review</b></td><td>Sales calls recorded, turned into text, summarised on the lead&rsquo;s record, scored against your sales script; weekly report.</td><td>2 to 3 weeks after calling is set up</td><td>Cloud calling service; speech-to-text service</td></tr>
+</table>
+<table class="numbers">
+<tr><th style="width:24%;">System</th><th>Done when</th></tr>
+<tr><td>SYS-09</td><td>The marketing team signs in to their own pages, and you can see, for last week, each campaign&rsquo;s spend next to its leads, visits and bookings.</td></tr>
+<tr><td>SYS-10</td><td>Two weeks of posts went out on schedule on Facebook and Instagram, every one approved in the OS, none typed or posted by hand.</td></tr>
+<tr><td>SYS-11</td><td>A campaign drafted by the OS was approved by you and went live in Meta without anyone opening Ads Manager.</td></tr>
+<tr><td>SYS-12</td><td>For two weeks the daily check ran, paused at least one weak ad by your rule, and every budget change waited for your yes; spend stayed under the cap.</td></tr>
+<tr><td>SYS-13</td><td>Each approved channel works the same way as Meta, inside the same cap and the same approval.</td></tr>
+<tr><td>SYS-14</td><td>Every sales call on the business number has a summary on the lead&rsquo;s record, and your sales manager agrees with the scores on 20 checked calls.</td></tr>
+</table>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">RULES FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by Claude Code</div></div>
+<div class="paste long"><span class="plbl">Marketing rules &middot; add to CLAUDE.md</span>
+<p><b>Marketing rules.</b> Marketing is a module of the same Kokan Nirvana OS: the same database, logins and customer record; never a separate app or database. The AI may draft campaigns, ads, posts and greetings, publish posts that a person has approved, watch ad results every day, suggest changes, and pause an ad that breaks the pause rules Shubham sets. The AI never starts spend, raises a budget, creates a live campaign or changes targeting on a live campaign without the approval of Shubham or the marketing head named in this file. A monthly spend cap per platform is stored in settings and checked in code before every change that could spend; any request that would exceed it is refused and logged. New campaigns are always created paused. Every marketing action is written to the audit log with who approved it. Ad copy and posts never state a price, discount, offer or payment plan unless Shubham approved that exact wording. The AI follows each platform&rsquo;s ad policies and never tries to work around them. Tokens for Meta, Google, LinkedIn, YouTube, the calling service and speech-to-text live only in Vercel and n8n credentials. Marketing roles see marketing pages only; they see lead counts and outcomes but no money figures beyond ad spend. Call recordings and transcripts are personal data: only the owner, sales manager and the assigned salesperson may open them, and call scores are for coaching, never the only basis for a decision about a person.</p>
+</div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">BUILD BRIEF: FOR CLAUDE CODE</div><div class="sectag">Shubham can skip this page</div></div>
+<div class="brief"><h3>Architecture</h3>
+<ul>
+<li>Platform calls (Meta Marketing and Graph APIs, Google Ads API, LinkedIn, YouTube Data API, the calling service, speech-to-text) go through server-side app routes with tokens from environment variables; n8n holds the schedules and webhooks and calls those routes with <code class="f">AUTOMATION_SHARED_SECRET</code>.</li>
+<li>Every spend-capable change passes one function, <code class="f">lib/marketing/spend-guard.ts</code>: checks the approval record, the platform&rsquo;s monthly cap in settings, the month-to-date spend, and the global automation switch; refuses and logs otherwise. Write tests for it with real-looking cases before any route uses it.</li>
+<li>Attribution: Meta lead forms carry campaign, ad set and ad IDs onto the lead; landing page links carry UTM tags; the Funnel Board and Marketing Desk join ad &rarr; lead &rarr; visit &rarr; booking from the same tables.</li>
+<li>Agents use the Claude API (<code class="f">ANTHROPIC_API_KEY</code>); propose the model and the expected monthly cost to Shubham before building, and run every agent for one week as suggestions only.</li>
+</ul></div>
+<div class="brief"><h3>Starting tables (each system adds its own in its own migration)</h3>
+<p><b>social_accounts</b> (platform, page or account ID, status); <b>brand_kit</b> (logo, colours, fonts, rules); <b>campaigns</b>, <b>ad_sets</b>, <b>ads</b> (platform IDs, status draft / paused / live / stopped, budget, created_by, approved_by); <b>creatives</b> and <b>assets</b> (files in Supabase storage, linked to property and campaign); <b>posts</b> (channel, text, asset, scheduled_at, status draft / approved / published / failed, platform post ID); <b>content_calendar</b>; <b>ad_metrics_daily</b> (spend, impressions, clicks, leads by ad and day); <b>spend_caps</b> (platform, month, cap); <b>marketing_approvals</b>; <b>pause_rules</b>; <b>calls</b> (lead, salesperson, recording link, duration, transcript, summary, score, reviewed_by). Row Level Security as in the marketing rules.</p></div>
+<div class="brief"><h3>Images and video</h3>
+<p>Claude writes text only. SYS-10 produces, for every post or ad, a creative brief with a ready prompt the team pastes into ChatGPT, Claude or Canva, and an upload slot for the finished file. Festival and occasion greetings are rendered by the OS itself from branded templates and the owner&rsquo;s own property photos (text over image, no paid tool). An AI video tool is optional and added only with Shubham&rsquo;s yes.</p></div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILDER SESSION PROMPTS</div><div class="sectag">One new session per system</div></div>
+<p>Start each in a new Claude Code session on the same folder, named after the system, exactly as in your Continue Building Guide &sect;03. Run at most three builder sessions in total, sales and marketing together. Before each one, check in the <b>Approvals and Setup</b> checklist that its approval has arrived.</p>
+<div class="paste"><span class="plbl">Paste &middot; New marketing builder session (fill the brackets)</span>
+<p>You are the builder session for <b>[SYS-09 Marketing Desk / SYS-10 Content Studio and Auto-posting / SYS-11 Meta Ads Builder / SYS-12 Ads Watch Agent / SYS-13 More Channels / SYS-14 Call Review]</b> in the Kokan Nirvana OS. Read CLAUDE.md, docs/SESSIONS.md, the blueprint and the Marketing Module Build Addendum in docs/, and docs/build-sheets/[sys-number].md (write it first from the addendum&rsquo;s section 01 and wait for my approval). Work only in your own git worktree on the branch <b>[sys-number-short-name]</b>, never on main, and only in this system&rsquo;s folders. Follow the marketing rules and the build brief in the addendum; every change that could spend goes through the spend guard. Before any code: list the screens (one question, one main button, who, which device) following docs/design; give me a plan in small phases each ending with something I can test on my phone; and list exactly what you need from me (approvals, tokens, accounts) with where I find each one in the Approvals and Setup guide. Wait for my OK.</p>
+</div>
+<table class="numbers">
+<tr><th style="width:22%;">System</th><th>Add this line to the prompt above</th></tr>
+<tr><td>SYS-09</td><td>Start by reading yesterday&rsquo;s Meta spend and results into ad_metrics_daily and showing them beside leads, visits and bookings. Read only: nothing is created in Meta.</td></tr>
+<tr><td>SYS-10</td><td>Start with festival greetings from branded templates and a week of draft posts for my approval; publish to Facebook and Instagram only after approval, and show me the creative brief and ChatGPT or Canva prompt for every post.</td></tr>
+<tr><td>SYS-11</td><td>Every campaign is created paused. Show me the full draft (objective, audience, copy, creative, budget, end date) on one approval screen. Test the spend guard with me before the first real campaign.</td></tr>
+<tr><td>SYS-12</td><td>Ask me for my pause rules (for example: no lead after a set spend, or cost per lead above a set amount) and store them in pause_rules. For two weeks, only suggest; then pause by the rules, never raise spend.</td></tr>
+<tr><td>SYS-13</td><td>Build one channel at a time, in the order their approvals arrive; Google Ads works exactly like SYS-11, under the same spend guard.</td></tr>
+<tr><td>SYS-14</td><td>Follow section 04 of the Approvals and Setup guide (C1 to C6). Start with the 20-call pilot; my sales manager checks every summary and score before it switches on for all calls.</td></tr>
+</table>
+<div class="guard"><b>IF ANYTHING SPENDS MONEY WITHOUT YOUR YES:</b> press the one switch in Settings that turns all automatic actions off, pause the campaign in Meta Ads Manager, and paste what happened into the MAIN session: <em>&ldquo;Explain in simple words how this happened and fix the spend guard so it cannot happen again.&rdquo;</em></div>
+
+<div class="traceline">Prepared for Shubham Manjunath Anvekar &middot; Kokan Nirvana Seashore property. Addendum to blueprint BOA-2026-BHA-01 Rev B: SYS-09 to SYS-14.<br>Same OS, same record. AI drafts, watches and pauses; every rupee of new spend waits for a person.</div>
+
+</body>
+</html>

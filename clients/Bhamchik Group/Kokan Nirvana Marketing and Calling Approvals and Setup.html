@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kokan Nirvana Approvals and Setup</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-BHA-M0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Kokan Nirvana · Approvals and Setup"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Kokan Nirvana</span><span>Approvals and Setup &middot; Rev A</span></div>
+    <h1 class="cover">MARKETING AND CALLING<br><span class="accent">APPROVALS AND SETUP</span></h1>
+    <div class="coversub">Prepared for <b>Shubham Manjunath Anvekar</b>. Everything <b>you and your team</b> must open, verify and get approved so the OS can run your ads, social pages and call review. Start these <b>this week</b>: some take weeks.</div>
+    <div class="flow">
+      <span class="chip hot">Meta</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Google Ads</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">LinkedIn,<br>YouTube</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Calling</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Images,<br>video</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Costs</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">What this is</span>A to-do list for people, not for Claude. Claude Code cannot verify your business with Meta or Google for you: these are forms and documents in your name. As each approval arrives, the Marketing Module (the companion document) is built on top of it.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Who does it</span>You, or your marketing head with your business documents. Every account is on the business email and owned by Bhamchik Group, never by an agency or a staff member&rsquo;s personal account.</td>
+        <td><span class="lbl">Companion</span>Kokan Nirvana Marketing Module: Build Addendum, which you attach to your Claude Code MAIN session.</td>
+      </tr>
+    </table>
+    <div class="covernote">Never paste a token, password or key into a chat. Each one goes only where these steps say</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">THE TWO RULES BEFORE ANYTHING ELSE</div><div class="sectag">Agreed with you</div></div>
+<div class="rule"><b>SALES FIRST, MARKETING ON TOP.</b> More ads mean more leads. If the lead flow is not automated yet, those leads land on the same manual phone calls. So the Marketing Module starts after Phase 1 (the lead flow) is live. The approvals below start <b>now</b>, so they are ready by then.</div>
+<div class="rule"><b>THE MONEY RULE.</b> The AI may create campaigns, write ads, post content, watch results every day, suggest changes, and <b>pause</b> a badly performing ad. Any new spend or budget increase waits for your approval, and the system can never spend above a <b>monthly cap you set</b>, written into the code. This is your own blueprint rule: price or any financial decision stays with a person.</div>
+<table class="numbers">
+<tr><th>Approval</th><th style="width:22%;">Who</th><th style="width:20%;">Usual wait</th><th style="width:16%;">Needed for</th></tr>
+<tr><td>Meta Business verification + developer app</td><td>You</td><td>Days to 2 weeks</td><td>Ads, posting</td></tr>
+<tr><td>Google Ads developer token (Basic Access)</td><td>You or marketing head</td><td>Days to a few weeks</td><td>Google Ads</td></tr>
+<tr><td>LinkedIn Community Management API</td><td>Marketing head</td><td>Weeks; can be refused</td><td>LinkedIn posts</td></tr>
+<tr><td>YouTube upload audit</td><td>Marketing head</td><td>Weeks</td><td>Public YouTube uploads</td></tr>
+<tr><td>Cloud calling number with recording</td><td>You</td><td>Days (KYC)</td><td>Call review</td></tr>
+</table>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">META: FACEBOOK, INSTAGRAM, ADS</div><div class="sectag">Start first &middot; quickest &middot; most important</div></div>
+<div class="step"><div class="stepnum">M1</div><div class="stepbody"><p><b>One Business Portfolio owns everything.</b> Go to <b>business.facebook.com</b> and open (or create) the <b>Bhamchik Group</b> portfolio. Under <b>Settings &rarr; Accounts</b> make sure it owns: the <b>Facebook page</b>, the <b>Instagram account</b> (switched to a Professional account and linked to the page), the <b>ad account</b>, and the <b>WhatsApp Business account</b>. If any of them sits in an agency&rsquo;s or a staff member&rsquo;s portfolio, request ownership now.</p></div></div>
+<div class="step"><div class="stepnum">M2</div><div class="stepbody"><p><b>Verify the business.</b> In the portfolio: <b>Settings &rarr; Business info</b> (or <b>Security Centre</b>) &rarr; <b>Start verification</b>. Use the legal name and address exactly as on your GST certificate or company registration; upload that document; confirm by phone, email or domain. Meta usually answers in a few days, sometimes two weeks. If you already verified for WhatsApp, this step is done.</p></div></div>
+<div class="step"><div class="stepnum">M3</div><div class="stepbody"><p><b>Verify your website domain.</b> <b>Settings &rarr; Brand safety &rarr; Domains &rarr; Add</b> your landing page domain, and follow the method Meta shows (a line added to the website or to the domain&rsquo;s DNS). Your website person, or Claude Code, can do the technical part.</p></div></div>
+<div class="step"><div class="stepnum">M4</div><div class="stepbody"><p><b>A privacy policy page.</b> Meta requires one for the app. Ask your MAIN session: <code class="f">Add a public privacy policy page to the OS for Kokan Nirvana and give me its address.</code> Have it read by whoever handles your legal matters.</p></div></div>
+<div class="step"><div class="stepnum">M5</div><div class="stepbody"><p><b>The Meta developer app.</b> Go to <b>developers.facebook.com</b>, log in with the Facebook account that is admin of the portfolio, and register as a developer. <b>My Apps &rarr; Create app</b>, choose the <b>Business</b> type, name it <code class="f">Kokan Nirvana OS</code>, and connect it to the Bhamchik Group portfolio. Add the privacy policy address under <b>App settings &rarr; Basic</b>. Add the products the builder session asks for (usually <b>Marketing API</b>, <b>Facebook Login for Business</b> and <b>Instagram</b>).</p></div></div>
+<div class="step"><div class="stepnum">M6</div><div class="stepbody"><p><b>A system user and its token.</b> Back in the portfolio: <b>Settings &rarr; Users &rarr; System users &rarr; Add</b>, name it <code class="f">kokan-nirvana-os</code>, role <b>Admin</b>. <b>Assign assets</b>: the ad account, the page and the Instagram account, with full control. Then <b>Generate token</b> for the Kokan Nirvana OS app, ticking the permissions the builder session lists (typically <code class="f">ads_management</code>, <code class="f">ads_read</code>, <code class="f">business_management</code>, <code class="f">pages_manage_posts</code>, <code class="f">pages_read_engagement</code>, <code class="f">instagram_basic</code>, <code class="f">instagram_content_publish</code>, <code class="f">leads_retrieval</code>). Copy the token straight into n8n&rsquo;s credentials and Vercel, where the session tells you. Never into a chat.</p></div></div>
+<div class="step"><div class="stepnum">M7</div><div class="stepbody"><p><b>Access level and App Review.</b> For your own ad account and pages, the app usually works at its standard access level once it has made some successful calls. If Meta asks for <b>App Review</b> or <b>Advanced Access</b> for a permission, the builder session prepares the screen recording and the written explanation with you; you submit it in the developer dashboard. Allow one to two weeks.</p></div></div>
+<div class="note"><span class="nlbl">Use Claude with Meta today, while you wait</span><p>Claude has a <b>Meta Ads connector</b> (in the Claude app: <b>Settings &rarr; Connectors</b>). Your marketing head can connect it with their own Facebook login and ask Claude in a chat to review campaigns, draft ads and set them up, approving each step. This is what was shown on the call; the OS later does the same on a schedule, from one dashboard.</p></div>
+<div class="note"><span class="nlbl">Real estate ad rules</span><p>Meta has extra rules for property ads in some countries (a special ad category for housing, with limits on targeting). If Ads Manager asks for it, select it. The OS follows whatever Ads Manager requires; it never tries to work around an ad policy.</p></div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">GOOGLE ADS</div><div class="sectag">Apply this week &middot; build last</div></div>
+<div class="step"><div class="stepnum">G1</div><div class="stepbody"><p><b>A manager account.</b> At <b>ads.google.com</b>, create a <b>Google Ads Manager account</b> on the business email and link your existing Google Ads account to it (<b>Accounts &rarr; Sub-account settings &rarr; Link existing account</b>; accept the request in the ad account).</p></div></div>
+<div class="step"><div class="stepnum">G2</div><div class="stepbody"><p><b>Apply for the developer token.</b> In the manager account: <b>Admin &rarr; API Center</b>. Fill the form: company name, website, a business contact email that you read, and what the tool does (&ldquo;an internal tool for Bhamchik Group to create and report on our own campaigns&rdquo;). You first get a token with <b>test access</b>; then apply for <b>Basic Access</b> from the same page. Google may email questions or ask for a short description of the tool; the builder session writes it with you. Allow days to a few weeks.</p></div></div>
+<div class="step"><div class="stepnum">G3</div><div class="stepbody"><p><b>A Google Cloud project.</b> At <b>console.cloud.google.com</b>, create a project <code class="f">kokan-nirvana-os</code>, enable the <b>Google Ads API</b>, and set up the <b>OAuth consent screen</b> and a <b>client ID</b>. The builder session walks you through each click when it reaches Google Ads. The developer token and client secret go only into n8n and Vercel.</p></div></div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">LINKEDIN, YOUTUBE, X</div><div class="sectag">One by one, as each approves</div></div>
+<table class="numbers">
+<tr><th style="width:16%;">Platform</th><th>What to do</th><th style="width:28%;">Honest note</th></tr>
+<tr><td><b>LinkedIn</b></td><td>At <b>linkedin.com/developers</b>, create an app linked to the Bhamchik Group company page, verify it from the page, and request the <b>Community Management API</b> product. Fill the form as the business.</td><td>Reviewed by LinkedIn; can take weeks and is sometimes refused for small companies. Until then, the OS drafts LinkedIn posts and your team posts them.</td></tr>
+<tr><td><b>YouTube</b></td><td>In the same Google Cloud project, enable <b>YouTube Data API v3</b>. Uploading needs your channel&rsquo;s permission on the consent screen.</td><td>Until Google completes an <b>API compliance audit</b>, videos uploaded by the OS stay <b>private</b>. Apply for the audit early; until it passes, the team makes them public with one click.</td></tr>
+<tr><td><b>X (Twitter)</b></td><td>Not recommended now.</td><td>X charges a monthly fee for posting by API. Post by hand if you use it.</td></tr>
+</table>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">CALL REVIEW: THE EXACT PROCEDURE</div><div class="sectag">Your phase 2 &middot; month 4 onward</div></div>
+<p>What it does: each sales call is recorded, turned into text (including Hindi and Marathi), summarised onto the customer&rsquo;s record, and checked against your sales script, with a weekly report to you. Claude reads and reviews the text; turning the audio into text needs a speech-to-text service, because Claude does not listen to audio.</p>
+<div class="step"><div class="stepnum">C1</div><div class="stepbody"><p><b>Choose a cloud calling service.</b> Compare two or three Indian cloud telephony providers (business virtual numbers with an app for staff). Ask each: Is <b>call recording</b> included? Can recordings be sent automatically to our system (an <b>API or webhook</b>)? Do staff call from a mobile app with the business number showing? Price per user and per minute? Pick one; complete its KYC with your GST and company documents.</p></div></div>
+<div class="step"><div class="stepnum">C2</div><div class="stepbody"><p><b>Move sales calls onto it.</b> Give each salesperson a login on the calling app. From the go-live date, every sales call to or from a lead goes through the business number, not a personal phone. Put this number on Meta ads, the landing page and the WhatsApp profile.</p></div></div>
+<div class="step"><div class="stepnum">C3</div><div class="stepbody"><p><b>Tell customers calls are recorded.</b> Set a short recorded line at the start of calls (&ldquo;This call may be recorded for quality&rdquo;), and add it to the privacy policy. India&rsquo;s data protection law asks you to be open about how personal data is used; have your legal adviser check the wording.</p></div></div>
+<div class="step"><div class="stepnum">C4</div><div class="stepbody"><p><b>Choose the speech-to-text service.</b> The builder session lists two or three services that handle Hindi, Marathi and English mixed in one call, with price per minute. Test each on five real recordings; pick the one whose text your sales manager can read without confusion.</p></div></div>
+<div class="step"><div class="stepnum">C5</div><div class="stepbody"><p><b>Connect and pilot.</b> The builder session connects the calling service to the OS through n8n: recording arrives &rarr; text &rarr; Claude summary and score &rarr; saved on the lead&rsquo;s record. Run it on <b>20 calls</b>; your sales manager checks every summary and score. Fix the scoring rules with Claude until they agree with your sales manager.</p></div></div>
+<div class="step"><div class="stepnum">C6</div><div class="stepbody"><p><b>Switch on for all calls,</b> with the weekly report (best calls, weakest calls, common questions, missed follow-ups) to you and the sales manager. Scores coach people; they are never used alone to judge a person&rsquo;s job.</p></div></div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">IMAGES AND VIDEOS</div><div class="sectag">Your team makes them, the OS helps</div></div>
+<p>Claude writes the words: ad copy, captions, scripts, greetings. It does not make photos or videos. The simplest way, and what we recommend: <b>your marketing team keeps making the visuals in the tools they already use (ChatGPT, Claude, Canva), and the OS does the rest around them.</b></p>
+<table class="numbers">
+<tr><th style="width:30%;">The OS does</th><th>How it helps your team</th></tr>
+<tr><td><b>Brand kit</b></td><td>Your logo, colours, fonts and do&rsquo;s and don&rsquo;ts stored once, shown on every brief.</td></tr>
+<tr><td><b>Creative brief for every post or ad</b></td><td>The headline, text, size (post, story, reel), which property photos to use, and a <b>ready-to-paste prompt</b> for ChatGPT, Canva or Claude, so the team does not start from a blank page.</td></tr>
+<tr><td><b>Ready-made greetings</b></td><td>Festival and occasion greetings made automatically from your branded templates and your own property photos: no design tool needed for these.</td></tr>
+<tr><td><b>Asset library</b></td><td>The team uploads the finished image or video to the post; the OS keeps every version against the property and campaign.</td></tr>
+<tr><td><b>Approve, then publish</b></td><td>One tap to approve; the OS posts or attaches it to the ad, and later shows which creative brought leads and visits.</td></tr>
+</table>
+<p>If you later want AI-made videos (a presenter walking through a property, for example), add an AI video tool: roughly $20 to $100 a month depending on the tool. Not needed to start.</p>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">WHAT IT ADDS TO YOUR BILL</div><div class="sectag">Estimates, before GST</div></div>
+<table class="numbers">
+<tr><th>Item</th><th style="width:40%;">About</th></tr>
+<tr><td>Meta, Google Ads, LinkedIn, YouTube connections</td><td><b>Free</b>. Ad spend stays as it is today, inside your monthly cap.</td></tr>
+<tr><td>AI writing and the marketing agents (Claude API)</td><td>A few hundred to a couple of thousand rupees a month</td></tr>
+<tr><td>AI image or video tool (optional)</td><td>$20 to $100 a month; or your team&rsquo;s existing ChatGPT, Claude or Canva</td></tr>
+<tr><td>n8n, more scheduled jobs</td><td>Possibly the Pro plan: about &euro;60 a month instead of &euro;24</td></tr>
+<tr><td>Cloud calling service</td><td>The provider&rsquo;s plan, per user and per minute</td></tr>
+<tr><td>Speech-to-text for call review</td><td>Roughly &#8377;0.50 to &#8377;2 a minute of calls (estimate; check the chosen service)</td></tr>
+<tr><td>Claude review of each call</td><td>A few rupees a call</td></tr>
+</table>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">YOUR CHECKLIST</div><div class="sectag">Tick as you go</div></div>
+<ul class="ticks">
+<li>Meta: all assets in the Bhamchik Group portfolio (M1)</li>
+<li>Meta: business verified (M2) and domain verified (M3)</li>
+<li>Privacy policy page live (M4) &middot; Meta developer app (M5) &middot; system user (M6)</li>
+<li>Monthly ad spend cap decided: &#8377;______ (Meta) &middot; &#8377;______ (Google)</li>
+<li>Who approves campaigns: ______________ (you only, or you and the marketing head)</li>
+<li>Google Ads manager account and developer token (G1, G2) &middot; LinkedIn API and YouTube audit applied (03)</li>
+<li>Marketing team names, emails and roles sent to the MAIN session for logins</li>
+<li>Cloud calling service chosen (C1), only when you start phase 2</li>
+</ul>
+
+<div class="traceline">Companion to blueprint BOA-2026-BHA-01 Rev B and the Marketing Module Build Addendum &middot; platform screens change: follow what each shows on the day.</div>
+
+</body>
+</html>
