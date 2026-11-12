@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GREATISH Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-GRE-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "GREATISH · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; GREATISH</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">GREATISH OS<br><span class="accent">STARTER GUIDE</span></h1>
+    <div class="coversub">Prepared for <b>Ajay Kumar</b>, GREATISH PVT LTD. Your accounts are connected. Now <b>upload two files, paste one prompt, choose the look</b>, and Claude Code lays the foundation of the GREATISH OS.</div>
+    <div class="flow">
+      <span class="chip">Accounts<br>connected</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Files in<br>docs</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Starter<br>prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose the<br>look</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Continue<br>building</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Already done on the call with Romana</span>Claude Max, GitHub (private repository <code class="f">greatish-os</code>), Supabase (project <code class="f">greatish</code>) and Vercel are set up and connected to Claude Code, and a blank page is live at your <code class="f">.vercel.app</code> address.</td></tr>
+      <tr><td colspan="2"><span class="lbl">What this guide does</span>One prompt: Claude Code reads your blueprint, writes your rules into the project, builds the foundation (one shared record for every company, warehouse, user and approval), lists what you must start today, and plans the build. Then you choose the look of the whole system (Step 3, the UI section) and move to the Continue Building Guide.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The three documents</span>1 &middot; AI Systems Blueprint<br>2 &middot; This Starter Guide (once, includes the UI)<br>3 &middot; Continue Building Guide (every sitting after, Step 4)</td>
+        <td><span class="lbl">Who builds</span>You give 1 to 2 hours a week. If one trusted person on your team runs Claude Code, they follow these guides; every approval stays with you.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-GRE-01 Rev A (blueprint audit 10.11.2026).</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS (a click on your computer) &middot; PASTE TO CLAUDE CODE (copy the whole box)</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Two minutes</div></div>
+<p>You wrote: <em>&ldquo;मुझे ऐसी व्यवस्था चाहिए जिसमें कोई भी महत्वपूर्ण काम केवल मौखिक निर्देशों या किसी कर्मचारी की व्यक्तिगत याददाश्त पर निर्भर न रहे।&rdquo;</em> Your blueprint answers with one shared record and eight systems on three spines: field sales, the plant, and accountability. The first one is the <b>GREATISH Beat App</b>: every field executive has his own login, checks in by GPS inside duty hours, books orders against the approved price list and enters collections with a receipt photo. Every later report is built on those records, not on what anyone writes.</p>
+<p>No coding knowledge is needed. Claude Code writes every line. Your job: answer its questions in your own words, say OK when you agree, and check what it built against people and products you know. If you do not understand something, type <code class="f">explain this to me in simple words</code>. If something breaks, paste the error or a screenshot and type <code class="f">explain this in simple words and fix it</code>. You can write to Claude in Hindi or English.</p>
+<div class="note"><span class="nlbl">What it costs</span><p>Claude Max (about $100 a month) builds everything. GitHub is free. Vercel Pro is about $20 a month for a business app. Supabase is free to start; move to Pro (about $25 a month) before the field team goes live, because GPS check-ins, shop photos and receipt photos fill it quickly and Pro adds daily backups. Later: the Plant Auditor, Sales Auditor and Duty Officer run on the Claude API, and Tally Prime needs a small connector on your office computer. Claude Code always tells you a cost and waits for your yes before adding anything.</p></div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put the files in your project folder</b></p>
+<ol>
+<li>Open the folder Romana set up with you: <code class="f">Documents\greatish-os</code>. Make a folder inside it called <code class="f">docs</code>.</li>
+<li>Put in <code class="f">docs</code>: the <b>AI Blueprint PDF</b> and this <b>Starter Guide PDF</b>. Keep the Continue Building Guide aside until Step 4.</li>
+<li>Inside <code class="f">docs</code>, make a folder <code class="f">samples</code> and put in what you have: the approved price list, the list of sales executives and their territories, one sample of each report your team sends today, your company and warehouse list. <b>Never put chemical formulations in this folder</b>; Claude will ask for them separately, into a locked place.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>The starter prompt.</b> Open the Claude app &rarr; <b>Code</b> &rarr; start a new session on the <code class="f">greatish-os</code> folder and name it <code class="f">MAIN</code>. Drag the <b>AI Blueprint PDF</b> and this <b>Starter Guide PDF</b> into the message box, paste the box below, and send.</p>
+</div></div>
+
+<div class="paste"><span class="plbl">Paste &middot; The starter prompt (MAIN session)</span>
+<p>You are setting up the GREATISH OS for GREATISH PVT LTD, which manufactures and sells construction chemicals, waterproofing chemicals, industrial chemicals and machinery through field sales executives and dealers. I am Ajay Kumar, the owner, and I am not a programmer. Attached, and saved in docs/, are my AI Systems Blueprint and my Starter Guide; pages R1, R2 and R3 of the Starter Guide are written for you. This folder is already connected to my private GitHub repository, my Vercel project and my Supabase keys in .env.local. This session is the <b>MAIN session</b>. Work in five stages. After each stage, tell me in simple words what you did, then <b>stop and wait for my OK</b>. Ask me one question at a time.</p>
+<p><b>Stage 1: Read and check.</b> Read the blueprint and the Starter Guide. Tell me in ten lines or fewer: what GREATISH is, my three problems, the foundation and eight systems, and the build order. My numbers sheet was left blank: list every figure the blueprint says I still have to give, and do not guess any. Then check quietly that GitHub, Vercel and the Supabase keys work, and tell me only if something needs fixing.</p>
+<p><b>Stage 2: The rules.</b> Create CLAUDE.md holding page R2 of the Starter Guide word for word, plus the build brief and session rules in R3. Make sure .gitignore keeps out .env.local and docs/samples. Read the rules back to me in five lines.</p>
+<p><b>Stage 3: The foundation.</b> Build F-00 GREATISH Shared Record as R3 describes: companies, warehouses, users and roles, the approval matrix, sign-in, Row Level Security and the audit log. Ask me for the approval matrix (who signs what, and the limits for discount, credit, expense and stock adjustment) one line at a time. Tell me exactly what to paste into the Supabase SQL Editor and where to click, and what to set in Supabase so sign-in works on my live address. Add my owner login, push, and confirm I can sign in on my phone.</p>
+<p><b>Stage 4: My list for today.</b> Create docs/START-NOW.md from page R1: each item with its owner, a start date and a tick box, longest first, and tell me the first action for each. Start every future session by reminding me of anything not ticked.</p>
+<p><b>Stage 5: Plan the sessions.</b> Write docs/SESSIONS.md: the build order, which systems are built side by side in separate sessions (R3), and each one&rsquo;s branch name. Write docs/build-sheets/sys-01.md for the Beat App and Field Day Skill: what it does, what it must never do (from the blueprint), the data it needs and its done-when. No feature code yet. Finish by telling me to choose the look (Step 3 of the Starter Guide) and then open the Continue Building Guide (Step 4).</p>
+</div>
+<div class="note"><span class="nlbl">When Claude asks you to paste something into Supabase</span><p>Open your Supabase project and check the browser address shows the project code Claude names. Click <b>SQL Editor &rarr; New query</b>, paste, press <b>Run</b>, and check the bottom says <b>Success</b>. If you see red text, copy it to Claude.</p></div>
+
+<!-- ================= STEP 3: UI ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">STEP 3 &middot; CHOOSE THE LOOK</div><div class="sectag">The UI section &middot; once, before the first screen</div></div>
+<p>Claude builds what you say, but it designs what you show it. Show it nothing and your team gets the average of every app on the internet: crowded, generic, and ignored. Fifty field executives will open this app on a phone, in a shop, in the sun, between two visits. If it takes more than a few seconds, they go back to WhatsApp, and every report after it is empty.</p>
+
+<div class="step"><div class="stepnum">3.1</div><div class="stepbody"><span class="voice">You do this</span><p><b>Collect.</b> On <b>pinterest.com</b> search <code class="f">minimalist UI design web app</code> and <code class="f">field sales app mobile clean</code>. Download 10 to 15 screens your executives and store keeper would understand at a glance. Skip anything crowded, dark or clever.</p></div></div>
+<div class="step"><div class="stepnum">3.2</div><div class="stepbody"><span class="voice">You do this</span><p><b>Let the strongest model choose.</b> Open the <b>Claude app</b>, choose <b>Chat</b> (not Code), pick the strongest model in the list, attach all the screenshots and paste the chooser prompt.</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; Claude app chat &middot; the chooser prompt</span>
+<p>I have shared some powerful, minimal UI designs with you. I am building the interface for my company: GREATISH PVT LTD, a manufacturer of construction chemicals, waterproofing chemicals, industrial chemicals and machinery. The screens are used by field sales executives on Android phones from shop to shop, by the store keeper on a phone at the plant gate, by the production, purchase and accounts teams on office computers, and by me on my phone for approvals and one daily view of the whole company. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.</p>
+</div>
+<div class="step"><div class="stepnum">3.3</div><div class="stepbody"><span class="voice">You do this</span><p><b>Get it in writing.</b> Upload only the winning one or two designs again and ask: <em>&ldquo;I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.&rdquo;</em> Download the .md file and save it with the images in <code class="f">docs/design/</code>. If the direction comes back too narrow (&ldquo;a sales app&rdquo;), correct it: <em>&ldquo;This is the whole GREATISH company: field sales, plant, stores, purchase, accounts, HR and tasks.&rdquo;</em></p></div></div>
+<div class="step"><div class="stepnum">3.4</div><div class="stepbody"><span class="voice ai">Paste to MAIN</span><p><b>Hand it over.</b></p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; MAIN &middot; set the look for every session</span>
+<p>The design direction is in docs/design: the chosen images and the design .md file. Read them and section 03 of the Starter Guide. Tell me in five lines what the look is. Then add to CLAUDE.md that every screen in every session follows docs/design and the screen rules in section 03 of the Starter Guide, and build one sample screen, a field executive&rsquo;s home screen with today&rsquo;s beat plan, using dummy data, so I can see the look on my phone before any system is built. Wait for my OK.</p>
+</div>
+
+<h3 class="sub">Your main screens, one question each</h3>
+<table class="numbers">
+<tr><th style="width:22%;">System</th><th>Screen and its one question</th><th style="width:19%;">One main button</th><th style="width:20%;">Who, on what</th></tr>
+<tr><td>SYS-01 Beat App</td><td><b>My day:</b> &ldquo;which shops today, and what is my target?&rdquo;</td><td>Check in</td><td>Executive, Android</td></tr>
+<tr><td>SYS-01 Beat App</td><td><b>At the shop:</b> &ldquo;what did I see, sell and collect here?&rdquo;</td><td>Save visit</td><td>Executive, Android</td></tr>
+<tr><td>SYS-02 Sales Command Board</td><td><b>The team:</b> &ldquo;who is working, and where do claims not match records?&rdquo;</td><td>Open a flag</td><td>You, sales head</td></tr>
+<tr><td>SYS-03 Store Gate</td><td><b>At the gate:</b> &ldquo;what is coming in or going out, against which PO, batch or order?&rdquo;</td><td>Record movement</td><td>Store keeper, phone</td></tr>
+<tr><td>SYS-04 Task Desk</td><td><b>My work:</b> &ldquo;what is due today, and what proof closes it?&rdquo;</td><td>Close with proof</td><td>Every employee</td></tr>
+<tr><td>SYS-04 Pending Work Board</td><td><b>The company:</b> &ldquo;what is pending in each department, and what waits for me?&rdquo;</td><td>Approve</td><td>You, phone</td></tr>
+<tr><td>SYS-06 Plant Board</td><td><b>The plant:</b> &ldquo;what was made, at what real cost, and what is low?&rdquo;</td><td>Open a batch</td><td>You, production head</td></tr>
+<tr><td>Approval queue</td><td><b>Waiting for me:</b> &ldquo;which rate, credit, purchase or expense needs my yes?&rdquo;</td><td>Approve / reject</td><td>You, phone</td></tr>
+</table>
+
+<h3 class="sub">GREATISH screen rules</h3>
+<ul class="tight">
+<li><b>Field-proof first.</b> Executive and store screens work one-handed on a basic Android phone in sunlight: big buttons, high contrast, large text.</li>
+<li><b>Photo and GPS before typing.</b> A check-in, a shop board photo, a receipt photo: one tap each. The end-of-day report is drafted from the check-ins, so the executive confirms rather than types.</li>
+<li><b>Works with weak network.</b> Visits and gate entries save on the phone and send when signal returns, and say so (&ldquo;saved, will send&rdquo;).</li>
+<li><b>Hindi or English, per person.</b> Every label can show in the language each user chooses.</li>
+<li><b>The price list decides.</b> The order screen shows only approved rates; any other rate or credit becomes a request with a clear &ldquo;waiting for approval&rdquo; badge.</li>
+<li><b>Claimed is not verified.</b> Visits, orders and collections show as claimed until matched to GPS, an invoice or the bank, and the screen says which.</li>
+<li><b>Exceptions first for you.</b> Your screens open on what is red, what waits for your signature, and what does not match. Red and green mean late and on track, nothing else.</li>
+<li><b>No formula on any screen</b> except for you and the production head; no salary or incentive figure to any employee before you sign.</li>
+</ul>
+
+<table class="numbers">
+<tr><th style="width:34%;">The five screen laws</th><th>Check every screen Claude shows you</th></tr>
+<tr><td><b>1 &middot; Nobody reads, everyone scans</b></td><td>The one thing the user must see first is the biggest and boldest thing on the screen.</td></tr>
+<tr><td><b>2 &middot; One screen, one job</b></td><td>One main button, visible without scrolling, in the one colour kept for action.</td></tr>
+<tr><td><b>3 &middot; Consistency is trust</b></td><td>The same thing looks the same on every screen: a shop, an order, a batch, a red flag.</td></tr>
+<tr><td><b>4 &middot; The default is the decision</b></td><td>What is filled in again and again is already filled in: date, territory, company, warehouse.</td></tr>
+<tr><td><b>5 &middot; Silence is an error</b></td><td>Every tap answers at once with a change, a tick or a message.</td></tr>
+</table>
+<div class="guard"><b>THE TWO-MINUTE RULE:</b> a new executive opens any screen and understands what it is and what to do in under two minutes, with no training. If a screen needs explaining, the screen is wrong, not the employee. The real test: hand the phone to one executive and watch, without helping.</div>
+</div>
+
+<!-- ================= STEP 4 ================= -->
+<div class="step"><div class="stepnum">STEP 4</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Now open the Continue Building Guide</b></p>
+<p>This Starter Guide is used once; keep section 03 open whenever a new screen is shown to you. From here on, the <b>Continue Building Guide</b> is the one you use: at the start of every sitting, to start each system, and to run several sessions at once. Put its PDF into <code class="f">docs/</code> when all of this is true:</p>
+<ul class="ticks">
+<li>You can sign in to the OS on your phone at your <code class="f">.vercel.app</code> address.</li>
+<li><code class="f">CLAUDE.md</code> holds your rules; the foundation tables and your approval matrix show in Supabase&rsquo;s <b>Table Editor</b>.</li>
+<li><code class="f">docs/START-NOW.md</code>, <code class="f">docs/SESSIONS.md</code> and the SYS-01 build sheet are written, and you have read and corrected them.</li>
+<li><code class="f">docs/design/</code> holds your chosen look, and the sample screen looks right on your phone.</li>
+</ul>
+<p>Then open its section 02, <b>Every sitting</b>, and follow it. If a box is not ticked, paste it into MAIN and say <em>&ldquo;fix this before we continue.&rdquo;</em></p>
+</div></div>
+
+<!-- ================= R1 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">R1</div><div class="sectitle">THE CLOCKS: FOR docs/START-NOW.md</div><div class="sectag">Read by Claude Code in Stage 4</div></div>
+<p>Things that wait on you or your team. Each becomes a line in <code class="f">docs/START-NOW.md</code> with its owner, a start date and a tick box.</p>
+<table class="numbers">
+<tr><th style="width:5%;">#</th><th>Item</th><th style="width:21%;">Owner</th><th style="width:15%;">Needed for</th></tr>
+<tr><td>1</td><td><b>The eight blank numbers:</b> leads, quotes, conversion, orders, average order value, sales cycle, repeat customers and headcount; plus the money path and the people map.</td><td>Ajay</td><td>Day 1</td></tr>
+<tr><td>2</td><td><b>The approval matrix:</b> who signs what, and the limits for discount, credit, expense and stock adjustment.</td><td>Ajay with the build team</td><td>F-00</td></tr>
+<tr><td>3</td><td><b>Companies and warehouses</b> GREATISH runs today, and which to build for first.</td><td>Ajay</td><td>F-00</td></tr>
+<tr><td>4</td><td><b>Sales executives:</b> names, mobiles, territories, dealer and shop pins, authorised field duty hours; the approved price list and customer credit limits.</td><td>Sales head</td><td>SYS-01</td></tr>
+<tr><td>5</td><td><b>Field rules:</b> what counts as a real shop visit, the fixed list of visit outcomes, targets per executive.</td><td>Ajay with sales head</td><td>SYS-01, SYS-02</td></tr>
+<tr><td>6</td><td><b>Product list</b> with BOM per pack size, standard consumption norms, QC parameters and reorder levels. Formulations stay locked and are not shared.</td><td>Ajay / production head</td><td>SYS-03, SYS-06</td></tr>
+<tr><td>7</td><td><b>Store and purchase:</b> who keeps the store gate, open purchase orders, approved suppliers per material, batch numbering rule.</td><td>Production head, purchase</td><td>SYS-03, SYS-07</td></tr>
+<tr><td>8</td><td><b>Department SOPs</b> in the five-line form: who does it, when, who approves, how long it should take, who is told if it is not done.</td><td>Department heads</td><td>SYS-04, SYS-05</td></tr>
+<tr><td>9</td><td><b>Software list:</b> what is paid today, what is used, what you want to stop paying for.</td><td>Ajay</td><td>Stack note</td></tr>
+<tr><td>10</td><td><b>Tally Prime:</b> which edition, on which office computer, who has admin access, one company per Tally company file.</td><td>Accounts</td><td>SYS-07</td></tr>
+<tr><td>11</td><td><b>Your weekly 1 to 2 hour approval slot</b>, and the calendar kept free in July, September and December.</td><td>Build team</td><td>Planning</td></tr>
+</table>
+</div>
+
+<!-- ================= R2 ================= -->
+<div class="sechead"><div class="secnum">R2</div><div class="sectitle">THE RULES: FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by Claude Code in Stage 2</div></div>
+<div class="paste long"><span class="plbl">Standing rules for everything ever built in this folder, in every session</span>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this folder, repository, database and app are the only ones GREATISH will ever have; every system is a new section of the same app, multi-company and multi-warehouse, so a new unit or company joins without a rebuild. 2 &middot; EVERY PERSON THEIR OWN KEY: every user has their own login and sees only what their role needs; Ajay sees everything; no shared passwords. 3 &middot; A HUMAN YES BEFORE ANYTHING LEAVES OR MOVES MONEY: no purchase order, quotation rate, credit, discount, payment, stock correction or Tally entry goes out or posts without the approver named in the approval matrix; one switch turns all automatic behaviour off without code. 4 &middot; THE DIARY NOBODY CAN EDIT: every action is written to a log that can only be added to; deleting or altering audit records is never possible. 5 &middot; SECRETS STAY IN THE CUPBOARD: keys live only in .env.local and in Vercel&rsquo;s settings, never in code, in chat or on GitHub. 6 &middot; MONEY IS CALCULATED, NEVER GUESSED: rates, totals, costs, stock and incentives come from exact tested rules; AI reads, drafts, matches and alerts, and never invents a number. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>GREATISH rules, set by Ajay.</b> AI may act alone to: make daily reports; monitor employee attendance and productivity; track sales targets and identify pending work; send routine reminders to customers; route new enquiries to the right employee and allocate leads by set rules; draft quotations, business documents and HR documents from approved formats; monitor stock; reconcile records across departments and alert on errors or mismatches; check authorised data, match employee reports to real records, and suggest to management. A person signs off: pricing and negotiation; all large financial transactions and bank transfers; supplier payments, large purchases and raw material purchase; new credit limits, discounts beyond the set limit, special permission to sell on credit; large stock changes; hiring or dismissal, salary changes, large incentive changes; legal agreements, government returns and key compliance; changes to product formulae and large business contracts. Never automated: bank payments without permission; taking large financial obligations on the company&rsquo;s behalf; final decisions on large investments; hiring or dismissing employees without human check; final certification of legal and government documents; unauthorised changes to confidential chemical formulae; deleting or altering audit records; sharing confidential company information.</p>
+<p><b>How these become code.</b> GPS is recorded only inside each executive&rsquo;s authorised field duty hours. Orders are locked to the approved price list; any other rate or credit beyond limit is saved as a request and goes nowhere until approved. Collections stay &ldquo;claimed&rdquo; until accounts matches them with the bank. No flow, auditor or agent ever names an employee at fault on inference: mismatches go to a person with the evidence. Formulations are readable only by Ajay and the production head, are never written to docs/, samples, GitHub or a prompt, and no system can change them. Every record carries its company, warehouse, user and time. The blueprint&rsquo;s numbers were left blank: never invent or hard-code a figure. Build in the blueprint&rsquo;s order; a system starts only when Ajay approves its build sheet.</p>
+</div>
+
+<!-- ================= R3 ================= -->
+<div class="sechead"><div class="secnum">R3</div><div class="sectitle">THE BUILD BRIEF: FOR CLAUDE CODE</div><div class="sectag">Ajay can skip this page</div></div>
+<div class="brief"><h3>Stack</h3>
+<p>Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres, Auth, Row Level Security, Storage for photos) through <code class="f">@supabase/ssr</code> and <code class="f">@supabase/supabase-js</code>, deployed on Vercel from <code class="f">main</code>; branches get Vercel preview deployments. Mobile-first web app added to the home screen; the Beat App and Store Gate save offline and sync. GPS through the phone browser&rsquo;s location permission, only inside duty hours; maps with a free map library, no paid maps API unless Ajay agrees. Scheduled jobs (7 PM field verify, nightly auditor runs, morning notes) as Vercel Cron calling protected routes. Notifications inside the app first; WhatsApp only later with Ajay&rsquo;s yes. Tally Prime (SYS-07) through Tally&rsquo;s own XML interface on the office computer via a small connector, chosen with Ajay in phase 4. Agents (Duty Officer, auditors) on the Claude API, cost shown first. Variables: <code class="f">NEXT_PUBLIC_SUPABASE_URL</code>, <code class="f">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code>, <code class="f">SUPABASE_SECRET_KEY</code>, later <code class="f">CRON_SECRET</code>, <code class="f">ANTHROPIC_API_KEY</code>; <code class="f">.env.example</code> with names only.</p></div>
+<div class="brief"><h3>F-00 Shared Record: the starting shape</h3>
+<p><b>companies</b>; <b>warehouses</b> (company); <b>profiles</b> (name, mobile, company, role owner / sales_head / executive / production_head / store_keeper / purchase / accounts / hr / manager / staff, language, duty hours, active); <b>approval_matrix</b> (action, company, limit, approver role or person); <b>territories</b>; <b>customers</b> (dealer or shop, pin latitude and longitude, territory, credit limit, company); <b>products</b> (name, pack sizes, category: chemical or machinery; no formula); <b>price_list</b> (product, pack, rate, valid from, company); <b>approvals</b> (request, requested by, approver, status, decided at); <b>settings</b> (automation switch off by default); <b>audit_log</b> (append only, no update or delete for anyone). Formulations, when needed, go in a separate table readable only by owner and production_head. Row Level Security: Ajay sees all; each role sees its own company, department and records; executives see only their own territory. Later systems add visits, orders, collections, stock movements, batches, tasks in their own migrations.</p></div>
+<div class="brief"><h3>Sessions</h3>
+<ul>
+<li><b>MAIN</b> owns <code class="f">main</code>, CLAUDE.md, docs/SESSIONS.md and the database; it applies migrations in order and merges finished work.</li>
+<li><b>One builder session per system</b>, at most three at a time, each in its own git worktree on branch <code class="f">sys-0N-short-name</code>, touching only <code class="f">app/(sys-0N)/</code> and <code class="f">lib/sys-0N/</code>; new tables only in a new migration <code class="f">&lt;timestamp&gt;_sys0N_&lt;what&gt;.sql</code>, adding, never dropping or renaming. Shared files change only in MAIN; requests go in <code class="f">docs/requests/</code>, handovers in <code class="f">docs/handovers/</code>.</li>
+<li><b>Writing lane</b> for the skills (Field Day, Batch Record formats, HR Letter and SOP): only <code class="f">docs/</code> and <code class="f">content/</code>, never formulations.</li>
+<li>Every screen follows <code class="f">docs/design/</code> and section 03 of this guide; plan first and wait for OK; simple words; a dated note in <code class="f">docs/sessions/</code> at the end of each sitting.</li>
+</ul></div>
+
+<div class="traceline">Prepared for Ajay Kumar &middot; GREATISH PVT LTD &middot; traces to blueprint BOA-2026-GRE-01 Rev A (blueprint audit 10.11.2026).<br>Stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub.</div>
+
+</body>
+</html>

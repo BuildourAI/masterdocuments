@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GREATISH Continue Building</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-GRE-C1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "GREATISH · Continue Building"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; GREATISH</span><span>Continue Building &middot; Rev A</span></div>
+    <h1 class="cover">GREATISH OS<br><span class="accent">CONTINUE BUILDING</span></h1>
+    <div class="coversub">Prepared for <b>Ajay Kumar</b>. Every sitting after the Starter Guide: <b>several Claude Code sessions at once</b>, one per system, joined by one <b>MAIN session</b>, field sales first.</div>
+    <div class="flow">
+      <span class="chip">MAIN<br>session</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Builder<br>sessions</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Test on<br>phone</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Five real<br>cases</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Merge,<br>live</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Next<br>system</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Use it when</span>Every box in Step 4 of the Starter Guide is ticked. Keep this file in <code class="f">docs/</code>, and come back to section 02 at the start of every sitting. For the look of every new screen, keep section 03 of the Starter Guide open.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The idea</span>Your company runs departments side by side under one owner. Your project runs one <b>MAIN session</b> (the whole picture) and up to three <b>builder sessions</b>, each on its own system and its own branch.</td>
+        <td><span class="lbl">Your time</span>1 to 2 hours a week: approvals and reading reports. The person who runs Claude Code does the sittings.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-GRE-01 Rev A.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS &middot; PASTE TO CLAUDE CODE</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">HOW THE SESSIONS WORK</div><div class="sectag">Read once</div></div>
+<table class="numbers">
+<tr><th style="width:22%;">Session</th><th>What it does</th><th style="width:30%;">Name it in the app</th></tr>
+<tr><td><b>MAIN</b> (always one)</td><td>Keeps the master copy (<code class="f">main</code>), owns the database, joins finished work, keeps CLAUDE.md and START-NOW up to date. Never builds a system itself.</td><td><code class="f">MAIN</code></td></tr>
+<tr><td><b>Builder</b> (up to three)</td><td>Builds one system on its own branch, in its own copy of the folder, touching only its files. Hands over to MAIN when a phase is done.</td><td><code class="f">SYS-01 Beat App</code>, <code class="f">SYS-03 Store Gate</code>&hellip;</td></tr>
+<tr><td><b>Writing lane</b></td><td>Writes words, not code: the Field Day rules, batch record and QC formats, department SOPs, HR letter templates. Never formulations.</td><td><code class="f">SKILLS writing</code></td></tr>
+</table>
+<div class="note"><span class="nlbl">The session buttons</span><p>In the Claude app&rsquo;s <b>Code</b> tab, start a <b>new session</b> on the same <code class="f">greatish-os</code> folder while another is still working; each shows in the list on the left, and you click to switch. Name each after its job.</p></div>
+<div class="note"><span class="nlbl">Why this does not get messy</span><p>Each builder works in its own copy of the code (a <b>worktree</b>) on its own <b>branch</b>, so two sessions never type into the same file. Each branch gets its own test address on Vercel, so a system is checked on a phone before it reaches the live app. Only MAIN joins work into the live copy.</p></div>
+<div class="guard"><b>THREE AT A TIME, NOT MORE.</b> Three builders is the most one person can follow, test and answer in a sitting. If sessions start pausing for limits, run two.</div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">EVERY SITTING</div><div class="sectag">Same routine, every day</div></div>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><span class="voice ai">Paste to MAIN</span><p><b>Open the day.</b> Claude app &rarr; Code &rarr; your <code class="f">MAIN</code> session, and paste:</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; MAIN &middot; start of every sitting</span>
+<p>You are the MAIN session for the GREATISH OS. Read CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ and the latest note in docs/sessions/. Tell me in simple words, in ten lines or fewer: what is not yet ticked in START-NOW; which systems are in progress and on which branch; any handover waiting to be merged; any request waiting for you; anything waiting for Ajay&rsquo;s approval; and which builder sessions I should run today (at most three). Do nothing else until I say OK.</p>
+</div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><span class="voice">You do this</span><p><b>Open the sessions MAIN named.</b> If a session for that system exists, click it and paste the <b>continue</b> box from &sect;03; if not, start a new session, name it, and paste the <b>new system</b> box.</p></div></div>
+<div class="step"><div class="stepnum">3</div><div class="stepbody"><span class="voice">You do this</span><p><b>Go round the sessions.</b> Answer whichever is waiting. Each builds one small finished thing per sitting and gives its test address. Open it on a phone and check one real executive, shop, batch or task you know. Check every new screen against section 03 of the Starter Guide.</p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><span class="voice ai">Paste to each session, then MAIN</span><p><b>Close the day.</b> In each builder: <code class="f">Commit and push your branch, update your handover file and today's note.</code> Then in MAIN: <code class="f">Read today's handovers. Merge anything marked ready, apply its migrations in order, and tell me what changed on the live app.</code></p></div></div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">THE SESSION PROMPTS</div><div class="sectag">Paste to a builder session</div></div>
+<div class="paste"><span class="plbl">Paste &middot; New builder session (fill the brackets from &sect;05)</span>
+<p>You are the builder session for <b>[SYS-0N and system name]</b> in the GREATISH OS. Read CLAUDE.md, docs/SESSIONS.md, the blueprint and the Starter Guide in docs/ (especially its section 03 on screens), docs/design/, and docs/build-sheets/[sys-0N].md (write it first from the blueprint if it does not exist, and wait for my approval). Work only in your own git worktree on the branch <b>[sys-0N-short-name]</b>, never on main, and only in this system&rsquo;s folders. New tables or columns only in a new migration for this system, adding, never dropping. If you need a shared file changed, write it in docs/requests/ and tell me. Before any code: list every screen this system needs (one question, one main button, who, which device) as simple text sketches; give me a plan in small phases, each ending with something I can test on a phone at your branch&rsquo;s test address, the first phase always &ldquo;load my real data and show me one true list&rdquo;; and list anything that needs Ajay&rsquo;s approval rule or costs money. Wait for my OK.</p>
+</div>
+<div class="paste"><span class="plbl">Paste &middot; Existing builder session &middot; continue</span>
+<p>Read CLAUDE.md, your build sheet and your handover file. Tell me in five lines where this system stands and what the one finished thing for today is. Make a plan and wait for my OK.</p>
+</div>
+<div class="paste"><span class="plbl">Paste &middot; Writing lane &middot; the skills (from day 1)</span>
+<p>You are the writing session for the GREATISH skills. You write only in docs/ and content/, never code, and never any chemical formulation. Interview me one question at a time and write, in our own wording: content/field-day.md (what counts as a real shop visit, the fixed outcome list, the beat plan rule, the end-of-day report format, the quotation cover note with the rate line blank); content/batch-record.md (batch numbering, the batch manufacturing record, material issue slip, QC test report, finished goods inward note and daily production report formats, the machinery job card); content/sops.md (each department SOP in five lines: who, when, who approves, how long, who is told); content/hr-letters.md (offer, appointment, joining, confirmation, increment, warning, relieving and experience letters, with every salary and decision left blank for the authorised person). Mark each file draft until I approve it, then tell MAIN to load it.</p>
+</div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILD, TEST, SWITCH ON</div><div class="sectag">The same moves for every system</div></div>
+<ol class="tight">
+<li><b>One finished thing per sitting,</b> tested on a phone at the branch&rsquo;s test address against one real record. Surprises go in <code class="f">docs/rules-i-learned.md</code>.</li>
+<li><b>Check the screen</b> against section 03 of the Starter Guide. If it looks like homework: <em>&ldquo;Change only the design, following docs/design. Do not touch the features.&rdquo;</em></li>
+<li><b>Merge when a phase is done.</b> The builder writes its handover; MAIN merges; the live app updates in about two minutes.</li>
+<li><b>Five real cases, then one team first.</b> For the Beat App: five executives in one territory for a week, then all. For Store Gate: one warehouse, then the rest.</li>
+<li><b>Shadow before trust.</b> The Field Verify Flow, both auditors and the Duty Officer report to you first and change nothing until you have judged their alerts for a few weeks. A mismatch is a question for the sales head, never a verdict on an employee.</li>
+</ol>
+<div class="guard"><b>IF A SESSION GOES WRONG:</b> say <em>&ldquo;Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to your last commit.&rdquo;</em> One broken session never breaks the live app or the others.</div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE BUILD ORDER, SESSION BY SESSION</div><div class="sectag">From the blueprint &middot; up to three at once</div></div>
+<table class="numbers">
+<tr><th style="width:9%;">Weeks</th><th style="width:20%;">MAIN</th><th style="width:24%;">Builder A</th><th style="width:24%;">Builder B</th><th>Writing / other</th></tr>
+<tr><td>1&ndash;2</td><td>F-00 Shared Record and approval matrix (day 1)</td><td><b>SYS-01</b> Beat App <code class="f">sys-01-beat-app</code></td><td>Free</td><td>Field Day Skill (writing)</td></tr>
+<tr><td>3&ndash;6</td><td>Merges; Beat App on every phone</td><td><b>SYS-02</b> Field Verify + Sales Command Board <code class="f">sys-02-field-verify</code></td><td><b>SYS-03</b> Store Gate + Batch Record <code class="f">sys-03-store-gate</code></td><td>Batch Record formats (writing)</td></tr>
+<tr><td>7&ndash;10</td><td>Merges; SOPs loaded</td><td><b>SYS-04</b> Task Desk + Pending Work Board <code class="f">sys-04-task-desk</code>, then <b>SYS-05</b> Escalation Chain <code class="f">sys-05-escalation</code></td><td><b>SYS-06</b> Plant Board <code class="f">sys-06-plant-board</code></td><td>Department SOPs (writing)</td></tr>
+<tr><td>9&ndash;12</td><td>Tally connector and Claude API set up, with your yes</td><td><b>SYS-07</b> Purchase to Tally <code class="f">sys-07-purchase-tally</code></td><td><b>SYS-08</b> Plant + Sales Auditor, shadow <code class="f">sys-08-auditors</code></td><td>HR letters (writing)</td></tr>
+</table>
+<table class="numbers">
+<tr><th style="width:18%;">Phase</th><th>Done when (from the blueprint)</th></tr>
+<tr><td>P1 &middot; F-00, SYS-01</td><td>The architecture, roles and approval matrix are signed off in one sitting, and every field executive has his own login on the Beat App with every claimed shop visit existing as a GPS check-in row inside duty hours.</td></tr>
+<tr><td>P2 &middot; SYS-02, SYS-03</td><td>A verified-versus-reported sheet per executive reaches your phone each morning without a call, and every material movement at the plant exists as a Store Gate entry stamped to a batch and a warehouse.</td></tr>
+<tr><td>P3 &middot; SYS-04 to SYS-06</td><td>Every department&rsquo;s open and overdue tasks show on the Pending Work Board with a named holder, late items have been reminded and escalated without you phoning anyone, and the Plant Board shows real batch cost against BOM for the batches made that week.</td></tr>
+<tr><td>P4 &middot; SYS-07, SYS-08</td><td>The real state of field sales, plant, stores, purchase and pending work is visible in one place, matched purchases post to Tally without a second typing, and a daily AI report with the auditors&rsquo; exceptions arrives on your phone, so you do not ask employees for information or chase any task yourself, on one to two hours a week.</td></tr>
+</table>
+<div class="guard"><b>THE GATES:</b> no builder starts before F-00 and the approval matrix are merged. SYS-02 waits for a few weeks of Beat App records; SYS-06 for a few weeks of Store Gate and batch records, and for your standard BOM costs. SYS-07 needs clean supplier ledgers and approved supplier lists per material before anything posts to Tally. SYS-08 runs in shadow mode: it reports, it changes nothing.</div>
+<p><b>Months 4 to 12, same house:</b> the Duty Officer and one consolidated daily, weekly and monthly report (months 4 to 6) &rarr; dealer and customer profiles, credit limit monitoring and bakaya reminders by WhatsApp in approved wording (months 6 to 8) &rarr; the full HR module: attendance, leave, payroll inputs, PF and ESI (months 8 to 10) &rarr; machinery service, tender tracking, a document knowledge base and the CEO assistant (months 10 to 12). Each starts at &sect;03.</p>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">WHEN SOMETHING COSTS MONEY</div><div class="sectag">Decide before it is built</div></div>
+<table class="numbers">
+<tr><th style="width:25%;">Need</th><th style="width:19%;">First appears</th><th>What it means for you</th></tr>
+<tr><td><b>Supabase Pro</b></td><td>Before the Beat App goes live</td><td>About $25 a month: room for GPS rows and photos from 50 to 100 executives, and daily backups.</td></tr>
+<tr><td><b>Tally connector</b></td><td>SYS-07</td><td>Tally Prime runs on your office computer. The OS posts to it through Tally&rsquo;s own data interface, which needs that computer on and a small connector program installed, or a paid Tally connector service. Claude Code shows the options and costs; you choose.</td></tr>
+<tr><td><b>Claude API key</b></td><td>SYS-08, then the Duty Officer</td><td>The auditors run every night with nobody at the computer, which Claude Max does not cover. Billed per use with a monthly spend limit you set at platform.claude.com; the key goes only into Vercel. Claude Code shows the expected monthly cost first.</td></tr>
+<tr><td><b>WhatsApp Business API</b> (optional)</td><td>Morning notes, POs to suppliers, bakaya reminders</td><td>Only if you want these on WhatsApp instead of inside the app or email. Needs Meta business verification, approved templates and paid messages.</td></tr>
+</table>
+<div class="paste"><span class="plbl">Paste &middot; Before any new connection</span>
+<p>Before you connect anything new, tell me in simple words: what it is, why this system needs it, what it costs each month for us, and what happens if I say no. Then wait for my yes. Any key goes only into .env.local and Vercel, and you tell me exactly where to add it and to redeploy.</p>
+</div>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">STANDING PROMPTS</div><div class="sectag">Keep these handy</div></div>
+<ul class="tight">
+<li><b>New executive or employee:</b> to MAIN: <em>&ldquo;[Name] joins as [role] in [company, territory or department]. Draft the login and the joining letter for my approval.&rdquo;</em></li>
+<li><b>A limit or rule changes:</b> to MAIN: <em>&ldquo;From today [the rule or limit]. Update the approval matrix and CLAUDE.md and tell me which systems it touches.&rdquo;</em></li>
+<li><b>A new company or warehouse:</b> to MAIN: <em>&ldquo;Add [company / warehouse]. Show me what it needs before anything changes.&rdquo;</em></li>
+<li><b>Monthly check:</b> to MAIN: <em>&ldquo;Audit the project against CLAUDE.md and my guardrails and report anything that breaks them, in simple words.&rdquo;</em></li>
+</ul>
+<div class="guard"><b>THE MONTHLY TEST:</b> open the OS on your phone and ask three questions. Is every visit, order, batch and task on it true? Did any rate, credit, purchase or payment go through without the yes it needed? Does the daily note explain the week better than phone calls would? Three yeses: start the next system. Any no: fix that first.</div>
+
+<div class="traceline">Prepared for Ajay Kumar &middot; GREATISH PVT LTD. Condensed from BuildOur Builder Guides 02&ndash;04 against blueprint BOA-2026-GRE-01 Rev A.<br>One record, one app, several sessions. Every price, payment, formula and decision about people stays human.</div>
+
+</body>
+</html>
