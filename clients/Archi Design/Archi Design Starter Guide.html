@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Archi Design Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-ARC-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Archi Design · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Archi Design</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">ARCHI DESIGN OS<br><span class="accent">STARTER GUIDE</span></h1>
+    <div class="coversub">Prepared for <b>Mahesh R. Khandagale</b>. Your accounts are connected. Now <b>upload two files, paste one prompt</b>, and Claude Code lays the foundation of the Archi Design OS.</div>
+    <div class="flow">
+      <span class="chip">Accounts<br>connected</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Files in<br>docs</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Starter<br>prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose the<br>look</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Continue<br>building</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Already done on the call with Romana</span>Claude Max, GitHub (private repository <code class="f">archi-design-os</code>), Supabase (project <code class="f">archi-design</code>) and Vercel are set up and connected to Claude Code on your laptop, and a blank page is live at your <code class="f">.vercel.app</code> address.</td></tr>
+      <tr><td colspan="2"><span class="lbl">What this guide does</span>One prompt. Claude Code reads your blueprint, writes your rules into the project, builds the foundation (one record of every project, stage, person and task), lists what you must start today, and plans which systems are built side by side. Then you choose the look and move to the Continue Building Guide.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The four documents</span>1 &middot; AI Systems Blueprint<br>2 &middot; This Starter Guide (once)<br>3 &middot; UI Guide (Step 3, and before every new screen)<br>4 &middot; Continue Building Guide (every sitting after, Step 4)</td>
+        <td><span class="lbl">Time</span>One sitting of about 2 hours.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-ARC-01 Rev A (blueprint audit 11.11.2026).</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS (a click on your computer) &middot; PASTE TO CLAUDE CODE (copy the whole box)</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Two minutes</div></div>
+<p>You wrote: <em>&ldquo;My Business is Not growing because I am involved in daily office activities rather than focusing on a growth. Employees don&rsquo;t take ownership. I have to follow up constantly.&rdquo;</em> Your blueprint answers that with one shared record and eight systems. The first one is the <b>Daily Task Sheet</b>: each of your 7 people opens their own task list on their phone, marks work done with proof or not done with a reason, and you stop giving tasks by voice.</p>
+<p>You need no coding knowledge. Claude Code writes every line. Your job is to answer its questions in your own words, say OK when you agree, and check what it built against projects and people you know. When you do not understand something, type <code class="f">explain this to me in simple words</code>. When something breaks, paste the error or a screenshot and type <code class="f">explain this in simple words and fix it</code>. When Claude asks permission to run something you do not understand, type <code class="f">what will this do, in simple words?</code> before saying yes.</p>
+<div class="note"><span class="nlbl">What it costs</span><p>Claude Max (about $100 a month) builds everything. GitHub is free. Supabase is free to start; move to its Pro plan (about $25 a month) once site photos and drawings start filling it. Vercel Pro is about $20 a month for a business app. The only other cost comes later: Nandini, the AI follow-up desk, runs on the Claude API (roughly $10 to $30 a month for 7 people). Claude Code always tells you a cost and waits for your yes before adding anything.</p></div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put the files in your project folder</b></p>
+<ol>
+<li>Open the folder Romana set up with you: <code class="f">Documents\archi-design-os</code>. Make a folder inside it called <code class="f">docs</code>.</li>
+<li>Put in <code class="f">docs</code>: the <b>AI Blueprint PDF</b>, this <b>Starter Guide PDF</b> and the <b>UI Guide PDF</b>. Keep the Continue Building Guide aside until Step 4.</li>
+<li>Inside <code class="f">docs</code>, make a folder <code class="f">samples</code> and put in what you have: one drawing with your usual file name, one site photo, your list of live projects, any SOP or checklist you already wrote. These never go online; Claude keeps them out of GitHub.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>The starter prompt.</b> Open the Claude app &rarr; <b>Code</b> &rarr; start a new session on the <code class="f">archi-design-os</code> folder and name it <code class="f">MAIN</code>. Drag the <b>AI Blueprint PDF</b> and this <b>Starter Guide PDF</b> into the message box, paste the box below, and send.</p>
+</div></div>
+
+<div class="paste long"><span class="plbl">Paste &middot; The starter prompt (MAIN session)</span>
+<p>You are setting up the Archi Design OS for Archi Design, a seven-person architecture and interior design practice: designers in the office, site engineers on site. I am Mahesh R. Khandagale, the owner, and I am not a programmer. Attached, and saved in docs/, are my AI Systems Blueprint and my Starter Guide; pages R1, R2 and R3 of the Starter Guide are written for you. This folder is already connected to my private GitHub repository, my Vercel project and my Supabase keys in .env.local. This session is the <b>MAIN session</b>. Work in five stages. After each stage, tell me in simple words what you did, then <b>stop and wait for my OK</b>. Ask me one question at a time.</p>
+<p><b>Stage 1: Read and check.</b> Read the blueprint and the Starter Guide. Tell me in ten lines or fewer: what Archi Design is, my three problems, the foundation and eight systems, and the build order. List what the blueprint says I still have to settle; do not settle it yourself. Then check quietly that GitHub, Vercel and the Supabase keys work, and tell me only if something needs fixing.</p>
+<p><b>Stage 2: The rules.</b> Create CLAUDE.md holding page R2 of the Starter Guide word for word, plus the build brief and session rules in R3. Make sure .gitignore keeps out .env.local and docs/samples. Read the rules back to me in five lines.</p>
+<p><b>Stage 3: The foundation.</b> Build F-00 Archi Design Project and Task Record as R3 describes: the tables, sign-in and Row Level Security. Tell me exactly what to paste into the Supabase SQL Editor and where to click, and what to set in Supabase so sign-in works on my live address. Add my owner login, push, and confirm I can sign in on my phone at the live address.</p>
+<p><b>Stage 4: My list for today.</b> Create docs/START-NOW.md from page R1: each item with its owner, a start date and a tick box, longest first, and tell me the first action for each. Start every future session by reminding me of anything not ticked.</p>
+<p><b>Stage 5: Plan the sessions.</b> Write docs/SESSIONS.md: the build order, which systems are built side by side in separate sessions (R3), and each one&rsquo;s branch name. Write one docs/build-sheets/ file for each P1 system (SYS-01 SOP Skills, SYS-02 Daily Task Sheet): what it does, what it must never do (from the blueprint), the data it needs and its done-when. No feature code yet. Finish by telling me to choose the look with the UI Guide (Step 3 of the Starter Guide) and then open the Continue Building Guide (Step 4).</p>
+</div>
+<div class="note"><span class="nlbl">If Claude asks you to paste something into Supabase</span><p>Open your Supabase project, check the browser address contains your project&rsquo;s name or code that Claude names, click <b>SQL Editor &rarr; New query</b>, paste, press <b>Run</b>, and check the bottom says <b>Success</b>. If you see red text, copy it to Claude.</p></div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Choose the look, with the UI Guide</b></p>
+<p>Before the first real screen is built, follow sections 01 and 02 of the <b>UI Guide</b>: ten minutes on Pinterest, one chat in the Claude app to choose, and one message to MAIN to hand the look over. The same guide is what you check every new screen against later. Your site engineers will use these screens on a basic Android phone in sunlight; that is why the look is chosen before the build, not after.</p>
+</div></div>
+
+<!-- ================= STEP 4 ================= -->
+<div class="step"><div class="stepnum">STEP 4</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Now open the Continue Building Guide</b></p>
+<p>This Starter Guide is used once. From here on, the <b>Continue Building Guide</b> is the one you use: at the start of every sitting, to start each system, and to run several sessions at once. Put its PDF into <code class="f">docs/</code> when all of this is true:</p>
+<ul class="ticks">
+<li>You can sign in to the OS on your phone at your <code class="f">.vercel.app</code> address.</li>
+<li><code class="f">CLAUDE.md</code> holds your rules, and the foundation tables show in Supabase&rsquo;s <b>Table Editor</b>.</li>
+<li><code class="f">docs/START-NOW.md</code>, <code class="f">docs/SESSIONS.md</code> and the two P1 build sheets are written, and you have read and corrected them.</li>
+<li><code class="f">docs/design/</code> holds your chosen look.</li>
+</ul>
+<p>Then open its section 02, <b>Every sitting</b>, and follow it. If a box is not ticked, paste it into MAIN and say <em>&ldquo;fix this before we continue.&rdquo;</em></p>
+</div></div>
+
+<!-- ================= R1 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">R1</div><div class="sectitle">THE CLOCKS: FOR docs/START-NOW.md</div><div class="sectag">Read by Claude Code in Stage 4</div></div>
+<p>Things that wait on you or your team. Each becomes a line in <code class="f">docs/START-NOW.md</code> with its owner, a start date and a tick box.</p>
+<table class="numbers">
+<tr><th style="width:5%;">#</th><th>Item</th><th style="width:20%;">Owner</th><th style="width:15%;">Needed for</th></tr>
+<tr><td>1</td><td><b>Confirm the figures:</b> 8 leads, 3 quotes and 2 orders a month, against &ldquo;4 out of 100 quotes&rdquo;; which is right.</td><td>Mahesh</td><td>Day 1</td></tr>
+<tr><td>2</td><td><b>The three guardrails, in your own words:</b> what the system may do alone, what waits for your signature, what is never automated. Until then the careful defaults in R2 apply.</td><td>Mahesh</td><td>Day 1</td></tr>
+<tr><td>3</td><td><b>Your 7 people:</b> name, role (designer, site engineer, office), mobile, whether anyone manages anyone. And your hours a week for the build.</td><td>Mahesh</td><td>F-00, SYS-02</td></tr>
+<tr><td>4</td><td><b>Your deadline, busy season, and what &ldquo;worth it&rdquo; looks like</b>, so the last phase&rsquo;s finish line is yours.</td><td>Mahesh</td><td>Planning</td></tr>
+<tr><td>5</td><td><b>The SOP sittings, weeks 1 to 2:</b> the workflow for concept, working drawings, site marking, execution and handover, with a definition of done for each task type.</td><td>Mahesh with build team</td><td>SYS-01, SYS-02</td></tr>
+<tr><td>6</td><td><b>Your live projects:</b> client, site, current stage, committed handover date, designer and site engineer on each.</td><td>Mahesh</td><td>F-00</td></tr>
+<tr><td>7</td><td><b>The first live Monday:</b> the date from which tasks stop being given by voice or WhatsApp.</td><td>Mahesh</td><td>SYS-02</td></tr>
+<tr><td>8</td><td><b>Phones:</b> which of the 7 have Android phones that can open a web app, and who needs help adding it to the home screen.</td><td>Mahesh</td><td>SYS-02</td></tr>
+<tr><td>9</td><td><b>Drawing rules:</b> your file naming pattern, the sheet list per drawing set, and the rule that only approved drawings go to site.</td><td>Mahesh with designers</td><td>SYS-04</td></tr>
+<tr><td>10</td><td><b>Contractors and vendors list:</b> name, trade, phone.</td><td>Site engineers</td><td>SYS-03</td></tr>
+<tr><td>11</td><td><b>Your colour and grace rules:</b> when a task or project turns RED, AMBER or GREEN; how long a grace period each task type gets; what counts as a miss on the scorecard. Before week 8.</td><td>Mahesh</td><td>SYS-05, SYS-06, SYS-08</td></tr>
+</table>
+</div>
+
+<!-- ================= R2 ================= -->
+<div class="sechead"><div class="secnum">R2</div><div class="sectitle">THE RULES: FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by Claude Code in Stage 2</div></div>
+<div class="paste long"><span class="plbl">Standing rules for everything ever built in this folder, in every session</span>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this folder, repository, database and app are the only ones Archi Design will ever have; every system is a new section of the same app reading the same projects, people and logins. 2 &middot; EVERY PERSON THEIR OWN KEY: every team member has their own login and sees only what their work needs; the owner sees everything; no shared passwords. 3 &middot; A HUMAN YES BEFORE ANYTHING LEAVES THE OFFICE: no message about dates, extra work or cost goes to a client, contractor or vendor without Mahesh approving it; one switch turns all automatic behaviour off without code. 4 &middot; THE DIARY NOBODY CAN EDIT: every action the system takes is written to a log that can only be added to. 5 &middot; SECRETS STAY IN THE CUPBOARD: keys live only in .env.local and in Vercel&rsquo;s settings, never in code, in chat or on GitHub. 6 &middot; NUMBERS ARE CALCULATED, NEVER GUESSED: deadlines, counts and scores come from exact tested rules; AI reads, drafts, checks and reminds, and never invents a figure. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>Archi Design rules.</b> Until Mahesh writes his own three guardrails, these careful defaults apply. The AI may act alone only to: remind a team member of their own task and the proof required; check a drawing&rsquo;s version name and sheet list against the SOP; compile summaries, patterns and scorecards for the owner only. A person signs off: pricing and negotiation; every drawing before it is stamped Approved for Execution; every message to a client, contractor or vendor about dates, extra work or cost; every monthly scorecard before any incentive, deduction or appraisal figure is shown. Never automated: every quote, every price, every discount and every committed date; design judgement and what a client is advised; hiring, appraisal outcomes and consequences for repeated mistakes. A task is marked done only with proof (file link, site photo or note, as the SOP defines); not done only with a reason from the short list. The system never shortens or extends a deadline, and never changes a task, owner or deadline on its own. No staff screen shows any money figure. Nandini and every agent report to Mahesh only and are a follow-up desk, not a judge. The figures in the blueprint&rsquo;s numbers panel are unconfirmed: never hard-code them. Customer, site and drawing files in docs/samples never go to GitHub. Build in the blueprint&rsquo;s order; a system starts only when Mahesh approves its build sheet.</p>
+</div>
+
+<!-- ================= R3 ================= -->
+<div class="sechead"><div class="secnum">R3</div><div class="sectitle">THE BUILD BRIEF: FOR CLAUDE CODE</div><div class="sectag">Mahesh can skip this page</div></div>
+<div class="brief"><h3>Stack</h3>
+<p>Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres, Auth, Row Level Security, Storage for photos and drawings) through <code class="f">@supabase/ssr</code> and <code class="f">@supabase/supabase-js</code>, deployed on Vercel from <code class="f">main</code>; branches get Vercel preview deployments. Scheduled jobs (the 9 AM and 6 PM rounds, deadline checks) run as Vercel Cron jobs calling protected routes. The app is a mobile-first web app that can be added to the home screen; the Site Diary must save entries offline and sync when the phone finds network. Notifications start inside the app (and email for the owner); WhatsApp sending is added later only with Mahesh&rsquo;s yes and cost. Environment variables: <code class="f">NEXT_PUBLIC_SUPABASE_URL</code>, <code class="f">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code>, <code class="f">SUPABASE_SECRET_KEY</code>, later <code class="f">CRON_SECRET</code> and <code class="f">ANTHROPIC_API_KEY</code>. Commit <code class="f">.env.example</code> with names only.</p></div>
+<div class="brief"><h3>F-00 Project and Task Record: the starting shape</h3>
+<p><b>profiles</b> (name, role owner / designer / site_engineer / office, mobile, active); <b>projects</b> (client name, site, current stage, committed handover date, lead designer, site engineer, status); <b>stages</b> (concept, working drawings, site marking, execution, handover, in Mahesh&rsquo;s wording); <b>task_types</b> (name, stage, definition of done, proof type file / photo / note, grace period, needs review); <b>tasks</b> (project, stage, task type, owner, deadline, depends_on, status open / done / not_done, proof link or photo or note, reason from the short list: waiting on client, waiting on drawing, material not on site, other); <b>sop_items</b> (role, stage, checklist line); <b>settings</b> (automation switch off by default); <b>audit_log</b> (append only). Row Level Security: Mahesh sees everything; each person sees their own tasks and the projects they are on. Later systems add drawings, site_reports, scorecards in their own migrations.</p></div>
+<div class="brief"><h3>Sessions: several Claude Code sessions at once</h3>
+<ul>
+<li><b>One MAIN session</b> owns <code class="f">main</code>, CLAUDE.md, docs/SESSIONS.md and the database; it applies migrations in order and merges finished work.</li>
+<li><b>One builder session per system</b>, at most three at a time, each in its own git worktree on its own branch <code class="f">sys-0N-short-name</code>, touching only its own folders (<code class="f">app/(sys-0N)/</code>, <code class="f">lib/sys-0N/</code>). New tables or columns only in a new migration file <code class="f">supabase/migrations/&lt;timestamp&gt;_sys0N_&lt;what&gt;.sql</code>, adding, never dropping or renaming.</li>
+<li>Shared files (sign-in, menu, CLAUDE.md, shared types) change only in MAIN; a builder that needs one writes the request in <code class="f">docs/requests/</code>. A finished phase gets a handover note in <code class="f">docs/handovers/</code>.</li>
+<li>The writing lane (SYS-01 SOP Skills) writes only in <code class="f">docs/</code> and <code class="f">content/</code> and can run from day 1.</li>
+<li>Every screen follows <code class="f">docs/design/</code> and the UI Guide; plan first, wait for Mahesh&rsquo;s OK, one step at a time in simple words; close each sitting with a dated note in <code class="f">docs/sessions/</code>.</li>
+</ul></div>
+
+<div class="traceline">Prepared for Mahesh R. Khandagale &middot; Archi Design &middot; traces to blueprint BOA-2026-ARC-01 Rev A (blueprint audit 11.11.2026).<br>Stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub.</div>
+
+</body>
+</html>

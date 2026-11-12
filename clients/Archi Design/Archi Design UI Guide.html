@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Archi Design UI Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-ARC-UI · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Archi Design · UI Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Archi Design</span><span>UI Guide &middot; Rev A</span></div>
+    <h1 class="cover">ARCHI DESIGN OS<br><span class="accent">UI GUIDE</span></h1>
+    <div class="coversub">Prepared for <b>Mahesh R. Khandagale</b>. Claude builds what you say, but it <b>designs what you show it</b>. How to choose the look once, and check <b>every screen</b> so your team opens the OS instead of calling you.</div>
+    <div class="flow">
+      <span class="chip">Mood<br>board</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Hand to<br>Claude</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Screens per<br>system</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Check every<br>screen</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">When to use it</span>Sections 01 and 02 once, in Step 3 of the Starter Guide, before the first real screen. Sections 03 to 06 every time a builder session shows you a new screen.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Why it matters for you</span>A designer who has to scroll, or a site engineer who has to type in the sun, will go back to WhatsApp. Then the Task Sheet is empty, and every board after it is empty too.</td>
+        <td><span class="lbl">You need</span>Pinterest in a browser &middot; the Claude app (Chat) &middot; your MAIN session in Claude Code.</td>
+      </tr>
+    </table>
+    <div class="covernote">Nobody will tell you the design is wrong. Your team will just quietly stop opening the app.</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">CHOOSE THE LOOK</div><div class="sectag">Ten minutes &middot; once</div></div>
+<p>Ask Claude to &ldquo;build my system&rdquo; and say nothing about looks, and you get the average of every app on the internet: crowded, generic, and ignored. You are an architect: you would never let a contractor choose the finishes. Choose the look of your own office system the same way.</p>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><p><b>Collect.</b> On <b>pinterest.com</b> search <code class="f">minimalist UI design web app</code> and <code class="f">task app mobile clean</code>. Download 10 to 15 screens your team would understand at a glance. Skip anything crowded, dark or clever.</p></div></div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><p><b>Let the strongest model choose.</b> Open the <b>Claude app</b>, choose <b>Chat</b> (not Code), pick the strongest model in the model list, attach all the screenshots and paste the chooser prompt below.</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; Claude app chat &middot; the chooser prompt</span>
+<p>I have shared some powerful, minimal UI designs with you. I am building the interface for my company: Archi Design, a seven-person architecture and interior design practice. My designers use the screens on a laptop in the office; my site engineers use them on basic Android phones on site, often outdoors and with poor network; I use them on my phone to see which projects and people need me, and to approve drawings. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.</p>
+</div>
+<div class="step"><div class="stepnum">3</div><div class="stepbody"><p><b>Read the verdict.</b> It names a winner, what to borrow from the runner-up, and what to avoid. Check it against your own eye: you have better taste than any model; the model is there to check readability, not to overrule you.</p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><p><b>Get it in writing.</b> Upload only the winning one or two designs again and ask: <em>&ldquo;I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.&rdquo;</em> Download the .md file.</p></div></div>
+<div class="guard"><b>IF THE DIRECTION COMES BACK TOO NARROW</b> (&ldquo;a task manager&rdquo;), correct it in one line: <em>&ldquo;This is not only a task list. It is the operating system of Archi Design: tasks, sites, drawings, people and projects, everything.&rdquo;</em></div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">HAND IT TO CLAUDE CODE</div><div class="sectag">Once &middot; MAIN session</div></div>
+<p>Save the winning images and the .md file in <code class="f">docs/design/</code> inside your <code class="f">archi-design-os</code> folder, then paste this into MAIN:</p>
+<div class="paste"><span class="plbl">Paste &middot; MAIN &middot; set the look for every session</span>
+<p>The design direction is in docs/design: the chosen images and the design .md file. Read them and the UI Guide in docs/. Tell me in five lines what the look is and how every screen will follow it. Then add a line to CLAUDE.md saying every screen in every session follows docs/design and sections 03 to 05 of the UI Guide, and build one sample screen, my phone&rsquo;s home screen with today&rsquo;s tasks, using dummy data, so I can see the look on my phone before any system is built. Wait for my OK.</p>
+</div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">YOUR SCREENS, ONE QUESTION EACH</div><div class="sectag">What every builder session must design</div></div>
+<p>Software is not a set of screens; it is a set of conversations. Each person arrives with one question, the screen answers it, and they do one thing. These are the main screens your blueprint needs.</p>
+<table class="numbers">
+<tr><th style="width:21%;">System</th><th>Screen and its one question</th><th style="width:19%;">One main button</th><th style="width:20%;">Who, on what</th></tr>
+<tr><td>SYS-02 Daily Task Sheet</td><td><b>My day:</b> &ldquo;what do I do today, and by when?&rdquo;</td><td>Done (with proof)</td><td>All 7, on their phone</td></tr>
+<tr><td>SYS-02 Daily Task Sheet</td><td><b>Not done:</b> &ldquo;why is this not finished?&rdquo; (pick from the short list)</td><td>Save reason</td><td>All 7, phone</td></tr>
+<tr><td>SYS-03 Site Diary</td><td><b>Today on site:</b> &ldquo;what happened at this site today?&rdquo; (photos first, few words)</td><td>Send report</td><td>Site engineers, Android, outdoors</td></tr>
+<tr><td>SYS-04 Drawing Release</td><td><b>Ready for site:</b> &ldquo;is this drawing complete by the SOP?&rdquo;</td><td>Send for approval</td><td>Designers, laptop</td></tr>
+<tr><td>SYS-04 Drawing Release</td><td><b>Approval queue:</b> &ldquo;which drawing waits for my sign-off?&rdquo;</td><td>Approve for Execution</td><td>You, phone or laptop</td></tr>
+<tr><td>SYS-05 Ownership Board</td><td><b>Who holds the chain:</b> &ldquo;which project and person needs me?&rdquo; RED first</td><td>Open the red item</td><td>You, phone</td></tr>
+<tr><td>SYS-06 Nudge</td><td><b>Reminder:</b> &ldquo;which task is overdue, and what proof is needed?&rdquo;</td><td>Mark done</td><td>Task owner, phone</td></tr>
+<tr><td>SYS-07 Nandini</td><td><b>Evening summary:</b> &ldquo;how did today go, and what needs my decision?&rdquo;</td><td>Decide</td><td>You, phone</td></tr>
+<tr><td>SYS-08 Scorecard</td><td><b>This month:</b> &ldquo;how did each person do, in the standard format?&rdquo;</td><td>Sign scorecard</td><td>You, laptop</td></tr>
+</table>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">ARCHI DESIGN SCREEN RULES</div><div class="sectag">Specific to your office and sites</div></div>
+<ul class="tight">
+<li><b>Site-proof first.</b> Site engineers&rsquo; screens work on a basic Android phone, one-handed, in sunlight: big buttons, high contrast, large text, no tiny icons.</li>
+<li><b>Photo before words.</b> The camera opens in one tap; a photo with the project and date stamped on it counts as proof. Typing is the last resort.</li>
+<li><b>Works with no network.</b> The Site Diary saves on the phone and sends itself when signal returns, and says so on screen (&ldquo;saved, will send&rdquo;).</li>
+<li><b>Proof in one tap.</b> &ldquo;Done&rdquo; asks only for the proof that task type needs (file link, photo or note), already chosen.</li>
+<li><b>Red, amber, green mean only one thing:</b> late, at risk, on track. Never decoration. Red items always sit at the top.</li>
+<li><b>Your screens show exceptions only.</b> What is red, what waits for your signature, who is overloaded. Not everything that went fine.</li>
+<li><b>No money on staff screens.</b> No incentive, deduction or cost figure appears to any employee until you sign it.</li>
+<li><b>Their language.</b> If your site engineers read Marathi or Hindi more easily than English, tell Claude: labels can be shown in the language each person chooses.</li>
+</ul>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">CHECK EVERY SCREEN</div><div class="sectag">Before you say OK to a builder session</div></div>
+<table class="numbers">
+<tr><th style="width:34%;">The five screen laws</th><th>What to check</th></tr>
+<tr><td><b>1 &middot; Nobody reads, everyone scans</b></td><td>The one thing the person must see first is the biggest, boldest thing on the screen.</td></tr>
+<tr><td><b>2 &middot; One screen, one job</b></td><td>One main button, visible without scrolling, in the one colour kept for action.</td></tr>
+<tr><td><b>3 &middot; Consistency is trust</b></td><td>The same thing looks the same on every screen: a task, a project, a red flag.</td></tr>
+<tr><td><b>4 &middot; The default is the decision</b></td><td>What is filled in again and again is already filled in: today&rsquo;s date, the project, the stage, the person.</td></tr>
+<tr><td><b>5 &middot; Silence is an error</b></td><td>Every tap answers at once with a change, a tick or a message.</td></tr>
+</table>
+<div class="guard"><b>THE TWO-MINUTE RULE:</b> a new employee opens any screen and understands what it is and what to do in under two minutes, with no training. If a screen needs explaining, the screen is wrong, not the employee. The real test: hand the phone to one site engineer and watch, without helping.</div>
+<div class="paste"><span class="plbl">Paste &middot; any builder session &middot; review a screen</span>
+<p>Check this screen against the UI Guide&rsquo;s sections 03 to 05 and docs/design. List anything that breaks a law or a rule, in simple words, and propose the fix. Do not change features.</p>
+</div>
+<div class="paste"><span class="plbl">Paste &middot; any session &middot; change only the look</span>
+<p>Change only the design of this screen, following docs/design: colours, size, spacing, placement. Do not touch the features or the data. Show me before and after on my phone.</p>
+</div>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">WHAT NEVER TO DO</div><div class="sectag">And when the design is done</div></div>
+<ul class="tight">
+<li><b>Never let Claude invent the look.</b> No pictures means the internet&rsquo;s average. Every new system starts from docs/design.</li>
+<li><b>Never add a screen &ldquo;because it might be useful&rdquo;.</b> Every screen answers one question from section 03 or it does not exist.</li>
+<li><b>Never ask an AI to &ldquo;find gaps&rdquo; in your blueprint.</b> It will manufacture them. Read it yourself; bring real gaps to Romana.</li>
+<li><b>Never launch to all 7 by announcement.</b> Give each new screen to the one person who feels the old pain most; their relief recruits the others.</li>
+</ul>
+<div class="guard"><b>THE GATE:</b> docs/design holds your chosen look; CLAUDE.md says every screen follows it; every screen passes the five laws and the two-minute rule; and one site engineer and one designer have used the Task Sheet without asking a single &ldquo;what is this?&rdquo;. Then the design is done, and it stays done, because it is written down.</div>
+
+<div class="traceline">Prepared for Mahesh R. Khandagale &middot; Archi Design &middot; condensed from the BuildOur UI Guide (BOA-2026-UI) against blueprint BOA-2026-ARC-01 Rev A.<br>The features come from your blueprint; the face comes from your mood board. Show, then build.</div>
+
+</body>
+</html>
