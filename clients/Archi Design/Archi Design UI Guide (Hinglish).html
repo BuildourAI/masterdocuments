@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Archi Design UI Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-ARC-UI · REV A · HINGLISH"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Archi Design · UI Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Archi Design</span><span>UI Guide &middot; Rev A &middot; Hinglish</span></div>
+    <h1 class="cover">ARCHI DESIGN OS<br><span class="accent">UI GUIDE</span></h1>
+    <div class="coversub">Mahesh R. Khandagale ji ke liye. Claude wahi banata hai jo aap bolte ho, lekin <b>design wahi karta hai jo aap dikhate ho</b>. Look ek baar kaise choose karna hai, aur <b>har screen</b> kaise check karni hai taaki team aapko call karne ki jagah OS khole.</div>
+    <div class="flow">
+      <span class="chip">Mood<br>board</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Claude ko<br>do</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Har system<br>ki screens</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Har screen<br>check</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Kab use karna hai</span>Section 01 aur 02 ek baar, Starter Guide ke Step 3 mein, pehli asli screen se pehle. Section 03 se 06 har baar jab koi builder session aapko nayi screen dikhaye.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Aapke liye kyun zaroori</span>Jis designer ko scroll karna pade, ya jis site engineer ko dhoop mein type karna pade, wo wapas WhatsApp par chala jaayega. Phir Task Sheet khaali, aur uske baad ka har board bhi khaali.</td>
+        <td><span class="lbl">Kya chahiye</span>Browser mein Pinterest &middot; Claude app (Chat) &middot; Claude Code mein aapka MAIN session.</td>
+      </tr>
+    </table>
+    <div class="covernote">Koi nahi bolega ki design galat hai. Team bas chupchaap app kholna band kar degi.</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">LOOK CHOOSE KARO</div><div class="sectag">Das minute &middot; ek baar</div></div>
+<p>Claude ko bolo &ldquo;mera system bana do&rdquo; aur look ke baare mein kuch mat bolo, to aapko internet ke har app ka average milega: bhara hua, generic, aur koi use nahi karega. Aap architect ho: aap kabhi contractor ko finishes choose nahi karne doge. Apne office system ka look bhi waise hi khud choose karo.</p>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><p><b>Designs ikattha karo.</b> <b>pinterest.com</b> par search karo <code class="f">minimalist UI design web app</code> aur <code class="f">task app mobile clean</code>. 10 se 15 aisi screens download karo jo aapki team ek nazar mein samajh jaaye. Bhari hui, dark ya zyada clever cheezein chhod do.</p></div></div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><p><b>Sabse strong model ko choose karne do.</b> <b>Claude app</b> kholo, <b>Chat</b> choose karo (Code nahi), list mein sabse strong model chuno, saari screenshots attach karo aur neeche wala chooser prompt paste karo.</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; Claude app chat &middot; chooser prompt</span>
+<p>Maine aapke saath kuch powerful, minimal UI designs share kiye hain. Main apni company ka interface bana raha hoon: Archi Design, saat logon ki architecture aur interior design practice. Mere designers screens office mein laptop par use karte hain; site engineers basic Android phones par site par, aksar bahar dhoop mein aur kamzor network mein; aur main apne phone par dekhta hoon ki kaunse projects aur log mujhe chahiye, aur drawings approve karta hoon. In sab designs ko research aur analyse karo aur batao mujhe kaunsa choose karna chahiye. Design aisa ho jo meri team bahut aasaani se samajh sake: khud samajh aane wala, lagbhag bina training ke. Aksar interfaces itne complicated ho jaate hain ki team samajh hi nahi paati; yahan humein ulta chahiye, ek friendly interface jo complex na lage aur jaise meri team seekhti hai waisa ho. Aage badhne ke liye mujhe sabse achha wala batao.</p>
+</div>
+<div class="step"><div class="stepnum">3</div><div class="stepbody"><p><b>Verdict padho.</b> Wo ek winner batayega, runner-up se kya lena hai, aur kya avoid karna hai. Apni aankh se bhi check karo: aapka taste kisi bhi model se behtar hai; model sirf ye check karne ke liye hai ki team aasaani se padh paayegi ya nahi.</p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><p><b>Likhit mein lo.</b> Sirf jeetne wale ek ya do designs dobara upload karo aur pucho: <em>&ldquo;Maine chune hue designs upload kiye hain. Mujhe ek detailed prompt markdown (.md) file mein do, jo main in images ke saath Claude Code mein daal sakun.&rdquo;</em> .md file download karo.</p></div></div>
+<div class="guard"><b>AGAR JAWAB BAHUT CHHOTA AAYE</b> (&ldquo;a task manager&rdquo;), ek line mein sudharo: <em>&ldquo;Ye sirf task list nahi hai. Ye Archi Design ka operating system hai: tasks, sites, drawings, log aur projects, sab kuch.&rdquo;</em></div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">CLAUDE CODE KO DO</div><div class="sectag">Ek baar &middot; MAIN session</div></div>
+<p>Jeetne wali images aur .md file apne <code class="f">archi-design-os</code> folder ke andar <code class="f">docs/design/</code> mein save karo, phir ye MAIN mein paste karo:</p>
+<div class="paste"><span class="plbl">Paste &middot; MAIN &middot; har session ke liye look set karo</span>
+<p>Design direction docs/design mein hai: chuni hui images aur design .md file. Inhe aur docs/ mein UI Guide ko padho. Mujhe paanch lines mein Hinglish mein batao ki look kya hai aur har screen ise kaise follow karegi. Phir CLAUDE.md mein ek line jodo ki har session ki har screen docs/design aur UI Guide ke section 03 se 05 follow karegi, aur dummy data ke saath ek sample screen banao, mere phone ki home screen jisme aaj ke tasks hon, taaki koi bhi system banne se pehle main look apne phone par dekh sakun. Mere OK ka wait karo.</p>
+</div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">AAPKI SCREENS, HAR EK KA EK SAWAAL</div><div class="sectag">Har builder session ko kya design karna hai</div></div>
+<p>Software screens ka set nahi, baatcheet ka set hai. Har insaan ek sawaal lekar aata hai, screen uska jawab deti hai, aur wo ek kaam karta hai. Ye wo main screens hain jo aapke blueprint ko chahiye.</p>
+<table class="numbers">
+<tr><th style="width:21%;">System</th><th>Screen aur uska ek sawaal</th><th style="width:19%;">Ek main button</th><th style="width:20%;">Kaun, kis par</th></tr>
+<tr><td>SYS-02 Daily Task Sheet</td><td><b>Mera din:</b> &ldquo;aaj mujhe kya karna hai, aur kab tak?&rdquo;</td><td>Done (proof ke saath)</td><td>Saare 7, phone par</td></tr>
+<tr><td>SYS-02 Daily Task Sheet</td><td><b>Not done:</b> &ldquo;ye kyun poora nahi hua?&rdquo; (chhoti list se chuno)</td><td>Reason save</td><td>Saare 7, phone</td></tr>
+<tr><td>SYS-03 Site Diary</td><td><b>Aaj site par:</b> &ldquo;is site par aaj kya hua?&rdquo; (pehle photos, kam shabd)</td><td>Report bhejo</td><td>Site engineers, Android, bahar</td></tr>
+<tr><td>SYS-04 Drawing Release</td><td><b>Site ke liye ready:</b> &ldquo;kya ye drawing SOP ke hisaab se poori hai?&rdquo;</td><td>Approval ke liye bhejo</td><td>Designers, laptop</td></tr>
+<tr><td>SYS-04 Drawing Release</td><td><b>Approval queue:</b> &ldquo;kaunsi drawing mere sign-off ka wait kar rahi hai?&rdquo;</td><td>Approve for Execution</td><td>Aap, phone ya laptop</td></tr>
+<tr><td>SYS-05 Ownership Board</td><td><b>Chain kaun pakde hai:</b> &ldquo;kaunsa project aur insaan mujhe chahiye?&rdquo; RED pehle</td><td>Red item kholo</td><td>Aap, phone</td></tr>
+<tr><td>SYS-06 Nudge</td><td><b>Reminder:</b> &ldquo;kaunsa task overdue hai, aur kaunsa proof chahiye?&rdquo;</td><td>Done mark</td><td>Task owner, phone</td></tr>
+<tr><td>SYS-07 Nandini</td><td><b>Shaam ki summary:</b> &ldquo;aaj kaisa gaya, aur kis par mera faisla chahiye?&rdquo;</td><td>Decide</td><td>Aap, phone</td></tr>
+<tr><td>SYS-08 Scorecard</td><td><b>Is mahine:</b> &ldquo;standard format mein har insaan ne kaisa kiya?&rdquo;</td><td>Scorecard sign</td><td>Aap, laptop</td></tr>
+</table>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">ARCHI DESIGN SCREEN RULES</div><div class="sectag">Aapke office aur sites ke liye</div></div>
+<ul class="tight">
+<li><b>Site-proof pehle.</b> Site engineers ki screens basic Android phone par ek haath se, dhoop mein chalein: bade button, high contrast, bada text, chhote icons nahi.</li>
+<li><b>Shabdon se pehle photo.</b> Camera ek tap mein khule; project aur date ke stamp wali photo proof maani jaaye. Typing aakhri option hai.</li>
+<li><b>Bina network ke bhi chale.</b> Site Diary phone par save ho aur signal aate hi khud chali jaaye, aur screen par likha aaye (&ldquo;saved, will send&rdquo;).</li>
+<li><b>Ek tap mein proof.</b> &ldquo;Done&rdquo; sirf wahi proof maange jo us task type ko chahiye (file link, photo ya note), pehle se chuna hua.</li>
+<li><b>Red, amber, green ka sirf ek matlab:</b> late, risk par, on track. Kabhi decoration nahi. Red items hamesha upar.</li>
+<li><b>Aapki screens sirf exceptions dikhayein.</b> Kya red hai, kya aapke signature ka wait kar raha hai, kaun overloaded hai. Jo theek chal raha hai wo sab nahi.</li>
+<li><b>Staff screens par paisa nahi.</b> Koi incentive, deduction ya cost figure kisi employee ko aapke sign se pehle nahi dikhega.</li>
+<li><b>Unki bhasha.</b> Agar site engineers Marathi ya Hindi aasaani se padhte hain, to Claude ko bolo: har insaan apni chuni hui bhasha mein labels dekh sake.</li>
+</ul>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">HAR SCREEN CHECK KARO</div><div class="sectag">Builder session ko OK bolne se pehle</div></div>
+<table class="numbers">
+<tr><th style="width:34%;">Paanch screen laws</th><th>Kya check karna hai</th></tr>
+<tr><td><b>1 &middot; Koi padhta nahi, sab scan karte hain</b></td><td>Jo cheez insaan ko sabse pehle dikhni chahiye, wahi screen par sabse badi aur bold ho.</td></tr>
+<tr><td><b>2 &middot; Ek screen, ek kaam</b></td><td>Ek main button, bina scroll kiye dikhe, us ek rang mein jo action ke liye rakha hai.</td></tr>
+<tr><td><b>3 &middot; Ek jaisa dikhna hi bharosa hai</b></td><td>Ek hi cheez har screen par ek jaisi dikhe: task, project, red flag.</td></tr>
+<tr><td><b>4 &middot; Default hi decision hai</b></td><td>Jo baar baar bhara jaata hai wo pehle se bhara ho: aaj ki date, project, stage, insaan.</td></tr>
+<tr><td><b>5 &middot; Chuppi ek error hai</b></td><td>Har tap ka turant jawab aaye: koi change, tick ya message.</td></tr>
+</table>
+<div class="guard"><b>DO MINUTE KA RULE:</b> naya employee koi bhi screen khole aur do minute ke andar, bina training ke, samajh jaaye ki ye kya hai aur kya karna hai. Agar screen samjhani pade, to galti screen ki hai, employee ki nahi. Asli test: phone ek site engineer ke haath mein do aur bina madad kiye dekho.</div>
+<div class="paste"><span class="plbl">Paste &middot; koi bhi builder session &middot; screen review</span>
+<p>Is screen ko UI Guide ke section 03 se 05 aur docs/design ke against check karo. Jo bhi law ya rule toot raha ho, wo simple shabdon mein batao aur fix suggest karo. Features mat badlo.</p>
+</div>
+<div class="paste"><span class="plbl">Paste &middot; koi bhi session &middot; sirf look badlo</span>
+<p>Is screen ka sirf design badlo, docs/design ke hisaab se: rang, size, spacing, placement. Features ya data ko haath mat lagao. Mujhe phone par pehle aur baad dono dikhao.</p>
+</div>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">KYA KABHI NAHI KARNA</div><div class="sectag">Aur design kab poora hai</div></div>
+<ul class="tight">
+<li><b>Claude ko kabhi look khud invent mat karne do.</b> Koi picture nahi matlab internet ka average. Har naya system docs/design se shuru hota hai.</li>
+<li><b>&ldquo;Shayad kaam aaye&rdquo; soch kar koi screen mat jodo.</b> Har screen section 03 ke kisi ek sawaal ka jawab deti hai, warna wo hoti hi nahi.</li>
+<li><b>Kabhi AI ko blueprint mein &ldquo;gaps dhoondhne&rdquo; mat bolo.</b> Wo gaps bana dega. Khud padho; asli gaps Romana ke paas lao.</li>
+<li><b>Saaton logon ko announcement se launch mat karo.</b> Har nayi screen pehle us ek insaan ko do jise purani taklif sabse zyada hai; uski raahat baaki sabko le aayegi.</li>
+</ul>
+<div class="guard"><b>GATE:</b> docs/design mein aapka chuna hua look hai; CLAUDE.md bolta hai ki har screen use follow karegi; har screen paanch laws aur do minute ka rule paas karti hai; aur ek site engineer aur ek designer ne Task Sheet bina ek bhi &ldquo;ye kya hai?&rdquo; puche use kar li. Tab design poora hai, aur poora hi rehta hai, kyunki wo likha hua hai.</div>
+
+<div class="traceline">Mahesh R. Khandagale ji ke liye &middot; Archi Design &middot; BuildOur UI Guide (BOA-2026-UI) se, blueprint BOA-2026-ARC-01 Rev A ke against.<br>Features aapke blueprint se aate hain; chehra aapke mood board se. Pehle dikhao, phir banao.</div>
+
+</body>
+</html>

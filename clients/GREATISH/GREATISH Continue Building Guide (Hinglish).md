@@ -14,7 +14,7 @@ system
 
 [TABLE]
 
-Har step par do awaaz: AAP KARO · CLAUDE CODE MEIN PASTE KARO (English boxes, bas copy-paste)
+Har step par do awaaz: AAP KARO · CLAUDE CODE MEIN PASTE KARO (prompts Hinglish mein, system English mein)
 
 01
 
@@ -50,9 +50,9 @@ MAIN mein paste karo
 
 **Din shuru karo.** Claude app → Code → aapka `MAIN` session, aur ye paste karo:
 
-Paste · MAIN · start of every sitting
+Paste · MAIN · har sitting ki shuruaat
 
-You are the MAIN session for the GREATISH OS. Read CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ and the latest note in docs/sessions/. Tell me in simple words, in ten lines or fewer: what is not yet ticked in START-NOW; which systems are in progress and on which branch; any handover waiting to be merged; any request waiting for you; anything waiting for Ajay’s approval; and which builder sessions I should run today (at most three). Do nothing else until I say OK.
+Tum GREATISH OS ke MAIN session ho. CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ aur docs/sessions/ ka latest note padho. Mujhe simple Hinglish mein, das lines ya kam mein batao: START-NOW mein kya abhi tick nahi hua; kaunse systems chal rahe hain aur kis branch par; koi handover merge ke wait mein hai kya; koi request tumhare wait mein hai kya; kya kuch Ajay ji ki approval ka wait kar raha hai; aur aaj mujhe kaunse builder sessions chalane chahiye (zyada se zyada teen). Jab tak main OK na bolun, aur kuch mat karna.
 
 2
 
@@ -70,7 +70,7 @@ Aap karo
 
 Har session mein, phir MAIN mein
 
-**Din band karo.** Har builder mein: `Commit and push your branch, update your handover file and today's note.` Phir MAIN mein: `Read today's handovers. Merge anything marked ready, apply its migrations in order, and tell me what changed on the live app.`
+**Din band karo.** Har builder mein: `Apni branch commit aur push karo, handover file aur aaj ka note update karo.` Phir MAIN mein: `Aaj ke handovers padho. Jo ready hai use merge karo, uske migrations order mein lagao, aur batao live app par kya badla.`
 
 03
 
@@ -80,19 +80,19 @@ Builder session mein paste karo
 
 Brackets ko §05 se bharo, jaise **SYS-01 GREATISH Beat App** aur `sys-01-beat-app`.
 
-Paste · New builder session (fill the brackets from §05)
+Paste · Naya builder session (brackets §05 se bharo)
 
-You are the builder session for **\[SYS-0N and system name\]** in the GREATISH OS. Read CLAUDE.md, docs/SESSIONS.md, the blueprint and the Starter Guide in docs/ (especially its section 03 on screens), docs/design/, and docs/build-sheets/\[sys-0N\].md (write it first from the blueprint if it does not exist, and wait for my approval). Work only in your own git worktree on the branch **\[sys-0N-short-name\]**, never on main, and only in this system’s folders. New tables or columns only in a new migration for this system, adding, never dropping. If you need a shared file changed, write it in docs/requests/ and tell me. Before any code: list every screen this system needs (one question, one main button, who, which device) as simple text sketches; give me a plan in small phases, each ending with something I can test on a phone at your branch’s test address, the first phase always “load my real data and show me one true list”; and list anything that needs Ajay’s approval rule or costs money. Wait for my OK.
+Tum GREATISH OS mein **\[SYS-0N aur system ka naam\]** ke builder session ho. Mujhse simple Hinglish mein baat karo; code, files aur screens English mein. CLAUDE.md, docs/SESSIONS.md, docs/ mein blueprint aur Starter Guide (khaaskar uska section 03, screens wala), docs/design/, aur docs/build-sheets/\[sys-0N\].md padho (agar build sheet nahi hai to pehle blueprint se likho aur meri approval ka wait karo). Sirf apne git worktree mein, branch **\[sys-0N-short-name\]** par kaam karo, main par kabhi nahi, aur sirf is system ke folders mein. Naye tables ya columns sirf is system ki nayi migration file mein, sirf jodna, kabhi drop nahi. Agar koi shared file badalni ho, to docs/requests/ mein likho aur mujhe batao. Code se pehle: is system ki har screen ki list do (ek sawaal, ek main button, kaun, kis device par), simple text sketches mein; chhote phases mein plan do, har phase ke end mein kuch aisa jo main tumhari branch ke test address par phone par test kar sakun, aur pehla phase hamesha “mera asli data load karo aur mujhe ek sachchi list dikhao”; aur jo bhi cheez Ajay ji ke approval rule ya paise se judi ho uski list do. Mere OK ka wait karo.
 
-Paste · Existing builder session · continue
+Paste · Purana builder session · continue
 
-Read CLAUDE.md, your build sheet and your handover file. Tell me in five lines where this system stands and what the one finished thing for today is. Make a plan and wait for my OK.
+CLAUDE.md, apni build sheet aur apni handover file padho. Paanch lines mein batao ye system kahan tak pahuncha hai aur aaj ki ek poori hone wali cheez kya hai. Plan banao aur mere OK ka wait karo.
 
 **Writing lane** pehle din se chal sakti hai. Ye aapse ek-ek sawaal karke aapke shabdon mein formats aur SOPs likhegi:
 
-Paste · Writing lane · the skills (from day 1)
+Paste · Writing lane · skills (pehle din se)
 
-You are the writing session for the GREATISH skills. You write only in docs/ and content/, never code, and never any chemical formulation. Interview me one question at a time and write, in our own wording: content/field-day.md (what counts as a real shop visit, the fixed outcome list, the beat plan rule, the end-of-day report format, the quotation cover note with the rate line blank); content/batch-record.md (batch numbering, the batch manufacturing record, material issue slip, QC test report, finished goods inward note and daily production report formats, the machinery job card); content/sops.md (each department SOP in five lines: who, when, who approves, how long, who is told); content/hr-letters.md (offer, appointment, joining, confirmation, increment, warning, relieving and experience letters, with every salary and decision left blank for the authorised person). Mark each file draft until I approve it, then tell MAIN to load it.
+Tum GREATISH skills ke writing session ho. Tum sirf docs/ aur content/ mein likhoge, code kabhi nahi, aur koi chemical formulation kabhi nahi. Mujhse ek-ek sawaal pucho (Hinglish mein) aur humare shabdon mein ye files English mein likho: content/field-day.md (asli shop visit kise maanenge, fixed outcome list, beat plan rule, end-of-day report format, quotation cover note jisme rate line khaali ho); content/batch-record.md (batch numbering, batch manufacturing record, material issue slip, QC test report, finished goods inward note aur daily production report ke formats, machinery job card); content/sops.md (har department ka SOP paanch line mein: kaun, kab, kaun approve kare, kitna time, na hone par kisko bataya jaaye); content/hr-letters.md (offer, appointment, joining, confirmation, increment, warning, relieving aur experience letters, har salary aur faisla authorised insaan ke liye khaali). Har file ko draft mark karo jab tak main approve na karun, phir MAIN ko bolo ki use load kare.
 
 04
 
@@ -101,12 +101,12 @@ BUILD, TEST, SWITCH ON
 Har system ke liye same steps
 
 1.  **Har sitting mein ek poori cheez,** branch ke test address par phone par, ek asli record ke saath test karo. Jo bhi hairaani ho, wo `docs/rules-i-learned.md` mein likho.
-2.  **Screen check karo** Starter Guide ke section 03 se. Agar homework jaisi lage: *“Change only the design, following docs/design. Do not touch the features.”*
+2.  **Screen check karo** Starter Guide ke section 03 se. Agar homework jaisi lage: *“Sirf design badlo, docs/design ke hisaab se. Features ko haath mat lagao.”*
 3.  **Phase poora ho to merge.** Builder handover likhta hai; MAIN merge karta hai; live app lagbhag do minute mein update ho jaata hai.
 4.  **Paanch asli cases, phir ek team pehle.** Beat App ke liye: ek territory ke paanch executives ek hafte, phir sab. Store Gate ke liye: ek warehouse, phir baaki.
 5.  **Bharose se pehle shadow.** Field Verify Flow, dono auditors aur Duty Officer pehle sirf aapko report karte hain aur kuch nahi badalte, jab tak aap kuch hafte unke alerts parakh na lo. Mismatch sales head ke liye ek sawaal hai, kisi employee par faisla nahi.
 
-**AGAR KOI SESSION GALAT JAAYE:** bolo *“Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to your last commit.”* Ek toota hua session kabhi live app ya doosre sessions ko nahi todta.
+**AGAR KOI SESSION GALAT JAAYE:** bolo *“Ruko. Jo toota hai wo simple shabdon mein batao aur do options do: aage theek karein, ya tumhare last commit par wapas jaayein.”* Ek toota hua session kabhi live app ya doosre sessions ko nahi todta.
 
 05
 
@@ -145,9 +145,9 @@ Build se pehle decide karo
 | **Claude API key**                   | SYS-08, phir Duty Officer                        | Auditors har raat chalte hain jab computer par koi nahi hota, jo Claude Max mein cover nahi hai. Use ke hisaab se bill, aapki set ki hui monthly spend limit ke saath, platform.claude.com par; key sirf Vercel mein jaati hai. Claude Code pehle anumanit monthly kharcha batayega.                |
 | **WhatsApp Business API** (optional) | Morning notes, suppliers ko PO, bakaya reminders | Sirf tab, jab aap ye cheezein app ya email ki jagah WhatsApp par chahte ho. Meta business verification, approved templates aur paid messages lagte hain.                                                                                                                                            |
 
-Paste · Before any new connection
+Paste · Koi bhi nayi cheez connect karne se pehle
 
-Before you connect anything new, tell me in simple words: what it is, why this system needs it, what it costs each month for us, and what happens if I say no. Then wait for my yes. Any key goes only into .env.local and Vercel, and you tell me exactly where to add it and to redeploy.
+Kuch bhi naya connect karne se pehle mujhe simple shabdon mein batao: ye kya hai, is system ko iski zaroorat kyun hai, humare liye iska mahine ka kharcha kitna hai, aur agar main mana karun to kya hoga. Phir mere haan ka wait karo. Koi bhi key sirf .env.local aur Vercel mein jaayegi, aur mujhe exactly batao Vercel mein kahan daalni hai aur redeploy kaise karna hai.
 
 07
 
@@ -155,10 +155,10 @@ HAMESHA KAAM AANE WALE PROMPTS
 
 Paas rakho
 
-- **Naya executive ya employee:** MAIN ko: *“\[Name\] joins as \[role\] in \[company, territory or department\]. Draft the login and the joining letter for my approval.”*
-- **Koi limit ya rule badla:** MAIN ko: *“From today \[the rule or limit\]. Update the approval matrix and CLAUDE.md and tell me which systems it touches.”*
-- **Nayi company ya warehouse:** MAIN ko: *“Add \[company / warehouse\]. Show me what it needs before anything changes.”*
-- **Monthly check:** MAIN ko: *“Audit the project against CLAUDE.md and my guardrails and report anything that breaks them, in simple words.”*
+- **Naya executive ya employee:** MAIN ko: *“\[Naam\] \[company, territory ya department\] mein \[role\] ke roop mein join kar raha hai. Uska login aur joining letter meri approval ke liye draft karo.”*
+- **Koi limit ya rule badla:** MAIN ko: *“Aaj se \[rule ya limit\]. Approval matrix aur CLAUDE.md update karo aur batao ye kaunse systems ko chhoota hai.”*
+- **Nayi company ya warehouse:** MAIN ko: *“\[Company / warehouse\] jodo. Kuch bhi badalne se pehle mujhe dikhao ki iske liye kya chahiye.”*
+- **Monthly check:** MAIN ko: *“Project ko CLAUDE.md aur mere guardrails ke against audit karo aur jo bhi toot raha ho wo simple shabdon mein batao.”*
 
 **MONTHLY TEST:** phone par OS kholo aur teen sawaal pucho. Kya har visit, order, batch aur task sach hai? Kya koi rate, credit, purchase ya payment bina zaroori haan ke nikla? Kya daily note hafte ko phone calls se behtar samjhata hai? Teen haan: agla system shuru karo. Ek bhi na: pehle use theek karo.
 

@@ -139,7 +139,7 @@
         <td><span class="lbl">Aapka time</span>Hafte mein 1 se 2 ghante: approvals aur reports padhna. Sittings wo insaan karega jo Claude Code chalata hai.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-GRE-01 Rev A.</td>
       </tr>
     </table>
-    <div class="covernote">Har step par do awaaz: AAP KARO &middot; CLAUDE CODE MEIN PASTE KARO (English boxes, bas copy-paste)</div>
+    <div class="covernote">Har step par do awaaz: AAP KARO &middot; CLAUDE CODE MEIN PASTE KARO (prompts Hinglish mein, system English mein)</div>
   </div></div>
 </div>
 
@@ -158,37 +158,37 @@
 <!-- ================= 02 ================= -->
 <div class="sechead"><div class="secnum">02</div><div class="sectitle">HAR SITTING</div><div class="sectag">Roz ka same routine</div></div>
 <div class="step"><div class="stepnum">1</div><div class="stepbody"><span class="voice ai">MAIN mein paste karo</span><p><b>Din shuru karo.</b> Claude app &rarr; Code &rarr; aapka <code class="f">MAIN</code> session, aur ye paste karo:</p></div></div>
-<div class="paste"><span class="plbl">Paste &middot; MAIN &middot; start of every sitting</span>
-<p>You are the MAIN session for the GREATISH OS. Read CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ and the latest note in docs/sessions/. Tell me in simple words, in ten lines or fewer: what is not yet ticked in START-NOW; which systems are in progress and on which branch; any handover waiting to be merged; any request waiting for you; anything waiting for Ajay&rsquo;s approval; and which builder sessions I should run today (at most three). Do nothing else until I say OK.</p>
+<div class="paste"><span class="plbl">Paste &middot; MAIN &middot; har sitting ki shuruaat</span>
+<p>Tum GREATISH OS ke MAIN session ho. CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ aur docs/sessions/ ka latest note padho. Mujhe simple Hinglish mein, das lines ya kam mein batao: START-NOW mein kya abhi tick nahi hua; kaunse systems chal rahe hain aur kis branch par; koi handover merge ke wait mein hai kya; koi request tumhare wait mein hai kya; kya kuch Ajay ji ki approval ka wait kar raha hai; aur aaj mujhe kaunse builder sessions chalane chahiye (zyada se zyada teen). Jab tak main OK na bolun, aur kuch mat karna.</p>
 </div>
 <div class="step"><div class="stepnum">2</div><div class="stepbody"><span class="voice">Aap karo</span><p><b>Jo sessions MAIN ne bataye, wo kholo.</b> Agar us system ka session pehle se hai, to use click karke &sect;03 ka <b>continue</b> box paste karo; nahi hai to naya session shuru karo, naam rakho, aur <b>new system</b> box paste karo.</p></div></div>
 <div class="step"><div class="stepnum">3</div><div class="stepbody"><span class="voice">Aap karo</span><p><b>Sessions ka round lagao.</b> Jo session wait kar raha ho uska jawab do. Har session ek sitting mein ek chhoti poori cheez banata hai aur apna test address deta hai. Use phone par kholo aur ek asli executive, dukaan, batch ya task se check karo. Har nayi screen Starter Guide ke section 03 se check karo.</p></div></div>
-<div class="step"><div class="stepnum">4</div><div class="stepbody"><span class="voice ai">Har session mein, phir MAIN mein</span><p><b>Din band karo.</b> Har builder mein: <code class="f">Commit and push your branch, update your handover file and today's note.</code> Phir MAIN mein: <code class="f">Read today's handovers. Merge anything marked ready, apply its migrations in order, and tell me what changed on the live app.</code></p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><span class="voice ai">Har session mein, phir MAIN mein</span><p><b>Din band karo.</b> Har builder mein: <code class="f">Apni branch commit aur push karo, handover file aur aaj ka note update karo.</code> Phir MAIN mein: <code class="f">Aaj ke handovers padho. Jo ready hai use merge karo, uske migrations order mein lagao, aur batao live app par kya badla.</code></p></div></div>
 
 <!-- ================= 03 ================= -->
 <div class="sechead"><div class="secnum">03</div><div class="sectitle">SESSION PROMPTS</div><div class="sectag">Builder session mein paste karo</div></div>
 <p>Brackets ko &sect;05 se bharo, jaise <b>SYS-01 GREATISH Beat App</b> aur <code class="f">sys-01-beat-app</code>.</p>
-<div class="paste"><span class="plbl">Paste &middot; New builder session (fill the brackets from &sect;05)</span>
-<p>You are the builder session for <b>[SYS-0N and system name]</b> in the GREATISH OS. Read CLAUDE.md, docs/SESSIONS.md, the blueprint and the Starter Guide in docs/ (especially its section 03 on screens), docs/design/, and docs/build-sheets/[sys-0N].md (write it first from the blueprint if it does not exist, and wait for my approval). Work only in your own git worktree on the branch <b>[sys-0N-short-name]</b>, never on main, and only in this system&rsquo;s folders. New tables or columns only in a new migration for this system, adding, never dropping. If you need a shared file changed, write it in docs/requests/ and tell me. Before any code: list every screen this system needs (one question, one main button, who, which device) as simple text sketches; give me a plan in small phases, each ending with something I can test on a phone at your branch&rsquo;s test address, the first phase always &ldquo;load my real data and show me one true list&rdquo;; and list anything that needs Ajay&rsquo;s approval rule or costs money. Wait for my OK.</p>
+<div class="paste"><span class="plbl">Paste &middot; Naya builder session (brackets &sect;05 se bharo)</span>
+<p>Tum GREATISH OS mein <b>[SYS-0N aur system ka naam]</b> ke builder session ho. Mujhse simple Hinglish mein baat karo; code, files aur screens English mein. CLAUDE.md, docs/SESSIONS.md, docs/ mein blueprint aur Starter Guide (khaaskar uska section 03, screens wala), docs/design/, aur docs/build-sheets/[sys-0N].md padho (agar build sheet nahi hai to pehle blueprint se likho aur meri approval ka wait karo). Sirf apne git worktree mein, branch <b>[sys-0N-short-name]</b> par kaam karo, main par kabhi nahi, aur sirf is system ke folders mein. Naye tables ya columns sirf is system ki nayi migration file mein, sirf jodna, kabhi drop nahi. Agar koi shared file badalni ho, to docs/requests/ mein likho aur mujhe batao. Code se pehle: is system ki har screen ki list do (ek sawaal, ek main button, kaun, kis device par), simple text sketches mein; chhote phases mein plan do, har phase ke end mein kuch aisa jo main tumhari branch ke test address par phone par test kar sakun, aur pehla phase hamesha &ldquo;mera asli data load karo aur mujhe ek sachchi list dikhao&rdquo;; aur jo bhi cheez Ajay ji ke approval rule ya paise se judi ho uski list do. Mere OK ka wait karo.</p>
 </div>
-<div class="paste"><span class="plbl">Paste &middot; Existing builder session &middot; continue</span>
-<p>Read CLAUDE.md, your build sheet and your handover file. Tell me in five lines where this system stands and what the one finished thing for today is. Make a plan and wait for my OK.</p>
+<div class="paste"><span class="plbl">Paste &middot; Purana builder session &middot; continue</span>
+<p>CLAUDE.md, apni build sheet aur apni handover file padho. Paanch lines mein batao ye system kahan tak pahuncha hai aur aaj ki ek poori hone wali cheez kya hai. Plan banao aur mere OK ka wait karo.</p>
 </div>
 <p><b>Writing lane</b> pehle din se chal sakti hai. Ye aapse ek-ek sawaal karke aapke shabdon mein formats aur SOPs likhegi:</p>
-<div class="paste"><span class="plbl">Paste &middot; Writing lane &middot; the skills (from day 1)</span>
-<p>You are the writing session for the GREATISH skills. You write only in docs/ and content/, never code, and never any chemical formulation. Interview me one question at a time and write, in our own wording: content/field-day.md (what counts as a real shop visit, the fixed outcome list, the beat plan rule, the end-of-day report format, the quotation cover note with the rate line blank); content/batch-record.md (batch numbering, the batch manufacturing record, material issue slip, QC test report, finished goods inward note and daily production report formats, the machinery job card); content/sops.md (each department SOP in five lines: who, when, who approves, how long, who is told); content/hr-letters.md (offer, appointment, joining, confirmation, increment, warning, relieving and experience letters, with every salary and decision left blank for the authorised person). Mark each file draft until I approve it, then tell MAIN to load it.</p>
+<div class="paste"><span class="plbl">Paste &middot; Writing lane &middot; skills (pehle din se)</span>
+<p>Tum GREATISH skills ke writing session ho. Tum sirf docs/ aur content/ mein likhoge, code kabhi nahi, aur koi chemical formulation kabhi nahi. Mujhse ek-ek sawaal pucho (Hinglish mein) aur humare shabdon mein ye files English mein likho: content/field-day.md (asli shop visit kise maanenge, fixed outcome list, beat plan rule, end-of-day report format, quotation cover note jisme rate line khaali ho); content/batch-record.md (batch numbering, batch manufacturing record, material issue slip, QC test report, finished goods inward note aur daily production report ke formats, machinery job card); content/sops.md (har department ka SOP paanch line mein: kaun, kab, kaun approve kare, kitna time, na hone par kisko bataya jaaye); content/hr-letters.md (offer, appointment, joining, confirmation, increment, warning, relieving aur experience letters, har salary aur faisla authorised insaan ke liye khaali). Har file ko draft mark karo jab tak main approve na karun, phir MAIN ko bolo ki use load kare.</p>
 </div>
 
 <!-- ================= 04 ================= -->
 <div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILD, TEST, SWITCH ON</div><div class="sectag">Har system ke liye same steps</div></div>
 <ol class="tight">
 <li><b>Har sitting mein ek poori cheez,</b> branch ke test address par phone par, ek asli record ke saath test karo. Jo bhi hairaani ho, wo <code class="f">docs/rules-i-learned.md</code> mein likho.</li>
-<li><b>Screen check karo</b> Starter Guide ke section 03 se. Agar homework jaisi lage: <em>&ldquo;Change only the design, following docs/design. Do not touch the features.&rdquo;</em></li>
+<li><b>Screen check karo</b> Starter Guide ke section 03 se. Agar homework jaisi lage: <em>&ldquo;Sirf design badlo, docs/design ke hisaab se. Features ko haath mat lagao.&rdquo;</em></li>
 <li><b>Phase poora ho to merge.</b> Builder handover likhta hai; MAIN merge karta hai; live app lagbhag do minute mein update ho jaata hai.</li>
 <li><b>Paanch asli cases, phir ek team pehle.</b> Beat App ke liye: ek territory ke paanch executives ek hafte, phir sab. Store Gate ke liye: ek warehouse, phir baaki.</li>
 <li><b>Bharose se pehle shadow.</b> Field Verify Flow, dono auditors aur Duty Officer pehle sirf aapko report karte hain aur kuch nahi badalte, jab tak aap kuch hafte unke alerts parakh na lo. Mismatch sales head ke liye ek sawaal hai, kisi employee par faisla nahi.</li>
 </ol>
-<div class="guard"><b>AGAR KOI SESSION GALAT JAAYE:</b> bolo <em>&ldquo;Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to your last commit.&rdquo;</em> Ek toota hua session kabhi live app ya doosre sessions ko nahi todta.</div>
+<div class="guard"><b>AGAR KOI SESSION GALAT JAAYE:</b> bolo <em>&ldquo;Ruko. Jo toota hai wo simple shabdon mein batao aur do options do: aage theek karein, ya tumhare last commit par wapas jaayein.&rdquo;</em> Ek toota hua session kabhi live app ya doosre sessions ko nahi todta.</div>
 
 <!-- ================= 05 ================= -->
 <div class="sechead"><div class="secnum">05</div><div class="sectitle">BUILD ORDER, SESSION BY SESSION</div><div class="sectag">Blueprint se &middot; ek saath teen tak</div></div>
@@ -218,17 +218,17 @@
 <tr><td><b>Claude API key</b></td><td>SYS-08, phir Duty Officer</td><td>Auditors har raat chalte hain jab computer par koi nahi hota, jo Claude Max mein cover nahi hai. Use ke hisaab se bill, aapki set ki hui monthly spend limit ke saath, platform.claude.com par; key sirf Vercel mein jaati hai. Claude Code pehle anumanit monthly kharcha batayega.</td></tr>
 <tr><td><b>WhatsApp Business API</b> (optional)</td><td>Morning notes, suppliers ko PO, bakaya reminders</td><td>Sirf tab, jab aap ye cheezein app ya email ki jagah WhatsApp par chahte ho. Meta business verification, approved templates aur paid messages lagte hain.</td></tr>
 </table>
-<div class="paste"><span class="plbl">Paste &middot; Before any new connection</span>
-<p>Before you connect anything new, tell me in simple words: what it is, why this system needs it, what it costs each month for us, and what happens if I say no. Then wait for my yes. Any key goes only into .env.local and Vercel, and you tell me exactly where to add it and to redeploy.</p>
+<div class="paste"><span class="plbl">Paste &middot; Koi bhi nayi cheez connect karne se pehle</span>
+<p>Kuch bhi naya connect karne se pehle mujhe simple shabdon mein batao: ye kya hai, is system ko iski zaroorat kyun hai, humare liye iska mahine ka kharcha kitna hai, aur agar main mana karun to kya hoga. Phir mere haan ka wait karo. Koi bhi key sirf .env.local aur Vercel mein jaayegi, aur mujhe exactly batao Vercel mein kahan daalni hai aur redeploy kaise karna hai.</p>
 </div>
 
 <!-- ================= 07 ================= -->
 <div class="sechead"><div class="secnum">07</div><div class="sectitle">HAMESHA KAAM AANE WALE PROMPTS</div><div class="sectag">Paas rakho</div></div>
 <ul class="tight">
-<li><b>Naya executive ya employee:</b> MAIN ko: <em>&ldquo;[Name] joins as [role] in [company, territory or department]. Draft the login and the joining letter for my approval.&rdquo;</em></li>
-<li><b>Koi limit ya rule badla:</b> MAIN ko: <em>&ldquo;From today [the rule or limit]. Update the approval matrix and CLAUDE.md and tell me which systems it touches.&rdquo;</em></li>
-<li><b>Nayi company ya warehouse:</b> MAIN ko: <em>&ldquo;Add [company / warehouse]. Show me what it needs before anything changes.&rdquo;</em></li>
-<li><b>Monthly check:</b> MAIN ko: <em>&ldquo;Audit the project against CLAUDE.md and my guardrails and report anything that breaks them, in simple words.&rdquo;</em></li>
+<li><b>Naya executive ya employee:</b> MAIN ko: <em>&ldquo;[Naam] [company, territory ya department] mein [role] ke roop mein join kar raha hai. Uska login aur joining letter meri approval ke liye draft karo.&rdquo;</em></li>
+<li><b>Koi limit ya rule badla:</b> MAIN ko: <em>&ldquo;Aaj se [rule ya limit]. Approval matrix aur CLAUDE.md update karo aur batao ye kaunse systems ko chhoota hai.&rdquo;</em></li>
+<li><b>Nayi company ya warehouse:</b> MAIN ko: <em>&ldquo;[Company / warehouse] jodo. Kuch bhi badalne se pehle mujhe dikhao ki iske liye kya chahiye.&rdquo;</em></li>
+<li><b>Monthly check:</b> MAIN ko: <em>&ldquo;Project ko CLAUDE.md aur mere guardrails ke against audit karo aur jo bhi toot raha ho wo simple shabdon mein batao.&rdquo;</em></li>
 </ul>
 <div class="guard"><b>MONTHLY TEST:</b> phone par OS kholo aur teen sawaal pucho. Kya har visit, order, batch aur task sach hai? Kya koi rate, credit, purchase ya payment bina zaroori haan ke nikla? Kya daily note hafte ko phone calls se behtar samjhata hai? Teen haan: agla system shuru karo. Ek bhi na: pehle use theek karo.</div>
 

@@ -23,11 +23,11 @@ Do minute
 
 Aapne likha tha: *“मुझे ऐसी व्यवस्था चाहिए जिसमें कोई भी महत्वपूर्ण काम केवल मौखिक निर्देशों या किसी कर्मचारी की व्यक्तिगत याददाश्त पर निर्भर न रहे।”* Aapka blueprint iska jawab ek shared record aur aath systems se deta hai, teen spines par: field sales, plant, aur accountability. Sabse pehla system hai **GREATISH Beat App**: har field executive ka apna login hoga, duty hours ke andar GPS se check-in karega, approved price list par order book karega, aur collection receipt photo ke saath daalega. Aage ki har report inhi records par banegi, kisi ke likhe hue report par nahi.
 
-Coding aani zaroori nahi hai. Har line Claude Code likhega. Aapka kaam: uske sawalon ka jawab apne shabdon mein do, sahi lage to OK bolo, aur jo bana hai use apne jaane-pehchane logon aur products se check karo. Kuch samajh na aaye to likho `explain this to me in simple words`. Kuch toot jaaye to error ya screenshot paste karke likho `explain this in simple words and fix it`. Aap Claude se Hindi ya English, dono mein baat kar sakte ho.
+Coding aani zaroori nahi hai. Har line Claude Code likhega. Aapka kaam: uske sawalon ka jawab apne shabdon mein do, sahi lage to OK bolo, aur jo bana hai use apne jaane-pehchane logon aur products se check karo. Kuch samajh na aaye to likho `ye mujhe simple shabdon mein samjhao`. Kuch toot jaaye to error ya screenshot paste karke likho `ye simple shabdon mein samjhao aur theek karo`. Aap Claude se Hindi ya English, dono mein baat kar sakte ho.
 
-Ek zaroori baat: English wale box
+Bhasha: aap Hinglish mein, system English mein
 
-Is guide mein jo boxes Claude Code mein paste karne hain (prompts, aur peeche ke R2 aur R3 pages), wo English mein hi rakhe gaye hain, kyunki Claude ko unhe bilkul exact follow karna hai. Aapko unhe padhna zaroori nahi, bas poora copy karke paste karo.
+Is guide ke saare prompts Hinglish mein hain. Claude aapse hamesha simple Hinglish mein baat karega, lekin system khud (code, files, database aur screens) English mein banega; starter prompt ye rule CLAUDE.md mein likh deta hai, taaki har session yaad rakhe. Peeche ke R2 aur R3 pages Claude ke liye hain aur English mein hi hain; aapko unhe padhna zaroori nahi.
 
 Kharcha kitna
 
@@ -49,19 +49,19 @@ Claude Code mein paste karo
 
 **Starter prompt.** Claude app kholo → **Code** → `greatish-os` folder par naya session shuru karo aur uska naam rakho `MAIN`. **AI Blueprint PDF** aur ye **Starter Guide PDF** message box mein drag karo, neeche wala poora box paste karo, aur send karo. Claude paanch stages mein kaam karega aur har stage ke baad aapke OK ka wait karega.
 
-Paste · The starter prompt (MAIN session)
+Paste · Starter prompt (MAIN session)
 
-You are setting up the GREATISH OS for GREATISH PVT LTD, which manufactures and sells construction chemicals, waterproofing chemicals, industrial chemicals and machinery through field sales executives and dealers. I am Ajay Kumar, the owner, and I am not a programmer. Attached, and saved in docs/, are my AI Systems Blueprint and my Starter Guide; pages R1, R2 and R3 of the Starter Guide are written for you. This folder is already connected to my private GitHub repository, my Vercel project and my Supabase keys in .env.local. This session is the **MAIN session**. Work in five stages. After each stage, tell me in simple words what you did, then **stop and wait for my OK**. Ask me one question at a time.
+Tum GREATISH OS set up kar rahe ho, GREATISH PVT LTD ke liye, jo construction chemicals, waterproofing chemicals, industrial chemicals aur machinery banati aur field sales executives aur dealers ke through bechti hai. Main Ajay Kumar hoon, owner, aur main programmer nahi hoon. Attach kiye hue aur docs/ mein save hain mera AI Systems Blueprint aur Starter Guide; Starter Guide ke pages R1, R2 aur R3 tumhare liye likhe gaye hain. Ye folder pehle se mere private GitHub repository, mere Vercel project aur .env.local mein Supabase keys se connected hai. Ye session **MAIN session** hai. Mujhse hamesha simple Hinglish mein baat karo, lekin system khud English mein banao: code, files, database, CLAUDE.md aur screens sab English mein. Paanch stages mein kaam karo. Har stage ke baad simple shabdon mein batao kya kiya, phir **ruk kar mere OK ka wait karo**. Ek baar mein ek hi sawaal pucho.
 
-**Stage 1: Read and check.** Read the blueprint and the Starter Guide. Tell me in ten lines or fewer: what GREATISH is, my three problems, the foundation and eight systems, and the build order. My numbers sheet was left blank: list every figure the blueprint says I still have to give, and do not guess any. Then check quietly that GitHub, Vercel and the Supabase keys work, and tell me only if something needs fixing.
+**Stage 1: Padho aur check karo.** Blueprint aur Starter Guide padho. Das lines ya kam mein batao: GREATISH kya hai, meri teen problems, foundation aur aath systems, aur build order. Mera numbers sheet khaali tha: blueprint ke hisaab se jo bhi figures mujhe deni hain unki list do, aur koi guess mat karna. Phir chupchaap check karo ki GitHub, Vercel aur Supabase keys kaam kar rahi hain, aur sirf tab batao jab kuch theek karna ho.
 
-**Stage 2: The rules.** Create CLAUDE.md holding page R2 of the Starter Guide word for word, plus the build brief and session rules in R3. Make sure .gitignore keeps out .env.local and docs/samples. Read the rules back to me in five lines.
+**Stage 2: Rules.** CLAUDE.md banao jisme Starter Guide ka page R2 word for word ho, saath mein R3 ka build brief aur session rules, aur ye line: “Owner se hamesha simple Hinglish mein baat karna; system English mein banana.” Check karo ki .gitignore .env.local aur docs/samples ko bahar rakhe. Rules mujhe paanch lines mein Hinglish mein sunao.
 
-**Stage 3: The foundation.** Build F-00 GREATISH Shared Record as R3 describes: companies, warehouses, users and roles, the approval matrix, sign-in, Row Level Security and the audit log. Ask me for the approval matrix (who signs what, and the limits for discount, credit, expense and stock adjustment) one line at a time. Tell me exactly what to paste into the Supabase SQL Editor and where to click, and what to set in Supabase so sign-in works on my live address. Add my owner login, push, and confirm I can sign in on my phone.
+**Stage 3: Foundation.** R3 ke hisaab se F-00 GREATISH Shared Record banao: companies, warehouses, users aur roles, approval matrix, sign-in, Row Level Security aur audit log. Approval matrix (kaun kya sign karega, aur discount, credit, expense aur stock adjustment ki limits) mujhse ek-ek line karke pucho. Mujhe exactly batao Supabase SQL Editor mein kya paste karna hai aur kahan click karna hai, aur Supabase mein kya set karna hai taaki mere live address par sign-in chale. Mera owner login add karo, push karo, aur confirm karo ki main apne phone par sign in kar sakta hoon.
 
-**Stage 4: My list for today.** Create docs/START-NOW.md from page R1: each item with its owner, a start date and a tick box, longest first, and tell me the first action for each. Start every future session by reminding me of anything not ticked.
+**Stage 4: Aaj ki list.** Page R1 se docs/START-NOW.md banao: har item owner, start date aur tick box ke saath, sabse lamba pehle, aur har ek ka pehla kadam batao. Aage har session ki shuruaat mein mujhe yaad dilana jo tick nahi hua.
 
-**Stage 5: Plan the sessions.** Write docs/SESSIONS.md: the build order, which systems are built side by side in separate sessions (R3), and each one’s branch name. Write docs/build-sheets/sys-01.md for the Beat App and Field Day Skill: what it does, what it must never do (from the blueprint), the data it needs and its done-when. No feature code yet. Finish by telling me to choose the look (Step 3 of the Starter Guide) and then open the Continue Building Guide (Step 4).
+**Stage 5: Sessions ka plan.** docs/SESSIONS.md likho: build order, kaunse systems alag sessions mein saath saath banenge (R3), aur har ek ki branch ka naam. Beat App aur Field Day Skill ke liye docs/build-sheets/sys-01.md likho: wo kya karta hai, use kya kabhi nahi karna (blueprint se), use kaunsa data chahiye, aur uska done-when. Abhi koi feature code nahi. Aakhir mein mujhe bolo ki look choose karun (Starter Guide ka Step 3) aur phir Continue Building Guide kholun (Step 4).
 
 Jab Claude bole ki Supabase mein kuch paste karo
 
@@ -87,15 +87,15 @@ Aap karo
 
 **Sabse strong model ko choose karne do.** **Claude app** kholo, **Chat** choose karo (Code nahi), list mein sabse strong model chuno, saari screenshots attach karo aur ye chooser prompt paste karo.
 
-Paste · Claude app chat · the chooser prompt
+Paste · Claude app chat · chooser prompt
 
-I have shared some powerful, minimal UI designs with you. I am building the interface for my company: GREATISH PVT LTD, a manufacturer of construction chemicals, waterproofing chemicals, industrial chemicals and machinery. The screens are used by field sales executives on Android phones from shop to shop, by the store keeper on a phone at the plant gate, by the production, purchase and accounts teams on office computers, and by me on my phone for approvals and one daily view of the whole company. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex, matched to how my team actually learns. Give me the best one to move ahead with.
+Maine aapke saath kuch powerful, minimal UI designs share kiye hain. Main apni company ka interface bana raha hoon: GREATISH PVT LTD, jo construction chemicals, waterproofing chemicals, industrial chemicals aur machinery banati hai. Screens field sales executives Android phones par dukaan se dukaan use karenge, store keeper plant gate par phone par, production, purchase aur accounts teams office computers par, aur main apne phone par approvals aur poori company ke ek daily view ke liye. In sab designs ko research aur analyse karo aur batao mujhe kaunsa choose karna chahiye. Design aisa ho jo meri team bahut aasaani se samajh sake: khud samajh aane wala, lagbhag bina training ke. Aksar interfaces itne complicated ho jaate hain ki team samajh hi nahi paati; yahan humein ulta chahiye, ek friendly interface jo complex na lage aur jaise meri team seekhti hai waisa ho. Aage badhne ke liye mujhe sabse achha wala batao.
 
 3.3
 
 Aap karo
 
-**Likhit mein lo.** Sirf jeetne wale ek ya do designs dobara upload karo aur pucho: *“I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.”* .md file download karo aur images ke saath `docs/design/` mein save karo. Agar jawab bahut chhota aaye (“a sales app”), to sudharo: *“This is the whole GREATISH company: field sales, plant, stores, purchase, accounts, HR and tasks.”*
+**Likhit mein lo.** Sirf jeetne wale ek ya do designs dobara upload karo aur pucho: *“Maine chune hue designs upload kiye hain. Mujhe ek detailed prompt markdown (.md) file mein do, jo main in images ke saath Claude Code mein daal sakun.”* .md file download karo aur images ke saath `docs/design/` mein save karo. Agar jawab bahut chhota aaye (“a sales app”), to sudharo: *“Ye sirf sales app nahi hai. Ye poori GREATISH company hai: field sales, plant, stores, purchase, accounts, HR aur tasks.”*
 
 3.4
 
@@ -103,9 +103,9 @@ MAIN mein paste karo
 
 **Look Claude ko de do.** Claude ek sample screen banayega taaki aap kuch bhi build hone se pehle apne phone par look dekh sako.
 
-Paste · MAIN · set the look for every session
+Paste · MAIN · har session ke liye look set karo
 
-The design direction is in docs/design: the chosen images and the design .md file. Read them and section 03 of the Starter Guide. Tell me in five lines what the look is. Then add to CLAUDE.md that every screen in every session follows docs/design and the screen rules in section 03 of the Starter Guide, and build one sample screen, a field executive’s home screen with today’s beat plan, using dummy data, so I can see the look on my phone before any system is built. Wait for my OK.
+Design direction docs/design mein hai: chuni hui images aur design .md file. Inhe aur Starter Guide ka section 03 padho. Mujhe paanch lines mein Hinglish mein batao ki look kya hai. Phir CLAUDE.md mein jodo ki har session ki har screen docs/design aur Starter Guide ke section 03 ke screen rules follow karegi, aur dummy data ke saath ek sample screen banao, field executive ki home screen jisme aaj ka beat plan ho, taaki koi bhi system banne se pehle main look apne phone par dekh sakun. Mere OK ka wait karo.
 
 ### Aapki main screens, har ek ka ek sawaal
 
@@ -154,7 +154,7 @@ Ye Starter Guide ek hi baar use hoti hai; jab bhi koi nayi screen dikhayi jaaye,
 - `docs/START-NOW.md`, `docs/SESSIONS.md` aur SYS-01 build sheet likhe gaye hain, aur aapne unhe padh kar sudhaar diya hai.
 - `docs/design/` mein aapka chuna hua look hai, aur sample screen aapke phone par sahi dikhti hai.
 
-Phir uska section 02, **Every sitting**, kholo aur follow karo. Agar koi box tick nahi hua, to use MAIN mein paste karke bolo *“fix this before we continue.”*
+Phir uska section 02, **Every sitting**, kholo aur follow karo. Agar koi box tick nahi hua, to use MAIN mein paste karke bolo *“aage badhne se pehle ise theek karo.”*
 
 R1
 
