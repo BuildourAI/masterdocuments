@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GREATISH Continue Building</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-GRE-C1 · REV A · HINGLISH"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "GREATISH · Continue Building"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; GREATISH</span><span>Continue Building &middot; Rev A &middot; Hinglish</span></div>
+    <h1 class="cover">GREATISH OS<br><span class="accent">CONTINUE BUILDING</span></h1>
+    <div class="coversub">Ajay Kumar ji ke liye. Starter Guide ke baad ki har sitting: <b>ek saath kai Claude Code sessions</b>, har system ka apna session, aur sabko jodne wala ek <b>MAIN session</b>. Field sales sabse pehle.</div>
+    <div class="flow">
+      <span class="chip">MAIN<br>session</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Builder<br>sessions</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Phone par<br>test</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Paanch asli<br>cases</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Merge,<br>live</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Agla<br>system</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Kab use karna hai</span>Jab Starter Guide ke Step 4 ke saare box tick ho jaayein. Ye file <code class="f">docs/</code> mein rakho, aur har sitting ki shuruaat mein section 02 par wapas aao. Har nayi screen ke look ke liye Starter Guide ka section 03 khula rakho.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Idea kya hai</span>Aapki company mein departments ek saath chalte hain, ek owner ke neeche. Aapka project bhi waise hi: ek <b>MAIN session</b> (poori picture) aur zyada se zyada teen <b>builder sessions</b>, har ek apne system aur apni branch par.</td>
+        <td><span class="lbl">Aapka time</span>Hafte mein 1 se 2 ghante: approvals aur reports padhna. Sittings wo insaan karega jo Claude Code chalata hai.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-GRE-01 Rev A.</td>
+      </tr>
+    </table>
+    <div class="covernote">Har step par do awaaz: AAP KARO &middot; CLAUDE CODE MEIN PASTE KARO (English boxes, bas copy-paste)</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">SESSIONS KAISE KAAM KARTE HAIN</div><div class="sectag">Ek baar padho</div></div>
+<table class="numbers">
+<tr><th style="width:22%;">Session</th><th>Kya karta hai</th><th style="width:30%;">App mein naam</th></tr>
+<tr><td><b>MAIN</b> (hamesha ek)</td><td>Master copy (<code class="f">main</code>) rakhta hai, database ka maalik hai, poora hua kaam jodta hai, CLAUDE.md aur START-NOW update rakhta hai. Khud koi system nahi banata.</td><td><code class="f">MAIN</code></td></tr>
+<tr><td><b>Builder</b> (teen tak)</td><td>Ek system banata hai, apni branch par, folder ki apni copy mein, sirf apni files chhoota hai. Phase poora hone par MAIN ko handover deta hai.</td><td><code class="f">SYS-01 Beat App</code>, <code class="f">SYS-03 Store Gate</code>&hellip;</td></tr>
+<tr><td><b>Writing lane</b></td><td>Code nahi, shabd likhta hai: Field Day rules, batch record aur QC formats, department SOPs, HR letter templates. Formulation kabhi nahi.</td><td><code class="f">SKILLS writing</code></td></tr>
+</table>
+<div class="note"><span class="nlbl">Session ke buttons</span><p>Claude app ke <b>Code</b> tab mein, jab ek session kaam kar raha ho tab bhi usi <code class="f">greatish-os</code> folder par <b>naya session</b> shuru kar sakte ho; har session left side ki list mein dikhta hai, click karke switch karo. Har session ka naam uske kaam par rakho.</p></div>
+<div class="note"><span class="nlbl">Gadbad kyun nahi hoti</span><p>Har builder code ki apni copy (<b>worktree</b>) mein apni <b>branch</b> par kaam karta hai, isliye do sessions kabhi ek hi file mein type nahi karte. Har branch ka Vercel par apna test address hota hai, to system live app tak pahunchne se pehle phone par check ho jaata hai. Live copy mein kaam sirf MAIN jodta hai.</p></div>
+<div class="guard"><b>EK SAATH TEEN, ISSE ZYADA NAHI.</b> Teen builders utne hi hain jitne ek insaan ek sitting mein follow, test aur answer kar sake. Agar sessions limit ki wajah se rukne lagein, to do chalao.</div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">HAR SITTING</div><div class="sectag">Roz ka same routine</div></div>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><span class="voice ai">MAIN mein paste karo</span><p><b>Din shuru karo.</b> Claude app &rarr; Code &rarr; aapka <code class="f">MAIN</code> session, aur ye paste karo:</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; MAIN &middot; start of every sitting</span>
+<p>You are the MAIN session for the GREATISH OS. Read CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ and the latest note in docs/sessions/. Tell me in simple words, in ten lines or fewer: what is not yet ticked in START-NOW; which systems are in progress and on which branch; any handover waiting to be merged; any request waiting for you; anything waiting for Ajay&rsquo;s approval; and which builder sessions I should run today (at most three). Do nothing else until I say OK.</p>
+</div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><span class="voice">Aap karo</span><p><b>Jo sessions MAIN ne bataye, wo kholo.</b> Agar us system ka session pehle se hai, to use click karke &sect;03 ka <b>continue</b> box paste karo; nahi hai to naya session shuru karo, naam rakho, aur <b>new system</b> box paste karo.</p></div></div>
+<div class="step"><div class="stepnum">3</div><div class="stepbody"><span class="voice">Aap karo</span><p><b>Sessions ka round lagao.</b> Jo session wait kar raha ho uska jawab do. Har session ek sitting mein ek chhoti poori cheez banata hai aur apna test address deta hai. Use phone par kholo aur ek asli executive, dukaan, batch ya task se check karo. Har nayi screen Starter Guide ke section 03 se check karo.</p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><span class="voice ai">Har session mein, phir MAIN mein</span><p><b>Din band karo.</b> Har builder mein: <code class="f">Commit and push your branch, update your handover file and today's note.</code> Phir MAIN mein: <code class="f">Read today's handovers. Merge anything marked ready, apply its migrations in order, and tell me what changed on the live app.</code></p></div></div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">SESSION PROMPTS</div><div class="sectag">Builder session mein paste karo</div></div>
+<p>Brackets ko &sect;05 se bharo, jaise <b>SYS-01 GREATISH Beat App</b> aur <code class="f">sys-01-beat-app</code>.</p>
+<div class="paste"><span class="plbl">Paste &middot; New builder session (fill the brackets from &sect;05)</span>
+<p>You are the builder session for <b>[SYS-0N and system name]</b> in the GREATISH OS. Read CLAUDE.md, docs/SESSIONS.md, the blueprint and the Starter Guide in docs/ (especially its section 03 on screens), docs/design/, and docs/build-sheets/[sys-0N].md (write it first from the blueprint if it does not exist, and wait for my approval). Work only in your own git worktree on the branch <b>[sys-0N-short-name]</b>, never on main, and only in this system&rsquo;s folders. New tables or columns only in a new migration for this system, adding, never dropping. If you need a shared file changed, write it in docs/requests/ and tell me. Before any code: list every screen this system needs (one question, one main button, who, which device) as simple text sketches; give me a plan in small phases, each ending with something I can test on a phone at your branch&rsquo;s test address, the first phase always &ldquo;load my real data and show me one true list&rdquo;; and list anything that needs Ajay&rsquo;s approval rule or costs money. Wait for my OK.</p>
+</div>
+<div class="paste"><span class="plbl">Paste &middot; Existing builder session &middot; continue</span>
+<p>Read CLAUDE.md, your build sheet and your handover file. Tell me in five lines where this system stands and what the one finished thing for today is. Make a plan and wait for my OK.</p>
+</div>
+<p><b>Writing lane</b> pehle din se chal sakti hai. Ye aapse ek-ek sawaal karke aapke shabdon mein formats aur SOPs likhegi:</p>
+<div class="paste"><span class="plbl">Paste &middot; Writing lane &middot; the skills (from day 1)</span>
+<p>You are the writing session for the GREATISH skills. You write only in docs/ and content/, never code, and never any chemical formulation. Interview me one question at a time and write, in our own wording: content/field-day.md (what counts as a real shop visit, the fixed outcome list, the beat plan rule, the end-of-day report format, the quotation cover note with the rate line blank); content/batch-record.md (batch numbering, the batch manufacturing record, material issue slip, QC test report, finished goods inward note and daily production report formats, the machinery job card); content/sops.md (each department SOP in five lines: who, when, who approves, how long, who is told); content/hr-letters.md (offer, appointment, joining, confirmation, increment, warning, relieving and experience letters, with every salary and decision left blank for the authorised person). Mark each file draft until I approve it, then tell MAIN to load it.</p>
+</div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILD, TEST, SWITCH ON</div><div class="sectag">Har system ke liye same steps</div></div>
+<ol class="tight">
+<li><b>Har sitting mein ek poori cheez,</b> branch ke test address par phone par, ek asli record ke saath test karo. Jo bhi hairaani ho, wo <code class="f">docs/rules-i-learned.md</code> mein likho.</li>
+<li><b>Screen check karo</b> Starter Guide ke section 03 se. Agar homework jaisi lage: <em>&ldquo;Change only the design, following docs/design. Do not touch the features.&rdquo;</em></li>
+<li><b>Phase poora ho to merge.</b> Builder handover likhta hai; MAIN merge karta hai; live app lagbhag do minute mein update ho jaata hai.</li>
+<li><b>Paanch asli cases, phir ek team pehle.</b> Beat App ke liye: ek territory ke paanch executives ek hafte, phir sab. Store Gate ke liye: ek warehouse, phir baaki.</li>
+<li><b>Bharose se pehle shadow.</b> Field Verify Flow, dono auditors aur Duty Officer pehle sirf aapko report karte hain aur kuch nahi badalte, jab tak aap kuch hafte unke alerts parakh na lo. Mismatch sales head ke liye ek sawaal hai, kisi employee par faisla nahi.</li>
+</ol>
+<div class="guard"><b>AGAR KOI SESSION GALAT JAAYE:</b> bolo <em>&ldquo;Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to your last commit.&rdquo;</em> Ek toota hua session kabhi live app ya doosre sessions ko nahi todta.</div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">BUILD ORDER, SESSION BY SESSION</div><div class="sectag">Blueprint se &middot; ek saath teen tak</div></div>
+<table class="numbers">
+<tr><th style="width:9%;">Hafte</th><th style="width:20%;">MAIN</th><th style="width:24%;">Builder A</th><th style="width:24%;">Builder B</th><th>Writing / baaki</th></tr>
+<tr><td>1&ndash;2</td><td>F-00 Shared Record aur approval matrix (day 1)</td><td><b>SYS-01</b> Beat App <code class="f">sys-01-beat-app</code></td><td>Khaali</td><td>Field Day Skill (writing)</td></tr>
+<tr><td>3&ndash;6</td><td>Merges; har phone par Beat App</td><td><b>SYS-02</b> Field Verify + Sales Command Board <code class="f">sys-02-field-verify</code></td><td><b>SYS-03</b> Store Gate + Batch Record <code class="f">sys-03-store-gate</code></td><td>Batch Record formats (writing)</td></tr>
+<tr><td>7&ndash;10</td><td>Merges; SOPs load</td><td><b>SYS-04</b> Task Desk + Pending Work Board <code class="f">sys-04-task-desk</code>, phir <b>SYS-05</b> Escalation Chain <code class="f">sys-05-escalation</code></td><td><b>SYS-06</b> Plant Board <code class="f">sys-06-plant-board</code></td><td>Department SOPs (writing)</td></tr>
+<tr><td>9&ndash;12</td><td>Tally connector aur Claude API, aapke haan ke saath</td><td><b>SYS-07</b> Purchase to Tally <code class="f">sys-07-purchase-tally</code></td><td><b>SYS-08</b> Plant + Sales Auditor, shadow <code class="f">sys-08-auditors</code></td><td>HR letters (writing)</td></tr>
+</table>
+<table class="numbers">
+<tr><th style="width:18%;">Phase</th><th>Kab poora maana jaayega (blueprint se)</th></tr>
+<tr><td>P1 &middot; F-00, SYS-01</td><td>Architecture, roles aur approval matrix ek sitting mein sign-off ho chuke hain, aur har field executive ka Beat App par apna login hai, har claimed shop visit duty hours ke andar ek GPS check-in row ke roop mein maujood hai.</td></tr>
+<tr><td>P2 &middot; SYS-02, SYS-03</td><td>Har executive ki verified-vs-reported sheet roz subah bina call ke aapke phone par aati hai, aur plant ka har material movement ek Store Gate entry hai jo ek batch aur warehouse se stamped hai.</td></tr>
+<tr><td>P3 &middot; SYS-04 se SYS-06</td><td>Har department ke open aur overdue tasks Pending Work Board par ek naam ke saath dikhte hain, late items bina aapke phone kiye remind aur escalate ho chuke hain, aur Plant Board us hafte bane batches ki asli cost BOM ke against dikhata hai.</td></tr>
+<tr><td>P4 &middot; SYS-07, SYS-08</td><td>Field sales, plant, stores, purchase aur pending work ki asli halat ek jagah dikhti hai, matched purchases bina doosri typing ke Tally mein post hote hain, aur auditors ke exceptions ke saath ek daily AI report aapke phone par aati hai, taaki aapko employees se jaankari maangni na pade ya khud koi task chase na karna pade, hafte ke ek se do ghante mein.</td></tr>
+</table>
+<div class="guard"><b>GATES:</b> koi builder tab tak shuru nahi hota jab tak F-00 aur approval matrix merge na ho. SYS-02 kuch hafte ke Beat App records ka wait karta hai; SYS-06 kuch hafte ke Store Gate aur batch records ka, aur aapki standard BOM costs ka. SYS-07 ko Tally mein kuch bhi post karne se pehle saaf supplier ledgers aur har material ki approved supplier list chahiye. SYS-08 shadow mode mein chalta hai: report karta hai, kuch badalta nahi.</div>
+<p><b>Mahine 4 se 12, usi ghar mein:</b> Duty Officer aur ek consolidated daily, weekly aur monthly report (mahine 4 se 6) &rarr; dealer aur customer profiles, credit limit monitoring aur approved wording mein WhatsApp se bakaya reminders (mahine 6 se 8) &rarr; poora HR module: attendance, leave, payroll inputs, PF aur ESI (mahine 8 se 10) &rarr; machinery service, tender tracking, document knowledge base aur CEO assistant (mahine 10 se 12). Har ek &sect;03 se shuru hota hai.</p>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">JAB KISI CHEEZ MEIN PAISA LAGE</div><div class="sectag">Build se pehle decide karo</div></div>
+<table class="numbers">
+<tr><th style="width:25%;">Kya chahiye</th><th style="width:19%;">Pehli baar kab</th><th>Aapke liye matlab</th></tr>
+<tr><td><b>Supabase Pro</b></td><td>Beat App live hone se pehle</td><td>Lagbhag $25 mahina: 50 se 100 executives ke GPS rows aur photos ke liye jagah, aur daily backups.</td></tr>
+<tr><td><b>Tally connector</b></td><td>SYS-07</td><td>Tally Prime aapke office computer par chalta hai. OS usme Tally ke apne data interface se post karta hai, jiske liye wo computer on hona chahiye aur ek chhota connector program install hona chahiye, ya ek paid Tally connector service. Claude Code options aur kharcha dikhayega; faisla aapka.</td></tr>
+<tr><td><b>Claude API key</b></td><td>SYS-08, phir Duty Officer</td><td>Auditors har raat chalte hain jab computer par koi nahi hota, jo Claude Max mein cover nahi hai. Use ke hisaab se bill, aapki set ki hui monthly spend limit ke saath, platform.claude.com par; key sirf Vercel mein jaati hai. Claude Code pehle anumanit monthly kharcha batayega.</td></tr>
+<tr><td><b>WhatsApp Business API</b> (optional)</td><td>Morning notes, suppliers ko PO, bakaya reminders</td><td>Sirf tab, jab aap ye cheezein app ya email ki jagah WhatsApp par chahte ho. Meta business verification, approved templates aur paid messages lagte hain.</td></tr>
+</table>
+<div class="paste"><span class="plbl">Paste &middot; Before any new connection</span>
+<p>Before you connect anything new, tell me in simple words: what it is, why this system needs it, what it costs each month for us, and what happens if I say no. Then wait for my yes. Any key goes only into .env.local and Vercel, and you tell me exactly where to add it and to redeploy.</p>
+</div>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">HAMESHA KAAM AANE WALE PROMPTS</div><div class="sectag">Paas rakho</div></div>
+<ul class="tight">
+<li><b>Naya executive ya employee:</b> MAIN ko: <em>&ldquo;[Name] joins as [role] in [company, territory or department]. Draft the login and the joining letter for my approval.&rdquo;</em></li>
+<li><b>Koi limit ya rule badla:</b> MAIN ko: <em>&ldquo;From today [the rule or limit]. Update the approval matrix and CLAUDE.md and tell me which systems it touches.&rdquo;</em></li>
+<li><b>Nayi company ya warehouse:</b> MAIN ko: <em>&ldquo;Add [company / warehouse]. Show me what it needs before anything changes.&rdquo;</em></li>
+<li><b>Monthly check:</b> MAIN ko: <em>&ldquo;Audit the project against CLAUDE.md and my guardrails and report anything that breaks them, in simple words.&rdquo;</em></li>
+</ul>
+<div class="guard"><b>MONTHLY TEST:</b> phone par OS kholo aur teen sawaal pucho. Kya har visit, order, batch aur task sach hai? Kya koi rate, credit, purchase ya payment bina zaroori haan ke nikla? Kya daily note hafte ko phone calls se behtar samjhata hai? Teen haan: agla system shuru karo. Ek bhi na: pehle use theek karo.</div>
+
+<div class="traceline">Ajay Kumar ji ke liye &middot; GREATISH PVT LTD. BuildOur Builder Guides 02&ndash;04 se, blueprint BOA-2026-GRE-01 Rev A ke against.<br>Ek record, ek app, kai sessions. Har price, payment, formula aur logon ka faisla insaan ke paas.</div>
+
+</body>
+</html>
