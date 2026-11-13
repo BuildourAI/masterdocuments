@@ -88,7 +88,7 @@ CLAUDE.md, apni build sheet aur apni handover file padho. Paanch lines mein bata
 
 Paste · Writing lane · SYS-01 Studio Ways (pehle din se)
 
-Tum SYS-01 Archi Design Studio Ways ke writing session ho. Tum sirf docs/ aur content/ mein likhoge, code kabhi nahi. Blueprint Rev B aur docs/ mein Lean Master Plan (sections 3, 4, 5A, 5B, 7 aur 10) padho. Phir mujhse ek-ek sawaal pucho (Hinglish mein) aur mere shabdon mein ye files English mein likho: content/workflows.md (har stage ka workflow, har task type, owner, aage kisko jaata hai, definition of done aur zaroori proof); content/templates.md (paanch project templates: interior, renovation, civil, commercial, factory, aur teen size tiers, meri value thresholds ke saath); content/quality-gates.md (har gate ki photo checklist); content/role-cards.md (har role ke chaar metrics aur weights, mere sign ke liye draft); content/studio-plan.md (core values, 3 se 5 saal ka target, brand promise, saal ki priorities, is quarter ke Rocks aur Critical Number). Har price, discount aur committed date mere liye chhod do. Jab main koi file approve karun, MAIN ko bolo ki use load kare.
+Tum SYS-01 Archi Design Studio Ways ke writing session ho. Tum sirf docs/ aur content/ mein likhoge, code kabhi nahi. Blueprint Rev B padho, khaaskar section 01 aur 02. Phir mujhse ek-ek sawaal pucho (Hinglish mein) aur mere shabdon mein ye files English mein likho: content/workflows.md (har stage ka workflow, har task type, owner, aage kisko jaata hai, definition of done aur zaroori proof); content/templates.md (paanch project templates: interior, renovation, civil, commercial, factory, aur teen size tiers, meri value thresholds ke saath); content/quality-gates.md (har gate ki photo checklist); content/role-cards.md (har role ke chaar metrics aur weights, mere sign ke liye draft); content/studio-plan.md (core values, 3 se 5 saal ka target, brand promise, saal ki priorities, is quarter ke Rocks aur Critical Number). Har price, discount aur committed date mere liye chhod do. Jab main koi file approve karun, MAIN ko bolo ki use load kare.
 
 04
 
@@ -158,5 +158,5 @@ Paas rakho
 
 **MONTHLY TEST:** phone par OS kholo aur teen sawaal pucho. Kya har task, attendance, site report aur drawing sach hai? Kya koi cheez client, contractor ya vendor tak aapke haan ke bina pahunchi? Kya diary hafte ko aapki yaaddasht se behtar samjhati hai? Teen haan: agla system shuru karo. Ek bhi na: pehle use theek karo.
 
-Mahesh R. Khandagale ji ke liye · Archi Design. BuildOur Builder Guides 02–04 se, blueprint BOA-2026-ARC-01 Rev B aur Lean Master Plan v1.4 ke against.  
+Mahesh R. Khandagale ji ke liye · Archi Design. BuildOur Builder Guides 02–04 se, blueprint BOA-2026-ARC-01 Rev B ke against.  
 Ek record, ek app, kai sessions. Har price, date aur logon ka faisla owner ke paas.

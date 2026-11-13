@@ -550,7 +550,7 @@ All three brief guardrail answers were blank; these lanes join Rev A’s careful
 
 02
 
-**Decide the build path:** self-build in Claude Code (this blueprint) or the vendor RFP the master plan assumed. Mahesh.
+**Setup call with Romana:** Claude Max bought; GitHub, Supabase and Vercel connected on the laptop; then the Starter Guide. Mahesh.
 
 03
 
@@ -590,13 +590,13 @@ Archi Design  ·  Prepared for **Mahesh R. Khandagale**, Owner
 
 Enquiry–– Brief + concept–– Daily tasks–– Working drawings–– Site execution–– Handover–– After handover
 
-|                                                                                                                                                                                                                                                            |                                                                                                                                |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| BusinessArchitects & Interior Designers, designs in office and work on site or field, ₹10 to 50 lakh a month band. Per the master plan, also turnkey civil, interior, renovation, commercial and factory projects.                                         |                                                                                                                                |
-| Current StackInstagram, Just Dial and referral for enquiries; an eSSL biometric machine in the office; a payroll tool, Tally or Excel. Added for the build: Claude Max, GitHub, Supabase, Vercel.                                                          |                                                                                                                                |
-| Prepared byBuildOur AI · AI expert Romana Parkar                                                                                                                                                                                                           | SourcesSystems Brief · Rev A blueprint audit (11.11.2026) · Lean Business Management Software Master Plan v1.4 (November 2026) |
-| Systems Specified1 foundation + 9 systems in 4 phases                                                                                                                                                                                                      | Deadline AnchorNot stated; master plan sets a 12-month path with Phase 1 first                                                 |
-| PrecedenceWhere the master plan is newer and more specific than the brief, the master plan governs; where it assumed an outside vendor, this blueprint keeps the owner’s self-build on Claude Code and maps the vendor requirements onto it (section 1.9). |                                                                                                                                |
+|                                                                                                                                                                                                                                                                                                                    |                                                                                                                                |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| BusinessArchitects & Interior Designers, designs in office and work on site or field, ₹10 to 50 lakh a month band. Per the master plan, also turnkey civil, interior, renovation, commercial and factory projects.                                                                                                 |                                                                                                                                |
+| Current StackInstagram, Just Dial and referral for enquiries; an eSSL biometric machine in the office; a payroll tool, Tally or Excel. Added for the build: Claude Max, GitHub, Supabase, Vercel.                                                                                                                  |                                                                                                                                |
+| Prepared byBuildOur AI · AI expert Romana Parkar                                                                                                                                                                                                                                                                   | SourcesSystems Brief · Rev A blueprint audit (11.11.2026) · Lean Business Management Software Master Plan v1.4 (November 2026) |
+| Systems Specified1 foundation + 9 systems in 4 phases                                                                                                                                                                                                                                                              | Deadline AnchorNot stated; master plan sets a 12-month path with Phase 1 first                                                 |
+| Build modelBuilt by Mahesh himself in Claude Code on his own Claude Max, following the Archi Design Starter, UI and Continue Building guides. Where the master plan is newer and more specific than the brief, the master plan governs; this blueprint carries its detail, so the build reads this document alone. |                                                                                                                                |
 
 Rev B supersedes Rev A (11.11.2026). Every change in this revision traces to the Lean Master Plan v1.4.  
 Sheets 1–3 are the one-shot capture
@@ -613,7 +613,7 @@ Archi Design wins work: 2 orders a month at an average of ₹10,00,000, 60% from
 
 This revision makes six structural changes, each traceable to the master plan: (1) **Attendance and Leave** becomes a Phase 1 system, with the eSSL machine kept and a phone punch for site days; (2) the Daily Task Sheet becomes **My Day with priority numbers**, and the Nudge chain merges into it; (3) **organisation, departments and approval limits** enter the foundation; (4) **Leads and Proposals** move from month 10 into Phase 2; (5) **Turnkey Controls** by project type and size are added; (6) the AI helpers (Nandini, the Site Controller and the Digital Ops Manager) are **parked** until the basics work, because the master plan excludes AI assistants from the first release. The result is one foundation and nine systems in four phases over twelve months, with Phase 1 in six weeks.
 
-It is built by Mahesh’s team on his own Claude Max in Claude Code, on Next.js, Supabase and Vercel, with all code, data and accounts in the studio’s name, which meets the master plan’s full-ownership requirement without an outside vendor.
+Mahesh builds it himself in Claude Code on his own Claude Max, on Next.js, Supabase and Vercel, with all code, data and accounts in the studio’s name, which meets the master plan’s full-ownership requirement.
 
 01
 
@@ -659,9 +659,9 @@ Rev A placed the CRM for Instagram, Just Dial and referral in months 10 to 12. T
 
 The plan excludes, until the basics work: Gantt charts, complex Kanban boards, public leaderboards, 360-degree appraisals, **AI assistants**, a vendor portal, full payroll processing, continuous GPS tracking, referral engines and festival-greeting automation. Rev A’s three AI employees (Nandini, the Site Controller, the Digital Ops Manager) therefore become D-01: the morning list, reminders and escalation run as rules in My Day, and the AI helpers return in the plan’s Phase 4 as optional.
 
-### 1.9The build path: self-build, mapped to the plan’s requirements
+### 1.9The build: Mahesh builds it himself
 
-The plan was written for an outside vendor (React or Next.js, PostgreSQL, Flutter or React Native, AWS Mumbai, an RFP, sprint demos). Rev B keeps the owner’s self-build on Claude Max and maps the requirements onto it: Next.js for the app, PostgreSQL through Supabase in the Mumbai region, Vercel hosting, all code in the studio’s GitHub, rules in Settings, offline site entries, and a phone web app added to the home screen instead of store apps at first. The eSSL link is confirmed in week 1 (model and export method), with a scheduled file import as the fallback. If Mahesh prefers a vendor, this blueprint serves as the scope.
+The master plan was written for an outside vendor (an RFP, sprint demos, Flutter or React Native apps, AWS Mumbai). Mahesh is building it himself, so Rev B maps those requirements onto his own Claude Code build: Next.js for the app, PostgreSQL through Supabase in the Mumbai region, Vercel hosting, all code in the studio’s GitHub, rules in Settings, offline site entries, and a phone web app added to the home screen in place of store apps at first. The eSSL link is confirmed in week 1 (model and export method), with a scheduled file import as the fallback. The master plan’s acceptance checks become the done-when lines in section 03.
 
 02
 
@@ -812,6 +812,10 @@ Purchase orders, change orders and vendor payments are approved by value band; m
 Note
 
 If a large civil, commercial or factory project is already running, budget, work orders and site store come forward for that project.
+
+Detail carried from the master plan, for the build
+
+**Screens (about 14):** login and profile with theme picker; My Day; task detail; lead pipeline; proposal builder; project page; team board; Owner Exception View; My Scorecard; Settings (users, organisation, templates, rules); client project page; My Attendance and Leave; People (HR, org chart, attendance exceptions, leave, payroll export); Studio Plan. **Look:** clean and visual, mobile first, Light, Dark and three palettes plus the studio brand, chosen per user; progress ring and on-time streak for staff, no reports on staff screens; at most 5 required fields per form; at most 3 notifications a day per person; labels in the studio’s own words; English, Hindi and Marathi labels. **Auto ranking order:** Do first by a leader; blocking others; critical path due within 2 days; supports a Rock; then by due date and waiting time. **Escalation:** person, then team lead or captain, then department head, then owner; an approval waiting over 1 working day moves up one level. **Visibility:** employees see their own tasks, score, attendance and assigned projects; captains their team and project, with cost only on Tier 2 and 3 projects they manage; department heads their department and only the health colour of others; HR people records but no project costs; the owner everything, every override logged; clients their own project page only.
 
 Note: the existing stack
 

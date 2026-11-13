@@ -10,10 +10,10 @@ do–– Har system
 ki screens–– Har screen  
 check
 
-|                                                                                                                                                                                                               |                                                                                                                                   |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| Kab use karna haiSection 01 aur 02 ek baar, Starter Guide ke Step 3 mein, pehli asli screen se pehle. Section 03 se 06 har baar jab koi builder session aapko nayi screen dikhaye.                            |                                                                                                                                   |
-| Aapke liye kyun zarooriJis designer ko scroll karna pade, ya jis site engineer ko dhoop mein type karna pade, wo wapas WhatsApp par chala jaayega. Phir My Day khaali, aur uske baad ka har board bhi khaali. | Kya chahiyeBrowser mein Pinterest · Claude app (Chat) · Claude Code mein aapka MAIN session · Lean Master Plan section 12 aur 13. |
+|                                                                                                                                                                                                               |                                                                                                                              |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| Kab use karna haiSection 01 aur 02 ek baar, Starter Guide ke Step 3 mein, pehli asli screen se pehle. Section 03 se 06 har baar jab koi builder session aapko nayi screen dikhaye.                            |                                                                                                                              |
+| Aapke liye kyun zarooriJis designer ko scroll karna pade, ya jis site engineer ko dhoop mein type karna pade, wo wapas WhatsApp par chala jaayega. Phir My Day khaali, aur uske baad ka har board bhi khaali. | Kya chahiyeBrowser mein Pinterest · Claude app (Chat) · Claude Code mein aapka MAIN session · Blueprint Rev B ka section 02. |
 
 Koi nahi bolega ki design galat hai. Team bas chupchaap app kholna band kar degi.
 
@@ -57,7 +57,7 @@ Jeetne wali images aur .md file apne `archi-design-os` folder ke andar `docs/des
 
 Paste · MAIN · har session ke liye look aur themes set karo
 
-Design direction docs/design mein hai: chuni hui images aur design .md file. Inhe, docs/ mein UI Guide, aur Lean Master Plan ke section 12 aur 13 padho. Mujhe paanch lines mein Hinglish mein batao ki look kya hai. Phir look ko theme tokens mein set karo: Light, Dark aur teen colour palettes, aur Archi Design ka logo aur brand colour; har user apni profile mein theme chun sake. CLAUDE.md mein jodo ki har session ki har screen docs/design, theme tokens aur UI Guide ke section 03 se 05 follow karegi. Phir dummy data ke saath ek sample My Day screen banao (numbered tasks 1 se 5, progress ring, Done aur Blocked buttons), taaki koi bhi system banne se pehle main look aur themes apne phone par dekh sakun. Mere OK ka wait karo.
+Design direction docs/design mein hai: chuni hui images aur design .md file. Inhe, docs/ mein UI Guide, aur Blueprint Rev B ke section 02 ka screens aur look wala note padho. Mujhe paanch lines mein Hinglish mein batao ki look kya hai. Phir look ko theme tokens mein set karo: Light, Dark aur teen colour palettes, aur Archi Design ka logo aur brand colour; har user apni profile mein theme chun sake. CLAUDE.md mein jodo ki har session ki har screen docs/design, theme tokens aur UI Guide ke section 03 se 05 follow karegi. Phir dummy data ke saath ek sample My Day screen banao (numbered tasks 1 se 5, progress ring, Done aur Blocked buttons), taaki koi bhi system banne se pehle main look aur themes apne phone par dekh sakun. Mere OK ka wait karo.
 
 03
 
@@ -67,7 +67,7 @@ Har builder session ko kya design karna hai
 
 Software screens ka set nahi, baatcheet ka set hai. Har insaan ek sawaal lekar aata hai, screen uska jawab deti hai, aur wo ek kaam karta hai. Ye wo main screens hain jo aapke blueprint ko chahiye.
 
-| Screen (master plan §12)           | Uska ek sawaal                                                         | Ek main button           | Kaun, kis par           |
+| Screen (Blueprint Rev B)           | Uska ek sawaal                                                         | Ek main button           | Kaun, kis par           |
 |------------------------------------|------------------------------------------------------------------------|--------------------------|-------------------------|
 | My Day                             | “aaj kya karna hai, kis order mein?” (1 se 5, har number ka reason)    | Done (proof ke saath)    | Sab, phone              |
 | Task detail                        | “ye kyun zaroori hai, kaun wait kar raha hai?”                         | Start / Done             | Sab, phone              |
@@ -138,5 +138,5 @@ Aur design kab poora hai
 
 **GATE:** docs/design mein aapka chuna hua look hai; CLAUDE.md bolta hai ki har screen use follow karegi; har screen paanch laws aur do minute ka rule paas karti hai; aur ek site engineer aur ek designer ne My Day bina ek bhi “ye kya hai?” puche use kar li. Tab design poora hai, aur poora hi rehta hai, kyunki wo likha hua hai.
 
-Mahesh R. Khandagale ji ke liye · Archi Design · BuildOur UI Guide (BOA-2026-UI) se, blueprint BOA-2026-ARC-01 Rev B aur Lean Master Plan §12 se 13 ke against.  
+Mahesh R. Khandagale ji ke liye · Archi Design · BuildOur UI Guide (BOA-2026-UI) se, blueprint BOA-2026-ARC-01 Rev B ke against.  
 Features aapke blueprint se aate hain; chehra aapke mood board se. Pehle dikhao, phir banao.
