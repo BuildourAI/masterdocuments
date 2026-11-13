@@ -1,8 +1,8 @@
-Buildour AI · Archi DesignContinue Building · Rev A · Hinglish
+Buildour AI · Archi DesignContinue Building · Rev B · Hinglish
 
 # ARCHI DESIGN OS CONTINUE BUILDING
 
-Mahesh R. Khandagale ji ke liye. Starter Guide ke baad ki har sitting: **ek saath kai Claude Code sessions**, har system ka apna session, aur sabko jodne wala ek **MAIN session**, blueprint ke order mein.
+Mahesh R. Khandagale ji ke liye. Starter Guide ke baad ki har sitting: **ek saath kai Claude Code sessions**, har system ka apna session, aur sabko jodne wala ek **MAIN session**, Blueprint Rev B ke order mein: 1 foundation aur 9 systems, 12 mahine.
 
 MAIN  
 session–– Builder  
@@ -22,11 +22,11 @@ SESSIONS KAISE KAAM KARTE HAIN
 
 Ek baar padho
 
-| Session                | Kya karta hai                                                                                                                                              | App mein naam                             |
-|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| **MAIN** (hamesha ek)  | Master copy (`main`) rakhta hai, database ka maalik hai, poora hua kaam jodta hai, CLAUDE.md aur START-NOW update rakhta hai. Khud koi system nahi banata. | `MAIN`                                    |
-| **Builder** (teen tak) | Ek system banata hai, apni branch par, folder ki apni copy mein. Sirf apni files chhoota hai. Phase poora hone par MAIN ko handover deta hai.              | `SYS-02 Task Sheet`, `SYS-03 Site Diary`… |
-| **Writing lane**       | Code nahi, shabd likhta hai: aapke SOPs, workflows, definitions of done, checklists. Pehle din se chal sakta hai.                                          | `SYS-01 SOPs`                             |
+| Session                | Kya karta hai                                                                                                                                              | App mein naam                         |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|
+| **MAIN** (hamesha ek)  | Master copy (`main`) rakhta hai, database ka maalik hai, poora hua kaam jodta hai, CLAUDE.md aur START-NOW update rakhta hai. Khud koi system nahi banata. | `MAIN`                                |
+| **Builder** (teen tak) | Ek system banata hai, apni branch par, folder ki apni copy mein. Sirf apni files chhoota hai. Phase poora hone par MAIN ko handover deta hai.              | `SYS-02 My Day`, `SYS-03 Attendance`… |
+| **Writing lane**       | Code nahi, shabd likhta hai: SOPs, stage workflows, definitions of done, project templates, quality gates, role cards, Studio Plan. Pehle din se.          | `SYS-01 SOPs`                         |
 
 Session ke buttons
 
@@ -86,9 +86,9 @@ Paste · Purana builder session · continue
 
 CLAUDE.md, apni build sheet aur apni handover file padho. Paanch lines mein batao ye system kahan tak pahuncha hai aur aaj ki ek poori hone wali cheez kya hai. Plan banao aur mere OK ka wait karo.
 
-Paste · Writing lane · SYS-01 SOP Skills (pehle din se)
+Paste · Writing lane · SYS-01 Studio Ways (pehle din se)
 
-Tum SYS-01 Archi Design SOP Skills ke writing session ho. Tum sirf docs/ aur content/ mein likhoge, code kabhi nahi. Mujhse ek-ek sawaal pucho (Hinglish mein) aur mere shabdon mein ye files English mein likho: content/workflows.md, har stage (concept, working drawings, site marking, execution, handover) ka workflow, har task type, uska owner, wo aage kisko jaata hai, uski definition of done aur zaroori proof (file link, site photo ya note); content/checklists.md, designer, site engineer aur office desk ki role-wise checklists; content/measurement.md, kaam naapne ka standard format (timeliness, quality, SOP adherence, rework, client response), mere sign ke liye draft. Har price, discount aur committed date mere liye chhod do. Jab main koi file approve karun, MAIN ko bolo ki use task_types aur sop_items tables mein load kare.
+Tum SYS-01 Archi Design Studio Ways ke writing session ho. Tum sirf docs/ aur content/ mein likhoge, code kabhi nahi. Blueprint Rev B aur docs/ mein Lean Master Plan (sections 3, 4, 5A, 5B, 7 aur 10) padho. Phir mujhse ek-ek sawaal pucho (Hinglish mein) aur mere shabdon mein ye files English mein likho: content/workflows.md (har stage ka workflow, har task type, owner, aage kisko jaata hai, definition of done aur zaroori proof); content/templates.md (paanch project templates: interior, renovation, civil, commercial, factory, aur teen size tiers, meri value thresholds ke saath); content/quality-gates.md (har gate ki photo checklist); content/role-cards.md (har role ke chaar metrics aur weights, mere sign ke liye draft); content/studio-plan.md (core values, 3 se 5 saal ka target, brand promise, saal ki priorities, is quarter ke Rocks aur Critical Number). Har price, discount aur committed date mere liye chhod do. Jab main koi file approve karun, MAIN ko bolo ki use load kare.
 
 04
 
@@ -99,8 +99,8 @@ Har system ke liye same steps
 1.  **Har sitting mein ek poori cheez.** Har builder kuch aisa deta hai jo aap uske test address par phone par kholte ho. Ek asli project ya task check karo. Jo bhi hairaani ho wo `docs/rules-i-learned.md` mein likho.
 2.  **Screen ko UI Guide se check karo** (uska section 05). Homework jaisi lage to bolo: *“Sirf design badlo, docs/design ke hisaab se. Features ko haath mat lagao.”*
 3.  **Phase poora ho to merge.** Builder handover likhta hai; MAIN merge karta hai aur live app lagbhag do minute mein update ho jaata hai.
-4.  **Paanch asli cases, phir ek insaan pehle.** Paanch asli tasks, site reports ya drawings us system se chalao. Phir sabse pehle us ek team member ko do jise purani taklif sabse zyada hai.
-5.  **Pehla live Monday.** Daily Task Sheet ke liye: us Monday se koi task muh se ya WhatsApp par nahi diya jaayega. Purana tareeka sirf ek hafte saath chalao, phir band.
+4.  **Paanch asli cases, phir ek insaan pehle.** Paanch asli tasks, punches, site reports ya drawings us system se chalao. Phir pehle pilot group (5 se 6 log, 2 se 3 live projects) ko lagbhag 6 hafte do, phir sabko.
+5.  **Pehla live Monday.** My Day ke liye: us Monday se koi task muh se ya WhatsApp par nahi diya jaayega. Purana tareeka sirf ek hafte saath chalao, phir band.
 
 **AGAR KOI SESSION GALAT JAAYE:** bolo *“Ruko. Jo toota hai wo simple shabdon mein batao aur do options do: aage theek karein, ya tumhare last commit par wapas jaayein.”* Ek toota hua session kabhi live app ya doosre sessions ko nahi todta.
 
@@ -108,25 +108,24 @@ Har system ke liye same steps
 
 BUILD ORDER, SESSION BY SESSION
 
-Blueprint se · ek saath teen tak
+Blueprint Rev B se · ek saath teen tak
 
-| Hafte | MAIN                                                     | Builder A                                           | Builder B                                                | Builder C / writing                         |
-|-------|----------------------------------------------------------|-----------------------------------------------------|----------------------------------------------------------|---------------------------------------------|
-| 1–2   | F-00 Project and Task Record (day 1); live projects load | *SOPs ka wait*                                      |                                                          | **SYS-01** SOP Skills `writing`             |
-| 3–6   | Approved SOPs load; merges                               | **SYS-02** Daily Task Sheet `sys-02-task-sheet`     | Khaali                                                   | SYS-01 sudhaar                              |
-| 5–8   | Merges; pehla live Monday                                | **SYS-03** Site Diary `sys-03-site-diary`           | **SYS-04** Drawing Release Flow `sys-04-drawing-release` | SYS-02 watch week, pehle ek insaan phir sab |
-| 8–10  | Merges                                                   | **SYS-05** Ownership Board `sys-05-ownership-board` | **SYS-06** Nudge and Escalate `sys-06-nudge`             | SYS-03, SYS-04 paanch cases                 |
-| 10–12 | Claude API set up (aapke haan ke saath)                  | **SYS-07** Nandini `sys-07-nandini`                 | **SYS-08** Scorecard App `sys-08-scorecard`              | Pehle monthly scorecards                    |
+| Kab         | MAIN                                                                             | Builder A                                                  | Builder B                                              | Builder C / writing                                                                            |
+|-------------|----------------------------------------------------------------------------------|------------------------------------------------------------|--------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| Hafte 1–2   | F-00 Studio Record aur organisation, approval limits (day 1); live projects load | eSSL check, phir **SYS-03** Attendance `sys-03-attendance` | *SOPs ka wait*                                         | **SYS-01** Studio Ways `writing`                                                               |
+| Hafte 3–6   | SOPs aur templates load; merges; pehla live Monday                               | **SYS-03** Attendance (jaari)                              | **SYS-02** My Day aur Escalation `sys-02-my-day`       | SYS-01 sudhaar; Studio Plan                                                                    |
+| Hafte 7–12  | Merges                                                                           | **SYS-04** Leads aur Proposals `sys-04-leads`              | **SYS-05** Drawing aur Site Chain `sys-05-design-site` | **SYS-06** Owner Exception View aur Studio Plan `sys-06-owner-view` (hafte 9–12)               |
+| Mahine 4–6  | Merges; scorecard weights sign                                                   | **SYS-07** Scorecards, shadow mode `sys-07-scorecards`     | **SYS-08** Client Page aur Pulse `sys-08-client-page`  | **SYS-09** Turnkey Controls, Tier 2 pehle `sys-09-turnkey`                                     |
+| Mahine 7–12 | Hindi aur Marathi labels; handover pack                                          | SYS-07 incentives live                                     | SYS-09 billing, cash view, Tier 3                      | HR: onboarding, policies, claims, exit; mahine 11–12 optional AI helpers (aapke haan ke saath) |
 
-| Phase                     | Kab poora maana jaayega (blueprint se)                                                                                                                                                                                                                                      |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| P1 · F-00, SYS-01, SYS-02 | Aapke 7 log har subah apne phone par apni task list kholte hain, deadline aur definition of done ke saath, har band task ke saath proof hai, aur pehle live Monday ke baad koi task muh se ya WhatsApp par nahi diya gaya.                                                  |
-| P2 · SYS-03, SYS-04       | Har live site ki pichle hafte ke har working day ki dated site report hai stamped photos ke saath, har site par har drawing par Approved for Execution stamp hai aur purana version withdraw ho chuka hai, aur har open drawing query par ek designer ka naam aur date hai. |
-| P3 · SYS-05 se SYS-08     | Ek poora working hafta guzar jaata hai jisme aapne koi follow-up call nahi kiya, Nandini ki 6 PM summary har shaam aayi, aur pehle monthly scorecards standard format mein aapki table par hain, kisi employee ke dekhne se pehle.                                          |
+| Phase                       | Kab poora maana jaayega (Blueprint Rev B se)                                                                                                                                                                                                                                                                                 |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| P1 · F-00, SYS-01 se SYS-03 | Saaton log har subah apni numbered My Day kholte hain deadline aur definition of done ke saath, har band task ke saath proof hai, pehle live Monday ke baad koi task muh se ya WhatsApp par nahi diya gaya, aur har din ki attendance, office ho ya site, ek record mein hai aur late-mark counter har insaan ko dikhta hai. |
+| P2 · SYS-04 se SYS-06       | Har enquiry ka owner aur next action hai, har live site ki har working day ki stamped photos ke saath dated report hai, site par har drawing par Released for Site hai aur purana version withdraw ho chuka hai, aur aap subah 9 baje kisi ko call karne ki jagah ek Exception View kholte ho.                               |
+| P3 · SYS-07 se SYS-09       | Do mahine ke shadow scorecards team ke saath dekh kar fair maane gaye, 8 se kam har client rating par 24 ghante mein call hua, aur har Tier 2 aur Tier 3 project par budget, committed aur actual cost aur weekly Project Pulse hai.                                                                                         |
+| P4 · mahine 7–12            | Aap follow-ups par din mein 30 minute se kam dete ho aur hafte mein ek 30 minute ka review, incentives sirf sign kiye scorecards se milte hain, month-end ke ek din mein payroll attendance summary ready hota hai, aur har insaan is quarter ke Rocks bata sakta hai.                                                       |
 
-**GATES:** SYS-02 approved SOPs ka wait karta hai. SYS-05 hafte 8 se pehle switch on nahi hota: wo sirf wahi dikhata hai jo Task Sheet ne ikattha kiya. SYS-08 ke pehle cards utne hi fair hain jitni hafte 1 se 2 ki SOP lines. SYS-04 tabhi kaam karta hai jab drawings WhatsApp images ke roop mein site jaana band ho. SYS-07 Claude API ke kharche par aapke haan ka wait karta hai. Client, contractor ya vendor ko dates, extra work ya cost ka har message aapka wait karta hai.
-
-**Mahine 4 se 12, usi ghar mein:** Project Health Wall aur Command Centre, har band stage par Client Pulse (mahine 4 se 6) → Site Controller aur Digital Ops Manager (mahine 6 se 8) → attendance aur personal dashboards (mahine 8 se 10) → locked tab mein project costing aur Instagram, Just Dial aur referral ke liye ek simple CRM (mahine 10 se 12). Har ek §03 se shuru hota hai.
+**GATES:** koi builder F-00 aur approval limits merge hone se pehle shuru nahi hota. SYS-02 approved SOPs aur templates ka wait karta hai. SYS-03 eSSL check ka wait karta hai (fallback: roz ki file import). SYS-06 ke boards kuch hafte ke My Day aur site records ke baad hi kaam ke hain. SYS-07 ke paise do mahine shadow mode ke baad aur aapke sign ke baad hi. SYS-09 pehle Tier 2; agar koi bada civil, commercial ya factory project abhi chal raha hai, to uske liye budget, work orders aur site store aage laao. AI helpers mahine 11–12 se pehle nahi.
 
 06
 
@@ -134,11 +133,12 @@ JAB KISI CHEEZ MEIN PAISA LAGE
 
 Build se pehle decide karo
 
-| Kya chahiye                          | Pehli baar kab          | Aapke liye matlab                                                                                                                                                                                                                                        |
-|--------------------------------------|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Supabase Pro**                     | SYS-03, SYS-04          | Lagbhag \$25 mahina, jab site photos aur drawings free storage bhar dein; daily backups bhi milte hain.                                                                                                                                                  |
-| **Claude API key**                   | SYS-07 Nandini          | Nandini subah 9 aur shaam 6 baje chalti hai jab computer par koi nahi hota, jo Claude Max mein cover nahi hai. 7 logon ke liye lagbhag \$10 se \$30 mahina. platform.claude.com par monthly spend limit ke saath set up; key sirf Vercel mein jaati hai. |
-| **WhatsApp Business API** (optional) | Baad mein: Client Pulse | Sirf tab, jab aap reminders aur summaries app ki jagah WhatsApp par chahte ho. Meta verification aur paid messages lagte hain.                                                                                                                           |
+| Kya chahiye                          | Pehli baar kab                 | Aapke liye matlab                                                                                                                               |
+|--------------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Supabase Pro**                     | SYS-03, SYS-05                 | Lagbhag \$25 mahina, jab punches, site photos aur drawings free storage bhar dein; daily backups bhi.                                           |
+| **eSSL connector**                   | SYS-03                         | Agar machine khud logs nahi bhej sakti, to office computer par ek chhota connector ya roz ki file import. Claude options aur kharcha dikhayega. |
+| **WhatsApp Business API** (optional) | Digital Huddle, client updates | Sirf tab, jab aap messages app aur email ki jagah WhatsApp par chahte ho. Meta verification aur paid messages lagte hain.                       |
+| **Claude API key** (optional)        | Mahine 11–12, AI helpers       | Status answers aur proposal drafts ke liye, Claude Max se alag, use ke hisaab se bill aur monthly spend limit ke saath. Key sirf Vercel mein.   |
 
 Paste · Koi bhi nayi cheez connect karne se pehle
 
@@ -152,10 +152,11 @@ Paas rakho
 
 - **Naya insaan:** MAIN ko: *“\[Naam\] \[role\] ke roop mein join kar raha hai. Uska login aur SOPs se joining checklist meri approval ke liye draft karo.”*
 - **Koi rule badla:** MAIN ko: *“Aaj se \[rule\]. Ise CLAUDE.md mein permanent karo aur batao ye kaunse systems ko chhoota hai.”*
+- **Nayi value band:** MAIN ko: *“Aaj se \[decision\] ki limit \[amount\] hai, approver \[role\]. Approval limits update karo aur batao kya badla.”*
 - **Mere guardrails likh liye:** MAIN ko: *“Ye rahe mere teen guardrails, mere shabdon mein: \[…\]. CLAUDE.md mein careful defaults ki jagah inhe lagao aur batao kya badla.”*
 - **Monthly check:** MAIN ko: *“Project ko CLAUDE.md ke against audit karo aur jo bhi rule toot raha ho wo simple shabdon mein batao.”*
 
-**MONTHLY TEST:** phone par OS kholo aur teen sawaal pucho. Kya har task, site report aur drawing sach hai? Kya koi cheez client, contractor ya vendor tak aapke haan ke bina pahunchi? Kya diary hafte ko aapki yaaddasht se behtar samjhati hai? Teen haan: agla system shuru karo. Ek bhi na: pehle use theek karo.
+**MONTHLY TEST:** phone par OS kholo aur teen sawaal pucho. Kya har task, attendance, site report aur drawing sach hai? Kya koi cheez client, contractor ya vendor tak aapke haan ke bina pahunchi? Kya diary hafte ko aapki yaaddasht se behtar samjhati hai? Teen haan: agla system shuru karo. Ek bhi na: pehle use theek karo.
 
-Mahesh R. Khandagale ji ke liye · Archi Design. BuildOur Builder Guides 02–04 se, blueprint BOA-2026-ARC-01 Rev A ke against.  
+Mahesh R. Khandagale ji ke liye · Archi Design. BuildOur Builder Guides 02–04 se, blueprint BOA-2026-ARC-01 Rev B aur Lean Master Plan v1.4 ke against.  
 Ek record, ek app, kai sessions. Har price, date aur logon ka faisla owner ke paas.

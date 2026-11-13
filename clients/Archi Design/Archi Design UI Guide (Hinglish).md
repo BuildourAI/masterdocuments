@@ -1,4 +1,4 @@
-Buildour AI · Archi DesignUI Guide · Rev A · Hinglish
+Buildour AI · Archi DesignUI Guide · Rev B · Hinglish
 
 # ARCHI DESIGN OS UI GUIDE
 
@@ -10,10 +10,10 @@ do–– Har system
 ki screens–– Har screen  
 check
 
-|                                                                                                                                                                                                                   |                                                                                              |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| Kab use karna haiSection 01 aur 02 ek baar, Starter Guide ke Step 3 mein, pehli asli screen se pehle. Section 03 se 06 har baar jab koi builder session aapko nayi screen dikhaye.                                |                                                                                              |
-| Aapke liye kyun zarooriJis designer ko scroll karna pade, ya jis site engineer ko dhoop mein type karna pade, wo wapas WhatsApp par chala jaayega. Phir Task Sheet khaali, aur uske baad ka har board bhi khaali. | Kya chahiyeBrowser mein Pinterest · Claude app (Chat) · Claude Code mein aapka MAIN session. |
+|                                                                                                                                                                                                               |                                                                                                                                   |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Kab use karna haiSection 01 aur 02 ek baar, Starter Guide ke Step 3 mein, pehli asli screen se pehle. Section 03 se 06 har baar jab koi builder session aapko nayi screen dikhaye.                            |                                                                                                                                   |
+| Aapke liye kyun zarooriJis designer ko scroll karna pade, ya jis site engineer ko dhoop mein type karna pade, wo wapas WhatsApp par chala jaayega. Phir My Day khaali, aur uske baad ka har board bhi khaali. | Kya chahiyeBrowser mein Pinterest · Claude app (Chat) · Claude Code mein aapka MAIN session · Lean Master Plan section 12 aur 13. |
 
 Koi nahi bolega ki design galat hai. Team bas chupchaap app kholna band kar degi.
 
@@ -35,7 +35,7 @@ Claude ko bolo “mera system bana do” aur look ke baare mein kuch mat bolo, t
 
 Paste · Claude app chat · chooser prompt
 
-Maine aapke saath kuch powerful, minimal UI designs share kiye hain. Main apni company ka interface bana raha hoon: Archi Design, saat logon ki architecture aur interior design practice. Mere designers screens office mein laptop par use karte hain; site engineers basic Android phones par site par, aksar bahar dhoop mein aur kamzor network mein; aur main apne phone par dekhta hoon ki kaunse projects aur log mujhe chahiye, aur drawings approve karta hoon. In sab designs ko research aur analyse karo aur batao mujhe kaunsa choose karna chahiye. Design aisa ho jo meri team bahut aasaani se samajh sake: khud samajh aane wala, lagbhag bina training ke. Aksar interfaces itne complicated ho jaate hain ki team samajh hi nahi paati; yahan humein ulta chahiye, ek friendly interface jo complex na lage aur jaise meri team seekhti hai waisa ho. Aage badhne ke liye mujhe sabse achha wala batao.
+Maine aapke saath kuch powerful, minimal UI designs share kiye hain. Main apni company ka interface bana raha hoon: Archi Design, ek architecture aur interior design studio jo turnkey projects bhi karta hai. Mere designers screens office mein laptop par use karte hain; site engineers basic Android phones par site par, aksar bahar dhoop mein aur kamzor network mein; aur main apne phone par dekhta hoon ki kaunse projects aur log mujhe chahiye, aur approvals deta hoon. Main designer hoon, isliye interface saaf, shaant aur sundar hona chahiye, light aur dark dono themes ke saath. In sab designs ko research aur analyse karo aur batao mujhe kaunsa choose karna chahiye. Design aisa ho jo meri team bahut aasaani se samajh sake: khud samajh aane wala, lagbhag bina training ke. Aksar interfaces itne complicated ho jaate hain ki team samajh hi nahi paati; yahan humein ulta chahiye, ek friendly interface jo complex na lage aur jaise meri team seekhti hai waisa ho. Aage badhne ke liye mujhe sabse achha wala batao.
 
 3
 
@@ -55,9 +55,9 @@ Ek baar · MAIN session
 
 Jeetne wali images aur .md file apne `archi-design-os` folder ke andar `docs/design/` mein save karo, phir ye MAIN mein paste karo:
 
-Paste · MAIN · har session ke liye look set karo
+Paste · MAIN · har session ke liye look aur themes set karo
 
-Design direction docs/design mein hai: chuni hui images aur design .md file. Inhe aur docs/ mein UI Guide ko padho. Mujhe paanch lines mein Hinglish mein batao ki look kya hai aur har screen ise kaise follow karegi. Phir CLAUDE.md mein ek line jodo ki har session ki har screen docs/design aur UI Guide ke section 03 se 05 follow karegi, aur dummy data ke saath ek sample screen banao, mere phone ki home screen jisme aaj ke tasks hon, taaki koi bhi system banne se pehle main look apne phone par dekh sakun. Mere OK ka wait karo.
+Design direction docs/design mein hai: chuni hui images aur design .md file. Inhe, docs/ mein UI Guide, aur Lean Master Plan ke section 12 aur 13 padho. Mujhe paanch lines mein Hinglish mein batao ki look kya hai. Phir look ko theme tokens mein set karo: Light, Dark aur teen colour palettes, aur Archi Design ka logo aur brand colour; har user apni profile mein theme chun sake. CLAUDE.md mein jodo ki har session ki har screen docs/design, theme tokens aur UI Guide ke section 03 se 05 follow karegi. Phir dummy data ke saath ek sample My Day screen banao (numbered tasks 1 se 5, progress ring, Done aur Blocked buttons), taaki koi bhi system banne se pehle main look aur themes apne phone par dekh sakun. Mere OK ka wait karo.
 
 03
 
@@ -67,17 +67,20 @@ Har builder session ko kya design karna hai
 
 Software screens ka set nahi, baatcheet ka set hai. Har insaan ek sawaal lekar aata hai, screen uska jawab deti hai, aur wo ek kaam karta hai. Ye wo main screens hain jo aapke blueprint ko chahiye.
 
-| System                  | Screen aur uska ek sawaal                                                      | Ek main button         | Kaun, kis par                  |
-|-------------------------|--------------------------------------------------------------------------------|------------------------|--------------------------------|
-| SYS-02 Daily Task Sheet | **Mera din:** “aaj mujhe kya karna hai, aur kab tak?”                          | Done (proof ke saath)  | Saare 7, phone par             |
-| SYS-02 Daily Task Sheet | **Not done:** “ye kyun poora nahi hua?” (chhoti list se chuno)                 | Reason save            | Saare 7, phone                 |
-| SYS-03 Site Diary       | **Aaj site par:** “is site par aaj kya hua?” (pehle photos, kam shabd)         | Report bhejo           | Site engineers, Android, bahar |
-| SYS-04 Drawing Release  | **Site ke liye ready:** “kya ye drawing SOP ke hisaab se poori hai?”           | Approval ke liye bhejo | Designers, laptop              |
-| SYS-04 Drawing Release  | **Approval queue:** “kaunsi drawing mere sign-off ka wait kar rahi hai?”       | Approve for Execution  | Aap, phone ya laptop           |
-| SYS-05 Ownership Board  | **Chain kaun pakde hai:** “kaunsa project aur insaan mujhe chahiye?” RED pehle | Red item kholo         | Aap, phone                     |
-| SYS-06 Nudge            | **Reminder:** “kaunsa task overdue hai, aur kaunsa proof chahiye?”             | Done mark              | Task owner, phone              |
-| SYS-07 Nandini          | **Shaam ki summary:** “aaj kaisa gaya, aur kis par mera faisla chahiye?”       | Decide                 | Aap, phone                     |
-| SYS-08 Scorecard        | **Is mahine:** “standard format mein har insaan ne kaisa kiya?”                | Scorecard sign         | Aap, laptop                    |
+| Screen (master plan §12)           | Uska ek sawaal                                                         | Ek main button           | Kaun, kis par           |
+|------------------------------------|------------------------------------------------------------------------|--------------------------|-------------------------|
+| My Day                             | “aaj kya karna hai, kis order mein?” (1 se 5, har number ka reason)    | Done (proof ke saath)    | Sab, phone              |
+| Task detail                        | “ye kyun zaroori hai, kaun wait kar raha hai?”                         | Start / Done             | Sab, phone              |
+| My Attendance and Leave            | “maine punch kiya? kitne late marks? leave kitni bachi?”               | Punch In / Out           | Sab, phone              |
+| Team board                         | “kaun overloaded hai, kya blocked hai, kaunsa clash?”                  | Task do (level ke saath) | Captains, leads         |
+| Owner Exception View               | “aaj kis cheez par mera faisla chahiye?” (sab theek ho to “All clear”) | Red item kholo           | Aap, phone              |
+| Project page                       | “ye project kahan hai, aur kiska wait hai?”                            | Approve                  | Captain, team           |
+| Site diary, snags                  | “aaj site par kya hua?” (pehle photos)                                 | Report bhejo             | Site engineers, Android |
+| Drawing register                   | “kaunsi drawing site ke liye release hui?”                             | Release for Site         | Designers, captain      |
+| Lead pipeline, proposal            | “kis enquiry ka next action aaj hai?”                                  | Next action              | Sales                   |
+| My Scorecard                       | “mera score kaise bana, aur kitna incentive banega?”                   | Breakdown dekho          | Staff, managers         |
+| Client project page                | “mera project kahan hai, mujhe kya decide karna hai?”                  | Approve / rate           | Client                  |
+| People (HR), Studio Plan, Settings | “kaun kahan hai; studio kidhar ja raha hai; rules kya hain?”           | Save                     | HR, aap, admin          |
 
 04
 
@@ -92,6 +95,10 @@ Aapke office aur sites ke liye
 - **Red, amber, green ka sirf ek matlab:** late, risk par, on track. Kabhi decoration nahi. Red items hamesha upar.
 - **Aapki screens sirf exceptions dikhayein.** Kya red hai, kya aapke signature ka wait kar raha hai, kaun overloaded hai. Jo theek chal raha hai wo sab nahi.
 - **Staff screens par paisa nahi.** Koi incentive, deduction ya cost figure kisi employee ko aapke sign se pehle nahi dikhega.
+- **Teen tap ka rule.** Har roz ka kaam teen tap, voice note ya photo mein ho; koi form 5 se zyada zaroori fields na maange.
+- **Staff screens par reports nahi.** Charts aur analysis sirf aapke aur managers ke liye; staff ko progress ring aur on-time streak.
+- **Themes.** Light, Dark aur teen palettes, har user apni profile mein chune; aapka logo aur brand colour har jagah, Client Page par bhi.
+- **Studio ke apne shabd.** Labels wahi jo aapka office bolta hai: Release for Site, Snag, RA bill.
 - **Unki bhasha.** Agar site engineers Marathi ya Hindi aasaani se padhte hain, to Claude ko bolo: har insaan apni chuni hui bhasha mein labels dekh sake.
 
 05
@@ -129,7 +136,7 @@ Aur design kab poora hai
 - **Kabhi AI ko blueprint mein “gaps dhoondhne” mat bolo.** Wo gaps bana dega. Khud padho; asli gaps Romana ke paas lao.
 - **Saaton logon ko announcement se launch mat karo.** Har nayi screen pehle us ek insaan ko do jise purani taklif sabse zyada hai; uski raahat baaki sabko le aayegi.
 
-**GATE:** docs/design mein aapka chuna hua look hai; CLAUDE.md bolta hai ki har screen use follow karegi; har screen paanch laws aur do minute ka rule paas karti hai; aur ek site engineer aur ek designer ne Task Sheet bina ek bhi “ye kya hai?” puche use kar li. Tab design poora hai, aur poora hi rehta hai, kyunki wo likha hua hai.
+**GATE:** docs/design mein aapka chuna hua look hai; CLAUDE.md bolta hai ki har screen use follow karegi; har screen paanch laws aur do minute ka rule paas karti hai; aur ek site engineer aur ek designer ne My Day bina ek bhi “ye kya hai?” puche use kar li. Tab design poora hai, aur poora hi rehta hai, kyunki wo likha hua hai.
 
-Mahesh R. Khandagale ji ke liye · Archi Design · BuildOur UI Guide (BOA-2026-UI) se, blueprint BOA-2026-ARC-01 Rev A ke against.  
+Mahesh R. Khandagale ji ke liye · Archi Design · BuildOur UI Guide (BOA-2026-UI) se, blueprint BOA-2026-ARC-01 Rev B aur Lean Master Plan §12 se 13 ke against.  
 Features aapke blueprint se aate hain; chehra aapke mood board se. Pehle dikhao, phir banao.
