@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Systems Blueprint: Archi Design, Rev B</title>
+<style>
+
+  :root {
+    --orange: #e8590c;
+    --orange-soft: #fdeee2;
+    --orange-faint: #fdf6f0;
+    --ink: #1f2430;
+    --grid: rgba(232, 89, 12, 0.07);
+    --rule: #e9c7ae;
+    --mono: "Consolas", "JetBrains Mono", "Courier New", monospace;
+    --sans: "Segoe UI", "Noto Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ---------- PART B pages: A4, in-depth blueprint ---------- */
+  @page {
+    size: A4;
+    margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right {
+      /* EDIT ME: DWG NO. BOA-{year}-{3-letter company code}-01 · REV A */
+      content: "DWG NO. BOA-2026-ARC-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "Archi Design · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+  }
+
+  /* ---------- PART A pages: wide infographic sheets ---------- */
+  @page infog {
+    size: 842pt 1191pt;
+    margin: 64px 40px 64px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @top-right {
+      /* EDIT ME: same DWG string as above */
+      content: "DWG NO. BOA-2026-ARC-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "Archi Design · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+  }
+
+  html {
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      #fdfbf9;
+    background-size: 24px 24px;
+  }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13.5px; line-height: 1.6; }
+
+  /* ================= PART A · INFOGRAPHIC COMPONENTS ================= */
+  .ig { page: infog; font-size: 12px; line-height: 1.45; }
+  .ig p { text-align: left; }
+
+  /* header block, top of sheet 1 */
+  .ighead { display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2.5px solid var(--ink); padding-bottom: 18px; margin-bottom: 8px; }
+  .ightitle h1 { font-size: 40px; line-height: 1.02; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
+  .ightitle .standfirst { font-size: 13px; margin-top: 10px; max-width: 480px; color: #46556b; }
+  .igbox { border: 1.5px solid var(--orange); background: #fff; padding: 10px 14px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.9; }
+  .igbox .bl { color: var(--orange); font-weight: 700; }
+
+  /* panel scaffold */
+  .panel { margin: 22px 0 6px; page-break-inside: avoid; }
+  .phead { display: flex; align-items: baseline; gap: 10px; border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 12px; page-break-after: avoid; }
+  .pnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; padding: 2px 8px; }
+  .ptitle { font-size: 17px; font-weight: 800; letter-spacing: 0.2px; text-transform: uppercase; }
+  .ptag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+  .pcap { font-size: 11px; font-style: italic; color: #46556b; margin-top: 8px; }
+  .pcap b { color: var(--orange); font-style: normal; }
+  .mcap { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #8a7361; margin-top: 8px; }
+
+  /* P01 · dashboard tiles */
+  .tiles { display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid var(--rule); background: #fff; }
+  .tile { padding: 12px 10px 10px; border-right: 1px dotted var(--rule); }
+  .tile:last-child { border-right: none; }
+  .tile .v { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+  .tile.hot .v { color: var(--orange); }
+  .tile .l { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361;
+    text-transform: uppercase; margin-top: 3px; }
+
+  /* P02 · money path flow */
+  .mpath { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+  .mstep { border: 1px solid var(--rule); background: #fff; padding: 8px 10px; }
+  .mstep .mn { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #8a7361; }
+  .mstep .mt { font-weight: 700; font-size: 12px; margin: 1px 0; }
+  .mstep .ms { font-family: var(--mono); font-size: 8px; letter-spacing: 0.8px; color: #46556b; text-transform: lowercase; }
+  .mstep.broken { border: 1.5px solid var(--orange); background: var(--orange-faint); }
+  .mstep.broken .ms { color: var(--orange); }
+  .legend { display: flex; gap: 22px; font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #46556b; margin-top: 9px; align-items: center; }
+  .sw { display: inline-block; width: 9px; height: 9px; border: 1px solid var(--orange); margin-right: 5px; vertical-align: -1px; }
+  .sw.f { background: var(--orange-faint); border-width: 1.5px; }
+
+  /* duo row: two diagnostic panels side by side */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* diagnostic · funnel */
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 2px; }
+  .ftier { position: relative; text-align: center; padding: 11px 0 9px; }
+  .ftier .fill { position: absolute; inset: 0; }
+  .ftier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ftier .tx { position: relative; }
+  .ftier .fv { font-size: 19px; font-weight: 800; }
+  .ftier .fl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #46556b; text-transform: uppercase; }
+  .ftier.t1 { width: 88%; } .ftier.t2 { width: 66%; } .ftier.t3 { width: 46%; }
+  .ftier .fill, .ftier .inner { clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .ftier .fill { background: var(--rule); }
+  .ftier.mid .fill { background: var(--orange); }
+  .ftier.mid .inner { background: var(--orange-faint); }
+  .ftier.mid .fv, .ftier.mid .fl { color: var(--orange); }
+  .fverdict { text-align: center; font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 8px; }
+
+  /* diagnostic · layer pyramid */
+  .pyr { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 2px; }
+  .ptier { position: relative; text-align: center; padding: 10px 0 8px; }
+  .ptier .fill { position: absolute; inset: 0; background: var(--rule); }
+  .ptier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ptier .tx { position: relative; }
+  .ptier .pv { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+  .ptier .pl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #46556b; text-transform: uppercase; }
+  .ptier.top { width: 40%; } .ptier.top .fill, .ptier.top .inner { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .ptier.top { padding-top: 22px; }
+  .ptier.mid { width: 66%; } .ptier.mid .fill, .ptier.mid .inner { clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%); }
+  .ptier.mid .fill { background: var(--orange); } .ptier.mid .inner { background: var(--orange-faint); }
+  .ptier.mid .pv, .ptier.mid .pl { color: var(--orange); }
+  .ptier.base { width: 88%; } .ptier.base .fill, .ptier.base .inner { clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+
+  /* diagnostic · before/after cards */
+  .ba { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .bacard { border: 1px solid var(--rule); background: #fff; padding: 10px 13px; }
+  .bacard .fl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .bacard .bt { font-weight: 700; font-size: 12.5px; margin-bottom: 5px; }
+  .bacard p { font-size: 11px; margin-bottom: 4px; }
+  .bacard b.was { color: var(--ink); } .bacard b.now { color: var(--orange); }
+
+  /* diagnostic · comparison bars */
+  .cbars { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+  .cbar { display: flex; align-items: center; gap: 10px; }
+  .cbar .cl { flex: 0 0 170px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: right; color: #46556b; }
+  .cbar .track { flex: 1; }
+  .cbar .bar { height: 20px; border: 1px solid var(--orange); background: var(--orange-faint);
+    display: flex; align-items: center; padding: 0 8px; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 1px; color: var(--orange); font-weight: 700; }
+  .cbar.max .bar { background: var(--orange); color: #fff; }
+
+  /* diagnostic · split/entity map */
+  .split { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .scard { border: 1px solid var(--rule); background: #fff; padding: 9px 11px; text-align: center; }
+  .scard .sv { font-weight: 800; font-size: 14px; }
+  .scard .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361; text-transform: uppercase; }
+
+  /* P06 · system cards grid */
+  .sysgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .icard { border: 1px solid var(--rule); background: #fff; padding: 11px 13px 9px; page-break-inside: avoid; }
+  .icard .iwin { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; }
+  .icard .iname { font-weight: 700; font-size: 13.5px; margin: 2px 0 9px; }
+  .ibody { display: grid; grid-template-columns: 55% 45%; gap: 4px 10px; }
+  .ichain { display: flex; flex-direction: column; align-items: stretch; }
+  .ichip { border: 1px solid var(--orange); background: #fff; font-family: var(--mono); font-size: 7.5px;
+    letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 5px 4px; color: var(--ink); }
+  .ichip.first { background: var(--orange-faint); border-width: 1.5px; color: var(--orange); font-weight: 700; }
+  .iarrow { text-align: center; color: var(--orange); font-size: 10px; line-height: 1.4; }
+  .inotes .nl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-top: 7px; }
+  .inotes .nl:first-child { margin-top: 0; }
+  .inotes p { font-size: 10px; line-height: 1.4; margin-bottom: 2px; }
+  .isolve { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 6px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange); text-transform: uppercase; }
+
+  /* P07 · gantt */
+  table.gantt { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.gantt th, table.gantt td { border: 1px solid var(--rule); padding: 5px 8px; }
+  table.gantt th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; background: #fff; }
+  table.gantt td.sysname { width: 17%; }
+  table.gantt td.sysname .gc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  table.gantt td.sysname .gn { font-weight: 700; font-size: 10.5px; }
+  .gbar { border: 1px solid var(--orange); background: var(--orange-faint); font-family: var(--mono);
+    font-size: 8px; letter-spacing: 0.8px; color: var(--ink); padding: 2px 7px; white-space: nowrap; overflow: hidden; }
+  .dwrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+  .dw { border: 1.5px solid var(--orange); background: #fff; padding: 9px 12px; font-size: 11px; }
+  .dw .dl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+  /* P08 · 2x2 matrix */
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); background: #fff; }
+  .quad { border: 1px solid var(--rule); padding: 10px 13px; min-height: 108px; }
+  .quad .qh { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #46556b;
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 7px; }
+  .mc { border: 1px solid var(--orange); background: #fff; padding: 4px 9px; margin-bottom: 5px; }
+  .mc .mcc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  .mc .mcn { font-weight: 700; font-size: 11px; }
+  .quad.build .mc { background: var(--orange-faint); border-width: 1.5px; }
+  .quad .qv { font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange);
+    text-transform: uppercase; margin-top: 4px; }
+  .axis { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; margin-top: 6px; display: flex; justify-content: space-between; }
+
+  /* P09 · guardrails swimlane */
+  .swim { border: 1px solid var(--rule); background: #fff; }
+  .lane { display: flex; border-top: 1px dotted var(--rule); }
+  .lane:first-child { border-top: none; }
+  .lanel { flex: 0 0 140px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); font-weight: 700; text-transform: uppercase; padding: 11px 0 11px 13px; }
+  .lanev { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 13px; border-left: 1px dotted var(--rule); }
+  .tag { border: 1px solid var(--rule); background: #fff; font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: 0.8px; padding: 3px 9px; }
+  .tag.never { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* P10 · next steps */
+  .igsteps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .igstep { display: flex; border: 1px solid var(--orange); background: #fff; page-break-inside: avoid; }
+  .igstep .n { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 11px; padding: 8px 10px; display: flex; align-items: flex-start; }
+  .igstep .b { padding: 7px 12px; font-size: 11px; }
+
+  /* footer strip, end of each infographic group */
+  .stripe { display: flex; border-top: 2px solid var(--ink); margin: 20px 0 4px; background: #fff; }
+  .scell2 { flex: 1; border-left: 1px dotted var(--rule); padding: 7px 12px; }
+  .scell2:first-child { border-left: none; }
+  .scell2 .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; }
+  .scell2 .sv { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+  .igtrace { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 12px; }
+
+  /* ================= PART B · IN-DEPTH BLUEPRINT COMPONENTS (unchanged v2) ================= */
+  .coverpage { page-break-before: always; page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase;
+    border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 12.5px; letter-spacing: 2.5px;
+    text-transform: uppercase; margin: 16px 0 32px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 32px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono);
+    font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 28px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 30px 0 16px; background: #fff;
+    page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 17px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 17px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  h3.sub { font-size: 14px; font-weight: 700; margin: 20px 0 6px; page-break-after: avoid; }
+  h3.sub .n { color: var(--orange); font-family: var(--mono); margin-right: 6px; }
+  .bp p { text-align: justify; }
+  p { margin-bottom: 11px; }
+  .pain { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 8px 0 16px; page-break-inside: avoid; }
+  .pain .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 2px; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 9px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .sys { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .sysbar { background: var(--orange); color: #fff; padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .sysbar .name { font-weight: 700; font-size: 14.5px; letter-spacing: 0.3px; }
+  .sysbar .code { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; }
+  .sysrow { display: flex; border-top: 1px dotted var(--rule); }
+  .sysrow:first-of-type { border-top: none; }
+  .syslbl { flex: 0 0 118px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; padding: 9px 0 9px 14px; }
+  .sysval { flex: 1; padding: 8px 14px 8px 10px; font-size: 12.5px; border-left: 1px dotted var(--rule); }
+  .sysval p { margin-bottom: 6px; }
+  .sysval p:last-child { margin-bottom: 0; }
+  .phase { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .phasehead { display: flex; align-items: stretch; }
+  .phnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .phtitle { padding: 7px 13px; font-weight: 700; font-size: 14.5px; flex: 1; display: flex; align-items: center; }
+  .phtag { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; }
+  .phbody { padding: 10px 14px 12px; border-top: 1px solid var(--rule); font-size: 12.5px; }
+  .phbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 8px; font-size: 12.5px; }
+  .done .dlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; font-weight: 700; margin-right: 6px; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 8px 13px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 13px; }
+  table.numbers tr { page-break-inside: avoid; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 10px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 13px; padding: 10px 13px; display: flex; align-items: flex-start; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; }
+  .noteblock { border: 1.5px dashed var(--orange); background: rgba(255,255,255,0.8);
+    padding: 13px 16px; margin: 16px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .noteblock .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 26px; border-top: 1.5px solid var(--orange);
+    padding-top: 12px; line-height: 1.8; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+  ul.tight { margin: 0 0 10px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  /* Rev B fit overrides */
+  .quad { min-height: 0; }
+  .ig .panel { margin: 16px 0 4px; }
+  .coverinner { padding: 30px 36px 20px; }
+  .coverbar { margin-bottom: 22px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin: 0 0 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  .covernote { margin-top: 16px; }
+  .bp { font-size: 12.5px; line-height: 1.55; }
+  .sys { margin: 11px 0; }
+
+  .ichip { padding: 3px 4px; }
+  .iarrow { line-height: 1.1; font-size: 9px; }
+  .icard { padding: 9px 11px 7px; }
+  .sysgrid { gap: 12px; }
+  .quad { padding: 8px 12px; }
+  .mc { padding: 3px 8px; margin-bottom: 4px; }
+  .bp p { margin-bottom: 9px; }
+  .sysval { padding: 6px 12px 6px 10px; font-size: 12px; }
+  .syslbl { padding: 7px 0 7px 12px; }
+  h3.sub { margin: 14px 0 5px; }
+  .pain { margin: 6px 0 12px; }
+  .sechead { margin: 22px 0 12px; }
+
+</style>
+
+</style>
+</head>
+<body>
+<!-- ############################ PART A · THE INFOGRAPHIC ############################ -->
+<div class="ig">
+
+  <div class="ighead">
+    <div class="ightitle">
+      <h1>Archi Design<br>AI Systems Blueprint &middot; Rev B</h1>
+      <div class="standfirst">A seven-person architecture and interior studio, now also taking turnkey civil, renovation, commercial and factory work. Every task, follow-up and status check runs through the owner. One lean studio OS: a foundation and nine systems in four phases, My Day and attendance first, the design-site chain next, scorecards and turnkey controls after.</div>
+    </div>
+    <div class="igbox">
+      <span class="bl">Prepared for</span><br>
+      Mahesh R. Khandagale, Owner<br>
+      Blueprint audit 11.11.2026<br>
+      Lean Master Plan v1.4, Nov 2026<br>
+      Rev B supersedes Rev A
+    </div>
+  </div>
+
+  <!-- P01 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">01</span><span class="ptitle">The Numbers</span><span class="ptag">Dashboard tiles &middot; as provided by client</span></div>
+    <div class="tiles" style="grid-template-columns: repeat(8, 1fr);">
+      <div class="tile"><div class="v">8</div><div class="l">Leads a month</div></div>
+      <div class="tile hot"><div class="v">3</div><div class="l">Quotes a month</div></div>
+      <div class="tile"><div class="v">4</div><div class="l">Orders out of 100 quotes</div></div>
+      <div class="tile"><div class="v">2</div><div class="l">Orders a month</div></div>
+      <div class="tile"><div class="v">1000000</div><div class="l">Average order value</div></div>
+      <div class="tile"><div class="v">15 Days</div><div class="l">Sales cycle</div></div>
+      <div class="tile"><div class="v">60%</div><div class="l">Repeat customers</div></div>
+      <div class="tile hot"><div class="v">7</div><div class="l">Total headcount (master plan describes six departments)</div></div>
+    </div>
+    <div class="pcap">Two projects a month at ₹10,00,000, 60% from returning clients: <b>the studio wins work; what it cannot do is run it without the owner</b>. Two figures disagree (2 of 3 quotes against 4 of 100) and the headcount of 7 sits beside a master plan built for departments; section 05 lists both to settle.</div>
+  </div>
+
+  <!-- P02 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">02</span><span class="ptitle">The Project Path Today</span><span class="ptag">Flowchart &middot; enquiry to after handover (master plan &sect;3)</span></div>
+    <div class="mpath" style="grid-template-columns: repeat(9, 1fr);">
+      <div class="mstep broken"><div class="mn">01</div><div class="mt">Enquiry</div><div class="ms">owner&rsquo;s phone only</div></div>
+      <div class="mstep"><div class="mn">02</div><div class="mt">Brief, survey</div><div class="ms">sign-off</div></div>
+      <div class="mstep"><div class="mn">03</div><div class="mt">Concept</div><div class="ms">layout approval</div></div>
+      <div class="mstep"><div class="mn">04</div><div class="mt">Design dev.</div><div class="ms">material approval</div></div>
+      <div class="mstep broken"><div class="mn">05</div><div class="mt">Working drawings</div><div class="ms">sent as whatsapp images</div></div>
+      <div class="mstep"><div class="mn">06</div><div class="mt">BOQ, vendors</div><div class="ms">budget approval</div></div>
+      <div class="mstep broken"><div class="mn">07</div><div class="mt">Execution</div><div class="ms">status by phone call</div></div>
+      <div class="mstep"><div class="mn">08</div><div class="mt">Handover</div><div class="ms">snags, sign-off</div></div>
+      <div class="mstep"><div class="mn">09</div><div class="mt">After handover</div><div class="ms">service, referral</div></div>
+    </div>
+    <div class="legend"><span><span class="sw f"></span>Named breakdown point</span><span><span class="sw"></span>Runs, but chased by the owner</span><span>Every quote, every price, every follow up: &ldquo;My Self mostly&rdquo;</span></div>
+  </div>
+
+  <!-- P03 + P04 -->
+  <div class="duo">
+    <div class="panel">
+      <div class="phead"><span class="pnum">03</span><span class="ptitle">Where The Day Goes</span><span class="ptag">Funnel &middot; owner&rsquo;s time</span></div>
+      <div class="funnel">
+        <div class="ftier t1"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">8 &rarr; 3 &rarr; 2</div><div class="fl">leads, quotes, orders a month</div></div></div>
+        <div class="ftier t2 mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">Every task</div><div class="fl">given by voice, chased by the owner</div></div></div>
+        <div class="ftier t3"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">No measure</div><div class="fl">no standard format</div></div></div>
+      </div>
+      <div class="fverdict">The bottleneck is not sales; it is follow-up</div>
+      <div class="mcap">Hence My Day and attendance first, not the CRM.</div>
+    </div>
+    <div class="panel">
+      <div class="phead"><span class="pnum">04</span><span class="ptitle">Who Holds The Work</span><span class="ptag">Pyramid &middot; org layers</span></div>
+      <div class="pyr">
+        <div class="ptier top"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Owner</div><div class="pl">every quote, price, follow up and status check</div></div></div>
+        <div class="ptier mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Management</div><div class="pl">not answered &middot; master plan: L1 to L2 heads, leads, captains</div></div></div>
+        <div class="ptier base"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Designers and site engineers</div><div class="pl">office and site &middot; eSSL machine misses site days</div></div></div>
+      </div>
+      <div class="fverdict">&ldquo;Employees don&rsquo;t take ownership.&rdquo;</div>
+      <div class="mcap">Rev B names the middle: line manager, project captain, department head.</div>
+    </div>
+  </div>
+
+  <!-- P05 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">05</span><span class="ptitle">What The Master Plan Adds</span><span class="ptag">Before / after &middot; why Rev B exists</span></div>
+    <div class="ba">
+      <div class="bacard"><span class="fl">Rev A</span><div class="bt">A 90-day interior studio plan</div>
+        <p><b class="was">Was:</b> eight systems for a seven-person design practice; managers, attendance, turnkey work and HR not on file.</p>
+        <p><b class="now">Now:</b> the Lean Master Plan v1.4 adds attendance with the eSSL machine, turnkey projects of five types, departments and approvals, and the Scaling Up rhythm.</p></div>
+      <div class="bacard"><span class="fl">The habit</span><div class="bt">Tasks by voice, status by phone</div>
+        <p><b class="was">Was:</b> &ldquo;I have take personally follow up each and every day by giving them daily tasks.&rdquo;</p>
+        <p><b class="now">Now:</b> My Day with priority numbers 1 to 5, a clash button, an escalation ladder, and an Exception View that says &ldquo;All clear&rdquo;.</p></div>
+      <div class="bacard"><span class="fl">The measure</span><div class="bt">No fair way to judge work</div>
+        <p><b class="was">Was:</b> &ldquo;I cannot able to measure my employee&rsquo;s work in standard format.&rdquo;</p>
+        <p><b class="now">Now:</b> four metrics per role, calculated from records, two months in shadow before any rupee is paid.</p></div>
+    </div>
+    <div class="pcap">The master plan&rsquo;s own rule decides the order: <b>software cannot create ownership on its own</b>, so the daily list and fair attendance come before any board, score or AI helper.</div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Business</span><span class="sv">Architects &amp; interior designers &middot; turnkey</span></div>
+    <div class="scell2"><span class="sl">Sites</span><span class="sv">Office and on site</span></div>
+    <div class="scell2"><span class="sl">Stack kept</span><span class="sv">Instagram, Just Dial, eSSL machine, payroll tool</span></div>
+    <div class="scell2"><span class="sl">Stack added</span><span class="sv">Claude Max, GitHub, Supabase, Vercel</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">Current state</span></div>
+  </div>
+
+  <!-- P06 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">06</span><span class="ptitle">Recommended AI Systems</span><span class="ptag">Foundation + 9 systems &middot; one lean studio OS</span></div>
+    <div class="sysgrid">
+      <div class="icard"><span class="iwin">F-00 &middot; Weeks 1&ndash;2</span><div class="iname">Studio Record and Organisation</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Projects, people once</div><div class="iarrow">&darr;</div><div class="ichip">Departments, levels</div><div class="iarrow">&darr;</div><div class="ichip">Line manager + captain</div><div class="iarrow">&darr;</div><div class="ichip">Approval limits</div><div class="iarrow">&darr;</div><div class="ichip">Every system reads it</div></div>
+        <div class="inotes"><span class="nl">Master plan</span><p>&sect;5C org tree, &sect;14 growth headroom.</p><span class="nl">Settings</span><p>Admin edits; no developer.</p></div></div>
+        <div class="isolve">Solves no one but the owner holds the picture</div></div>
+      <div class="icard"><span class="iwin">SYS-01 &middot; Weeks 1&ndash;3</span><div class="iname">Studio Ways: SOPs and Templates</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Owner dictates</div><div class="iarrow">&darr;</div><div class="ichip">Stage workflows, done-defs</div><div class="iarrow">&darr;</div><div class="ichip">5 project templates, 3 tiers</div><div class="iarrow">&darr;</div><div class="ichip">Role cards, Studio Plan</div><div class="iarrow">&darr;</div><div class="ichip">Loaded once</div></div>
+        <div class="inotes"><span class="nl">Writing lane</span><p>Runs from day 1, beside the code.</p></div></div>
+        <div class="isolve">Solves &ldquo;Employees dont follow SOP&rsquo;s&rdquo;</div></div>
+      <div class="icard"><span class="iwin">SYS-02 &middot; Weeks 3&ndash;6</span><div class="iname">My Day and Escalation</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Task given with a level</div><div class="iarrow">&darr;</div><div class="ichip">Numbered 1 to 5</div><div class="iarrow">&darr;</div><div class="ichip">Done with proof / blocked</div><div class="iarrow">&darr;</div><div class="ichip">Reminder, then ladder</div><div class="iarrow">&darr;</div><div class="ichip">Evening 2-tap check-in</div></div>
+        <div class="inotes"><span class="nl">Merged</span><p>Rev A Task Sheet + Nudge chain.</p><span class="nl">Guardrail</span><p>Never changes a date on its own.</p></div></div>
+        <div class="isolve">Solves &ldquo;I have to follow up constantly&rdquo;</div></div>
+      <div class="icard"><span class="iwin">SYS-03 &middot; Weeks 3&ndash;6 &middot; New</span><div class="iname">Attendance and Leave</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">eSSL punch or phone punch</div><div class="iarrow">&darr;</div><div class="ichip">Location at punch only</div><div class="iarrow">&darr;</div><div class="ichip">One record a day</div><div class="iarrow">&darr;</div><div class="ichip">Late-mark counter</div><div class="iarrow">&darr;</div><div class="ichip">Payroll export</div></div>
+        <div class="inotes"><span class="nl">Master plan</span><p>&sect;9: 10 min grace, 3 late marks = half day.</p><span class="nl">Guardrail</span><p>No tracking between punches.</p></div></div>
+        <div class="isolve">Solves site staff marked absent; registers</div></div>
+      <div class="icard"><span class="iwin">SYS-04 &middot; Weeks 7&ndash;10 &middot; Moved up</span><div class="iname">Leads and Proposals</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Instagram, Just Dial, referral</div><div class="iarrow">&darr;</div><div class="ichip">One pipeline, next action</div><div class="iarrow">&darr;</div><div class="ichip">Proposal from template</div><div class="iarrow">&darr;</div><div class="ichip">Won: project created</div><div class="iarrow">&darr;</div><div class="ichip">Tasks on My Day</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>Fee below standard waits for owner.</p></div></div>
+        <div class="isolve">Solves enquiries on the owner&rsquo;s phone</div></div>
+      <div class="icard"><span class="iwin">SYS-05 &middot; Weeks 7&ndash;12</span><div class="iname">Drawing and Site Chain</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Drawing register</div><div class="iarrow">&darr;</div><div class="ichip">Release gate: owner signs</div><div class="iarrow">&darr;</div><div class="ichip">Site diary, photos, offline</div><div class="iarrow">&darr;</div><div class="ichip">Site question to designer</div><div class="iarrow">&darr;</div><div class="ichip">Quality gates, snags</div></div>
+        <div class="inotes"><span class="nl">Merged</span><p>Rev A Site Diary + Drawing Release.</p></div></div>
+        <div class="isolve">Solves &ldquo;real-time information about projects&rdquo;</div></div>
+      <div class="icard"><span class="iwin">SYS-06 &middot; Weeks 9&ndash;12</span><div class="iname">Owner Exception View and Studio Plan</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Reads every record</div><div class="iarrow">&darr;</div><div class="ichip">Red projects, blocked tasks</div><div class="iarrow">&darr;</div><div class="ichip">Rocks, Critical Number</div><div class="iarrow">&darr;</div><div class="ichip">Digital Huddle at 9 AM</div><div class="iarrow">&darr;</div><div class="ichip">&ldquo;All clear&rdquo;</div></div>
+        <div class="inotes"><span class="nl">Merged</span><p>Rev A Ownership Board + master &sect;5A.</p></div></div>
+        <div class="isolve">Solves the owner walking and calling</div></div>
+      <div class="icard"><span class="iwin">SYS-07 &middot; Months 4&ndash;6</span><div class="iname">Scorecards and Incentives</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Four metrics per role</div><div class="iarrow">&darr;</div><div class="ichip">Calculated, not typed</div><div class="iarrow">&darr;</div><div class="ichip">Shadow mode, 2 months</div><div class="iarrow">&darr;</div><div class="ichip">Owner signs</div><div class="iarrow">&darr;</div><div class="ichip">Project incentive pool</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>No public ranking; owner signs every payout.</p></div></div>
+        <div class="isolve">Solves no standard format to judge work</div></div>
+      <div class="icard"><span class="iwin">SYS-08 &middot; Months 4&ndash;6</span><div class="iname">Client Page and Pulse</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Weekly progress, photos</div><div class="iarrow">&darr;</div><div class="ichip">One-tap approvals</div><div class="iarrow">&darr;</div><div class="ichip">Three rating points</div><div class="iarrow">&darr;</div><div class="ichip">Below 8: call in 24 h</div><div class="iarrow">&darr;</div><div class="ichip">Health colour</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>No date or cost promised by the system.</p></div></div>
+        <div class="isolve">Solves &ldquo;clients satisfaction index is becoming lower&rdquo;</div></div>
+      <div class="icard"><span class="iwin">SYS-09 &middot; Months 4&ndash;9 &middot; New</span><div class="iname">Turnkey Controls, by tier</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Type + tier chosen</div><div class="iarrow">&darr;</div><div class="ichip">Budget by cost code</div><div class="iarrow">&darr;</div><div class="ichip">POs, work orders, bills</div><div class="iarrow">&darr;</div><div class="ichip">Site store, safety</div><div class="iarrow">&darr;</div><div class="ichip">Weekly Project Pulse</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>POs and payments by value band, a person signs.</p></div></div>
+        <div class="isolve">Solves cost overruns seen late</div></div>
+    </div>
+    <div class="pcap">Kept: <b>Instagram</b>, <b>Just Dial</b>, the <b>eSSL machine</b>, the <b>payroll tool / Tally</b> (receives an export). Added: <b>Claude Max</b>, <b>GitHub</b>, <b>Supabase</b>, <b>Vercel</b>. Parked: <b>AI helpers</b> (Nandini, Site Controller, Digital Ops Manager) until the basics work, as the master plan requires.</div>
+  </div>
+
+  <!-- P07 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">07</span><span class="ptitle">Implementation Roadmap</span><span class="ptag">Gantt &middot; 4 phases &middot; twelve months</span></div>
+    <table class="gantt">
+      <tr><th>Phase</th><th colspan="3">P1 &middot; Ownership core</th><th colspan="2">P2 &middot; Design-site chain</th><th>P3 &middot; Score, client, turnkey</th><th>P4 &middot; Money, people, handover</th></tr>
+      <tr><th>System</th><th>Wk 1&ndash;2</th><th>Wk 3&ndash;4</th><th>Wk 5&ndash;6</th><th>Wk 7&ndash;8</th><th>Wk 9&ndash;12</th><th>Months 4&ndash;6</th><th>Months 7&ndash;12</th></tr>
+      <tr><td class="sysname"><span class="gc">F-00</span><span class="gn">Studio Record</span></td><td><div class="gbar">Org, roles, limits</div></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-01</span><span class="gn">Studio Ways</span></td><td colspan="2"><div class="gbar">SOPs, templates, Studio Plan</div></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-02</span><span class="gn">My Day</span></td><td></td><td colspan="2"><div class="gbar">Numbered list, first live Monday</div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-03</span><span class="gn">Attendance</span></td><td></td><td colspan="2"><div class="gbar">eSSL + phone punch</div></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-04</span><span class="gn">Leads</span></td><td></td><td></td><td></td><td colspan="2"><div class="gbar">Pipeline, proposals</div></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-05</span><span class="gn">Drawing-Site Chain</span></td><td></td><td></td><td></td><td colspan="2"><div class="gbar">Release gate, site diary</div></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-06</span><span class="gn">Exception View</span></td><td></td><td></td><td></td><td></td><td><div class="gbar">Owner view, Rocks</div></td><td></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-07</span><span class="gn">Scorecards</span></td><td></td><td></td><td></td><td></td><td></td><td><div class="gbar">Shadow mode</div></td><td><div class="gbar">Incentives live</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-08</span><span class="gn">Client Page</span></td><td></td><td></td><td></td><td></td><td></td><td><div class="gbar">Ratings, health</div></td><td></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-09</span><span class="gn">Turnkey Controls</span></td><td></td><td></td><td></td><td></td><td></td><td colspan="2"><div class="gbar">Tier 2, then Tier 3; billing, cash view</div></td></tr>
+    </table>
+    <div class="dwrow" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="dw"><span class="dl">P1 done when</span>All 7 open a numbered My Day each morning &middot; every closed task carries proof &middot; no task given by voice since the first live Monday &middot; every day&rsquo;s attendance, office or site, is in one record with the late-mark counter visible.</div>
+      <div class="dw"><span class="dl">P2 done when</span>Every enquiry has an owner and a next action &middot; every live site has a dated report with photos each working day &middot; every drawing on site carries Released for Site &middot; the owner opens one Exception View at 9 AM.</div>
+      <div class="dw"><span class="dl">P3 done when</span>Two months of shadow scorecards accepted as fair &middot; every client rating below 8 called within 24 hours &middot; every Tier 2 and 3 project shows budget, committed and actual.</div>
+      <div class="dw"><span class="dl">P4 done when</span>The owner spends under 30 minutes a day on follow-ups with one 30-minute weekly review &middot; incentives paid from signed scorecards &middot; payroll attendance ready within a day of month-end.</div>
+    </div>
+  </div>
+
+  <!-- P08 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">08</span><span class="ptitle">Why This Build Order</span><span class="ptag">2&times;2 matrix</span></div>
+    <div class="matrix">
+      <div class="quad build"><span class="qh">High impact &middot; runs on what exists today</span>
+        <div class="mc"><span class="mcc">F-00</span><span class="mcn">Studio Record and Organisation</span></div>
+        <div class="mc"><span class="mcc">SYS-03</span><span class="mcn">Attendance and Leave</span></div>
+        <div class="mc"><span class="mcc">SYS-04</span><span class="mcn">Leads and Proposals</span></div>
+        <div class="qv">&rarr; build first; the eSSL machine and enquiries already exist</div></div>
+      <div class="quad build"><span class="qh">High impact &middot; needs people to change</span>
+        <div class="mc"><span class="mcc">SYS-01</span><span class="mcn">Studio Ways</span></div>
+        <div class="mc"><span class="mcc">SYS-02</span><span class="mcn">My Day and Escalation</span></div>
+        <div class="mc"><span class="mcc">SYS-05</span><span class="mcn">Drawing and Site Chain</span></div>
+        <div class="qv">&rarr; build first too: this is the habit the owner asked to change</div></div>
+      <div class="quad"><span class="qh">Compounding &middot; needs clean data</span>
+        <div class="mc"><span class="mcc">SYS-06</span><span class="mcn">Owner Exception View</span></div>
+        <div class="mc"><span class="mcc">SYS-07</span><span class="mcn">Scorecards and Incentives</span></div>
+        <div class="mc"><span class="mcc">SYS-08</span><span class="mcn">Client Page and Pulse</span></div>
+        <div class="qv">&rarr; after weeks of My Day and site records</div></div>
+      <div class="quad"><span class="qh">Growth &middot; unblocks scaling</span>
+        <div class="mc"><span class="mcc">SYS-09</span><span class="mcn">Turnkey Controls, by tier</span></div>
+        <div class="qv">&rarr; brought forward if a large turnkey project is already running</div></div>
+    </div>
+    <div class="axis"><span>&larr; low dependence on human change</span><span>high &rarr;</span></div>
+    <div class="pcap">Unlike most blueprints, Phase 1 here deliberately includes the habit change, because <b>the owner&rsquo;s own ask is to stop giving tasks by voice</b>; every board after it is empty without My Day.</div>
+  </div>
+
+  <!-- P09 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">09</span><span class="ptitle">Guardrails</span><span class="ptag">Swimlane &middot; brief left blank, master plan rules applied</span></div>
+    <div class="swim">
+      <div class="lane"><div class="lanel">AI acts alone</div><div class="lanev">
+        <span class="tag">Remind a person of their own task and proof</span><span class="tag">Rank tasks by the auto rules</span><span class="tag">Check drawing name and sheet list</span><span class="tag">Compile summaries and scorecards for the owner</span><span class="tag">Import punches, apply late-mark rule</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Human signs off</div><div class="lanev">
+        <span class="tag">Pricing and negotiation</span><span class="tag">Drawing release for site</span><span class="tag">Change orders, POs, payments by value band</span><span class="tag">Messages to clients, contractors, vendors on dates, extra work, cost</span><span class="tag">Scorecard before any incentive or deduction</span><span class="tag">Late-mark waivers, outside-zone punches</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Never automated</div><div class="lanev">
+        <span class="tag never">Every quote, price, discount, committed date</span><span class="tag never">Design judgement and client advice</span><span class="tag never">Hiring, appraisal outcome, consequences</span><span class="tag never">Continuous location tracking</span><span class="tag never">Public ranking of people</span>
+      </div></div>
+    </div>
+    <div class="pcap">All three brief guardrail answers were blank; these lanes join Rev A&rsquo;s careful defaults with the master plan&rsquo;s written rules (&sect;5C.5, &sect;9.5, &sect;10). <b>Approval limits in brackets in the master plan are still the owner&rsquo;s to set.</b></div>
+  </div>
+
+  <!-- P10 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">10</span><span class="ptitle">Next Steps</span><span class="ptag">Immediate actions</span></div>
+    <div class="igsteps">
+      <div class="igstep"><div class="n">01</div><div class="b"><b>Confirm Rev B</b> and settle the quote figures and the headcount and departments. Mahesh.</div></div>
+      <div class="igstep"><div class="n">02</div><div class="b"><b>Decide the build path:</b> self-build in Claude Code (this blueprint) or the vendor RFP the master plan assumed. Mahesh.</div></div>
+      <div class="igstep"><div class="n">03</div><div class="b"><b>Draw the organisation and set the limits:</b> departments, line managers, captains, deputies, PO, change-order, discount and payment bands. Mahesh.</div></div>
+      <div class="igstep"><div class="n">04</div><div class="b"><b>eSSL machine:</b> model, firmware, how it connects, how logs export today; employee machine IDs. Office admin.</div></div>
+      <div class="igstep"><div class="n">05</div><div class="b"><b>Weeks 1&ndash;2 writing sittings:</b> stage workflows, definitions of done, five project templates and tiers, role cards. Mahesh with build team.</div></div>
+      <div class="igstep"><div class="n">06</div><div class="b"><b>Studio Plan half-day:</b> values, 3 to 5 year target, brand promise, first Rocks, one Critical Number. Mahesh with leads.</div></div>
+      <div class="igstep"><div class="n">07</div><div class="b"><b>Write the three guardrails</b> in your own words, and pick 5 to 6 pilot users and one system admin. Mahesh.</div></div>
+    </div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Scope</span><span class="sv">1 foundation + 9 systems &middot; 4 phases</span></div>
+    <div class="scell2"><span class="sl">Window</span><span class="sv">Twelve months; P1 in six weeks</span></div>
+    <div class="scell2"><span class="sl">Sources</span><span class="sv">Brief, Rev A, Lean Master Plan v1.4</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">The build</span></div>
+  </div>
+  <div class="igtrace">Every item traces to the Systems Brief, the Rev A blueprint audit (11.11.2026) or the Lean Master Plan v1.4 (November 2026) &middot; unknowns are named, not guessed &middot; the in-depth blueprint follows</div>
+
+</div>
+
+<!-- ############################ PART B · IN-DEPTH ############################ -->
+<div class="bp">
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Client Blueprint</span></div>
+    <h1 class="cover">AI SYSTEMS<br><span class="accent">BLUEPRINT</span> <span style="font-size:24px;">&middot; REV B</span></h1>
+    <div class="coversub">Archi Design &nbsp;&middot;&nbsp; Prepared for <b>Mahesh R. Khandagale</b>, Owner</div>
+    <div class="flow">
+      <span class="chip">Enquiry</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Brief + concept</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Daily tasks</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Working drawings</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Site execution</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Handover</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">After handover</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Business</span>Architects &amp; Interior Designers, designs in office and work on site or field, ₹10 to 50 lakh a month band. Per the master plan, also turnkey civil, interior, renovation, commercial and factory projects.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Current Stack</span>Instagram, Just Dial and referral for enquiries; an eSSL biometric machine in the office; a payroll tool, Tally or Excel. Added for the build: Claude Max, GitHub, Supabase, Vercel.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Prepared by</span>BuildOur AI &middot; AI expert Romana Parkar</td>
+        <td><span class="lbl">Sources</span>Systems Brief &middot; Rev A blueprint audit (11.11.2026) &middot; Lean Business Management Software Master Plan v1.4 (November 2026)</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Systems Specified</span>1 foundation + 9 systems in 4 phases</td>
+        <td><span class="lbl">Deadline Anchor</span>Not stated; master plan sets a 12-month path with Phase 1 first</td>
+      </tr>
+      <tr><td colspan="2"><span class="lbl">Precedence</span>Where the master plan is newer and more specific than the brief, the master plan governs; where it assumed an outside vendor, this blueprint keeps the owner&rsquo;s self-build on Claude Code and maps the vendor requirements onto it (section 1.9).</td></tr>
+    </table>
+    <div class="covernote">Rev B supersedes Rev A (11.11.2026). Every change in this revision traces to the Lean Master Plan v1.4.<br>Sheets 1&ndash;3 are the one-shot capture</div>
+  </div></div>
+</div>
+
+<!-- 00 -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">EXECUTIVE SUMMARY</div><div class="sectag">Overview</div></div>
+<p>&ldquo;My Business is Not growing because I am involved in daily office activities rather than focusing on a growth. Employees don&rsquo;t take ownership. I have to follow up constantly.&rdquo; Mahesh wrote that in his Systems Brief, and the Lean Master Plan v1.4 now on file turns it into one principle: manage by exception. The team works from a simple daily list, the system chases, escalates and scores, and the owner looks at one screen that shows only what needs him.</p>
+<p>Archi Design wins work: 2 orders a month at an average of ₹10,00,000, 60% from returning clients, inside a 15-day sales cycle. What it cannot do is run that work without the owner. Every quote, price and follow-up is his, tasks are given by voice and WhatsApp, drawings reach site as WhatsApp images, site engineers who go straight to site are missed by the eSSL machine, and there is no standard format to measure anyone&rsquo;s work.</p>
+<p>This revision makes six structural changes, each traceable to the master plan: (1) <b>Attendance and Leave</b> becomes a Phase 1 system, with the eSSL machine kept and a phone punch for site days; (2) the Daily Task Sheet becomes <b>My Day with priority numbers</b>, and the Nudge chain merges into it; (3) <b>organisation, departments and approval limits</b> enter the foundation; (4) <b>Leads and Proposals</b> move from month 10 into Phase 2; (5) <b>Turnkey Controls</b> by project type and size are added; (6) the AI helpers (Nandini, the Site Controller and the Digital Ops Manager) are <b>parked</b> until the basics work, because the master plan excludes AI assistants from the first release. The result is one foundation and nine systems in four phases over twelve months, with Phase 1 in six weeks.</p>
+<p>It is built by Mahesh&rsquo;s team on his own Claude Max in Claude Code, on Next.js, Supabase and Vercel, with all code, data and accounts in the studio&rsquo;s name, which meets the master plan&rsquo;s full-ownership requirement without an outside vendor.</p>
+
+<!-- 01 delta -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">WHAT CHANGED SINCE REV A</div><div class="sectag">Delta record</div></div>
+<p>Rev A&rsquo;s current state (the funnel, the owner as the only link, the three problems in Mahesh&rsquo;s words) remains valid and is carried in panels 01 to 05. This section records only what the Lean Master Plan v1.4 adds or changes.</p>
+
+<h3 class="sub"><span class="n">1.1</span>A master plan is now on file</h3>
+<p>The Lean Business Management Software Master Plan v1.4 (November 2026) sets out nine modules, about 14 screens, five lean tests every feature must pass, a twelve-month roadmap and success targets at 12 months. Its cover still carries &ldquo;[Studio Name]&rdquo;; this blueprint treats it as Archi Design&rsquo;s plan, which Mahesh should confirm. It governs where it is newer and more specific than the brief.</p>
+
+<h3 class="sub"><span class="n">1.2</span>Attendance: the eSSL machine stays, site days count</h3>
+<p>The design and site teams use the eSSL machine, but site engineers who go straight to site, or home from site, are not recorded. The plan&rsquo;s answer: one record a day from three sources (machine, phone punch, correction request), location captured only at the moment of punching, and the studio&rsquo;s current rule built in: 10 minutes grace, three late marks in a month lead to a deduction of half a day&rsquo;s salary.</p>
+<div class="pain"><span class="plbl">Pain</span>A site engineer at site by 9 AM is marked absent because the machine is in the office; late marks and leave are counted by hand from registers.</div>
+
+<h3 class="sub"><span class="n">1.3</span>Turnkey projects of five types</h3>
+<p>Rev A described an interior and architecture practice. The plan adds turnkey work across interior, renovation, civil, commercial and factory projects, where cost overruns, contractor delays, safety and cash flow move to the studio. It answers with one engine, five templates, three size tiers and nine turnkey controls switched on by type and size, and a weekly one-page Project Pulse for larger projects.</p>
+<div class="pain"><span class="plbl">Pain</span>Budgets, contractor bills and purchases are tracked by the owner; cost overruns are seen late (Rev A, accounts row).</div>
+
+<h3 class="sub"><span class="n">1.4</span>Organisation, departments and authority</h3>
+<p>Rev A recorded managers and reporting lines as &ldquo;not answered&rdquo;. The plan defines up to five levels, six departments (Business and Client Relations; Architecture and Design; Projects and Site; Estimation, Procurement and Contracts; Accounts; HR and Admin), two reporting lines that never conflict (line manager for leave and appraisal, project captain for tasks), an approval matrix with value bands, and who sees what. Every limit is in brackets: they are Mahesh&rsquo;s to set.</p>
+
+<h3 class="sub"><span class="n">1.5</span>Every task carries a priority number</h3>
+<p>Tasks reach a person from the owner, captains, leads and colleagues, and the person guesses what comes first. The plan&rsquo;s rule: one ordered list per person, numbered 1 to 5, levels Do first, Today, This week and Later, only leaders may set Do first and one at a time, a clash button so the employee never referees, and auto ranking for template tasks. This sharpens Rev A&rsquo;s Daily Task Sheet into My Day.</p>
+
+<h3 class="sub"><span class="n">1.6</span>A studio-level layer: Scaling Up</h3>
+<p>The plan adds the Scaling Up rhythm (Verne Harnish): a one-page Studio Plan, 3 to 5 quarterly Rocks, one Critical Number, a Digital Huddle each morning in place of a standing huddle, a generated Weekly Review agenda, a function accountability chart, and a studio cash view. It is one screen and a few routines, not a heavy module.</p>
+
+<h3 class="sub"><span class="n">1.7</span>Leads move up; client satisfaction gets a target</h3>
+<p>Rev A placed the CRM for Instagram, Just Dial and referral in months 10 to 12. The plan puts Leads and Proposals in its first build, as a growth lever: every enquiry tracked with a next action and a first response inside 30 minutes. It also sets a 95%+ client satisfaction target with three one-tap rating points, a call within 24 hours for any score below 8, and a Green, Amber or Red health colour per project.</p>
+
+<h3 class="sub"><span class="n">1.8</span>What is deliberately left out</h3>
+<p>The plan excludes, until the basics work: Gantt charts, complex Kanban boards, public leaderboards, 360-degree appraisals, <b>AI assistants</b>, a vendor portal, full payroll processing, continuous GPS tracking, referral engines and festival-greeting automation. Rev A&rsquo;s three AI employees (Nandini, the Site Controller, the Digital Ops Manager) therefore become D-01: the morning list, reminders and escalation run as rules in My Day, and the AI helpers return in the plan&rsquo;s Phase 4 as optional.</p>
+
+<h3 class="sub"><span class="n">1.9</span>The build path: self-build, mapped to the plan&rsquo;s requirements</h3>
+<p>The plan was written for an outside vendor (React or Next.js, PostgreSQL, Flutter or React Native, AWS Mumbai, an RFP, sprint demos). Rev B keeps the owner&rsquo;s self-build on Claude Max and maps the requirements onto it: Next.js for the app, PostgreSQL through Supabase in the Mumbai region, Vercel hosting, all code in the studio&rsquo;s GitHub, rules in Settings, offline site entries, and a phone web app added to the home screen instead of store apps at first. The eSSL link is confirmed in week 1 (model and export method), with a scheduled file import as the fallback. If Mahesh prefers a vendor, this blueprint serves as the scope.</p>
+
+<!-- 02 systems -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">RECOMMENDED AI SYSTEMS</div><div class="sectag">Foundation + 9 systems</div></div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN STUDIO RECORD AND ORGANISATION</span><span class="code">F-00 &middot; FOUNDATION</span></div>
+  <div class="sysrow"><div class="syslbl">What it is</div><div class="sysval"><p>One database for every project, stage, person, task, drawing, punch and approval, plus the organisation: departments, levels, line manager and project captain for each person, deputies, and the approval matrix with value bands. Settings let the admin add a branch, team, service line or entity without a developer. <code class="f">person &rarr; department &rarr; line manager &middot; project &rarr; captain &rarr; tasks</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Why first</div><div class="sysval"><p>Every later system reads it, and the approval limits decide who signs what from day one. It is also the master plan&rsquo;s growth headroom: the same record serves a studio many times larger by settings, not code.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Open input</div><div class="sysval"><p>The org chart as it is today and every value band (section 06).</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN STUDIO WAYS: SOPS, TEMPLATES, STUDIO PLAN</span><span class="code">SYS-01</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>The writing lane, run from day 1. Holds the workflow for every stage (brief, concept, design development, working drawings, BOQ, execution, handover, after handover) with a definition of done and the proof each task needs; five project templates (interior, renovation, civil, commercial, factory) and three size tiers; quality gates (waterproofing, electrical and plumbing, false ceiling, carpentry, painting and flooring, final finishing); role cards with four metrics; and the one-page Studio Plan.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Rev A: &ldquo;Employees dont follow SOP&rsquo;s&rdquo;, and SOPs that &ldquo;live in your head&rdquo;.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Adoption</div><div class="sysval"><p>Two weeks of sittings with the owner; leads co-design the scorecards so the rules feel fair (master plan &sect;17).</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN MY DAY AND ESCALATION</span><span class="code">SYS-02 &middot; FIRST DOMINO</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Each person opens one list of 3 to 5 tasks numbered in the order to do them, with the reason for each number. Givers choose a level; the system sets the number and shows the effect before sending. Done needs proof (file, photo or note); Blocked and Clash alert the captain at once. People set their own dates each Monday; an evening two-tap check-in closes the day. A missed deadline triggers a reminder, then the captain, then the department head, then the owner. <code class="f">task + level &rarr; number &rarr; done with proof &rarr; reminder &rarr; ladder</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&ldquo;Everything gets completed because I have take personally follow up each and every day by giving them daily tasks and taking continuously follow up.&rdquo;</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>The system never shortens or extends a deadline or changes an owner; a push by a leader is tagged &ldquo;priority change&rdquo; and never counts against the person. At most 3 notifications a day per person.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN ATTENDANCE AND LEAVE</span><span class="code">SYS-03 &middot; NEW IN REV B</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Builds one attendance record a day from the eSSL machine, a one-tap phone punch (server time, location and accuracy, site zone check) and correction requests. Applies 10 minutes grace and the three-late-marks rule, shows each person &ldquo;Late marks this month: 1 of 3&rdquo;, handles site shift, on-duty, comp-off and leave in three taps, and exports a month-end summary to the payroll tool, Tally or Excel.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Master plan &sect;9: site staff &ldquo;cannot punch at the office machine&rdquo;; HR &ldquo;handled in registers and messages&rdquo;.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Location only at punch, never between punches, after punch-out or on leave; visible to the person, their manager, HR and the owner only; kept for a set period. Waivers and outside-zone punches need the manager with a logged reason. The deduction rule must be in letters and policies staff have acknowledged; confirm with an HR or legal adviser.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Open input</div><div class="sysval"><p>eSSL model, firmware and export method; employee machine IDs; shifts; site addresses for zones.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN LEADS AND PROPOSALS</span><span class="code">SYS-04 &middot; MOVED UP</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Every enquiry from Instagram, Just Dial, referral or the website lands in one five-stage pipeline (New, Contacted, Site Visit, Proposal Sent, Won or Lost) with an owner and a next-action date; an amber alert after 24 hours without action. Proposals come from templates with fee stages and a tracked link. Marking a lead Won creates the project from its template and puts the first week&rsquo;s tasks on My Day.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Rev A: &ldquo;Every quote, every price and every follow up is yours, and nothing is recorded beyond your phone.&rdquo;</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Any fee below standard or discount waits for the owner (or the Business Head within a set percentage) and is logged with the reason.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN DRAWING AND SITE CHAIN</span><span class="code">SYS-05</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>A drawing register with status (Draft, Internal Review, For Client Approval, Released for Site, Superseded) and revision history; the site task stays locked until release. The site diary (photos first, works offline) records each day, measurement checks and readiness checks; a site question becomes a task for the designer with a deadline; quality gates need a photo checklist; snags and change orders are tracked; a design slip shifts dependent site tasks and alerts the people affected; a Friday three-week look-ahead lists drawings, materials and client decisions due.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&ldquo;Tracking pending drawings, approvals and site requirements. Knowing the actual status of every project without calling someone.&rdquo;</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Every drawing is reviewed by the design lead, signed by the client and released by the captain or owner before it reaches site; nothing goes to a contractor without it.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN OWNER EXCEPTION VIEW AND STUDIO PLAN</span><span class="code">SYS-06</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>One screen for the owner: red projects with the reason, tasks blocked over 24 hours, approvals waiting, low client scores, people missing commitments, revenue and pipeline against target, this quarter&rsquo;s Rocks and the Critical Number; &ldquo;All clear&rdquo; when nothing needs him. Team board for captains (queues, drag to reorder, clashes, load) and a department head view. A Digital Huddle each morning and a generated Weekly Review agenda.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Rev A: walking the office, calling the site, and still not knowing the real status.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN SCORECARDS AND INCENTIVES</span><span class="code">SYS-07</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Four metrics per role, calculated from records already in the system (for example a designer: on-time stages, first-time-right approvals, client satisfaction on design, promises kept). Two months in shadow mode, then a project incentive pool, a share of each project&rsquo;s gross margin set by the owner, split by role and score band, paid only if the project&rsquo;s client satisfaction and margin are on plan. A 12-month history supports appraisal.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&ldquo;I cannot able to measure my employee&rsquo;s work in standard format.&rdquo;</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>The owner signs every monthly scorecard before any incentive, deduction or appraisal figure is shown. Client, authority and supplier delays are excluded visibly; no public ranking; attendance is never counted twice; every manual adjustment logged with a reason.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN CLIENT PAGE AND PULSE</span><span class="code">SYS-08</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Each client gets a page with progress, photos, the next decision needed, documents and one-tap approvals. Three one-tap ratings (after design approval, mid-execution, at handover) and a recommend score at handover. Any score below 8 asks the captain to call within 24 hours; 6 or below alerts the owner. Each project shows Green, Amber or Red.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&ldquo;So clients satisfaction index is becoming lower.&rdquo;</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>The system never promises a date, scope or cost to a client; any reply to an unhappy client is drafted and approved by the owner.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ARCHI DESIGN TURNKEY CONTROLS, BY TYPE AND TIER</span><span class="code">SYS-09 &middot; NEW IN REV B</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Switched on only for projects whose type and tier need them: contract and scope baseline, budget by cost code with committed and actual cost, procurement with quote comparison and long-lead tracking, contractor work orders and running bills, site store with challan photos, progress measured by BOQ value, client billing and project cash flow, safety and statutory trackers, and a weekly one-page Project Pulse. Later, the studio cash view (days to invoice, days to collect, cash conversion cycle).</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>Master plan &sect;4: turnkey risk on cost, contractors, safety and cash; Rev A: &ldquo;Cost overruns are seen late.&rdquo;</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Purchase orders, change orders and vendor payments are approved by value band; money never moves from the system; accounting and statutory work stay in the accounting tool.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Note</div><div class="sysval"><p>If a large civil, commercial or factory project is already running, budget, work orders and site store come forward for that project.</p></div></div>
+</div>
+
+<div class="noteblock"><span class="nlbl">Note: the existing stack</span>
+<p><b>Instagram, Just Dial, referral:</b> kept as lead sources, entering SYS-04. <b>eSSL machine:</b> kept, linked to SYS-03; never replaced. <b>Payroll tool, Tally or Excel:</b> kept; receives the attendance and incentive export; full payroll is not built. <b>WhatsApp:</b> stays for conversation; system messages start inside the app and by email, and move to the WhatsApp Business API only with the owner&rsquo;s yes on its cost. <b>Added:</b> Claude Max, GitHub, Supabase, Vercel.</p></div>
+
+<div class="noteblock"><span class="nlbl">Deferred &middot; parked, not dropped</span>
+<p><b>D-01 AI helpers: Nandini, Site Controller, Digital Ops Manager.</b> The master plan leaves AI assistants out until the basics work; the same morning list, reminders and escalation run as rules in SYS-02 and SYS-06. Re-entry: months 11 to 12, as optional helpers for status answers and proposal drafts, on the Claude API with the owner&rsquo;s yes on cost. <b>D-02 Forecasts:</b> 13-week cash forecast, margin by client and project type, price what-if panel; months 11 to 12. <b>D-03 Native store apps:</b> the phone web app comes first; Android and iOS apps only if site use shows a need.</p></div>
+
+<!-- 03 roadmap -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">IMPLEMENTATION ROADMAP</div><div class="sectag">4 phases &middot; twelve months</div></div>
+<p>Sequenced on the master plan&rsquo;s roadmap, compressed for a self-build: Phase 1 in six weeks instead of months 2 to 5, because Claude Code builds several systems side by side and the writing lane runs from day 1. Hours a week, busy season and a deadline were not stated; the critical path is the SOP sittings in weeks 1 to 2 and the eSSL check. Each phase is piloted with 5 to 6 people on 2 to 3 live projects before it goes to everyone.</p>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P1</div><div class="phtitle">OWNERSHIP CORE: STOP THE DAILY CHASE</div><div class="phtag">F-00 + SYS-01 to SYS-03 &middot; weeks 1&ndash;6</div></div>
+  <div class="phbody"><p><b>Why first:</b> it removes the habit Mahesh named, runs attendance on a machine that already exists, and fills the records every later screen reads.</p>
+  <div class="done"><span class="dlbl">Done when</span>Every one of the 7 opens their own numbered My Day each morning with a deadline and a definition of done, every closed task carries proof, no task has been given by voice or WhatsApp since the first live Monday, and every day&rsquo;s attendance, office or site, sits in one record with the late-mark counter visible to each person.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P2</div><div class="phtitle">ONE CHAIN FROM ENQUIRY TO SITE</div><div class="phtag">SYS-04 + SYS-05 + SYS-06 &middot; weeks 7&ndash;12</div></div>
+  <div class="phbody"><div class="done"><span class="dlbl">Done when</span>Every enquiry has an owner and a next action, every live site has a dated report with stamped photos for each working day, every drawing on site carries Released for Site with the old version withdrawn, and the owner opens one Exception View at 9 AM instead of calling anyone.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P3</div><div class="phtitle">FAIR SCORES, HAPPY CLIENTS, CONTROLLED COST</div><div class="phtag">SYS-07 + SYS-08 + SYS-09 &middot; months 4&ndash;6</div></div>
+  <div class="phbody"><div class="done"><span class="dlbl">Done when</span>Two months of shadow scorecards have been reviewed with the team and accepted as fair, every client rating below 8 was called within 24 hours, and every Tier 2 and Tier 3 project shows budget, committed and actual cost with a weekly Project Pulse.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P4</div><div class="phtitle">MONEY, PEOPLE, INDEPENDENCE</div><div class="phtag">Incentives live, billing, HR, cash view &middot; months 7&ndash;12</div></div>
+  <div class="phbody"><p>The brief&rsquo;s &ldquo;worth it&rdquo; was not answered; this finish line uses the master plan&rsquo;s 12-month success targets until Mahesh writes his own.</p>
+  <div class="done"><span class="dlbl">Done when</span>The owner spends under 30 minutes a day on follow-ups with one 30-minute weekly review, incentives are paid only from signed scorecards, the payroll attendance summary is ready within one day of month-end, and every person can name this quarter&rsquo;s Rocks.</div></div></div>
+
+<!-- 04 guardrails -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">GUARDRAILS</div><div class="sectag">Brief blank &middot; master plan rules applied</div></div>
+<div class="guard"><b>NOT ANSWERED IN THE BRIEF:</b> all three guardrail questions were blank. Rev B applies Rev A&rsquo;s careful defaults joined with the rules written in the master plan, listed in panel 09, until Mahesh writes his own.</div>
+<div class="guard"><b>FROM THE MASTER PLAN:</b> &ldquo;Location is captured only when the person punches in, out or checks in to a site.&rdquo; &middot; &ldquo;No public ranking.&rdquo; &middot; &ldquo;Shadow mode for the first 2 months: scores and would-be incentives are shown but not paid.&rdquo; &middot; &ldquo;Any manual adjustment by the owner is recorded with the reason in the audit log.&rdquo;</div>
+<div class="guard"><b>APPROVAL LIMITS:</b> change orders, purchase and work orders, discounts and vendor payments by value band; an approval waiting over 1 working day moves up one level; a named deputy covers leave. Every band is in brackets in the plan and is Mahesh&rsquo;s to set.</div>
+<div class="guard"><b>ERROR PROTOCOL:</b> every action is written to a log nobody can edit; one switch turns all automatic behaviour off; a wrong rule is fixed in Settings, tested on the pilot group, and switched back on.</div>
+
+<!-- 05 numbers -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE NUMBERS</div><div class="sectag">Flagged, not resolved</div></div>
+<p>(1) <b>Quotes to orders:</b> 3 quotes and 2 orders a month is two in three, while &ldquo;4 out of 100 quotes&rdquo; is four in a hundred; carried from Rev A, still to settle. (2) <b>Headcount and roles:</b> the brief says 7, designers and site engineers, managers not answered; the master plan describes six departments, project managers, a store keeper, accounts, HR and sales roles. Which roles exist today, and which are the plan for growth? (3) <b>Studio name:</b> the master plan&rsquo;s cover reads &ldquo;[Studio Name]&rdquo;; confirm it is Archi Design&rsquo;s plan. (4) <b>Turnkey work:</b> the brief lists no turnkey projects; how many are running, of which types and sizes? (5) <b>Incentive pool:</b> the plan suggests 3% to 5% of gross margin &ldquo;to be decided by you&rdquo;; not yet set. (6) <b>Deadline, busy season and hours a week:</b> not stated.</p>
+<p>The numbers say the studio converts well and keeps its clients; the leak is the owner&rsquo;s time, which is why Phase 1 is My Day and attendance rather than sales.</p>
+
+<!-- 06 next steps -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Detail behind panel 10</div></div>
+<p>Panel 10 carries all seven actions; three need detail.</p>
+<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>Organisation and limits:</b> draw the studio as it is today (departments, who heads each, line manager and deputy for each person, project captains) and write the bands you are comfortable with: change order up to ₹____ by the project manager; purchase or work order up to ₹____ by the project manager and ₹____ by a department head; discount up to ____% by the Business Head; vendor payment up to ₹____ by the Accounts Head; owner above each. Mahesh.</p></div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>eSSL and attendance:</b> the machine&rsquo;s model and firmware, network or cable, whether it pushes logs or they are exported; every employee with machine ID, shift and normal place of work; the attendance and leave policy exactly as run today; each site&rsquo;s address for its zone. Office admin.</p></div></div>
+<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>The writing sittings, weeks 1 to 2:</b> the 10 to 15 tasks you chase every day; one page per project stage; existing proposals, agreements, drawing checklists, BOQ formats and site checklists; what &ldquo;Red project&rdquo; means for you; draft role scorecards. Mahesh with build team.</p></div></div>
+
+<div class="traceline">Every item in this document traces to the Systems Brief, the Rev A blueprint audit (11.11.2026) or the Lean Master Plan v1.4 (November 2026).<br>No figures added beyond those the client provided; unknowns are named, not guessed. Rev B supersedes Rev A in full.</div>
+
+</div>
+
+</body>
+</html>
