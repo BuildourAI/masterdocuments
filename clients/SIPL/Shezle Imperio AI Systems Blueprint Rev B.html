@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Systems Blueprint: Shezle Imperio, Rev B</title>
+<style>
+
+  :root {
+    --orange: #e8590c;
+    --orange-soft: #fdeee2;
+    --orange-faint: #fdf6f0;
+    --ink: #1f2430;
+    --grid: rgba(232, 89, 12, 0.07);
+    --rule: #e9c7ae;
+    --mono: "Consolas", "JetBrains Mono", "Courier New", monospace;
+    --sans: "Segoe UI", "Noto Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ---------- PART B pages: A4, in-depth blueprint ---------- */
+  @page {
+    size: A4;
+    margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right {
+      /* EDIT ME: DWG NO. BOA-{year}-{3-letter company code}-01 · REV A */
+      content: "DWG NO. BOA-2026-SHE-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "Shezle Imperio Private Limited · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+  }
+
+  /* ---------- PART A pages: wide infographic sheets ---------- */
+  @page infog {
+    size: 842pt 1191pt;
+    margin: 64px 40px 64px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @top-right {
+      /* EDIT ME: same DWG string as above */
+      content: "DWG NO. BOA-2026-SHE-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "Shezle Imperio Private Limited · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+  }
+
+  html {
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      #fdfbf9;
+    background-size: 24px 24px;
+  }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13.5px; line-height: 1.6; }
+
+  /* ================= PART A · INFOGRAPHIC COMPONENTS ================= */
+  .ig { page: infog; font-size: 12px; line-height: 1.45; }
+  .ig p { text-align: left; }
+
+  /* header block, top of sheet 1 */
+  .ighead { display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2.5px solid var(--ink); padding-bottom: 18px; margin-bottom: 8px; }
+  .ightitle h1 { font-size: 40px; line-height: 1.02; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
+  .ightitle .standfirst { font-size: 13px; margin-top: 10px; max-width: 480px; color: #46556b; }
+  .igbox { border: 1.5px solid var(--orange); background: #fff; padding: 10px 14px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.9; }
+  .igbox .bl { color: var(--orange); font-weight: 700; }
+
+  /* panel scaffold */
+  .panel { margin: 22px 0 6px; page-break-inside: avoid; }
+  .phead { display: flex; align-items: baseline; gap: 10px; border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 12px; page-break-after: avoid; }
+  .pnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; padding: 2px 8px; }
+  .ptitle { font-size: 17px; font-weight: 800; letter-spacing: 0.2px; text-transform: uppercase; }
+  .ptag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+  .pcap { font-size: 11px; font-style: italic; color: #46556b; margin-top: 8px; }
+  .pcap b { color: var(--orange); font-style: normal; }
+  .mcap { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #8a7361; margin-top: 8px; }
+
+  /* P01 · dashboard tiles */
+  .tiles { display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid var(--rule); background: #fff; }
+  .tile { padding: 12px 10px 10px; border-right: 1px dotted var(--rule); }
+  .tile:last-child { border-right: none; }
+  .tile .v { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+  .tile.hot .v { color: var(--orange); }
+  .tile .l { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361;
+    text-transform: uppercase; margin-top: 3px; }
+
+  /* P02 · money path flow */
+  .mpath { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+  .mstep { border: 1px solid var(--rule); background: #fff; padding: 8px 10px; }
+  .mstep .mn { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #8a7361; }
+  .mstep .mt { font-weight: 700; font-size: 12px; margin: 1px 0; }
+  .mstep .ms { font-family: var(--mono); font-size: 8px; letter-spacing: 0.8px; color: #46556b; text-transform: lowercase; }
+  .mstep.broken { border: 1.5px solid var(--orange); background: var(--orange-faint); }
+  .mstep.broken .ms { color: var(--orange); }
+  .legend { display: flex; gap: 22px; font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #46556b; margin-top: 9px; align-items: center; }
+  .sw { display: inline-block; width: 9px; height: 9px; border: 1px solid var(--orange); margin-right: 5px; vertical-align: -1px; }
+  .sw.f { background: var(--orange-faint); border-width: 1.5px; }
+
+  /* duo row: two diagnostic panels side by side */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* diagnostic · funnel */
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 2px; }
+  .ftier { position: relative; text-align: center; padding: 11px 0 9px; }
+  .ftier .fill { position: absolute; inset: 0; }
+  .ftier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ftier .tx { position: relative; }
+  .ftier .fv { font-size: 19px; font-weight: 800; }
+  .ftier .fl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #46556b; text-transform: uppercase; }
+  .ftier.t1 { width: 88%; } .ftier.t2 { width: 66%; } .ftier.t3 { width: 46%; }
+  .ftier .fill, .ftier .inner { clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .ftier .fill { background: var(--rule); }
+  .ftier.mid .fill { background: var(--orange); }
+  .ftier.mid .inner { background: var(--orange-faint); }
+  .ftier.mid .fv, .ftier.mid .fl { color: var(--orange); }
+  .fverdict { text-align: center; font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 8px; }
+
+  /* diagnostic · layer pyramid */
+  .pyr { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 2px; }
+  .ptier { position: relative; text-align: center; padding: 10px 0 8px; }
+  .ptier .fill { position: absolute; inset: 0; background: var(--rule); }
+  .ptier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ptier .tx { position: relative; }
+  .ptier .pv { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+  .ptier .pl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #46556b; text-transform: uppercase; }
+  .ptier.top { width: 40%; } .ptier.top .fill, .ptier.top .inner { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .ptier.top { padding-top: 22px; }
+  .ptier.mid { width: 66%; } .ptier.mid .fill, .ptier.mid .inner { clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%); }
+  .ptier.mid .fill { background: var(--orange); } .ptier.mid .inner { background: var(--orange-faint); }
+  .ptier.mid .pv, .ptier.mid .pl { color: var(--orange); }
+  .ptier.base { width: 88%; } .ptier.base .fill, .ptier.base .inner { clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+
+  /* diagnostic · before/after cards */
+  .ba { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .bacard { border: 1px solid var(--rule); background: #fff; padding: 10px 13px; }
+  .bacard .fl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .bacard .bt { font-weight: 700; font-size: 12.5px; margin-bottom: 5px; }
+  .bacard p { font-size: 11px; margin-bottom: 4px; }
+  .bacard b.was { color: var(--ink); } .bacard b.now { color: var(--orange); }
+
+  /* diagnostic · comparison bars */
+  .cbars { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+  .cbar { display: flex; align-items: center; gap: 10px; }
+  .cbar .cl { flex: 0 0 170px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: right; color: #46556b; }
+  .cbar .track { flex: 1; }
+  .cbar .bar { height: 20px; border: 1px solid var(--orange); background: var(--orange-faint);
+    display: flex; align-items: center; padding: 0 8px; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 1px; color: var(--orange); font-weight: 700; }
+  .cbar.max .bar { background: var(--orange); color: #fff; }
+
+  /* diagnostic · split/entity map */
+  .split { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .scard { border: 1px solid var(--rule); background: #fff; padding: 9px 11px; text-align: center; }
+  .scard .sv { font-weight: 800; font-size: 14px; }
+  .scard .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361; text-transform: uppercase; }
+
+  /* P06 · system cards grid */
+  .sysgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .icard { border: 1px solid var(--rule); background: #fff; padding: 11px 13px 9px; page-break-inside: avoid; }
+  .icard .iwin { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; }
+  .icard .iname { font-weight: 700; font-size: 13.5px; margin: 2px 0 9px; }
+  .ibody { display: grid; grid-template-columns: 55% 45%; gap: 4px 10px; }
+  .ichain { display: flex; flex-direction: column; align-items: stretch; }
+  .ichip { border: 1px solid var(--orange); background: #fff; font-family: var(--mono); font-size: 7.5px;
+    letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 5px 4px; color: var(--ink); }
+  .ichip.first { background: var(--orange-faint); border-width: 1.5px; color: var(--orange); font-weight: 700; }
+  .iarrow { text-align: center; color: var(--orange); font-size: 10px; line-height: 1.4; }
+  .inotes .nl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-top: 7px; }
+  .inotes .nl:first-child { margin-top: 0; }
+  .inotes p { font-size: 10px; line-height: 1.4; margin-bottom: 2px; }
+  .isolve { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 6px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange); text-transform: uppercase; }
+
+  /* P07 · gantt */
+  table.gantt { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.gantt th, table.gantt td { border: 1px solid var(--rule); padding: 5px 8px; }
+  table.gantt th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; background: #fff; }
+  table.gantt td.sysname { width: 17%; }
+  table.gantt td.sysname .gc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  table.gantt td.sysname .gn { font-weight: 700; font-size: 10.5px; }
+  .gbar { border: 1px solid var(--orange); background: var(--orange-faint); font-family: var(--mono);
+    font-size: 8px; letter-spacing: 0.8px; color: var(--ink); padding: 2px 7px; white-space: nowrap; overflow: hidden; }
+  .dwrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+  .dw { border: 1.5px solid var(--orange); background: #fff; padding: 9px 12px; font-size: 11px; }
+  .dw .dl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+  /* P08 · 2x2 matrix */
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); background: #fff; }
+  .quad { border: 1px solid var(--rule); padding: 10px 13px; min-height: 108px; }
+  .quad .qh { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #46556b;
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 7px; }
+  .mc { border: 1px solid var(--orange); background: #fff; padding: 4px 9px; margin-bottom: 5px; }
+  .mc .mcc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  .mc .mcn { font-weight: 700; font-size: 11px; }
+  .quad.build .mc { background: var(--orange-faint); border-width: 1.5px; }
+  .quad .qv { font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange);
+    text-transform: uppercase; margin-top: 4px; }
+  .axis { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; margin-top: 6px; display: flex; justify-content: space-between; }
+
+  /* P09 · guardrails swimlane */
+  .swim { border: 1px solid var(--rule); background: #fff; }
+  .lane { display: flex; border-top: 1px dotted var(--rule); }
+  .lane:first-child { border-top: none; }
+  .lanel { flex: 0 0 140px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); font-weight: 700; text-transform: uppercase; padding: 11px 0 11px 13px; }
+  .lanev { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 13px; border-left: 1px dotted var(--rule); }
+  .tag { border: 1px solid var(--rule); background: #fff; font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: 0.8px; padding: 3px 9px; }
+  .tag.never { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* P10 · next steps */
+  .igsteps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .igstep { display: flex; border: 1px solid var(--orange); background: #fff; page-break-inside: avoid; }
+  .igstep .n { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 11px; padding: 8px 10px; display: flex; align-items: flex-start; }
+  .igstep .b { padding: 7px 12px; font-size: 11px; }
+
+  /* footer strip, end of each infographic group */
+  .stripe { display: flex; border-top: 2px solid var(--ink); margin: 20px 0 4px; background: #fff; }
+  .scell2 { flex: 1; border-left: 1px dotted var(--rule); padding: 7px 12px; }
+  .scell2:first-child { border-left: none; }
+  .scell2 .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; }
+  .scell2 .sv { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+  .igtrace { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 12px; }
+
+  /* ================= PART B · IN-DEPTH BLUEPRINT COMPONENTS (unchanged v2) ================= */
+  .coverpage { page-break-before: always; page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase;
+    border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 12.5px; letter-spacing: 2.5px;
+    text-transform: uppercase; margin: 16px 0 32px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 32px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono);
+    font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 28px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 30px 0 16px; background: #fff;
+    page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 17px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 17px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  h3.sub { font-size: 14px; font-weight: 700; margin: 20px 0 6px; page-break-after: avoid; }
+  h3.sub .n { color: var(--orange); font-family: var(--mono); margin-right: 6px; }
+  .bp p { text-align: justify; }
+  p { margin-bottom: 11px; }
+  .pain { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 8px 0 16px; page-break-inside: avoid; }
+  .pain .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 2px; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 9px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .sys { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .sysbar { background: var(--orange); color: #fff; padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .sysbar .name { font-weight: 700; font-size: 14.5px; letter-spacing: 0.3px; }
+  .sysbar .code { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; }
+  .sysrow { display: flex; border-top: 1px dotted var(--rule); }
+  .sysrow:first-of-type { border-top: none; }
+  .syslbl { flex: 0 0 118px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; padding: 9px 0 9px 14px; }
+  .sysval { flex: 1; padding: 8px 14px 8px 10px; font-size: 12.5px; border-left: 1px dotted var(--rule); }
+  .sysval p { margin-bottom: 6px; }
+  .sysval p:last-child { margin-bottom: 0; }
+  .phase { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .phasehead { display: flex; align-items: stretch; }
+  .phnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .phtitle { padding: 7px 13px; font-weight: 700; font-size: 14.5px; flex: 1; display: flex; align-items: center; }
+  .phtag { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; }
+  .phbody { padding: 10px 14px 12px; border-top: 1px solid var(--rule); font-size: 12.5px; }
+  .phbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 8px; font-size: 12.5px; }
+  .done .dlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; font-weight: 700; margin-right: 6px; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 8px 13px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 13px; }
+  table.numbers tr { page-break-inside: avoid; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 10px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 13px; padding: 10px 13px; display: flex; align-items: flex-start; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; }
+  .noteblock { border: 1.5px dashed var(--orange); background: rgba(255,255,255,0.8);
+    padding: 13px 16px; margin: 16px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .noteblock .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 26px; border-top: 1.5px solid var(--orange);
+    padding-top: 12px; line-height: 1.8; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+  ul.tight { margin: 0 0 10px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  /* Rev B fit overrides */
+  .quad { min-height: 0; }
+  .ig .panel { margin: 16px 0 4px; }
+  .coverinner { padding: 30px 36px 20px; }
+  .coverbar { margin-bottom: 22px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin: 0 0 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  .covernote { margin-top: 16px; }
+  .bp { font-size: 12.5px; line-height: 1.55; }
+  .sys { margin: 11px 0; }
+
+  .ichip { padding: 3px 4px; }
+  .iarrow { line-height: 1.1; font-size: 9px; }
+  .icard { padding: 9px 11px 7px; }
+  .sysgrid { gap: 12px; }
+  .quad { padding: 8px 12px; }
+  .mc { padding: 3px 8px; margin-bottom: 4px; }
+  .bp p { margin-bottom: 9px; }
+  .sysval { padding: 6px 12px 6px 10px; font-size: 12px; }
+  .syslbl { padding: 7px 0 7px 12px; }
+  h3.sub { margin: 14px 0 5px; }
+  .pain { margin: 6px 0 12px; }
+  .sechead { margin: 22px 0 12px; }
+
+  .noteblock.long { page-break-inside: auto; break-before: page; }
+  .ig .panel { margin: 10px 0 2px; }
+  .stripe { margin: 12px 0 2px; }
+  .coverpage table.titleblock td { font-size: 11.5px; padding: 6px 11px; }
+  .noteblock table.numbers td, .noteblock table.numbers th { font-size: 11px; padding: 5px 8px; vertical-align: top; }
+</style>
+</head>
+<body>
+<style>
+  .tiles .tile { border-bottom: 1px dotted var(--rule); }
+  .pstrip { display: flex; gap: 3px; margin: 4px 0 12px; }
+  .pstrip .ps { border: 1.5px solid var(--orange); background: var(--orange-faint); padding: 6px 8px; font-family: var(--mono);
+    font-size: 8.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink); line-height: 1.35; }
+  .pstrip .ps b { color: var(--orange); display: block; font-size: 9px; }
+  .pstrip .ps.done { background: var(--orange); color: #fff; }
+  .pstrip .ps.done b { color: #fff; }
+  table.ptable { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.ptable th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; padding: 6px 8px; border: 1px solid var(--rule); background: var(--orange-faint); }
+  table.ptable td { border: 1px solid var(--rule); padding: 6px 8px; vertical-align: top; line-height: 1.4; }
+  table.ptable td.ph { font-family: var(--mono); font-weight: 700; color: var(--orange); font-size: 11px; width: 4%; }
+  table.ptable td.pf { font-weight: 700; width: 19%; }
+  table.ptable td.psys { font-family: var(--mono); font-size: 8.5px; letter-spacing: .8px; width: 18%; }
+  table.ptable td.pd { font-family: var(--mono); font-size: 9.5px; width: 9%; white-space: nowrap; }
+  table.ptable tr.built td { background: var(--orange-soft); }
+  .icard .iwin .st { background: var(--orange); color: #fff; padding: 0 4px; margin-left: 4px; }
+</style>
+<!-- ############################ PART A · THE INFOGRAPHIC ############################ -->
+<div class="ig">
+
+  <div class="ighead">
+    <div class="ightitle">
+      <h1>Shezle Imperio<br>AI Systems Blueprint &middot; Rev B</h1>
+      <div class="standfirst">A middleman trader in industrial chemicals, scrap, byproduct and offspec lots, where confidentiality is the whole business and every rule lives in the owner&rsquo;s head. Since Rev A the build has started and its first stage is live. One plan now joins both: a foundation and ten systems, six simple phases, the sales and purchase cycle on the board by December end.</div>
+    </div>
+    <div class="igbox">
+      <span class="bl">Prepared for</span><br>
+      Sangeet Sejpal, Owner<br>
+      Blueprint audit 28.10.2026 (Rev A)<br>
+      Build handovers 8.11 and 15.11.2026<br>
+      Rev B supersedes Rev A
+    </div>
+  </div>
+
+  <!-- P01 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">01</span><span class="ptitle">The Numbers</span><span class="ptag">Dashboard tiles &middot; as provided by client</span></div>
+    <div class="tiles" style="grid-template-columns: repeat(5, 1fr);">
+      <div class="tile"><div class="v">200-500</div><div class="l">Leads a month &middot; as written</div></div>
+      <div class="tile hot"><div class="v">300-500</div><div class="l">Quotes a month &middot; as written; see section 05</div></div>
+      <div class="tile"><div class="v">7</div><div class="l">Orders out of 100 quotes &middot; as written</div></div>
+      <div class="tile hot"><div class="v">5-7</div><div class="l">Orders a month &middot; as written; see section 05</div></div>
+      <div class="tile"><div class="v">₹5,00,000</div><div class="l">Average order value &middot; as written</div></div>
+      <div class="tile"><div class="v">30 days</div><div class="l">Sales cycle</div></div>
+      <div class="tile"><div class="v">10-20%</div><div class="l">Repeat customers</div></div>
+      <div class="tile"><div class="v">50-200</div><div class="l">Calls a day &middot; five products in one call</div></div>
+      <div class="tile"><div class="v">10-20</div><div class="l">Samples a day</div></div>
+      <div class="tile"><div class="v">5-6 h</div><div class="l">Owner time a week for the build</div></div>
+    </div>
+    <div class="pcap">Turnover is stated at ₹50 lakh to 1 crore a month; 5 to 7 orders at ₹5,00,000 comes to ₹25 to 35 lakh. <b>Three pairs of figures cannot all hold, and they are Sangeet&rsquo;s to settle before any card on the board is trusted.</b></div>
+  </div>
+
+  <!-- P02 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">02</span><span class="ptitle">The Money Path Today</span><span class="ptag">Flowchart &middot; enquiry to final payment</span></div>
+    <div class="mpath" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="mstep broken"><div class="mn">01</div><div class="mt">Look for leads</div><div class="ms">google contacts, b2b portals, by hand</div></div>
+      <div class="mstep"><div class="mn">02</div><div class="mt">Call, qualify, offer</div><div class="ms">50 to 200 calls a day</div></div>
+      <div class="mstep broken"><div class="mn">03</div><div class="mt">Send sample</div><div class="ms">name and coa worked out by hand</div></div>
+      <div class="mstep broken"><div class="mn">04</div><div class="mt">Follow up, negotiate</div><div class="ms">held in memory</div></div>
+      <div class="mstep"><div class="mn">05</div><div class="mt">Close the deal</div><div class="ms">sangeet, by his own rule</div></div>
+      <div class="mstep"><div class="mn">06</div><div class="mt">Get token</div><div class="ms">chased on calls and messages</div></div>
+      <div class="mstep broken"><div class="mn">07</div><div class="mt">Confirm with supplier</div><div class="ms">sangeet tells sales himself</div></div>
+      <div class="mstep broken"><div class="mn">08</div><div class="mt">Logistics and loading</div><div class="ms">paperwork by hand each time</div></div>
+    </div>
+    <div class="legend"><span><span class="sw f"></span>Named breakdown point</span><span><span class="sw"></span>Stays human by Sangeet&rsquo;s rule, or runs but chased</span><span>All eight stations are done by hand today</span></div>
+  </div>
+
+  <!-- P03 + P04 -->
+  <div class="duo">
+    <div class="panel">
+      <div class="phead"><span class="pnum">03</span><span class="ptitle">Where The Volume Goes</span><span class="ptag">Funnel &middot; as written</span></div>
+      <div class="funnel">
+        <div class="ftier t1"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">200-500</div><div class="fl">leads a month</div></div></div>
+        <div class="ftier t2 mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">300-500</div><div class="fl">quotes a month, wider than leads</div></div></div>
+        <div class="ftier t3"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">5-7</div><div class="fl">orders a month</div></div></div>
+      </div>
+      <div class="fverdict">A funnel that widens before it narrows</div>
+      <div class="mcap">Quotes are likely counted per product; the board will count the true funnel.</div>
+    </div>
+    <div class="panel">
+      <div class="phead"><span class="pnum">04</span><span class="ptitle">Who Holds The Work</span><span class="ptag">Pyramid &middot; org layers</span></div>
+      <div class="pyr">
+        <div class="ptier top"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Owner</div><div class="pl">sales, purchase, hrm, admin, it, ai &middot; 5-6 h a week for the build</div></div></div>
+        <div class="ptier mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Management</div><div class="pl">not answered &middot; no manager, no reporting line</div></div></div>
+        <div class="ptier base"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Seven people</div><div class="pl">4 field &middot; 1 back office &middot; 1 accountant on tally &middot; 1 peon</div></div></div>
+      </div>
+      <div class="fverdict">&ldquo;I can leave India and still all the work may be visible.&rdquo;</div>
+      <div class="mcap">With no middle layer, the rules must live in the system, not a person.</div>
+    </div>
+  </div>
+
+  <!-- P05 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">05</span><span class="ptitle">What Was Tried, And What Changed</span><span class="ptag">Before / after &middot; why Rev B exists</span></div>
+    <div class="ba" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="bacard"><span class="fl">Tried 01</span><div class="bt">ERPNext, Odoo, Zoho</div>
+        <p><b class="was">Was:</b> three full ERPs attempted and left; nobody but Sangeet had time to make them work.</p>
+        <p><b class="now">Now:</b> no fourth ERP. One small app, built in stages, each usable without being taught.</p></div>
+      <div class="bacard"><span class="fl">Tried 02</span><div class="bt">Paid CRM and task tool</div>
+        <p><b class="was">Was:</b> a CRM that is &ldquo;not very good&rdquo; and never opened, a task tool, Tally.</p>
+        <p><b class="now">Now:</b> the board replaces both once the field team works from it (P3). Tally stays.</p></div>
+      <div class="bacard"><span class="fl">The leak</span><div class="bt">Confidentiality</div>
+        <p><b class="was">Was:</b> buyers cut out the middleman from dispatch data; staff leave or leak; drivers paid for information.</p>
+        <p><b class="now">Now:</b> the wall is in the database: a role that may not read a row never receives it. Built and live.</p></div>
+      <div class="bacard"><span class="fl">Since Rev A</span><div class="bt">Two designs on file</div>
+        <p><b class="was">Was:</b> a Frappe design (documents only) and a React and Supabase build (live), disagreeing.</p>
+        <p><b class="now">Now:</b> one stack, the live one. The Frappe design stays as a requirements list.</p></div>
+    </div>
+    <div class="pcap">The pattern in every attempt: a tool built for everything, and an owner with no time to make it work. So <b>each phase ships one small, finished thing the team can use without being taught</b>.</div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Business</span><span class="sv">B2B trading: chemicals, waxes, oils, scrap, offspec</span></div>
+    <div class="scell2"><span class="sl">Sites</span><span class="sv">Ahmedabad &middot; office, factory, on site; pan India, import, export</span></div>
+    <div class="scell2"><span class="sl">Stack kept</span><span class="sv">Tally, phones, Google contacts, B2B portals</span></div>
+    <div class="scell2"><span class="sl">Stack dropped</span><span class="sv">Paid CRM, task tool (after P3)</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">Current state</span></div>
+  </div>
+
+  <!-- P06 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">06</span><span class="ptitle">Recommended AI Systems</span><span class="ptag">Foundation + 10 systems &middot; in build order</span></div>
+    <div class="sysgrid">
+      <div class="icard"><span class="iwin">F-00 &middot; P1<span class="st">Built, live</span></span><div class="iname">Shezle Lot and Contact Record</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Supply side: suppliers, products, purchase lots</div><div class="iarrow">&darr;</div><div class="ichip">Demand side: buyers, market names, sales lots</div><div class="iarrow">&darr;</div><div class="ichip">The link: owner and admin only</div><div class="iarrow">&darr;</div><div class="ichip">Seven roles, access by grant</div><div class="iarrow">&darr;</div><div class="ichip">Every change in the audit log</div></div>
+        <div class="inotes"><span class="nl">Built</span><p>6 migrations, 84 checks run as each role.</p><span class="nl">Rule</span><p>What a role may not read is absent, not hidden.</p></div></div>
+        <div class="isolve">Solves buyer and supplier on one screen</div></div>
+      <div class="icard"><span class="iwin">SYS-01 &middot; P2</span><div class="iname">Shezle Deal Wall Skill</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Two sittings of one hour</div><div class="iarrow">&darr;</div><div class="ichip">Role wall, alias rule, in his words</div><div class="iarrow">&darr;</div><div class="ichip">Offer, sample, follow-up drafts</div><div class="iarrow">&darr;</div><div class="ichip">Dispatch neutral checklist</div><div class="iarrow">&darr;</div><div class="ichip">Price line always blank</div></div>
+        <div class="inotes"><span class="nl">Changed</span><p>The skill explains and drafts; the database enforces.</p><span class="nl">New hires</span><p>Learn the trade from it, not from Sangeet.</p></div></div>
+        <div class="isolve">Solves re-explaining the rules to every hire</div></div>
+      <div class="icard"><span class="iwin">SYS-02 &middot; P1 basic, P2 full</span><div class="iname">Shezle Alias Checker</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Product, buyer, industry</div><div class="iarrow">&darr;</div><div class="ichip">Name already used, or a clean choice</div><div class="iarrow">&darr;</div><div class="ichip">Document pack: COA, photos, videos</div><div class="iarrow">&darr;</div><div class="ichip">Second name to one buyer: blocked</div><div class="iarrow">&darr;</div><div class="ichip">Owner override, logged</div></div>
+        <div class="inotes"><span class="nl">Built</span><p>&ldquo;Which name?&rdquo; check and the block.</p><span class="nl">Guardrail</span><p>Never suggests or compares a price.</p></div></div>
+        <div class="isolve">Solves &ldquo;it all depends and has to be calculated&rdquo;</div></div>
+      <div class="icard"><span class="iwin">SYS-03 &middot; P2 CRM, P3 board</span><div class="iname">Shezle CRM and Pipeline Board</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Contacts off personal phones</div><div class="iarrow">&darr;</div><div class="ichip">One call, five products: five cards</div><div class="iarrow">&darr;</div><div class="ichip">One owner, next action, due date</div><div class="iarrow">&darr;</div><div class="ichip">Three role views</div><div class="iarrow">&darr;</div><div class="ichip">Stuck 2 working days: flagged</div></div>
+        <div class="inotes"><span class="nl">Replaces</span><p>The unopened CRM and the task tool.</p><span class="nl">Lanes</span><p>Tenders and auctions in their own lane.</p></div></div>
+        <div class="isolve">Solves follow-ups held in memory</div></div>
+      <div class="icard"><span class="iwin">SYS-04 &middot; P3</span><div class="iname">Shezle Field Task Feed</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Card reaches sample or dispatch</div><div class="iarrow">&darr;</div><div class="ichip">Task on the field guy&rsquo;s phone</div><div class="iarrow">&darr;</div><div class="ichip">Alias document pack attached</div><div class="iarrow">&darr;</div><div class="ichip">Sent, received, result awaited</div><div class="iarrow">&darr;</div><div class="ichip">Back office sees the day&rsquo;s lines</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>Standing at the material stays a field job.</p><span class="nl">Adoption</span><p>Five people stop working from Sangeet&rsquo;s messages.</p></div></div>
+        <div class="isolve">Solves dispatching four field guys by message</div></div>
+      <div class="icard"><span class="iwin">SYS-07 &middot; P3 &middot; New</span><div class="iname">Shezle Team Scoreboard</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">KPIs per post, agreed</div><div class="iarrow">&darr;</div><div class="ichip">Counted from the board, not typed</div><div class="iarrow">&darr;</div><div class="ichip">1,000 points a day per post</div><div class="iarrow">&darr;</div><div class="ichip">Green, yellow, red</div><div class="iarrow">&darr;</div><div class="ichip">Weekly review signed per post</div></div>
+        <div class="inotes"><span class="nl">Rule</span><p>Automatic KPIs first; hand-typed ones get missed.</p><span class="nl">Snapshot</span><p>Target and points fixed when the day opens.</p></div></div>
+        <div class="isolve">Solves accountability, his top problem</div></div>
+      <div class="icard"><span class="iwin">SYS-05 &middot; P4</span><div class="iname">Shezle Lot to Sale Trigger</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Purchase marks a lot confirmed</div><div class="iarrow">&darr;</div><div class="ichip">Sales cards per market name, supplier stripped</div><div class="iarrow">&darr;</div><div class="ichip">Tagged buyers into a call list</div><div class="iarrow">&darr;</div><div class="ichip">Offers drafted, price empty</div><div class="iarrow">&darr;</div><div class="ichip">Sangeet enters price, taps approve</div></div>
+        <div class="inotes"><span class="nl">Start</span><p>One product line first.</p><span class="nl">Guardrail</span><p>Without the tap, nothing is sent.</p></div></div>
+        <div class="isolve">Solves telling sales what came in, every time</div></div>
+      <div class="icard"><span class="iwin">SYS-08 &middot; P4 &middot; New</span><div class="iname">Shezle Money Pipeline</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Deal: purchase leg + sales leg</div><div class="iarrow">&darr;</div><div class="ichip">Payment schedule per side</div><div class="iarrow">&darr;</div><div class="ichip">Payment ledger, add-only</div><div class="iarrow">&darr;</div><div class="ichip">Dispatch waits for the advance</div><div class="iarrow">&darr;</div><div class="ichip">Recovery view by age</div></div>
+        <div class="inotes"><span class="nl">Rule</span><p>A token is never deal value, never a final sale.</p><span class="nl">Owner only</span><p>Margin, landed cost, capital locked.</p></div></div>
+        <div class="isolve">Solves token and supplier money on calls</div></div>
+      <div class="icard"><span class="iwin">SYS-09 &middot; P5 &middot; New</span><div class="iname">Documents, Dispatch and Tally Bridge</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Quote, order, invoice PDFs</div><div class="iarrow">&darr;</div><div class="ichip">Real name and HSN on statutory papers</div><div class="iarrow">&darr;</div><div class="ichip">Dispatch neutral checklist per deal</div><div class="iarrow">&darr;</div><div class="ichip">Loading note, weighment, transport</div><div class="iarrow">&darr;</div><div class="ichip">Voucher export to Tally</div></div>
+        <div class="inotes"><span class="nl">Tally</span><p>Stays the books; the accountant imports.</p><span class="nl">Vault</span><p>GST, IEC, RCMC, KYC expiry reminders.</p></div></div>
+        <div class="isolve">Solves logistics papers by hand, dispatch leaks</div></div>
+      <div class="icard"><span class="iwin">SYS-06 &middot; P5</span><div class="iname">Shezle Deal Clerk</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">8 AM, and after every logged call</div><div class="iarrow">&darr;</div><div class="ichip">Next follow-up in the approved name</div><div class="iarrow">&darr;</div><div class="ichip">Courier tracking read</div><div class="iarrow">&darr;</div><div class="ichip">Price or origin replies held for him</div><div class="iarrow">&darr;</div><div class="ichip">6 PM report on his phone</div></div>
+        <div class="inotes"><span class="nl">Start</span><p>Draft-only, then allowed channels.</p><span class="nl">Never</span><p>Personal WhatsApp automation.</p></div></div>
+        <div class="isolve">Solves the chasing in 50 to 200 calls a day</div></div>
+      <div class="icard"><span class="iwin">SYS-10 &middot; P6 &middot; New</span><div class="iname">Org Board, HR and the Second Company</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Posts and hats, people and AI</div><div class="iarrow">&darr;</div><div class="ichip">Weekly stats from the board</div><div class="iarrow">&darr;</div><div class="ichip">SOPs with read receipts</div><div class="iarrow">&darr;</div><div class="ichip">Attendance, leave, exit: access withdrawn</div><div class="iarrow">&darr;</div><div class="ichip">Second company, same core</div></div>
+        <div class="inotes"><span class="nl">Second company</span><p>Retail, scan-to-invoice.</p><span class="nl">Decide then</span><p>Native accounts, or Tally kept.</p></div></div>
+        <div class="isolve">Solves no layer between owner and team</div></div>
+    </div>
+    <div class="pcap">Kept: <b>Tally</b> as the books, <b>phones</b> for calls, <b>Google contacts</b> and <b>B2B portals</b> as lead sources (imported, then off personal phones). Dropped after P3: the <b>paid CRM</b> and the <b>task tool</b>. Live: <b>Control Center</b> on <b>Supabase</b> (Mumbai) and <b>Vercel</b>, built with <b>Claude</b>. Rev A codes are kept; new systems are numbered from SYS-07.</div>
+  </div>
+
+  <!-- P07 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">07</span><span class="ptitle">Implementation Roadmap</span><span class="ptag">Phase table &middot; 6 phases &middot; P1 done</span></div>
+    <div class="pstrip">
+      <div class="ps done" style="flex: 3;"><b>P1</b>Done</div>
+      <div class="ps" style="flex: 2;"><b>P2</b>2 wk</div>
+      <div class="ps" style="flex: 4;"><b>P3</b>4 wk &middot; December end</div>
+      <div class="ps" style="flex: 4;"><b>P4</b>4 wk</div>
+      <div class="ps" style="flex: 8;"><b>P5</b>8 wk</div>
+      <div class="ps" style="flex: 12;"><b>P6</b>12 wk</div>
+    </div>
+    <table class="ptable">
+      <tr><th>Phase</th><th>Focus</th><th>Systems</th><th>Duration</th><th>Done when</th></tr>
+      <tr class="built"><td class="ph">P1</td><td class="pf">Foundation and the wall</td><td class="psys">F-00 &middot; SYS-02 basic</td><td class="pd">Done, live</td><td>Supply and demand sit in separate tables; only Sangeet and admin see the link; only they set a sell price; a second name to one buyer is blocked; access only by grant.</td></tr>
+      <tr><td class="ph">P2</td><td class="pf">CRM and the checker</td><td class="psys">SYS-01 &middot; SYS-02 full &middot; SYS-03 CRM</td><td class="pd">2 weeks</td><td>The rules are written in Sangeet&rsquo;s words; any product and buyer typed into a phone returns the right name and document pack or a red stop; every call is logged, five products as five follow-ups.</td></tr>
+      <tr><td class="ph">P3</td><td class="pf">The board and the scoreboard</td><td class="psys">SYS-03 board &middot; SYS-04 &middot; SYS-07</td><td class="pd">4 weeks</td><td>Every live deal and sample is a card with one owner, one next action and a date; field staff work from their phones; each post sees its score; the paid CRM and task tool are switched off.</td></tr>
+      <tr><td class="ph">P4</td><td class="pf">The money pipeline and the trigger</td><td class="psys">SYS-08 &middot; SYS-05</td><td class="pd">4 weeks</td><td>Each deal shows booked, received and still to receive on both sides; dispatch waits for the advance; a confirmed lot opens its own sales cards and waits for Sangeet&rsquo;s price and tap.</td></tr>
+      <tr><td class="ph">P5</td><td class="pf">Documents, Tally and the Deal Clerk</td><td class="psys">SYS-09 &middot; SYS-06</td><td class="pd">8 weeks</td><td>Quotes, orders and invoices print from the system with real names and HSN; Tally takes the export; the clerk drafts, tracks couriers and reports at 6 PM, then sends through allowed channels.</td></tr>
+      <tr><td class="ph">P6</td><td class="pf">Management and the second company</td><td class="psys">SYS-10</td><td class="pd">12 weeks</td><td>Posts, hats, SOPs and weekly stats run the team; attendance and leave are live; the second company runs on the same system with the same wall.</td></tr>
+    </table>
+  </div>
+
+  <!-- P08 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">08</span><span class="ptitle">Why This Build Order</span><span class="ptag">2&times;2 matrix</span></div>
+    <div class="matrix">
+      <div class="quad build"><span class="qh">High impact &middot; runs without anyone changing</span>
+        <div class="mc"><span class="mcc">F-00</span><span class="mcn">Shezle Lot and Contact Record (built)</span></div>
+        <div class="mc"><span class="mcc">SYS-01 + SYS-02</span><span class="mcn">Deal Wall Skill and Alias Checker</span></div>
+        <div class="qv">&rarr; build first: needs only Sangeet&rsquo;s words and his lists</div></div>
+      <div class="quad build"><span class="qh">High impact &middot; needs people to change</span>
+        <div class="mc"><span class="mcc">SYS-03 + SYS-04</span><span class="mcn">CRM, Pipeline Board and Field Task Feed</span></div>
+        <div class="mc"><span class="mcc">SYS-07</span><span class="mcn">Team Scoreboard</span></div>
+        <div class="qv">&rarr; P3: five people stop working from messages</div></div>
+      <div class="quad"><span class="qh">Compounding &middot; needs clean data</span>
+        <div class="mc"><span class="mcc">SYS-08 + SYS-05</span><span class="mcn">Money Pipeline and Lot to Sale Trigger</span></div>
+        <div class="mc"><span class="mcc">SYS-06</span><span class="mcn">Deal Clerk</span></div>
+        <div class="qv">&rarr; after the board holds clean cards and buyer tags</div></div>
+      <div class="quad"><span class="qh">Growth &middot; unblocks scaling</span>
+        <div class="mc"><span class="mcc">SYS-09</span><span class="mcn">Documents, Dispatch and Tally Bridge</span></div>
+        <div class="mc"><span class="mcc">SYS-10</span><span class="mcn">Org Board, HR and the Second Company</span></div>
+        <div class="qv">&rarr; after one season of deals on the board</div></div>
+    </div>
+    <div class="axis"><span>&larr; low dependence on human change</span><span>high &rarr;</span></div>
+    <div class="pcap">Vertical axis is impact on confidentiality and follow-up. <b>The wall and the names come first because everything else reads them</b>; the agent comes after the board is trusted, because an agent sending messages before that is how a fourth tool goes unopened.</div>
+  </div>
+
+  <!-- P09 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">09</span><span class="ptitle">Guardrails</span><span class="ptag">Swimlane &middot; set by Sangeet</span></div>
+    <div class="swim">
+      <div class="lane"><div class="lanel">AI acts alone</div><div class="lanev">
+        <span class="tag">Not set by Sangeet: careful default</span><span class="tag">Draft offers and follow-ups, price blank</span><span class="tag">Read courier tracking</span><span class="tag">Flag a second name</span><span class="tag">Log replies onto cards</span><span class="tag">Count automatic KPIs</span><span class="tag">6 PM report</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Human signs off</div><div class="lanev">
+        <span class="tag">Every price (Sangeet types it)</span><span class="tag">Messages with ₹, quantity or token</span><span class="tag">Every document flow</span><span class="tag">Accounts, sales, purchase, finance</span><span class="tag">Operations and QC</span><span class="tag">Override of the two-name block</span><span class="tag">Granting access</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Never automated</div><div class="lanev">
+        <span class="tag never">Pricing and negotiation</span><span class="tag never">Standing at the material, packing, loading</span><span class="tag never">Supplier and buyer side by side, except to Sangeet</span><span class="tag never">A market name on a GST, customs or bank paper</span><span class="tag never">Personal WhatsApp automation</span>
+      </div></div>
+    </div>
+    <div class="pcap">Sangeet&rsquo;s own rules, plus one he did not have to state: <b>no layer suggests, compares or changes a rupee</b>. Running cost: Claude, Supabase and Vercel; the paid CRM and task tool stop after P3.</div>
+  </div>
+
+  <!-- P10 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">10</span><span class="ptitle">Next Steps</span><span class="ptag">Immediate actions</span></div>
+    <div class="igsteps">
+      <div class="igstep"><div class="n">01</div><div class="b"><b>Confirm Rev B</b> and settle the three number pairs in section 05. Sangeet.</div></div>
+      <div class="igstep"><div class="n">02</div><div class="b"><b>Secure the live app before staff log in:</b> new owner password, a mail service, staff access to the address. Sangeet, build session.</div></div>
+      <div class="igstep"><div class="n">03</div><div class="b"><b>Two one-hour sittings</b> to write the Deal Wall Skill in your own words. Sangeet.</div></div>
+      <div class="igstep"><div class="n">04</div><div class="b"><b>Send the lists:</b> products, market names, COA versions, photo sets, buyers shown each name, suppliers. Sangeet, back office.</div></div>
+      <div class="igstep"><div class="n">05</div><div class="b"><b>Name the team:</b> who holds purchase, who holds sales, each person&rsquo;s email for a grant. Sangeet.</div></div>
+      <div class="igstep"><div class="n">06</div><div class="b"><b>Pick the first product line</b> for the trigger, and the switch-off date for the CRM and task tool. Sangeet.</div></div>
+      <div class="igstep"><div class="n">07</div><div class="b"><b>Answer the setup questions:</b> WhatsApp Business, couriers, languages, GSTINs, document prefixes. Sangeet, accountant.</div></div>
+    </div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Scope</span><span class="sv">1 foundation + 10 systems &middot; 6 phases</span></div>
+    <div class="scell2"><span class="sl">Window</span><span class="sv">P1 done; P2 to P3 by December end; then about 6 months</span></div>
+    <div class="scell2"><span class="sl">Sources</span><span class="sv">Rev A, owner&rsquo;s brief, two build handovers</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">The build</span></div>
+  </div>
+  <div class="igtrace">Every item traces to the Rev A blueprint audit (28.10.2026) and Systems Brief, the owner&rsquo;s Control Center brief, or the build handovers of 8.11 and 15.11.2026 &middot; unknowns are named, not guessed &middot; the in-depth blueprint follows</div>
+
+</div>
+<!-- ############################ PART B · IN-DEPTH ############################ -->
+<div class="bp">
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Client Blueprint</span></div>
+    <h1 class="cover">AI SYSTEMS<br><span class="accent">BLUEPRINT</span> <span style="font-size:24px;">&middot; REV B</span></h1>
+    <div class="coversub">Shezle Imperio Private Limited &nbsp;&middot;&nbsp; Prepared for <b>Sangeet Sejpal</b>, Owner</div>
+    <div class="flow">
+      <span class="chip">Find and call</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Qualify and offer</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Sample under the right name</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Follow up</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Close and token</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Supplier confirms</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Load and deliver</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Business</span>Shezle Imperio Private Limited (SIPL), Ahmedabad. B2B merchant trading in industrial chemicals, waxes, oils, scrap, byproduct and offspec lots: domestic, import, export, high seas, tenders, auctions, back-to-back deals, occasional brokerage and joint ventures. Turnover band stated at ₹50 lakh to 1 crore a month.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Current Stack</span>Tally (one accountant) for the books; phones, Google contacts, B2B portals and social media for leads; a paid CRM and a task tool, both unopened. Built since Rev A: Control Center, live on Supabase (Mumbai) and Vercel, code in GitHub (enrosl/SIPL-Global-Business-OPS-ERP).</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Prepared by</span>BuildOur AI</td>
+        <td><span class="lbl">Sources</span>Rev A blueprint audit and Systems Brief (28.10.2026) &middot; owner&rsquo;s Control Center brief and the first-stage plan (approved 8.11.2026) &middot; build handover, Frappe design (8.11.2026) &middot; build handover, React and Supabase build (15.11.2026) &middot; owner&rsquo;s UI and access decisions</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Systems Specified</span>1 foundation + 10 systems in 6 phases; the foundation and phase 1 are built and live</td>
+        <td><span class="lbl">Deadline Anchor</span>Sales and purchase cycle by December end 2026 (phases 2 and 3); accounts depth, HR and the second company after it</td>
+      </tr>
+      <tr><td colspan="2"><span class="lbl">Build model</span>Sangeet builds it himself with Claude on the live React, Supabase and Vercel app, at 5 to 6 hours a week. This document is the one source of truth; the Frappe design stays as a list of requirements.</td></tr>
+    </table>
+    <div class="covernote">Rev B supersedes Rev A (28.10.2026). Every change traces to the owner&rsquo;s brief or the two build handovers.<br>Sheets 1&ndash;3 are the one-shot capture</div>
+  </div></div>
+</div>
+
+<!-- 00 -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">EXECUTIVE SUMMARY</div><div class="sectag">Overview</div></div>
+<p>&ldquo;Confidentiality is the key. Since we are the middle man, we must make sure no one knows where we purchase from and where we sell to.&rdquo; That is how Sangeet Sejpal describes Shezle Imperio, an Ahmedabad trader in industrial chemicals, waxes, oils, scrap and offspec lots. A buyer must never learn the supplier, a supplier must never learn the buyer, one product carries a different market name, COA and photo set for each industry, and one buyer must never see the same product under two names.</p>
+<p>Today every one of those rules lives in Sangeet&rsquo;s head. He runs sales, purchase, HR, admin, IT and AI himself, with seven people below him and no manager in between. All eight stations of the money path are done by hand: 50 to 200 calls a day, five products per call, 10 to 20 samples a day, follow-ups from memory, and every confirmed lot handed to the sales side by Sangeet telling them himself. The leaks come through dispatch data, staff who leave, and drivers who can be paid for information. Three ERPs were tried and left, and a paid CRM sits unopened. His aim: &ldquo;I can leave India and still all the work may be visible and handled from my phone anytime anywhere and coordinate through my team.&rdquo;</p>
+<p>Since Rev A, the build has started. Two designs were drawn and they disagree; one of them, a React and Supabase app, is live with the wall already in the database. This revision joins Rev A, the owner&rsquo;s brief and both build handovers into one plan, with seven structural changes: (1) <b>one stack, the live one</b>, with the Frappe design kept as a requirements list; (2) <b>the wall moves from a prompt into the database</b>, already built; (3) <b>the two-name rule becomes a hard block</b> with an owner override, already built; (4) the <b>CRM and call log</b> become stage one of the board; (5) <b>accountability moves earlier</b>, with a Team Scoreboard in phase 3; (6) a <b>Money Pipeline</b> and a <b>Documents and Tally Bridge</b> are added, with market names kept off every statutory paper; (7) the <b>org board, HR and the second company</b> are named as phase 6.</p>
+<p>The result is a foundation and ten systems in six phases, set out as one simple table: Phase, Focus, Duration, Done when. Phase 1 is done. Phases 2 and 3, six weeks, put the whole sales and purchase cycle on the board by December end, if the two writing sittings and the lists arrive in the first week. Nothing in this plan types a price, and nothing leaves without Sangeet&rsquo;s tap.</p>
+
+<!-- 01 -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">CURRENT STATE</div><div class="sectag">How work happens today, and where it hurts</div></div>
+
+<h3 class="sub"><span class="n">1.1</span>Finding leads and calling</h3>
+<p>Leads are searched by hand in Google contacts, B2B portals and social media. Calls run from 30 seconds to 5 minutes, 50 to 200 a day, often five products in one call, and each product is its own negotiation. Contacts sit on personal phones, so they leave with the person who holds the phone.</p>
+<div class="pain"><span class="plbl">Pain</span>Five negotiations in one call, held in memory, on a phone the company does not own.</div>
+
+<h3 class="sub"><span class="n">1.2</span>Names, COA and samples</h3>
+<p>One product needs a different market name, COA, photos and videos for each industry, worked out by hand before every quote and every sample. Field guys pack and courier 10 to 20 samples a day. The risk is that one buyer sees the same product twice under two names, or receives a document that shows where it came from.</p>
+<div class="pain"><span class="plbl">Pain</span>&ldquo;It all depends and has to be calculated,&rdquo; before every quote and every sample.</div>
+
+<h3 class="sub"><span class="n">1.3</span>Follow-up, close and token</h3>
+<p>Follow-ups continue from memory until a lead converts, rejects or dies. Sangeet closes and negotiates every deal, and that stays with him by his own rule. The token, the buyer&rsquo;s financial commitment, is chased on calls and messages. There is no single place that says which deals are waiting on whom.</p>
+<div class="pain"><span class="plbl">Pain</span>Nobody but Sangeet knows which of hundreds of quotes is still alive.</div>
+
+<h3 class="sub"><span class="n">1.4</span>Purchase to sales, and the wall</h3>
+<p>Sangeet sources across import, export, high seas, local pan India, tenders and auctions. &ldquo;If our Import Officer sources materials the moment it is confirmed, the same time the sales team has to start to work on selling that same material in their pipeline, however the import purchase officer shouldn&rsquo;t know where it is being sold.&rdquo; Today he tells the sales side himself what came in, and the purchase side can see where it goes.</p>
+<div class="pain"><span class="plbl">Pain</span>The buyer gets the dispatch data and cuts out the middleman; staff leave or leak; drivers can be paid for information.</div>
+
+<h3 class="sub"><span class="n">1.5</span>Logistics and loading</h3>
+<p>Logistics preparation, trucks and loading paperwork are done by hand each time. Standing at the material, checking a waste or offspec lot and loading are field jobs, and Sangeet wants them to stay human. He never wants to prepare sales, purchase or logistics paperwork by hand again.</p>
+<div class="pain"><span class="plbl">Pain</span>Paperwork rebuilt for every lot, and every dispatch paper is a possible leak.</div>
+
+<h3 class="sub"><span class="n">1.6</span>The books and the money</h3>
+<p>One accountant keeps the books in Tally. Token money, supplier confirmation and bills move on calls and messages. Capital rotates every two to three months on SIPL&rsquo;s own money, but there is no view of capital locked per deal, of what each side still owes, or of the landed margin after freight, duty, clearing, bank charges and claims. Sangeet has said he wants to stop paying for Tally; this plan keeps it until the system has proved itself.</p>
+<div class="pain"><span class="plbl">Pain</span>Money owed on both sides of every deal is tracked in calls, not in one place.</div>
+
+<h3 class="sub"><span class="n">1.7</span>The team and accountability</h3>
+<p>Four field guys are dispatched anytime, anywhere, and do clerical work in between; one back office person handles admin; one peon. Managers and reporting lines were not stated. The rules of the trade are re-explained to every new field guy, who then leaves or leaks. Accountability is the owner&rsquo;s top problem: nobody else owns a next action.</p>
+<div class="pain"><span class="plbl">Pain</span>No measure of who did what, and the knowledge walks out with each person who leaves.</div>
+
+<h3 class="sub"><span class="n">1.8</span>Tools tried and left</h3>
+<p>ERPNext, Odoo and Zoho were all attempted and abandoned. A paid CRM that is &ldquo;not very good&rdquo; is never opened, a task tool is paid for, and Tally is kept. The reason: nobody but Sangeet had time to make them work, and they were not easy enough for the team to use without being taught.</p>
+<div class="pain"><span class="plbl">Pain</span>Three tools paid for, none of them holding the business.</div>
+
+<h3 class="sub"><span class="n">1.9</span>Since Rev A: the build has started</h3>
+<p><b>The owner&rsquo;s brief widens the goal.</b> Control Center is to be one multi-company system, each company with its own setup, that can grow new forms and reports without code and through AI, with AI agents holding posts beside people on an org board. It names marketing, sales, operations, finance and team management, phase by phase, &ldquo;fix accountability first&rdquo;.</p>
+<p><b>The first-stage plan (8.11.2026) added what a trader needs:</b> landed margin per deal; a dispatch neutralisation checklist (switch bill of lading, neutral packing, relabelling, COA on own letterhead); the legal boundary that market names are for internal use and buyers only, while GST, customs and bank documents carry the real product name and HSN; Indian trade and chemicals compliance; KYC; LC, bank limits, credit limits and FX; claims and disputes; and AI authority tiers (observe, draft, act internally, act externally).</p>
+<p><b>The review of Rev A in the build sessions</b> made four corrections that this revision adopts: the wall belongs in the database, because a prompt instruction alone is not a control; accountability moves earlier, with one owner, one next action and one due date per card; the two-name rule is a hard block with an owner override, not a flag; and compliance fields sit on the product from day one.</p>
+<p><b>Two designs were drawn.</b> A Frappe design has detailed documents and a skeleton, nothing live. A React, Supabase and Vercel build has its first stage built, tested and live: supply and demand in separate tables, the link readable only by owner and admin, only they set a sell price, a second name to one buyer blocked, access only by grant, an audit log, 84 database checks run as each role, and the screens for Today, Lots, Buyers, Suppliers, Products, Names and Team, in the deep blue Sangeet chose.</p>
+<div class="pain"><span class="plbl">Finding</span>Two plans with two calendars cannot both be followed. This revision chooses the live one and carries the other&rsquo;s requirements across.</div>
+
+<!-- 02 systems -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">RECOMMENDED AI SYSTEMS</div><div class="sectag">Foundation + 10 systems</div></div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE LOT AND CONTACT RECORD</span><span class="code">F-00 &middot; FOUNDATION &middot; BUILT, LIVE</span></div>
+  <div class="sysrow"><div class="syslbl">What it is</div><div class="sysval"><p>The wall, in the database. Supply lives in one set of tables (suppliers, products, purchase lots), demand in another (buyers, market names, sales lots), and the table that joins a product to its market names is readable only by owner and admin. Every row carries a company key, so a second company runs on the same system and links across companies are refused. Seven roles: owner, admin, purchase, sales, field, back office, accountant. A lot can only be sold under names of the product actually in it. Every change is written to an audit log by the database itself. <code class="f">supplier &rarr; product &rarr; purchase lot &middot; buyer &rarr; market name &rarr; sales lot &middot; link: owner only</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.4, buyer and supplier visible to the wrong people; &sect;1.7, rules that live in one head.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>What a role may not read is absent from its screen, not greyed out: the row never reaches it. Only owner or admin sets a sell price; anyone else gets a clear refusal.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Still to add</div><div class="sysval"><p>Compliance fields on the product (real product name, HSN, UN number, SDS) at the start of phase 2, so statutory papers never need a market name.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE DEAL WALL SKILL</span><span class="code">SYS-01 &middot; PHASE 2</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Sangeet&rsquo;s rules of a back-to-back trade, written once in his own words in two sittings of one hour, and kept as a Claude skill file that the build, the trigger and the clerk all read. It holds the role wall (purchase sees origin and supplier, sales sees buyer and destination, only Sangeet sees both), the alias rule (one product, many market names, never two names to one buyer), the drafted offer note per industry, the sample covering note with origin masked, the follow-up for each stage from Initiate and Qualify to Get Token, the document checklist per market name, and the dispatch neutralisation checklist. The price line is always blank.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.7, rules re-explained to every new field guy; &sect;1.5, dispatch papers that leak.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Changed since Rev A</div><div class="sysval"><p>The skill explains and drafts; the database enforces. A rule that matters for confidentiality is never left to the skill alone.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE ALIAS CHECKER</span><span class="code">SYS-02 &middot; PHASE 1 BASIC, PHASE 2 FULL</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>A phone screen: type a product, a buyer and a target industry; get the market name this buyer may be shown, or the one already used with them. Built in phase 1: the &ldquo;Which name?&rdquo; check and the hard block on a second name. Added in phase 2: the document pack for that name (COA version, photo set, video set), the sample history with that buyer (sent, received, result awaited), and an exposure record of which buyer has been shown which name, and when. An owner or admin override of the block is allowed and logged with a reason.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.2, the name, COA and photo set worked out by hand before every quote and sample.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Shows no supplier and no purchase price to a sales user; never suggests, compares or changes a price.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE CRM AND PIPELINE BOARD</span><span class="code">SYS-03 &middot; PHASE 2 CRM, PHASE 3 BOARD</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p><b>Stage 1, phase 2, the CRM:</b> contacts move off personal phones into the system, imported from Google contacts and B2B portal exports with a duplicate check; a quick call log where one call about five products becomes five follow-ups; follow-ups due today; and a ranked call queue for each person. <b>Stage 2, phase 3, the board:</b> every opportunity and every sample is a card with one owner, one next action and one due date, moving through stages stored as fixed keys (Initiate and Qualify, Sample, Follow-up, Close, Token, Supplier confirmed, Logistics, Converted, Rejected, Dead). Three role views: purchase sees supply only, sales sees buyers only, Sangeet sees both ends of each lot. A card with no movement for two working days is flagged. Tenders, auctions and opportunistic sourcing sit in their own lane and join a sales lane when won. A confidentiality view for Sangeet alone shows supplier and buyer on each lot, and any card where a buyer has asked for the dispatch origin. <code class="f">call &rarr; five cards &rarr; owner + next action + date &rarr; stage &rarr; converted / rejected / dead</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.1 and &sect;1.3, follow-ups in memory and contacts on personal phones; &sect;1.8, the unopened CRM and the task tool.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Adoption</div><div class="sysval"><p>The paid CRM and the task tool are switched off on a date Sangeet sets, once the field team works from the board, not before.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE FIELD TASK FEED</span><span class="code">SYS-04 &middot; PHASE 3</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>When a card reaches sample or dispatch, the field guy gets the task on his phone with the right document pack already attached: pack, courier, or go and stand at the material. He logs sent, received and result awaited, with photos. The back office person sees the day&rsquo;s operational lines and works from them instead of from Sangeet&rsquo;s messages. Field users see lots and market names only.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.2 and &sect;1.7, four field guys dispatched by message with no visible status.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Standing at the material, checking a waste or offspec lot, packing and loading stay field jobs, as Sangeet set.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE TEAM SCOREBOARD</span><span class="code">SYS-07 &middot; PHASE 3 &middot; NEW</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Accountability by post. For each post (purchase, sales, field, back office, accounts) a few KPIs are agreed with Sangeet, counted from the board wherever possible: calls logged, follow-ups done on their date, samples dispatched, cards moved. Each post can earn 1,000 points a day, shown green, yellow or red. A night job opens the next day&rsquo;s entries with the target and points fixed at that moment, and closes the missed ones. Each week the post holder and Sangeet sign a short review. <code class="f">KPI per post &rarr; counted from the board &rarr; points &rarr; colour &rarr; weekly sign-off</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.7, accountability, the owner&rsquo;s top problem.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Automatic KPIs first: hand-typed ones are where accountability systems die, as a reference build showed. The score informs; pay and consequences stay Sangeet&rsquo;s decision.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE LOT TO SALE TRIGGER</span><span class="code">SYS-05 &middot; PHASE 4</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>The purchase officer marks a lot confirmed. The system opens a sales card for each target-industry market name of that product, carrying quantity and location band only, no supplier; pulls the buyers tagged for that industry and product into a call list; drafts the offers and a sample request from the Deal Wall Skill, origin masked and price line empty; then stops. Sangeet opens the card on his phone, checks the buyer list, enters the price per name and taps approve. After that, the field guy gets the sample task with the document pack. A lot won in the tender lane enters the same flow. <code class="f">lot confirmed &rarr; sales cards &rarr; call list &rarr; drafts &rarr; Sangeet&rsquo;s price + tap &rarr; field task</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.4, Sangeet telling the sales side what came in, every time.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Without his tap nothing is sent. Switched on for one product line first, then widened.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE MONEY PIPELINE</span><span class="code">SYS-08 &middot; PHASE 4 &middot; NEW</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>A deal joins a purchase leg and a sales leg. Each side has its own payment schedule (token, advance, balance) and an add-only payment ledger; every money figure is worked out by the database from the ledger, never typed. It shows booked, received and still to receive, and a recovery view by age with red flags. Dispatch waits until the buyer&rsquo;s advance is in, unless Sangeet releases it. For Sangeet alone: the margin, the landed cost (freight, insurance, duty, clearing, bank charges, foreign exchange, interest on capital, claims) and the capital locked in each deal. Claims and disputes are logged against the deal.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.3 and &sect;1.6, token and supplier money chased on calls, with no view of what is owed or locked.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>A token is never the deal value and never makes a sale final. The collection stage is owned by a person. Nothing here posts to the books.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">DOCUMENTS, DISPATCH AND TALLY BRIDGE</span><span class="code">SYS-09 &middot; PHASE 5 &middot; NEW</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Quotations, sales orders, purchase orders and invoices print from the system, numbered per company and financial year (for example SIPL-XX-2627-00001). Buyer-facing papers carry the market name; GST, customs and bank papers carry the real product name and HSN. Each deal gets the dispatch neutralisation checklist (bill of lading, neutral packing, labels, COA on SIPL letterhead) and the logistics lane drafts the loading note, weighment slip and transport order with origin masked. Approved vouchers export to Tally, where the accountant imports them. A compliance vault holds GST, IEC, RCMC, MSME, hazardous-goods licences and party KYC with expiry reminders, and a register of NDA and non-circumvention agreements.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.5, logistics papers rebuilt by hand; &sect;1.4, leaks through dispatch data; &sect;1.6, two records of the same deal.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Every document flow is approved by a person before it leaves. Tally stays the book of record; the bridge exports, it never posts on its own.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">SHEZLE DEAL CLERK</span><span class="code">SYS-06 &middot; PHASE 5</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>A named AI employee for follow-ups and sample chasing. Every morning at 8 AM and after every logged call, sample or reply, it drafts the next follow-up for each due card in the approved market name; reads courier tracking and marks samples delivered; logs buyer replies onto the card; holds any reply with a price, a counter offer or a request for the dispatch origin and forwards it to Sangeet untouched; raises a flag when a buyer is about to receive two names of one product; and at 6 PM reports to Sangeet&rsquo;s phone: samples delivered, follow-ups answered, cards gone cold, cards waiting on his price, flags raised. The operational lines go to the back office person.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.1 and &sect;1.3, the part of 50 to 200 calls a day that is pure chasing and status checking.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Starts draft-only, for Sangeet to read. It moves up an authority tier only when he says so. It sends only through channels he allows (WhatsApp Business API, email); personal WhatsApp is never automated. Any message with a rupee figure, a quantity or a token request goes only after his approval. It runs as a user with the least access the job needs.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">ORG BOARD, HR AND THE SECOND COMPANY</span><span class="code">SYS-10 &middot; PHASE 6 &middot; NEW</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>The management layer the business does not have. An org board of divisions, departments and posts; one person holds one title and many hats, and an AI agent can hold a post too. Weekly statistics per post come from the board and the scoreboard, not from typing. SOPs and manuals with read receipts, starting from the Deal Wall Skill. Attendance, leave, shifts and holidays; onboarding, and an exit routine that withdraws access the same day. Commission agreements and statements if Sangeet wants them. The second company, retail with scan-to-invoice, starts on the same core with its own setup and the same wall, and a group view lets Sangeet see both from one phone.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.7, no layer between the owner and the team, and the knowledge that leaves with each person.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Decide then</div><div class="sysval"><p>Whether the books move into the system and Tally retires (D-02); the method and calendar of the weekly statistics.</p></div></div>
+</div>
+
+<div class="noteblock"><span class="nlbl">Note: the existing stack</span>
+<p><b>Tally:</b> kept as the books; receives the voucher export from phase 5. <b>Phones, Google contacts, B2B portals, social media:</b> kept as lead sources; contacts are imported in phase 2 and then live in the system, not on personal phones. <b>Paid CRM and task tool:</b> switched off after phase 3. <b>Control Center:</b> the live app (Vite, React, TypeScript, Tailwind on Supabase and Vercel) is the base; every later phase builds on it. <b>Frappe design documents:</b> kept as a list of requirements; Frappe is not used.</p></div>
+
+<div class="noteblock"><span class="nlbl">Deferred &middot; parked, not dropped</span>
+<p><b>D-01 Self-building system:</b> new forms, reports and modules built without code or by the built-in AI from a prompt, and AI creating records on instruction. Interim: Claude builds what is asked, phase by phase. Re-entry: after phase 6, once the core is stable. <b>D-02 Books inside the system:</b> a full ledger with GST, TDS and payments, and Tally retired. Interim: the Tally bridge. Re-entry: after a full busy season on the bridge and one quarter run side by side. <b>D-03 Store apps:</b> Play Store, App Store and desktop apps. Interim: the web app installed on each phone&rsquo;s home screen. Re-entry: when field use shows a need the web app cannot meet. <b>D-04 Shipment data as a lead source:</b> import and export shipment data mined for buyers. Re-entry: after the CRM is in daily use.</p></div>
+
+<div class="noteblock"><span class="nlbl">Not AI-solvable &middot; human and process steps</span>
+<p>The two writing sittings, which only Sangeet can do &middot; settling the numbers in section 05 &middot; naming who holds purchase and who holds sales &middot; moving contacts off personal phones, which is a habit before it is a feature &middot; standing at the material and loading &middot; the decision of which supplier and buyer to pair on a lot &middot; GST registrations, LUT and licences, which the system only reminds about &middot; a WhatsApp Business account, if the clerk is to send on WhatsApp.</p></div>
+
+<!-- 03 roadmap -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">IMPLEMENTATION ROADMAP</div><div class="sectag">6 phases &middot; P1 done</div></div>
+<p>Sangeet has 5 to 6 hours a week, so each phase asks him for a few short inputs and one approval habit, never a training course. The calendar counts from 17.11.2026: phases 2 and 3 take six weeks and close the sales and purchase cycle by December end, the deadline Rev A set; phases 4 to 6 follow over about six months. The critical path is the two writing sittings and the product and buyer lists, both due in week 1 of phase 2. A dated calendar sits behind this table, not in front of it.</p>
+
+<table class="numbers">
+  <tr><th>Phase</th><th>Focus</th><th>Duration</th><th>End state</th></tr>
+  <tr><td><b>1</b></td><td>Foundation and the wall</td><td>Done, live</td><td>Everyone logs in only by grant, sees only their company and only their side; nothing sets a price except owner or admin.</td></tr>
+  <tr><td><b>2</b></td><td>CRM and the checker</td><td>2 weeks</td><td>Sales staff get the right name, the document pack or a red stop; suppliers invisible; every call logged.</td></tr>
+  <tr><td><b>3</b></td><td>The board and the scoreboard</td><td>4 weeks</td><td>Every deal and sample is a card on one board; field staff work from their phones; each post has a score; the CRM and task tool are off.</td></tr>
+  <tr><td><b>4</b></td><td>The money pipeline and the trigger</td><td>4 weeks</td><td>Every rupee owed on both sides is visible; a confirmed lot opens its own sales cards and waits for Sangeet&rsquo;s price and tap.</td></tr>
+  <tr><td><b>5</b></td><td>Documents, Tally and the Deal Clerk</td><td>8 weeks</td><td>Papers print from the system; Tally takes the export; the clerk reports at 6 PM and sends through allowed channels.</td></tr>
+  <tr><td><b>6</b></td><td>Management and the second company</td><td>12 weeks</td><td>Org board, SOPs, HR and weekly stats live; the second company on the same system.</td></tr>
+</table>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P1</div><div class="phtitle">FOUNDATION AND THE WALL</div><div class="phtag">F-00 + SYS-02 basic &middot; done</div></div>
+  <div class="phbody"><p><b>What was built:</b> the separate supply and demand tables, the owner-only link, seven roles, access by grant with an Owner guard and a last-owner guard, price and name rules in the database, the audit log, 84 role-by-role checks, and the first screens in deep blue on phone and desktop.</p>
+  <div class="done"><span class="dlbl">Done when</span>met: only Sangeet&rsquo;s login exists, as Owner; one company is set up; the app is live at sipl-global-business-ops-erp.vercel.app. Before anyone else logs in, the four security steps in section 06 must be done.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P2</div><div class="phtitle">CRM AND THE CHECKER</div><div class="phtag">SYS-01 + SYS-02 full + SYS-03 stage 1 &middot; 2 weeks</div></div>
+  <div class="phbody"><p><b>Why now:</b> it needs only Sangeet&rsquo;s words and his lists, nobody changes how they work yet, and every later system reads the rules, the names and the contacts.</p>
+  <div class="done"><span class="dlbl">Done when</span>the Deal Wall Skill exists in Sangeet&rsquo;s words with the price line blank &middot; for any product and buyer typed into a phone, the checker returns the name and document pack, or a red stop &middot; contacts are imported with duplicates caught &middot; every call is logged, and five products make five follow-ups.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P3</div><div class="phtitle">THE BOARD AND THE SCOREBOARD</div><div class="phtag">SYS-03 stage 2 + SYS-04 + SYS-07 &middot; 4 weeks</div></div>
+  <div class="phbody"><p><b>Why now:</b> this is the one phase where people change habits, so it comes once the names and contacts are already in place. Accountability is built in the same phase, so the board is used from the first day, not added later.</p>
+  <div class="done"><span class="dlbl">Done when</span>every live opportunity and sample is a card with an owner, a next action and a date &middot; the four field guys and the back office person take the day&rsquo;s tasks from the board &middot; each post sees its daily score and signs a weekly review &middot; Sangeet can open his phone from outside India and see every lot, sample and follow-up of the sales and purchase cycle &middot; the paid CRM and the task tool are no longer paid for.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P4</div><div class="phtitle">THE MONEY PIPELINE AND THE TRIGGER</div><div class="phtag">SYS-08 + SYS-05 &middot; 4 weeks</div></div>
+  <div class="phbody"><p><b>Why now:</b> the trigger needs clean lots and clean buyer tags to be safe, and the money view needs deals that already live on the board. It lands inside the October to March busy season, on one product line first.</p>
+  <div class="done"><span class="dlbl">Done when</span>every deal shows booked, received and still to receive on both sides &middot; dispatch waits for the advance unless Sangeet releases it &middot; for one product line, a confirmed lot appears in the sales lane under its market name with the supplier stripped, buyers and offers drafted, and nothing leaves until Sangeet enters the price and taps approve.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P5</div><div class="phtitle">DOCUMENTS, TALLY AND THE DEAL CLERK</div><div class="phtag">SYS-09 + SYS-06 &middot; 8 weeks</div></div>
+  <div class="phbody"><p><b>Why now:</b> documents need deals, money and compliance fields to print from; the clerk can only work cards that exist, and runs draft-only for Sangeet to read before it sends anything.</p>
+  <div class="done"><span class="dlbl">Done when</span>quotations, orders and invoices print from the system with real names and HSN on statutory papers &middot; the accountant imports the Tally export each week &middot; the dispatch checklist is ticked on every deal &middot; the clerk&rsquo;s 6 PM report reaches Sangeet daily and, once he allows it, follow-ups go through WhatsApp Business or email.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P6</div><div class="phtitle">MANAGEMENT AND THE SECOND COMPANY</div><div class="phtag">SYS-10 &middot; 12 weeks</div></div>
+  <div class="phbody"><p><b>Why last:</b> the org board and HR need posts and statistics that only exist once the sales and purchase flow has run through a full busy season; the second company should join a system that has already proved itself.</p>
+  <div class="done"><span class="dlbl">Done when</span>every person and agent holds a post with its hats and weekly statistics &middot; SOPs carry read receipts &middot; attendance and leave are live &middot; leaving staff lose access the same day &middot; the second company runs on the same system, and Sangeet sees both from one phone.</div></div></div>
+
+<div class="noteblock long"><span class="nlbl">What gets built in each phase &middot; records and screens, for the build</span>
+<table class="numbers" style="margin: 6px 0 0;">
+  <tr><th>Phase</th><th>Area</th><th>Records (tables)</th><th>Screens</th></tr>
+  <tr><td>1 &middot; built</td><td>Access and the wall</td><td>companies, memberships, member invitations, roles; suppliers, products, purchase lots; buyers, market names, sales lots; name-to-product link; audit log</td><td>Sign in, No access yet, Today with price approval, Lots, Lot record, Buyers, Suppliers, Products, Names (&ldquo;Which name?&rdquo;), Team</td></tr>
+  <tr><td>2</td><td>Rules and names</td><td>Deal Wall Skill file; message templates; document checklist per name; document packs (COA version, photo set, video set); name exposure (buyer, name, date); product compliance fields (real name, HSN, UN number, SDS)</td><td>Which name? (full, phone), document pack view, change password</td></tr>
+  <tr><td>2</td><td>CRM</td><td>contact people at buyers and suppliers; leads; call log (one call, many products); follow-ups; conversation notes; price history (owner only); import batches with duplicate check</td><td>Buyer page with call log, Call queue, Import</td></tr>
+  <tr><td>3</td><td>Board and field</td><td>opportunities (owner, next action, due date, stage key); tender and auction lane; samples (sent, received, result); tasks; daily action list; dispatch requests; courier companies</td><td>Pipeline Board (owner, purchase, sales views), Field Today (phone), Confidentiality view (owner)</td></tr>
+  <tr><td>3</td><td>Scoreboard</td><td>areas; KPIs; assignment by post; daily entries with target and points fixed on creation; weekly review sign-off</td><td>My Score, Team Score, Owner Today</td></tr>
+  <tr><td>4</td><td>Money and trigger</td><td>deals (purchase leg, sales leg); payment schedules per side; payment ledger (add-only); landed cost lines; capital locked; claims and disputes; lot-to-sale rule; trigger log</td><td>Money Pipeline, Recovery by age, Deal margin (owner), Approve offers (phone)</td></tr>
+  <tr><td>5</td><td>Documents and dispatch</td><td>quotations, sales orders, purchase orders, sales and purchase invoices; terms; tax templates; HSN codes; numbering per company and year; Tally export batches; dispatch checklist per deal; loading notes, weighment slips, transport orders; inward and outward notes; compliance vault; NDA and non-circumvention register</td><td>Print and PDF, Tally export, Logistics lane, Compliance with expiry list</td></tr>
+  <tr><td>5</td><td>AI and messages</td><td>AI provider; agents and their posts; AI proposals; AI action log; message channels; outbound messages; courier tracking; clerk reports</td><td>Clerk drafts inbox, 6 PM report, Channel settings</td></tr>
+  <tr><td>6</td><td>Management</td><td>divisions, departments, posts, hats; statistic definitions and weekly entries; manuals and SOPs with read receipts; onboarding and exit runs; attendance, leave, shifts, holidays; commission agreements and statements</td><td>Org Board, My Hat, SOP reader, People, Attendance</td></tr>
+  <tr><td>6</td><td>Second company</td><td>company setup pack (retail); scan-to-invoice; group reports; party portal with one-time code sign-in</td><td>Group view, Company switcher</td></tr>
+</table>
+<p style="margin-top:8px;">Record names are plain words; the build turns each into a table with its migration and role-by-role tests. About 45 records by the end of phase 3, about 150 by the end of phase 6.</p></div>
+
+<div class="noteblock long"><span class="nlbl">Decisions this revision takes &middot; Sangeet may overturn any of them</span>
+<table class="numbers" style="margin: 6px 0 0;">
+  <tr><th>Question</th><th>Decision</th><th>Why</th></tr>
+  <tr><td>Which stack</td><td>React, Supabase and Vercel, the live build</td><td>Live, tested, light to run, fits 5 to 6 hours a week; the Frappe design&rsquo;s requirements carry across</td></tr>
+  <tr><td>How deep the names go</td><td>Sales and field see market names only; purchase sees the real product, never buyers; R&amp;D sees the real product, never parties</td><td>Purchase must know what it buys; the wall that matters is buyer against supplier</td></tr>
+  <tr><td>How many roles</td><td>The seven built roles; manager and accounts splits only when such a person exists</td><td>There is no management layer today; roles follow people, not org charts</td></tr>
+  <tr><td>What the accountant sees</td><td>Nothing until phase 5; then invoices from both sides, never the deal that joins them</td><td>Tally needs the invoices; the link stays with Sangeet</td></tr>
+  <tr><td>Tally</td><td>Kept; tax invoices issued from Tally until phase 5, then printed from the system and exported to Tally</td><td>Books stay safe while the system proves itself (D-02)</td></tr>
+  <tr><td>Phone</td><td>Web app on the home screen</td><td>Works today on every phone; store apps parked (D-03)</td></tr>
+  <tr><td>Dates</td><td>This blueprint&rsquo;s phase table, from 17.11.2026</td><td>One calendar; the Frappe dates of January to March 2027 are retired</td></tr>
+  <tr><td>AI</td><td>Claude; draft-only first; four tiers (observe, draft, act inside, act outside); outside only through allowed channels</td><td>Matches Sangeet&rsquo;s guardrails and his unset &ldquo;AI acts alone&rdquo; answer</td></tr>
+  <tr><td>Org board method</td><td>Posts, hats and weekly statistics counted from the board, in phase 6; scoreboard week in phase 3 ends Thursday 14:00 unless Sangeet chooses otherwise</td><td>Automatic statistics first; the method is his to confirm</td></tr>
+  <tr><td>Second company</td><td>Phase 6</td><td>After one season of sales and purchase on the board</td></tr>
+</table></div>
+
+<!-- 04 guardrails -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">GUARDRAILS</div><div class="sectag">Set by Sangeet, enforced by design</div></div>
+<p>These are Sangeet&rsquo;s own rules, printed as given, and the build rules that make them hold.</p>
+<div class="guard"><b>CONFIDENTIALITY:</b> &ldquo;Confidentiality is the key.&rdquo; Enforced in the database: a role that may not read a row never receives it, so no screen has to hide anything. Nobody but Sangeet sees the supplier and the buyer of one lot side by side.</div>
+<div class="guard"><b>HUMAN SIGNS OFF:</b> &ldquo;Pricing and negotiation.&rdquo; &middot; &ldquo;Every document flow must be approved. Especially in accounts, sales, purchase or the financial side.&rdquo; &middot; &ldquo;Any kind of process where a workflow exists. As well as the operational and QC side.&rdquo; Price fields are never writable by AI; only owner or admin can set them.</div>
+<div class="guard"><b>NEVER AUTOMATED:</b> &ldquo;Only where manual labour and a field job is required.&rdquo; Standing at the material, checking a waste or offspec lot, packing samples and loading stay with a field guy.</div>
+<div class="guard"><b>AI ACTS ALONE, NOT YET SET:</b> &ldquo;I don&rsquo;t know right now but that I will figure out during development.&rdquo; Default until he sets it: the system drafts, flags and reads tracking; nothing leaves and nothing is priced without his tap. Any message with a rupee figure, a quantity commitment or a token request waits for him.</div>
+<div class="guard"><b>ACCESS:</b> access is granted, never claimed; signing up gives nothing. Admin has the same access as Owner, except that only an Owner can grant, change or remove the Owner role, and the last Owner cannot be removed.</div>
+<div class="guard"><b>PAPERS AND MONEY:</b> a market name never appears on a GST, customs or bank document. A token is never deal value and never makes a sale final. Money is worked out in the database only.</div>
+<div class="guard"><b>ERROR PROTOCOL:</b> every change is written to an audit log by the database; corrections are new entries, never silent edits; every schema change is a migration safe to run twice and tested as each role, because a blocked write can look like success.</div>
+
+<!-- 05 numbers -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE NUMBERS</div><div class="sectag">Flagged, not resolved</div></div>
+<p>Four questions only Sangeet can answer:</p>
+<p><b>(1) Quotes and leads.</b> 300 to 500 quotes a month is written higher than 200 to 500 leads. Are quotes counted per product line, so one lead can carry several quotes?</p>
+<p><b>(2) Conversion.</b> 7 orders out of every 100 quotes, on 300 to 500 quotes, would be 21 to 35 orders a month, but orders are written as 5 to 7. Which holds?</p>
+<p><b>(3) Order value and turnover.</b> 5 to 7 orders at ₹5,00,000 comes to ₹25 to 35 lakh a month, below the stated ₹50 lakh to 1 crore band. Is the order value, the order count or the band understated?</p>
+<p><b>(4) Team and reporting.</b> Seven people plus the owner are described; managers and reporting lines were not stated. Who holds purchase, and which field guys hold sales?</p>
+<p>Until they are settled, the board counts leads, quotes per product and orders separately, so within the first month of phase 3 the system itself shows the true funnel.</p>
+
+<!-- 06 next steps -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Detail behind panel 10</div></div>
+<p>Panel 10 carries the seven actions; four need detail.</p>
+<div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>Secure the live app before staff log in:</b> (a) change the owner password, which was shared in a chat during the build, in Supabase under Authentication, then Users, and add a change-password screen in phase 2; (b) connect a mail service (custom SMTP) in Supabase, because the built-in email reaches only a few addresses an hour, or create staff logins already confirmed; (c) decide how staff reach the app, since Vercel Authentication lets in only Vercel team members: a custom domain is the usual answer; (d) confirm in Supabase that &ldquo;Confirm email&rdquo; is on and the Site URL and redirect URLs point at the live address. Passwords and personal emails never go into the code. Sangeet with the build session.</p></div></div>
+<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>The two writing sittings, one hour each:</b> first, the role wall (who may see the supplier, who the buyer, what a field guy may know) and the alias rule, with real examples; second, the offer note, the sample covering note, the follow-up for each stage, the document checklist per name, and the dispatch checklist (bill of lading, packing, labels, COA letterhead). Spoken to Claude, written back in his words, read and signed. Sangeet.</p></div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>The lists, as spreadsheets:</b> products (real name, HSN, UN number if hazardous, SDS on file); market names (product, name, target industry, COA version, photo set, video set); buyers (company, contact, phone, email, industry, city, names already shown, date); suppliers (company, contact, origin, products). Contacts from Google contacts and B2B portal exports can be sent as they are; the import catches duplicates. Sangeet with the back office person.</p></div></div>
+<div class="step"><div class="stepnum">07</div><div class="stepbody"><p><b>The setup questions:</b> whether a WhatsApp Business account exists; the courier companies used; the languages for outbound notes; GSTINs, e-invoicing applicability and LUT, and who files; document prefixes per document; currencies and banks; whether the scoreboard week ends Thursday 14:00; when the second company should start; and confirmation that ideas taken from the reference codebase he supplied may be reused (patterns only, never its code). Sangeet with the accountant.</p></div></div>
+
+<div class="traceline">Every item in this document traces to the Rev A blueprint audit and Systems Brief (28.10.2026), the owner&rsquo;s Control Center brief and first-stage plan (8.11.2026), or the build handovers (8.11.2026 and 15.11.2026).<br>No figures added beyond those the client provided; unknowns are named, not guessed. Rev B supersedes Rev A in full.</div>
+
+</div>
+
+</body>
+</html>
