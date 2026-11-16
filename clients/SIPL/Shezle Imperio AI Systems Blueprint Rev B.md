@@ -1,6 +1,6 @@
 # Shezle Imperio AI Systems Blueprint · Rev B
 
-A middleman trader in industrial chemicals, scrap, byproduct and offspec lots, where confidentiality is the whole business and every rule lives in the owner’s head. Since Rev A the build has started and its first stage is live. One plan now joins both: a foundation and ten systems, six simple phases, the sales and purchase cycle on the board by December end.
+A middleman trader in industrial chemicals, scrap, byproduct and offspec lots, where confidentiality is the whole business and every rule lives in the owner’s head. Since Rev A the build has started and its first stage is live. One plan now joins both: a foundation and nine systems in five simple phases over three months, the sales and purchase cycle on the board by December end.
 
 Prepared for  
 Sangeet Sejpal, Owner  
@@ -186,7 +186,7 @@ Stack droppedPaid CRM, task tool (after P3)
 
 PartCurrent state
 
-06Recommended AI SystemsFoundation + 10 systems · in build order
+06Recommended AI SystemsFoundation + 9 systems · in build order
 
 F-00 · P1Built, live
 
@@ -508,62 +508,27 @@ Personal WhatsApp automation.
 
 Solves the chasing in 50 to 200 calls a day
 
-SYS-10 · P6 · New
+Kept: **Tally** as the books, **phones** for calls, **Google contacts** and **B2B portals** as lead sources (imported, then off personal phones). Dropped after P3: the **paid CRM** and the **task tool**. Live: **Control Center** on **Supabase** (Mumbai) and **Vercel**, built with **Claude**. Rev A codes are kept; new systems are numbered from SYS-07. The org board, HR and the second company come after the three months (D-05).
 
-Org Board, HR and the Second Company
-
-Posts and hats, people and AI
-
-↓
-
-Weekly stats from the board
-
-↓
-
-SOPs with read receipts
-
-↓
-
-Attendance, leave, exit: access withdrawn
-
-↓
-
-Second company, same core
-
-Second company
-
-Retail, scan-to-invoice.
-
-Decide then
-
-Native accounts, or Tally kept.
-
-Solves no layer between owner and team
-
-Kept: **Tally** as the books, **phones** for calls, **Google contacts** and **B2B portals** as lead sources (imported, then off personal phones). Dropped after P3: the **paid CRM** and the **task tool**. Live: **Control Center** on **Supabase** (Mumbai) and **Vercel**, built with **Claude**. Rev A codes are kept; new systems are numbered from SYS-07.
-
-07Implementation RoadmapPhase table · 6 phases · P1 done
+07Implementation RoadmapPhase table · 3 months · P1 done
 
 **P1**Done
 
-**P2**2 wk
+**P2 · wk 1–2**to 30 Nov
 
-**P3**4 wk · December end
+**P3 · wk 3–5**to 21 Dec · December end met
 
-**P4**4 wk
+**P4 · wk 6–8**to 11 Jan
 
-**P5**8 wk
-
-**P6**12 wk
+**P5 · wk 9–13**to 15 Feb 2027 · three months
 
 | Phase | Focus                               | Systems                           | Duration   | Done when                                                                                                                                                                                          |
 |-------|-------------------------------------|-----------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | P1    | Foundation and the wall             | F-00 · SYS-02 basic               | Done, live | Supply and demand sit in separate tables; only Sangeet and admin see the link; only they set a sell price; a second name to one buyer is blocked; access only by grant.                            |
 | P2    | CRM and the checker                 | SYS-01 · SYS-02 full · SYS-03 CRM | 2 weeks    | The rules are written in Sangeet’s words; any product and buyer typed into a phone returns the right name and document pack or a red stop; every call is logged, five products as five follow-ups. |
-| P3    | The board and the scoreboard        | SYS-03 board · SYS-04 · SYS-07    | 4 weeks    | Every live deal and sample is a card with one owner, one next action and a date; field staff work from their phones; each post sees its score; the paid CRM and task tool are switched off.        |
-| P4    | The money pipeline and the trigger  | SYS-08 · SYS-05                   | 4 weeks    | Each deal shows booked, received and still to receive on both sides; dispatch waits for the advance; a confirmed lot opens its own sales cards and waits for Sangeet’s price and tap.              |
-| P5    | Documents, Tally and the Deal Clerk | SYS-09 · SYS-06                   | 8 weeks    | Quotes, orders and invoices print from the system with real names and HSN; Tally takes the export; the clerk drafts, tracks couriers and reports at 6 PM, then sends through allowed channels.     |
-| P6    | Management and the second company   | SYS-10                            | 12 weeks   | Posts, hats, SOPs and weekly stats run the team; attendance and leave are live; the second company runs on the same system with the same wall.                                                     |
+| P3    | The board and the scoreboard        | SYS-03 board · SYS-04 · SYS-07    | 3 weeks    | Every live deal and sample is a card with one owner, one next action and a date; field staff work from their phones; each post sees its score; the paid CRM and task tool are switched off.        |
+| P4    | The money pipeline and the trigger  | SYS-08 · SYS-05                   | 3 weeks    | Each deal shows booked, received and still to receive on both sides; dispatch waits for the advance; a confirmed lot opens its own sales cards and waits for Sangeet’s price and tap.              |
+| P5    | Documents, Tally and the Deal Clerk | SYS-09 · SYS-06                   | 5 weeks    | Quotes, orders and invoices print from the system with real names and HSN; Tally takes the export; the clerk drafts, tracks couriers and reports at 6 PM, then sends through allowed channels.     |
 
 08Why This Build Order2×2 matrix
 
@@ -595,9 +560,9 @@ Growth · unblocks scaling
 
 SYS-09Documents, Dispatch and Tally Bridge
 
-SYS-10Org Board, HR and the Second Company
+D-05 · after month 3Org Board, HR and the Second Company
 
-→ after one season of deals on the board
+→ last in the window; the org board waits for a season on the board
 
 ← low dependence on human changehigh →
 
@@ -649,9 +614,9 @@ Sangeet’s own rules, plus one he did not have to state: **no layer suggests, c
 
 **Answer the setup questions:** WhatsApp Business, couriers, languages, GSTINs, document prefixes. Sangeet, accountant.
 
-Scope1 foundation + 10 systems · 6 phases
+Scope1 foundation + 9 systems · 5 phases
 
-WindowP1 done; P2 to P3 by December end; then about 6 months
+WindowThree months, 17.11.2026 to 15.02.2027
 
 SourcesRev A, owner’s brief, two build handovers
 
@@ -672,7 +637,7 @@ Find and call–– Qualify and offer–– Sample under the right name–– Fo
 | BusinessShezle Imperio Private Limited (SIPL), Ahmedabad. B2B merchant trading in industrial chemicals, waxes, oils, scrap, byproduct and offspec lots: domestic, import, export, high seas, tenders, auctions, back-to-back deals, occasional brokerage and joint ventures. Turnover band stated at ₹50 lakh to 1 crore a month. |                                                                                                                                                                                                                                                                                |
 | Current StackTally (one accountant) for the books; phones, Google contacts, B2B portals and social media for leads; a paid CRM and a task tool, both unopened. Built since Rev A: Control Center, live on Supabase (Mumbai) and Vercel, code in GitHub (enrosl/SIPL-Global-Business-OPS-ERP).                                     |                                                                                                                                                                                                                                                                                |
 | Prepared byBuildOur AI                                                                                                                                                                                                                                                                                                            | SourcesRev A blueprint audit and Systems Brief (28.10.2026) · owner’s Control Center brief and the first-stage plan (approved 8.11.2026) · build handover, Frappe design (8.11.2026) · build handover, React and Supabase build (15.11.2026) · owner’s UI and access decisions |
-| Systems Specified1 foundation + 10 systems in 6 phases; the foundation and phase 1 are built and live                                                                                                                                                                                                                             | Deadline AnchorSales and purchase cycle by December end 2026 (phases 2 and 3); accounts depth, HR and the second company after it                                                                                                                                              |
+| Systems Specified1 foundation + 9 systems in 5 phases over three months; the foundation and phase 1 are built and live                                                                                                                                                                                                            | Deadline AnchorThree months from 17.11.2026 to 15.02.2027; sales and purchase cycle by December end (phases 2 and 3); org board, HR and the second company after it                                                                                                            |
 | Build modelSangeet builds it himself with Claude on the live React, Supabase and Vercel app, at 5 to 6 hours a week. This document is the one source of truth; the Frappe design stays as a list of requirements.                                                                                                                 |                                                                                                                                                                                                                                                                                |
 
 Rev B supersedes Rev A (28.10.2026). Every change traces to the owner’s brief or the two build handovers.  
@@ -688,9 +653,9 @@ Overview
 
 Today every one of those rules lives in Sangeet’s head. He runs sales, purchase, HR, admin, IT and AI himself, with seven people below him and no manager in between. All eight stations of the money path are done by hand: 50 to 200 calls a day, five products per call, 10 to 20 samples a day, follow-ups from memory, and every confirmed lot handed to the sales side by Sangeet telling them himself. The leaks come through dispatch data, staff who leave, and drivers who can be paid for information. Three ERPs were tried and left, and a paid CRM sits unopened. His aim: “I can leave India and still all the work may be visible and handled from my phone anytime anywhere and coordinate through my team.”
 
-Since Rev A, the build has started. Two designs were drawn and they disagree; one of them, a React and Supabase app, is live with the wall already in the database. This revision joins Rev A, the owner’s brief and both build handovers into one plan, with seven structural changes: (1) **one stack, the live one**, with the Frappe design kept as a requirements list; (2) **the wall moves from a prompt into the database**, already built; (3) **the two-name rule becomes a hard block** with an owner override, already built; (4) the **CRM and call log** become stage one of the board; (5) **accountability moves earlier**, with a Team Scoreboard in phase 3; (6) a **Money Pipeline** and a **Documents and Tally Bridge** are added, with market names kept off every statutory paper; (7) the **org board, HR and the second company** are named as phase 6.
+Since Rev A, the build has started. Two designs were drawn and they disagree; one of them, a React and Supabase app, is live with the wall already in the database. This revision joins Rev A, the owner’s brief and both build handovers into one plan, with seven structural changes: (1) **one stack, the live one**, with the Frappe design kept as a requirements list; (2) **the wall moves from a prompt into the database**, already built; (3) **the two-name rule becomes a hard block** with an owner override, already built; (4) the **CRM and call log** become stage one of the board; (5) **accountability moves earlier**, with a Team Scoreboard in phase 3; (6) a **Money Pipeline** and a **Documents and Tally Bridge** are added, with market names kept off every statutory paper; (7) the whole plan fits **three months**; the **org board, HR and the second company** are named as the next step after it (D-05).
 
-The result is a foundation and ten systems in six phases, set out as one simple table: Phase, Focus, Duration, Done when. Phase 1 is done. Phases 2 and 3, six weeks, put the whole sales and purchase cycle on the board by December end, if the two writing sittings and the lists arrive in the first week. Nothing in this plan types a price, and nothing leaves without Sangeet’s tap.
+The result is a foundation and nine systems in five phases over three months, set out as one simple table: Phase, Focus, Duration, Done when. Phase 1 is done. Phases 2 and 3, five weeks, put the whole sales and purchase cycle on the board by 21 December; phases 4 and 5 finish the money, documents and the clerk by 15 February 2027, if the two writing sittings and the lists arrive in the first week. Nothing in this plan types a price, and nothing leaves without Sangeet’s tap.
 
 01
 
@@ -762,7 +727,7 @@ FindingTwo plans with two calendars cannot both be followed. This revision choos
 
 RECOMMENDED AI SYSTEMS
 
-Foundation + 10 systems
+Foundation + 9 systems
 
 SHEZLE LOT AND CONTACT RECORDF-00 · FOUNDATION · BUILT, LIVE
 
@@ -908,27 +873,13 @@ Guardrail
 
 Starts draft-only, for Sangeet to read. It moves up an authority tier only when he says so. It sends only through channels he allows (WhatsApp Business API, email); personal WhatsApp is never automated. Any message with a rupee figure, a quantity or a token request goes only after his approval. It runs as a user with the least access the job needs.
 
-ORG BOARD, HR AND THE SECOND COMPANYSYS-10 · PHASE 6 · NEW
-
-What it does
-
-The management layer the business does not have. An org board of divisions, departments and posts; one person holds one title and many hats, and an AI agent can hold a post too. Weekly statistics per post come from the board and the scoreboard, not from typing. SOPs and manuals with read receipts, starting from the Deal Wall Skill. Attendance, leave, shifts and holidays; onboarding, and an exit routine that withdraws access the same day. Commission agreements and statements if Sangeet wants them. The second company, retail with scan-to-invoice, starts on the same core with its own setup and the same wall, and a group view lets Sangeet see both from one phone.
-
-Solves
-
-§1.7, no layer between the owner and the team, and the knowledge that leaves with each person.
-
-Decide then
-
-Whether the books move into the system and Tally retires (D-02); the method and calendar of the weekly statistics.
-
 Note: the existing stack
 
 **Tally:** kept as the books; receives the voucher export from phase 5. **Phones, Google contacts, B2B portals, social media:** kept as lead sources; contacts are imported in phase 2 and then live in the system, not on personal phones. **Paid CRM and task tool:** switched off after phase 3. **Control Center:** the live app (Vite, React, TypeScript, Tailwind on Supabase and Vercel) is the base; every later phase builds on it. **Frappe design documents:** kept as a list of requirements; Frappe is not used.
 
 Deferred · parked, not dropped
 
-**D-01 Self-building system:** new forms, reports and modules built without code or by the built-in AI from a prompt, and AI creating records on instruction. Interim: Claude builds what is asked, phase by phase. Re-entry: after phase 6, once the core is stable. **D-02 Books inside the system:** a full ledger with GST, TDS and payments, and Tally retired. Interim: the Tally bridge. Re-entry: after a full busy season on the bridge and one quarter run side by side. **D-03 Store apps:** Play Store, App Store and desktop apps. Interim: the web app installed on each phone’s home screen. Re-entry: when field use shows a need the web app cannot meet. **D-04 Shipment data as a lead source:** import and export shipment data mined for buyers. Re-entry: after the CRM is in daily use.
+**D-01 Self-building system:** new forms, reports and modules built without code or by the built-in AI from a prompt, and AI creating records on instruction. Interim: Claude builds what is asked, phase by phase. Re-entry: after D-05, once the core is stable. **D-02 Books inside the system:** a full ledger with GST, TDS and payments, and Tally retired. Interim: the Tally bridge. Re-entry: after a full busy season on the bridge and one quarter run side by side. **D-03 Store apps:** Play Store, App Store and desktop apps. Interim: the web app installed on each phone’s home screen. Re-entry: when field use shows a need the web app cannot meet. **D-04 Shipment data as a lead source:** import and export shipment data mined for buyers. Re-entry: after the CRM is in daily use. **D-05 Org board, HR and the second company:** an org board of divisions, departments and posts, one person with many hats and AI agents holding posts too; weekly statistics from the board; SOPs with read receipts starting from the Deal Wall Skill; attendance, leave and an exit routine that withdraws access the same day; commission statements if wanted; and the second company, retail with scan-to-invoice, on the same core and the same wall, with a group view on one phone. Interim: the Team Scoreboard (SYS-07) carries accountability by post. Re-entry: after the three months, once the sales and purchase flow has run through the busy season; planned as a further phase of about three months.
 
 Not AI-solvable · human and process steps
 
@@ -938,18 +889,17 @@ The two writing sittings, which only Sangeet can do · settling the numbers in s
 
 IMPLEMENTATION ROADMAP
 
-6 phases · P1 done
+3 months · P1 done
 
-Sangeet has 5 to 6 hours a week, so each phase asks him for a few short inputs and one approval habit, never a training course. The calendar counts from 17.11.2026: phases 2 and 3 take six weeks and close the sales and purchase cycle by December end, the deadline Rev A set; phases 4 to 6 follow over about six months. The critical path is the two writing sittings and the product and buyer lists, both due in week 1 of phase 2. A dated calendar sits behind this table, not in front of it.
+Sangeet has 5 to 6 hours a week, so each phase asks him for a few short inputs and one approval habit, never a training course. The plan runs three months, 13 weeks from 17.11.2026 to 15.02.2027, as Rev A’s 90-day plan intended: phases 2 and 3 take five weeks and close the sales and purchase cycle by 21 December, ahead of the December-end deadline; phases 4 and 5 take eight weeks. Three months is tight for 5 to 6 hours a week, so his inputs are kept to the two sittings, the lists, one approval habit and a 30-minute weekly review. The critical path is the two writing sittings and the product and buyer lists, both due in week 1 of phase 2. A dated calendar sits behind this table, not in front of it.
 
-| Phase | Focus                               | Duration   | End state                                                                                                                               |
-|-------|-------------------------------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| **1** | Foundation and the wall             | Done, live | Everyone logs in only by grant, sees only their company and only their side; nothing sets a price except owner or admin.                |
-| **2** | CRM and the checker                 | 2 weeks    | Sales staff get the right name, the document pack or a red stop; suppliers invisible; every call logged.                                |
-| **3** | The board and the scoreboard        | 4 weeks    | Every deal and sample is a card on one board; field staff work from their phones; each post has a score; the CRM and task tool are off. |
-| **4** | The money pipeline and the trigger  | 4 weeks    | Every rupee owed on both sides is visible; a confirmed lot opens its own sales cards and waits for Sangeet’s price and tap.             |
-| **5** | Documents, Tally and the Deal Clerk | 8 weeks    | Papers print from the system; Tally takes the export; the clerk reports at 6 PM and sends through allowed channels.                     |
-| **6** | Management and the second company   | 12 weeks   | Org board, SOPs, HR and weekly stats live; the second company on the same system.                                                       |
+| Phase | Focus                               | Duration          | End state                                                                                                                               |
+|-------|-------------------------------------|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| **1** | Foundation and the wall             | Done, live        | Everyone logs in only by grant, sees only their company and only their side; nothing sets a price except owner or admin.                |
+| **2** | CRM and the checker                 | 2 weeks (wk 1–2)  | Sales staff get the right name, the document pack or a red stop; suppliers invisible; every call logged.                                |
+| **3** | The board and the scoreboard        | 3 weeks (wk 3–5)  | Every deal and sample is a card on one board; field staff work from their phones; each post has a score; the CRM and task tool are off. |
+| **4** | The money pipeline and the trigger  | 3 weeks (wk 6–8)  | Every rupee owed on both sides is visible; a confirmed lot opens its own sales cards and waits for Sangeet’s price and tap.             |
+| **5** | Documents, Tally and the Deal Clerk | 5 weeks (wk 9–13) | Papers print from the system; Tally takes the export; the clerk reports at 6 PM and sends through allowed channels.                     |
 
 P1
 
@@ -975,7 +925,7 @@ P3
 
 THE BOARD AND THE SCOREBOARD
 
-SYS-03 stage 2 + SYS-04 + SYS-07 · 4 weeks
+SYS-03 stage 2 + SYS-04 + SYS-07 · 3 weeks
 
 **Why now:** this is the one phase where people change habits, so it comes once the names and contacts are already in place. Accountability is built in the same phase, so the board is used from the first day, not added later.
 
@@ -985,7 +935,7 @@ P4
 
 THE MONEY PIPELINE AND THE TRIGGER
 
-SYS-08 + SYS-05 · 4 weeks
+SYS-08 + SYS-05 · 3 weeks
 
 **Why now:** the trigger needs clean lots and clean buyer tags to be safe, and the money view needs deals that already live on the board. It lands inside the October to March busy season, on one product line first.
 
@@ -995,53 +945,43 @@ P5
 
 DOCUMENTS, TALLY AND THE DEAL CLERK
 
-SYS-09 + SYS-06 · 8 weeks
+SYS-09 + SYS-06 · 5 weeks
 
 **Why now:** documents need deals, money and compliance fields to print from; the clerk can only work cards that exist, and runs draft-only for Sangeet to read before it sends anything.
 
 Done whenquotations, orders and invoices print from the system with real names and HSN on statutory papers · the accountant imports the Tally export each week · the dispatch checklist is ticked on every deal · the clerk’s 6 PM report reaches Sangeet daily and, once he allows it, follow-ups go through WhatsApp Business or email.
 
-P6
-
-MANAGEMENT AND THE SECOND COMPANY
-
-SYS-10 · 12 weeks
-
-**Why last:** the org board and HR need posts and statistics that only exist once the sales and purchase flow has run through a full busy season; the second company should join a system that has already proved itself.
-
-Done whenevery person and agent holds a post with its hats and weekly statistics · SOPs carry read receipts · attendance and leave are live · leaving staff lose access the same day · the second company runs on the same system, and Sangeet sees both from one phone.
-
 What gets built in each phase · records and screens, for the build
 
-| Phase     | Area                   | Records (tables)                                                                                                                                                                                                                                                                                                             | Screens                                                                                                                       |
-|-----------|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| 1 · built | Access and the wall    | companies, memberships, member invitations, roles; suppliers, products, purchase lots; buyers, market names, sales lots; name-to-product link; audit log                                                                                                                                                                     | Sign in, No access yet, Today with price approval, Lots, Lot record, Buyers, Suppliers, Products, Names (“Which name?”), Team |
-| 2         | Rules and names        | Deal Wall Skill file; message templates; document checklist per name; document packs (COA version, photo set, video set); name exposure (buyer, name, date); product compliance fields (real name, HSN, UN number, SDS)                                                                                                      | Which name? (full, phone), document pack view, change password                                                                |
-| 2         | CRM                    | contact people at buyers and suppliers; leads; call log (one call, many products); follow-ups; conversation notes; price history (owner only); import batches with duplicate check                                                                                                                                           | Buyer page with call log, Call queue, Import                                                                                  |
-| 3         | Board and field        | opportunities (owner, next action, due date, stage key); tender and auction lane; samples (sent, received, result); tasks; daily action list; dispatch requests; courier companies                                                                                                                                           | Pipeline Board (owner, purchase, sales views), Field Today (phone), Confidentiality view (owner)                              |
-| 3         | Scoreboard             | areas; KPIs; assignment by post; daily entries with target and points fixed on creation; weekly review sign-off                                                                                                                                                                                                              | My Score, Team Score, Owner Today                                                                                             |
-| 4         | Money and trigger      | deals (purchase leg, sales leg); payment schedules per side; payment ledger (add-only); landed cost lines; capital locked; claims and disputes; lot-to-sale rule; trigger log                                                                                                                                                | Money Pipeline, Recovery by age, Deal margin (owner), Approve offers (phone)                                                  |
-| 5         | Documents and dispatch | quotations, sales orders, purchase orders, sales and purchase invoices; terms; tax templates; HSN codes; numbering per company and year; Tally export batches; dispatch checklist per deal; loading notes, weighment slips, transport orders; inward and outward notes; compliance vault; NDA and non-circumvention register | Print and PDF, Tally export, Logistics lane, Compliance with expiry list                                                      |
-| 5         | AI and messages        | AI provider; agents and their posts; AI proposals; AI action log; message channels; outbound messages; courier tracking; clerk reports                                                                                                                                                                                       | Clerk drafts inbox, 6 PM report, Channel settings                                                                             |
-| 6         | Management             | divisions, departments, posts, hats; statistic definitions and weekly entries; manuals and SOPs with read receipts; onboarding and exit runs; attendance, leave, shifts, holidays; commission agreements and statements                                                                                                      | Org Board, My Hat, SOP reader, People, Attendance                                                                             |
-| 6         | Second company         | company setup pack (retail); scan-to-invoice; group reports; party portal with one-time code sign-in                                                                                                                                                                                                                         | Group view, Company switcher                                                                                                  |
+| Phase                | Area                   | Records (tables)                                                                                                                                                                                                                                                                                                             | Screens                                                                                                                       |
+|----------------------|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| 1 · built            | Access and the wall    | companies, memberships, member invitations, roles; suppliers, products, purchase lots; buyers, market names, sales lots; name-to-product link; audit log                                                                                                                                                                     | Sign in, No access yet, Today with price approval, Lots, Lot record, Buyers, Suppliers, Products, Names (“Which name?”), Team |
+| 2                    | Rules and names        | Deal Wall Skill file; message templates; document checklist per name; document packs (COA version, photo set, video set); name exposure (buyer, name, date); product compliance fields (real name, HSN, UN number, SDS)                                                                                                      | Which name? (full, phone), document pack view, change password                                                                |
+| 2                    | CRM                    | contact people at buyers and suppliers; leads; call log (one call, many products); follow-ups; conversation notes; price history (owner only); import batches with duplicate check                                                                                                                                           | Buyer page with call log, Call queue, Import                                                                                  |
+| 3                    | Board and field        | opportunities (owner, next action, due date, stage key); tender and auction lane; samples (sent, received, result); tasks; daily action list; dispatch requests; courier companies                                                                                                                                           | Pipeline Board (owner, purchase, sales views), Field Today (phone), Confidentiality view (owner)                              |
+| 3                    | Scoreboard             | areas; KPIs; assignment by post; daily entries with target and points fixed on creation; weekly review sign-off                                                                                                                                                                                                              | My Score, Team Score, Owner Today                                                                                             |
+| 4                    | Money and trigger      | deals (purchase leg, sales leg); payment schedules per side; payment ledger (add-only); landed cost lines; capital locked; claims and disputes; lot-to-sale rule; trigger log                                                                                                                                                | Money Pipeline, Recovery by age, Deal margin (owner), Approve offers (phone)                                                  |
+| 5                    | Documents and dispatch | quotations, sales orders, purchase orders, sales and purchase invoices; terms; tax templates; HSN codes; numbering per company and year; Tally export batches; dispatch checklist per deal; loading notes, weighment slips, transport orders; inward and outward notes; compliance vault; NDA and non-circumvention register | Print and PDF, Tally export, Logistics lane, Compliance with expiry list                                                      |
+| 5                    | AI and messages        | AI provider; agents and their posts; AI proposals; AI action log; message channels; outbound messages; courier tracking; clerk reports                                                                                                                                                                                       | Clerk drafts inbox, 6 PM report, Channel settings                                                                             |
+| After month 3 (D-05) | Management             | divisions, departments, posts, hats; statistic definitions and weekly entries; manuals and SOPs with read receipts; onboarding and exit runs; attendance, leave, shifts, holidays; commission agreements and statements                                                                                                      | Org Board, My Hat, SOP reader, People, Attendance                                                                             |
+| After month 3 (D-05) | Second company         | company setup pack (retail); scan-to-invoice; group reports; party portal with one-time code sign-in                                                                                                                                                                                                                         | Group view, Company switcher                                                                                                  |
 
-Record names are plain words; the build turns each into a table with its migration and role-by-role tests. About 45 records by the end of phase 3, about 150 by the end of phase 6.
+Record names are plain words; the build turns each into a table with its migration and role-by-role tests. About 45 records by the end of phase 3; the rest of the roughly 150 follow in phases 4 and 5 and in D-05.
 
 Decisions this revision takes · Sangeet may overturn any of them
 
-| Question                 | Decision                                                                                                                                              | Why                                                                                                 |
-|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Which stack              | React, Supabase and Vercel, the live build                                                                                                            | Live, tested, light to run, fits 5 to 6 hours a week; the Frappe design’s requirements carry across |
-| How deep the names go    | Sales and field see market names only; purchase sees the real product, never buyers; R&D sees the real product, never parties                         | Purchase must know what it buys; the wall that matters is buyer against supplier                    |
-| How many roles           | The seven built roles; manager and accounts splits only when such a person exists                                                                     | There is no management layer today; roles follow people, not org charts                             |
-| What the accountant sees | Nothing until phase 5; then invoices from both sides, never the deal that joins them                                                                  | Tally needs the invoices; the link stays with Sangeet                                               |
-| Tally                    | Kept; tax invoices issued from Tally until phase 5, then printed from the system and exported to Tally                                                | Books stay safe while the system proves itself (D-02)                                               |
-| Phone                    | Web app on the home screen                                                                                                                            | Works today on every phone; store apps parked (D-03)                                                |
-| Dates                    | This blueprint’s phase table, from 17.11.2026                                                                                                         | One calendar; the Frappe dates of January to March 2027 are retired                                 |
-| AI                       | Claude; draft-only first; four tiers (observe, draft, act inside, act outside); outside only through allowed channels                                 | Matches Sangeet’s guardrails and his unset “AI acts alone” answer                                   |
-| Org board method         | Posts, hats and weekly statistics counted from the board, in phase 6; scoreboard week in phase 3 ends Thursday 14:00 unless Sangeet chooses otherwise | Automatic statistics first; the method is his to confirm                                            |
-| Second company           | Phase 6                                                                                                                                               | After one season of sales and purchase on the board                                                 |
+| Question                 | Decision                                                                                                                                                                 | Why                                                                                                 |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Which stack              | React, Supabase and Vercel, the live build                                                                                                                               | Live, tested, light to run, fits 5 to 6 hours a week; the Frappe design’s requirements carry across |
+| How deep the names go    | Sales and field see market names only; purchase sees the real product, never buyers; R&D sees the real product, never parties                                            | Purchase must know what it buys; the wall that matters is buyer against supplier                    |
+| How many roles           | The seven built roles; manager and accounts splits only when such a person exists                                                                                        | There is no management layer today; roles follow people, not org charts                             |
+| What the accountant sees | Nothing until phase 5; then invoices from both sides, never the deal that joins them                                                                                     | Tally needs the invoices; the link stays with Sangeet                                               |
+| Tally                    | Kept; tax invoices issued from Tally until phase 5, then printed from the system and exported to Tally                                                                   | Books stay safe while the system proves itself (D-02)                                               |
+| Phone                    | Web app on the home screen                                                                                                                                               | Works today on every phone; store apps parked (D-03)                                                |
+| Dates                    | This blueprint’s phase table, from 17.11.2026                                                                                                                            | One calendar; the Frappe dates of January to March 2027 are retired                                 |
+| AI                       | Claude; draft-only first; four tiers (observe, draft, act inside, act outside); outside only through allowed channels                                                    | Matches Sangeet’s guardrails and his unset “AI acts alone” answer                                   |
+| Org board method         | Posts, hats and weekly statistics counted from the board, after the three months (D-05); scoreboard week in phase 3 ends Thursday 14:00 unless Sangeet chooses otherwise | Automatic statistics first; the method is his to confirm                                            |
+| Second company           | After the three months (D-05)                                                                                                                                            | After one season of sales and purchase on the board                                                 |
 
 04
 
