@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shezle Imperio Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-SHE-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Shezle Imperio · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Shezle Imperio</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">CONTROL CENTER<br><span class="accent">STARTER GUIDE</span></h1>
+    <div class="coversub">Prepared for <b>Sangeet Sejpal</b>, Shezle Imperio Private Limited. Phase 1 is live. This guide sets up your <b>HQ session</b>: five prompts that make the app safe, seal the wall, give Claude your rules, fix the look and plan the Android and iOS apps. After that, <b>HQ writes the prompt for every new session</b>.</div>
+    <div class="flow">
+      <span class="chip">Files on<br>GitHub</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">HQ-1 to<br>HQ-5</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Wall<br>sealed</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">HQ hands out<br>prompts</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Continue<br>building</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Where you are (setup health check, 17.11.2026)</span><b>Working:</b> GitHub (enrosl) sees the repository; Supabase is the right Mumbai project, healthy, with the 6 Phase 1 migrations; Vercel (team SIPL) has a live production deployment; the app builds. <b>To fix in week 1:</b> the code is not on <code class="f">main</code> and production deploys from a <code class="f">claude/&hellip;</code> branch; migration file numbers differ from the database; 12 database functions are open to every signed-in user; leaked-password protection is off; Vercel Authentication blocks staff; &ldquo;Confirm email&rdquo;, Site URL and SMTP are unchecked; and the eight defects of the repository audit are still open.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The three documents</span>1 &middot; AI Systems Blueprint Rev C<br>2 &middot; This Starter Guide (once)<br>3 &middot; Continue Building Guide (every sitting after)</td>
+        <td><span class="lbl">Your time</span>5 to 6 hours a week: answers, approvals and two writing sittings. Claude writes every line.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-SHE-01 Rev C; setup health check of 17.11.2026.</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS (a click) &middot; PASTE TO CLAUDE CODE (copy the whole box)</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Two minutes</div></div>
+<p>You wrote: <em>&ldquo;I can leave India and still all the work may be visible and handled from my phone anytime anywhere and coordinate through my team.&rdquo;</em> Rev C of your blueprint sets a foundation and fifteen systems in eight phases: the sales and purchase cycle on the board by 21 December, money, documents and the Deal Clerk by 15 February 2027, and samples, logistics, the builder, the ledger, the org board and the second company by 15 November 2027. Control Center will run on the web, on Android and on iOS, from one code base.</p>
+<p><b>How your sessions work.</b> You build in <b>Claude Code on the web</b> (claude.ai/code, or the Code tab in the Claude app). One session, <b>HQ</b>, holds the whole picture: it owns <code class="f">main</code> and the live database, merges finished work, and <b>writes the opening prompt for every other session</b>. You never write a builder prompt yourself: you ask HQ, copy what it gives you, and paste it into a new session. Each builder works on its own branch and hands its work back to HQ through a <b>pull request</b>.</p>
+<p>If you do not understand something, type <code class="f">explain this to me in simple words</code>. If something breaks, paste the error or a screenshot and type <code class="f">explain this in simple words and fix it</code>. Claude never needs a password or secret key in the chat: where one is needed, it tells you exactly where to paste it yourself.</p>
+<div class="note"><span class="nlbl">What it costs</span><p>Your Claude plan builds everything. GitHub is free. <b>Vercel Pro</b>, about $20 a month: your project is on the free Hobby plan, which is for personal use. <b>Supabase Pro</b>, about $25 a month, before staff log in: daily backups and leaked-password protection. A <b>domain</b> for the app (about ₹1,000 a year) or a sub-address of your company website, and a <b>mail service</b> for sign-in emails, usually free at your volume. For the phone apps: <b>Google Play</b> developer account, $25 once; <b>Apple Developer Program</b>, $99 a year; iPhone builds need a Mac in the cloud, a few dollars a month or a free tier. Later: a Claude API key for the Deal Clerk (P5) and, if you choose it, the WhatsApp Business API. Claude always shows a cost and waits for your yes.</p></div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put the files on GitHub and change your password</b></p>
+<ol>
+<li>Open <b>github.com/enrosl/SIPL-Global-Business-OPS-ERP</b>. Check the branch button at the top left says <code class="f">main</code>.</li>
+<li>Click <b>Add file &rarr; Upload files</b>. Drag in four PDFs: the <b>Blueprint Rev C</b>, this <b>Starter Guide</b>, the <b>Continue Building Guide</b> and the <b>Setup Health Check</b>. Write <code class="f">Add Rev C and guides</code> in the message box and click <b>Commit changes</b>. HQ moves them into <code class="f">docs/</code>.</li>
+<li><b>Change your app password:</b> Supabase &rarr; project <b>SIPL Global Ops ERP</b> &rarr; <b>Authentication &rarr; Users</b> &rarr; the three dots on your user &rarr; <b>Send password recovery</b>, and set a new one from the email. The old one was shared in a chat.</li>
+<li><b>Start the D-U-N-S number</b> for Shezle Imperio if you do not have one (free, at dnb.com). Apple and Google both ask for it to publish an app under the company&rsquo;s name, and it can take one to two weeks.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>Open HQ and paste HQ-1.</b> Open <b>claude.ai/code</b> &rarr; <b>New session</b> &rarr; repository <code class="f">enrosl/SIPL-Global-Business-OPS-ERP</code>, branch <code class="f">main</code>. Rename the session <code class="f">HQ</code>. Paste <b>HQ-1</b> and send. When HQ says a prompt is finished and you have said OK, paste the next one <b>into the same HQ session</b>: HQ-2, HQ-3, HQ-4, HQ-5. HQ is the session you come back to every sitting, for the next twelve months.</p>
+</div></div>
+
+<div class="paste long"><span class="plbl">HQ-1 &middot; One true copy</span>
+<p>You are <b>HQ</b>, the headquarters session for Control Center, the operating system of Shezle Imperio Private Limited (SIPL), a B2B middleman trader in industrial chemicals, waxes, oils, scrap and offspec lots, where confidentiality is the whole business. I am Sangeet Sejpal, the owner, and I am not a programmer. Phase 1 is built and live: Vite, React, TypeScript and Tailwind on Supabase (project &ldquo;SIPL Global Ops ERP&rdquo;, Mumbai) and Vercel (team SIPL, project sipl-global-business-ops-erp). On main I uploaded four PDFs: my AI Systems Blueprint Rev C, the Starter Guide, the Continue Building Guide and the Setup Health Check of 17 November. Pages R1, R2 and R3 of the Starter Guide are written for you. You own main and the live database; you merge all work; you never build a system yourself; and you write the opening prompt for every other session. Work in steps; after each, tell me in simple words what you did and <b>wait for my OK</b>. Ask me one question at a time. Never print a key, password or secret value.</p>
+<ol>
+<li><b>Read.</b> Read the blueprint, both guides and the health check. Tell me in ten lines: what Control Center is, the eight phases and their dates, and what is still to fix from the health check.</li>
+<li><b>Bring the code to main.</b> The newest code is on claude/jolly-tesla-p97pro (the Phase 1 code plus four docs); production runs from claude/admiring-gates-rs7276. Compare them and tell me what differs. Then open a pull request that brings claude/jolly-tesla-p97pro into main, keeping my four PDFs, and tell me when to click Merge on GitHub (or merge it if you can). Leave claude/tender-lamport-1t3z8u untouched: it is the old Frappe design, kept only as a list of requirements.</li>
+<li><b>Production from main.</b> Tell me exactly where to click in Vercel to make main the Production branch, then check that the next production deployment comes from main and is Ready, and that the live address still signs me in.</li>
+<li><b>Tidy the documents.</b> Put the four PDFs in docs/. Move the older plans (the Rev B blueprints, the final plan, the handover briefs) into docs/archive/ with a one-line note that Blueprint Rev C supersedes them. Rev C wins wherever they disagree.</li>
+</ol>
+</div>
+
+<div class="paste long"><span class="plbl">HQ-2 &middot; Seal the wall (P1 seal, week 1)</span>
+<p>Now seal Phase 1, as section 06 step 03 of the blueprint and the health check set out. Do each item as its own small change, show me the result, and wait for my OK before the next.</p>
+<ol>
+<li><b>The eight audit defects.</b> Find the repository audit in docs/archive (the Control Center Blueprint Rev B and its audit). List the eight defects in simple words, most serious first. Fix them, starting with: a sales user must not be able to work out which market names are the same product; the accountant switch that opens both ends of a deal is removed; signing out clears all data from a shared phone. Each fix is a new migration or a small code change, tested as each of the seven roles.</li>
+<li><b>Migrations match the database.</b> Read the versions the database recorded with the Supabase connector and rename the 6 migration files to match exactly, without changing their SQL, so nothing can ever run twice.</li>
+<li><b>The 12 open functions.</b> For each SECURITY DEFINER function, tell me who should be allowed to call it. In one new migration, remove call rights from anyone who should not have them (rls_auto_enable from everyone; grant_access and team_members only where the function itself checks owner or admin). Re-run the Supabase security advisor and show me the warnings gone.</li>
+<li><b>Automatic tests.</b> Add a GitHub Actions check that runs the type check, the build and the role-by-role database tests on every pull request, so no change reaches main untested. Add a second, test company and a test that proves one company can never read the other.</li>
+<li><b>Sign-in settings.</b> Walk me through, one click at a time: Authentication &rarr; Sign In / Providers (&ldquo;Confirm email&rdquo; on); URL Configuration (Site URL and redirect URLs for the live address); where leaked-password protection is switched on, and whether it needs Supabase Pro.</li>
+<li><b>Staff access and email.</b> Explain my two choices in simple words: Vercel Authentication now lets in only the Vercel team, and a custom domain (or a sub-address of my company website) lets staff in while keeping preview addresses private; a mail service, set as SMTP in Supabase, sends invites and sign-in emails. Give me options and costs. Do not buy or connect anything until I say yes, then tell me exactly where to paste each key myself.</li>
+<li><b>Done when:</b> a sales test login cannot open a supplier or match two names to one product; the advisor is clean; the checks run on every pull request; the test company stays separate; and a staff test login can sign in at the staff address. Tell me when all five are true.</li>
+</ol>
+</div>
+
+<div class="paste long"><span class="plbl">HQ-3 &middot; The rules and the plan</span>
+<ol>
+<li><b>CLAUDE.md.</b> Create or update CLAUDE.md so it holds page R2 of the Starter Guide word for word, plus the build brief and session rules in R3. Keep anything already in it that does not conflict, and show me what changed. Check that .gitignore keeps out .env.local, every secret, any signing key and docs/private.</li>
+<li><b>My list.</b> Create docs/START-NOW.md from page R1: each item with its owner, a start date and a tick box, security items first. Start every future HQ sitting by reminding me of anything not ticked.</li>
+<li><b>The plan.</b> Write docs/SESSIONS.md: all eight phases from the blueprint with dates, the systems in each, which are built side by side (section 05 of the Continue Building Guide), the apps lane, and the gates. Write docs/build-sheets/ for the P2 systems (SYS-01 Deal Wall Skill, SYS-02 Alias Checker full, SYS-03 stage 1 CRM): what each does, what it must never do, the tables it adds, its screens and its done-when, all from Rev C. Write docs/deal-wall/AGENDA.md for my two one-hour sittings.</li>
+<li><b>The first prompts you hand out.</b> Following the rules in R3 for prompts HQ writes, write the opening prompt for each P2 session (Builder A, Builder B and the Deal Wall writing session) into docs/session-prompts/, and show each one to me in its own box, ready to copy. No feature code yet.</li>
+</ol>
+</div>
+
+<div class="paste"><span class="plbl">HQ-4 &middot; The look</span>
+<p>Read section 03 of the Starter Guide and the screens already built. Write docs/design/LOOK.md describing the look exactly as it is in the app today: colours, type, spacing, cards, buttons, the status colours, the phone layout, and how screens adapt on Android and iPhone (safe areas, the back gesture, large touch targets). Add to CLAUDE.md that every new screen in every session follows docs/design/LOOK.md and the screen rules in section 03. Then list any screen built so far that breaks these rules, and wait for my OK before changing anything.</p>
+</div>
+
+<div class="paste long"><span class="plbl">HQ-5 &middot; Android and iOS apps</span>
+<p>I want Control Center on Android and iPhone as real apps, as well as on the web, from the same code. Read section 04 of the Starter Guide, then plan it with me and wait for my OK at each step.</p>
+<ol>
+<li><b>Explain the plan</b> in simple words: wrapping this app with Capacitor for Android and iOS, what the apps add over the web (camera for sample and packing photos, push notifications for the 6 PM report and approvals, staying signed in, working on weak signal), and what stays the same (one code base, one database, the same wall).</li>
+<li><b>Tell me what I must create myself</b>, step by step: the Google Play Console account and the Apple Developer account in the company&rsquo;s name (with the D-U-N-S number), the app name and icon, and where each signing key will be stored (GitHub repository secrets, which I paste myself; never in code or chat).</li>
+<li><b>Set up the apps lane</b> once I say yes: add Capacitor, the Android and iOS projects, and a GitHub Actions workflow &ldquo;Build apps&rdquo; that I can start with one click to make an Android test build and an iPhone test build (on a cloud Mac). Nothing is published to a store without my OK.</li>
+<li><b>Write the timing into docs/SESSIONS.md</b> as in the Starter Guide: accounts and setup in P2, the first test install on my phone and the field guys&rsquo; phones when the Field Task Feed lands in P3, the store listing (private or unlisted, for staff only) once P3 is in daily use.</li>
+</ol>
+</div>
+<div class="note"><span class="nlbl">When HQ says &ldquo;click Merge&rdquo;</span><p>Open the pull request link HQ gives you on GitHub, read the title, check the green tick from the automatic checks, scroll down and click <b>Merge pull request &rarr; Confirm merge</b>. The live site updates from <code class="f">main</code> in about two minutes. If GitHub shows a red cross or a conflict, copy it to HQ.</p></div>
+<div class="note"><span class="nlbl">When HQ asks you to open Supabase, Vercel, Google or Apple</span><p>Check you are in <b>SIPL Global Ops ERP</b> in Supabase, or project <b>sipl-global-business-ops-erp</b> in team <b>SIPL</b> in Vercel. Your Vercel account also holds an unrelated project, business-calculator: never change that one. Keys and passwords are pasted by you, into the box HQ names, never into the chat.</p></div>
+
+<!-- ================= 03: UI ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">THE LOOK</div><div class="sectag">The UI section &middot; you already chose it</div></div>
+<p>You chose an Apple-clean, minimal look in a proper deep blue, usable by any team member without being taught. Phase 1 already wears it, and HQ-4 writes it down so every new screen, in every session and on every phone, looks like the ones you approved. Four field guys will open this between a courier office and a factory gate: if a screen takes more than a few seconds to understand, they go back to calling you, and the board goes empty.</p>
+<table class="numbers">
+<tr><th style="width:30%;">Your look</th><th>As set by you</th></tr>
+<tr><td><b>Colours</b></td><td>Deep blue sidebar <code class="f">#0B2F6B</code>, accent <code class="f">#1558D6</code>, white cards on a blue-grey ground <code class="f">#EAF0FA</code>. Colour means status only: amber waiting, red stop, green done.</td></tr>
+<tr><td><b>One question per screen</b></td><td>Each screen answers one question, with one main button.</td></tr>
+<tr><td><b>Rules where they apply</b></td><td>A rule is written in plain words next to the place it applies (&ldquo;Only you can set this price&rdquo;).</td></tr>
+<tr><td><b>Absent, not hidden</b></td><td>What a role may not see is not on its screen at all: no greyed-out supplier, no locked column.</td></tr>
+<tr><td><b>Touch</b></td><td>Every button at least 44 px, usable one-handed, on Android and iPhone alike.</td></tr>
+</table>
+
+<h3 class="sub">Your next screens, one question each</h3>
+<table class="numbers">
+<tr><th style="width:23%;">System</th><th>Screen and its one question</th><th style="width:16%;">Main button</th><th style="width:19%;">Who, on what</th></tr>
+<tr><td>SYS-02 Alias Checker</td><td><b>Which name?</b> &ldquo;Which name and pack may this buyer see for this product?&rdquo;</td><td>Check</td><td>Sales, field; phone</td></tr>
+<tr><td>SYS-03 CRM</td><td><b>My calls:</b> &ldquo;who do I call next, and what is due today?&rdquo;</td><td>Log call</td><td>Sales; phone</td></tr>
+<tr><td>SYS-03 Board</td><td><b>The board:</b> &ldquo;where is every deal and sample, and who owns the next step?&rdquo;</td><td>Move card</td><td>Each role, its own view</td></tr>
+<tr><td>SYS-04 Field Today</td><td><b>My tasks:</b> &ldquo;what do I pack, send or check today?&rdquo;</td><td>Done, with photo</td><td>Field; app</td></tr>
+<tr><td>SYS-07 Scoreboard</td><td><b>My score:</b> &ldquo;am I green today?&rdquo;</td><td>None</td><td>Every post</td></tr>
+<tr><td>SYS-05 Approve offers</td><td><b>Waiting for my price:</b> &ldquo;which lots and buyers need my price and tap?&rdquo;</td><td>Approve</td><td>You; app</td></tr>
+<tr><td>SYS-08 Money</td><td><b>The money:</b> &ldquo;what is owed to us and by us, on every deal?&rdquo;</td><td>Open deal</td><td>You; app</td></tr>
+<tr><td>SYS-06 Clerk report</td><td><b>6 PM:</b> &ldquo;what moved today, and what waits for me?&rdquo;</td><td>Open item</td><td>You; app, abroad</td></tr>
+</table>
+
+<table class="numbers">
+<tr><th style="width:34%;">The five screen laws</th><th>Check every screen Claude shows you</th></tr>
+<tr><td><b>1 &middot; Nobody reads, everyone scans</b></td><td>The one thing the user must see first is the biggest and boldest thing on the screen.</td></tr>
+<tr><td><b>2 &middot; One screen, one job</b></td><td>One main button, visible without scrolling, in the accent blue kept for action.</td></tr>
+<tr><td><b>3 &middot; Consistency is trust</b></td><td>The same thing looks the same everywhere: a lot, a buyer, a market name, a red stop.</td></tr>
+<tr><td><b>4 &middot; The default is the decision</b></td><td>What is filled in again and again is already filled in: today&rsquo;s date, the user, the company.</td></tr>
+<tr><td><b>5 &middot; Silence is an error</b></td><td>Every tap answers at once, including &ldquo;refused: only the owner can do this&rdquo;.</td></tr>
+</table>
+<div class="guard"><b>THE TWO-MINUTE RULE:</b> a new field guy opens any screen and understands what it is and what to do in under two minutes, with no training. If a screen needs explaining, the screen is wrong, not the person. The real test: hand the phone to one field guy and watch, without helping.</div>
+</div>
+
+<!-- ================= 04: APPS ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">ANDROID AND iOS</div><div class="sectag">One code base, three ways in</div></div>
+<p>Rev C kept the phone as a web app on the home screen and left store apps until field use needs them. You have asked for Android and iOS apps, so this guide brings them forward. Nothing is built twice: Capacitor wraps the same app, and every screen, rule and wall is the one already on the web.</p>
+<table class="numbers">
+<tr><th style="width:18%;">When</th><th>What happens</th><th style="width:22%;">Who</th></tr>
+<tr><td>Now</td><td>D-U-N-S number for Shezle Imperio started (Step 1).</td><td>Sangeet</td></tr>
+<tr><td>P2 &middot; wk 1&ndash;2</td><td>Google Play Console ($25 once) and Apple Developer Program ($99 a year) accounts in the company&rsquo;s name; app name and icon; HQ-5 sets up the apps lane and the &ldquo;Build apps&rdquo; button.</td><td>Sangeet; HQ</td></tr>
+<tr><td>P3 &middot; wk 3&ndash;5</td><td>First test install when the Field Task Feed lands: Android through Play internal testing, iPhone through TestFlight. You and one field guy first, then all four and the back office.</td><td>HQ; you test</td></tr>
+<tr><td>Once P3 is in daily use</td><td>Store listing for staff only: a private or unlisted app, so the public cannot find it. Push notifications for approvals and the 6 PM report.</td><td>HQ, with your OK</td></tr>
+<tr><td>Every phase after</td><td>Each merge that changes a screen gets a new test build from the same button; store updates go out when you approve them.</td><td>HQ</td></tr>
+</table>
+<div class="guard"><b>APP RULES:</b> the app reads the same database through the same wall, so a field guy&rsquo;s app can never show a supplier. Signing keys and store passwords are pasted by you into GitHub repository secrets, never into code or chat. Sign-out clears the phone. Nothing reaches a store without your yes. Apple and Google review every listing; a wrapped app with real phone features (camera, notifications, offline) is what they accept.</div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Now open the Continue Building Guide</b></p>
+<p>This Starter Guide is used once; keep sections 03 and 04 open whenever a new screen or app build is shown to you. From here on, every sitting starts in HQ with the Continue Building Guide, and HQ gives you the prompt for each session to open. Move on when all of this is true:</p>
+<ul class="ticks">
+<li>The code is on <code class="f">main</code>, the live site deploys from <code class="f">main</code>, and you can sign in on your phone.</li>
+<li>The wall is sealed: the eight defects closed, the advisor clean, the checks running on every pull request, the test company separate (HQ-2).</li>
+<li>The domain and mail service are decided; no staff invite goes out before they are set up.</li>
+<li><code class="f">CLAUDE.md</code>, <code class="f">docs/START-NOW.md</code>, <code class="f">docs/SESSIONS.md</code>, the P2 build sheets, the sittings agenda and the first session prompts are written, and you have read and corrected them.</li>
+<li><code class="f">docs/design/LOOK.md</code> describes your look, and the apps lane is planned (HQ-4, HQ-5).</li>
+</ul>
+<p>Then open section 02 of the Continue Building Guide, <b>Every sitting</b>, and follow it. If a box is not ticked, tell HQ <em>&ldquo;fix this before we continue.&rdquo;</em></p>
+</div></div>
+
+<!-- ================= R1 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">R1</div><div class="sectitle">THE CLOCKS: FOR docs/START-NOW.md</div><div class="sectag">Read by HQ in HQ-3</div></div>
+<p>Things that wait on you or your team. Each becomes a line in <code class="f">docs/START-NOW.md</code> with its owner, a start date and a tick box.</p>
+<table class="numbers">
+<tr><th style="width:5%;">#</th><th>Item</th><th style="width:20%;">Owner</th><th style="width:15%;">Needed for</th></tr>
+<tr><td>1</td><td><b>New app password</b>; the old one was shared in a chat.</td><td>Sangeet</td><td>Today</td></tr>
+<tr><td>2</td><td><b>Domain and mail service</b> for the staff address and sign-in emails.</td><td>Sangeet with HQ</td><td>Before any staff invite</td></tr>
+<tr><td>3</td><td><b>Plans:</b> Vercel Pro; Supabase Pro.</td><td>Sangeet</td><td>Before staff log in</td></tr>
+<tr><td>4</td><td><b>Confirm the five calls</b> in section 07 of the blueprint: the calendar, money early and books late, the scoreboard as its own system, phone apps (now: Android and iOS from P3), builder and ledger in P7.</td><td>Sangeet</td><td>Week 1</td></tr>
+<tr><td>5</td><td><b>Two writing sittings,</b> one hour each, for the Deal Wall Skill: the role wall and alias rule; then offer, sample and follow-up notes, the document checklist per name and the dispatch checklist.</td><td>Sangeet</td><td>Week 1 of P2</td></tr>
+<tr><td>6</td><td><b>The lists:</b> products (real name, HSN, UN number if hazardous, SDS on file); market names (product, name, industry, COA version, photo set, video set); buyers (company, contact, phone, email, industry, city, names shown, date); suppliers (company, contact, origin, products). Google contacts, IndiaMART, Alibaba and portal exports as they are.</td><td>Sangeet with back office</td><td>Week 1 of P2</td></tr>
+<tr><td>7</td><td><b>D-U-N-S number, Google Play and Apple Developer accounts</b> in the company&rsquo;s name; app name and icon.</td><td>Sangeet</td><td>P2, for P3 test installs</td></tr>
+<tr><td>8</td><td><b>The numbers</b> in section 05 of the blueprint.</td><td>Sangeet</td><td>P3</td></tr>
+<tr><td>9</td><td><b>The team:</b> who holds purchase, which field guys hold sales, each person&rsquo;s email and phone type (Android or iPhone).</td><td>Sangeet</td><td>P3</td></tr>
+<tr><td>10</td><td><b>Switch-off date</b> for the paid CRM and the task tool.</td><td>Sangeet</td><td>End of P3</td></tr>
+<tr><td>11</td><td><b>First product line</b> for the Lot to Sale Trigger.</td><td>Sangeet</td><td>P4</td></tr>
+<tr><td>12</td><td><b>Setup answers:</b> WhatsApp Business account (yes or no); couriers used; outbound languages; GSTINs, e-invoicing, LUT and who files; document prefixes; currencies and banks; scoreboard week end (Thursday 14:00?); the seven-division org board design; reuse of ideas from the reference codebase (patterns only).</td><td>Sangeet with the accountant</td><td>P4 to P5</td></tr>
+</table>
+</div>
+
+<!-- ================= R2 ================= -->
+<div class="sechead"><div class="secnum">R2</div><div class="sectitle">THE RULES: FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by HQ in HQ-3</div></div>
+<div class="paste long"><span class="plbl">Standing rules for everything ever built in this repository, in every session</span>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this repository, this Supabase project and this Vercel project are the only ones Control Center will ever have; main is the one true copy, production deploys from it, and the Android and iOS apps are built from it; every company and every system is part of the same app, and nothing specific to SIPL is hard-coded in the shared core. 2 &middot; THE WALL LIVES IN THE DATABASE: confidentiality is enforced by row and column security, never by a screen hiding something; a role that may not read a row never receives it; nobody but the owner sees the supplier and the buyer of one lot side by side; the AI sees no other side&rsquo;s names or prices. 3 &middot; ACCESS IS GRANTED, NEVER CLAIMED: signing up gives nothing; an Owner or Admin grants a role to an email; only an Owner changes the Owner role; the last Owner cannot be removed; exit withdraws access the same day. 4 &middot; A HUMAN TAP BEFORE ANYTHING LEAVES: no price, offer, message, document, entry, builder publish or store release goes out without the person the rules name; AI never writes a price. 5 &middot; THE DIARY NOBODY CAN EDIT: every change is written to the audit log by the database; corrections are new entries or reversals, never silent edits. 6 &middot; SECRETS STAY OUT: no key, password, signing key or personal email ever goes into code, chat, docs or GitHub files; only the public Supabase URL and publishable key may sit in .env.production; nothing secret ever gets a VITE_ name. 7 &middot; MONEY IS CALCULATED IN THE DATABASE, in exact decimals; the browser and the apps only show it. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>Sangeet&rsquo;s guardrails.</b> Human signs off: &ldquo;Pricing and negotiation.&rdquo; &ldquo;Every document flow must be approved. Especially in accounts, sales, purchase or the financial side.&rdquo; &ldquo;Any kind of process where a workflow exists. As well as the operational and QC side.&rdquo; Never automated: &ldquo;Only where manual labour and a field job is required&rdquo;: standing at the material, checking a waste or offspec lot, packing samples, loading. AI acts alone: not yet set by Sangeet, so the default holds: the system drafts, flags, reads courier tracking and counts KPIs; nothing leaves and nothing is priced without his tap; any message with a rupee figure, a quantity commitment or a token request waits for him.</p>
+<p><b>Trade rules.</b> One product may carry many market names, one per target industry, but one buyer never sees the same product under two names: the database blocks it, and only an owner or admin override, logged with a reason, lets it through; the checker answers for one buyer at a time, so it cannot be used to match names. A market name never appears on a GST, customs or bank document; those carry the real product name and HSN; safety, tax, e-way and dangerous-goods papers are never withheld or altered. A token is never the deal value and never makes a sale final. Tally stays the book of record until three months of parallel running match and the accountant signs; cut-over only on 1 April. Automatic KPIs first; snapshot on write. The reference codebase from another client is for patterns only, never copied. Build in the blueprint&rsquo;s order; a system starts only when Sangeet approves its build sheet.</p>
+<p><b>Changing the database.</b> Every change is a new migration, adding, never dropping or renaming without Sangeet&rsquo;s yes, safe to run twice, with no hard-coded ids, and tested as each of the seven roles, because a blocked write can look like success. Only HQ applies migrations to the live database, in order, and the file name carries the exact version the database records. The automatic checks must pass before any merge.</p>
+</div>
+
+<!-- ================= R3 ================= -->
+<div class="sechead"><div class="secnum">R3</div><div class="sectitle">THE BUILD BRIEF: FOR CLAUDE CODE</div><div class="sectag">Sangeet can skip this page</div></div>
+<div class="brief"><h3>Stack, as built</h3>
+<p>Vite, React, TypeScript and Tailwind; Supabase (Postgres 17, Auth, Row Level Security, Storage for COAs, photos and videos) in Mumbai; Vercel deploying production from <code class="f">main</code>, with a preview for every branch. <b>Android and iOS</b> by wrapping the same app with Capacitor; builds from a GitHub Actions &ldquo;Build apps&rdquo; workflow (Android on Linux, iOS on a cloud Mac), signing keys only in GitHub repository secrets; Play internal testing and TestFlight first, then a private or unlisted store listing. Public variables: <code class="f">VITE_SUPABASE_URL</code>, <code class="f">VITE_SUPABASE_PUBLISHABLE_KEY</code>. Anything that needs a secret (the trigger&rsquo;s server work, courier tracking, the Deal Clerk, the Claude API, WhatsApp Business, push notifications) runs as a Supabase Edge Function or database function, with keys as Supabase secrets. Scheduled jobs (night KPI entries, the clerk at 8 AM and 6 PM) use Supabase scheduled jobs. Regenerate database types from Supabase instead of keeping them by hand.</p></div>
+<div class="brief"><h3>What already exists (Phase 1)</h3>
+<p>15 tables: companies and memberships; seven roles (owner, admin, purchase, sales, field, backoffice, accountant); supply side <code class="f">suppliers</code>, <code class="f">products</code>, <code class="f">lot_purchase</code>; demand side <code class="f">buyers</code>, <code class="f">product_aliases</code>, <code class="f">lot_sales</code>; <code class="f">alias_product_map</code> readable only by owner and admin; grants (<code class="f">member_invitations</code>, <code class="f">grant_access</code>, <code class="f">claim_my_access</code>); <code class="f">seed_company</code>; Owner and last-owner guards; the audit log; 84 role-by-role checks. Screens: Sign in, No access yet, Today with price approval, Lots, Lot record, Buyers, Suppliers, Products, Names, Team.</p></div>
+<div class="brief"><h3>Sessions, and the prompts HQ writes</h3>
+<ul>
+<li><b>HQ</b> runs on <code class="f">main</code>: owns CLAUDE.md, docs/SESSIONS.md, docs/START-NOW.md, the live database and the apps lane; applies migrations in order; reviews and merges pull requests; never builds a system itself.</li>
+<li><b>Builders</b>, at most two at a time, one per system: each starts from the latest <code class="f">main</code>, works on its own branch, touches only <code class="f">src/features/sys-NN-name/</code> and its own migration files, writes migrations but never applies them, and opens a pull request with a handover in <code class="f">docs/handovers/</code>. Shared files change only through <code class="f">docs/requests/</code>.</li>
+<li><b>Writing session</b>: only <code class="f">docs/</code> and <code class="f">content/</code>; never a price.</li>
+<li><b>Every opening prompt HQ writes</b> is saved in <code class="f">docs/session-prompts/</code> and shown to Sangeet in its own box. It always says: which system and phase; the build sheet to read (written and approved first); the branch rule; only this system&rsquo;s files; migrations written, never applied; the wall to check as each role; screens to <code class="f">docs/design/LOOK.md</code> and section 03; plan in small pieces, each testable on the branch preview and on the phone, the first always &ldquo;load real data and show one true list&rdquo;; anything costing money or needing Sangeet&rsquo;s rule listed first; wait for OK; end each sitting with a commit, a handover and a dated note in <code class="f">docs/sessions/</code>.</li>
+</ul></div>
+
+<div class="traceline">Prepared for Sangeet Sejpal &middot; Shezle Imperio Private Limited &middot; traces to blueprint BOA-2026-SHE-01 Rev C and the setup health check of 17.11.2026.<br>Stack as built: Claude Code, Vite and React, Supabase, Vercel, GitHub; Android and iOS through Capacitor.</div>
+
+</body>
+</html>
