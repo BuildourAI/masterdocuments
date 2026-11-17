@@ -26,7 +26,7 @@ Read once
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
 | **HQ** (always one)     | Runs on `main`. Owns the live database (the only session that applies migrations), the apps lane and the plan. Writes the opening prompt for every other session, reviews and merges their pull requests. Never builds a system itself. | `HQ`                              |
 | **Builder** (up to two) | Builds one system on its own branch from the prompt HQ wrote, touching only its own files. Writes migrations but never applies them. Opens a pull request with a handover when a piece is finished.                                     | As HQ names it, e.g. `SYS-03 CRM` |
-| **Writing**             | Words, not code: the Deal Wall Skill from your two sittings, the dispatch checklist, message templates, later the SOPs. Never a price.                                                                                                  | `DEAL WALL writing`               |
+| **Writing**             | Words, not code: the Deal Wall Skill from your two one-hour chats with Claude, the dispatch checklist, message templates, later the SOPs. Never a price.                                                                                | `DEAL WALL writing`               |
 
 Opening a session HQ asked for
 
@@ -130,7 +130,7 @@ From Blueprint Rev C
 | P7      | A daily km tracker is built in the builder without code and approved by you · every publish can be rolled back · the ledger posts every document from one path, beside Tally.                                                                                                                                         |
 | P8      | Every post shows human, AI or vacant, with weekly statistics counted by the system · SOPs carry read receipts and exit withdraws access the same day · the second company is live and proven separate · the ledger starts its three-month parallel run toward cut-over on 1 April 2028.                               |
 
-**THE GATES:** no builder starts before the seal is merged. No staff invite before the domain, mail service and seal. The board waits for P2’s names and contacts. The trigger waits for clean lots and buyer tags. The money pipeline never posts to the books. The clerk sends nothing until you have read its drafts for a few weeks. The builder never edits the wall, deal money, the ledger or tax. Tally retires only on 1 April 2028, and only if three months match. **If the sittings or lists slip past week 1**, HQ moves to the fallback dates in section 03 of the blueprint (P2 by 26 Dec, P3 by 23 Jan, P4 by 13 Feb); the order never changes.
+**THE GATES:** no builder starts before the seal is merged. No staff invite before the domain, mail service and seal. The board waits for P2’s names and contacts. The trigger waits for clean lots and buyer tags. The money pipeline never posts to the books. The clerk sends nothing until you have read its drafts for a few weeks. The builder never edits the wall, deal money, the ledger or tax. Tally retires only on 1 April 2028, and only if three months match. **If the Deal Wall chats or the lists slip past week 1**, HQ moves to the fallback dates in section 03 of the blueprint (P2 by 26 Dec, P3 by 23 Jan, P4 by 13 Feb); the order never changes.
 
 06
 
