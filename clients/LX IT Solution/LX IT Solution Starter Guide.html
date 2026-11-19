@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LX IT Solution Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-LXI-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "LX IT Solution · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; LX IT Solution</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">LX OS<br><span class="accent">STARTER GUIDE</span></h1>
+    <div class="coversub">Prepared for <b>Lalitesh Sharma</b>, LX IT Solution. From a Claude plan and a GitHub repository to <b>a live app on your phone</b>, your rules written, your look chosen and your first system planned. Do it once, in one sitting.</div>
+    <div class="flow">
+      <span class="chip">Install</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Accounts</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Folder and<br>docs</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Starter<br>prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Live on<br>your phone</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Choose<br>the look</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">What you already have</span><b>Claude</b> (Pro or Max), which gives you <b>Claude Code</b>, the builder, and a <b>GitHub repository</b>. Write it here so you never have to search for it:<br><br><b>github.com/</b>&nbsp;____________________ <b>/</b> ____________________</td></tr>
+      <tr><td colspan="2"><span class="lbl">What you finish with</span>An empty LX app live on your phone; <code class="f">CLAUDE.md</code> holding your rules; <code class="f">docs/START-NOW.md</code>, the list of what waits on you; your look in <code class="f">docs/design/</code>; and the first system, the LX Key Register and Key Loader, planned.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The four documents, all in docs/</span>1 &middot; AI Systems Blueprint<br>2 &middot; This Starter Guide (once)<br>3 &middot; UI Guide (Step 6, then for every screen)<br>4 &middot; Continue Building Guide (every sitting after)</td>
+        <td><span class="lbl">Stack, fixed</span>Claude Code writes &middot; Next.js is the app &middot; Supabase is the database &middot; Vercel puts it online &middot; GitHub keeps the code. All accounts in your name.<br><br><span class="lbl">Time</span>About three hours, once.</td>
+      </tr>
+    </table>
+    <div class="covernote">The starter prompt comes as a separate message from Romana &middot; Two voices on every step: YOU DO THIS &middot; PASTE TO CLAUDE CODE</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Five minutes</div></div>
+<p>You wrote that the system is worth it if there are <em>&ldquo;no calls on my phone&rdquo;</em>. Your blueprint gets there in twelve weeks, one system at a time: first every key moves out of Google Sheets into one register, then the manager sees every key on one board, then keys leave on their own when a Tally invoice is saved, and by week twelve cid, invoice and delivery questions are answered from a board and not from your phone. You keep three things: the price quote, the credit limit, and your weekly tap.</p>
+<p><b>No coding is needed.</b> Claude Code writes every line. Your job: answer its questions in your own words, say OK when you agree, and check what it built against keys, customers and invoices you know. If you do not understand something, type <code class="f">explain this to me in simple words</code>. If something breaks, paste the error or a screenshot and type <code class="f">explain this in simple words and fix it</code>. You can write to Claude in Hindi, Hinglish or English.</p>
+<p><b>Who builds.</b> You give about 10 hours a week. If your manager does the clicking, they follow these guides; the accounts stay in your name, and every price, credit limit and approval stays yours.</p>
+<div class="note"><span class="nlbl">What it costs, honestly</span><p><b>Claude Pro</b> works to start; <b>Claude Max</b> is better once two sessions build side by side, because Pro reaches its usage limit sooner. GitHub is free. <b>Supabase</b> is free to start; move to Pro (about $25 a month) when real keys go in, for daily backups. <b>Vercel Pro</b>, about $20 a month, for a business app. Later: the <b>WhatsApp Business API</b> number (needed from week 5, when keys send themselves), a small <b>Tally connector</b> on the office computer, and the <b>Claude API</b> only when the app must draft with nobody at the computer. Claude always tells you the cost and waits for your yes.</p></div>
+<div class="note"><span class="nlbl">Which computer</span><p>If you can, build from the <b>office computer that runs Tally</b>. In week 3 the app starts reading Tally invoices, and that is easiest from the same machine. Any computer works for weeks 1 and 2.</p></div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Install three things</b></p>
+<ol>
+<li><b>Claude desktop app</b> from <b>claude.com/download</b>. Sign in with your Claude Pro or Max account. Claude Code is its <b>Code</b> tab.</li>
+<li><b>Node.js LTS</b> from <b>nodejs.org</b>. Accept every default.</li>
+<li><b>Git</b> from <b>git-scm.com</b>. Accept every default.</li>
+</ol>
+<p>If anything here goes wrong, carry on: the starter prompt checks all three and tells you exactly what to click.</p>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Two accounts, on the business email</b></p>
+<ol>
+<li><b>Check GitHub.</b> Open your repository (the address you wrote on the cover). It must be <b>Private</b>: <b>Settings &rarr; General &rarr; Danger Zone &rarr; Change visibility</b> if it says Public. Turn on two-factor authentication under your profile &rarr; <b>Settings &rarr; Password and authentication</b>.</li>
+<li><b>Supabase</b> (supabase.com): <b>Start your project &rarr; Continue with GitHub</b>. Press <b>New project</b>, name it <code class="f">lx-os</code>, press <b>Generate a password</b> and save it somewhere safe, choose the region <b>South Asia (Mumbai)</b>, and create it. Wait two minutes. You will need three things from it in Step 4, and the starter prompt tells you where each one is: the <b>Project URL</b>, the <b>publishable key</b> and the <b>secret key</b>. Treat the secret key like a bank password.</li>
+<li><b>Vercel</b> (vercel.com): <b>Sign Up &rarr; Continue with GitHub</b>. Choose <b>Pro</b> for business use. This is what puts your app online.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Make the folder, and the docs folder inside it</b></p>
+<ol>
+<li>Make one folder for life: <code class="f">Documents\lx-os</code>. Every LX system goes in here, never in a second folder.</li>
+<li>Inside it, make a folder called <code class="f">docs</code>, and put these four PDFs in it:
+<ul>
+<li>the <b>AI Systems Blueprint</b></li>
+<li>this <b>Starter Guide</b></li>
+<li>the <b>UI Guide</b></li>
+<li>the <b>Continue Building Guide</b></li>
+</ul></li>
+<li>Inside <code class="f">docs</code>, make a folder called <code class="f">samples</code> and put in what you have today: your Google Sheet of keys downloaded as Excel, brand by brand; one recent distributor Excel file of keys; one Tally software invoice as PDF; and five typical customer WhatsApp messages (screenshots are fine). If something is not ready, the starter prompt puts it on your list.</li>
+<li><b>Never put</b> the Getcid or Telegram login, any password, or a Supabase secret key in <code class="f">docs</code>. Claude tells you where those go.</li>
+</ol>
+<div class="note"><span class="nlbl">What it looks like</span><p><code class="f">Documents\lx-os\docs\</code> AI Blueprint.pdf &middot; LX Starter Guide.pdf &middot; LX UI Guide.pdf &middot; LX Continue Building Guide.pdf &middot; <code class="f">samples\</code></p></div>
+</div></div>
+
+<!-- ================= STEP 4 ================= -->
+<div class="step"><div class="stepnum">STEP 4</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>The starter prompt</b></p>
+<ol>
+<li>Open the Claude desktop app &rarr; <b>Code</b> tab &rarr; open the folder <code class="f">lx-os</code>.</li>
+<li>Start a new session and name it <code class="f">HQ</code>. HQ is your main session: it holds the whole picture, and later it writes the prompt for every other session you open.</li>
+<li>Paste the <b>LX Starter Prompt</b> that Romana sent you, with your GitHub address filled in, and send.</li>
+<li>HQ works in stages and stops after each one. Read what it says, answer its questions, and type <code class="f">OK</code> to go on.</li>
+</ol>
+<p>When HQ asks for a Supabase key, it tells you where to find it and asks you to paste it into the file <code class="f">.env.local</code> yourself, or into the box it names. Never paste a secret key into the chat.</p>
+</div></div>
+
+<!-- ================= STEP 5 ================= -->
+<div class="step"><div class="stepnum">STEP 5</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Put it online</b> (when HQ reaches that stage)</p>
+<ol>
+<li>On vercel.com press <b>Add New&hellip; &rarr; Project</b>, find your repository and press <b>Import</b>. If it is not listed, press <b>Adjust GitHub App Permissions</b>, give Vercel access to that one repository, and come back.</li>
+<li>Check <b>Framework Preset</b> says <b>Next.js</b>. Open <b>Environment Variables</b> and add the three names HQ gives you, with the same three values from Supabase.</li>
+<li>Press <b>Deploy</b>. About two minutes later your app is live at an address ending in <code class="f">.vercel.app</code>. Give that address to HQ.</li>
+<li>In Supabase, open <b>Authentication &rarr; URL Configuration</b>, set <b>Site URL</b> to that address and save, as HQ tells you.</li>
+<li>Open the address on your phone and choose <b>Add to Home Screen</b>. From now on, every time HQ pushes, the live app updates itself.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 6 ================= -->
+<div class="step"><div class="stepnum">STEP 6</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Choose the look, before the first real screen</b></p>
+<p>Open the <b>UI Guide</b> and do its sections 01 and 02: collect screens you like, let Claude choose the clearest, save it in <code class="f">docs/design/</code> and hand it to HQ. Ten minutes now decides whether your manager opens the app at 9 AM or keeps opening Google Sheets.</p>
+</div></div>
+
+<!-- ================= STEP 7 ================= -->
+<div class="step"><div class="stepnum">STEP 7</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Switch to the Continue Building Guide when all of this is true</b></p>
+<ul class="ticks">
+<li>The app opens on your phone at its <code class="f">.vercel.app</code> address and is on your home screen.</li>
+<li>The GitHub repository is <b>private</b>, and the three keys are only in <code class="f">.env.local</code> and Vercel.</li>
+<li><code class="f">CLAUDE.md</code> holds your rules (page R2).</li>
+<li><code class="f">docs/START-NOW.md</code> exists and every item has an owner.</li>
+<li>The foundation (the LX Key Register) is in Supabase, and you can sign in on your phone.</li>
+<li><code class="f">docs/SESSIONS.md</code> and the first build sheet are written, and you have read and corrected them.</li>
+<li><code class="f">docs/design/</code> holds your look, and CLAUDE.md says every screen follows it.</li>
+</ul>
+<p>Then open section 02 of the Continue Building Guide, <b>Every sitting</b>. If a box is not ticked, tell HQ <em>&ldquo;fix this before we continue.&rdquo;</em></p>
+</div></div>
+
+<!-- ================= R1 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">R1</div><div class="sectitle">THE CLOCKS: FOR docs/START-NOW.md</div><div class="sectag">Read by HQ</div></div>
+<p>Things that wait on you or your team. Each becomes a line in <code class="f">docs/START-NOW.md</code> with its owner, a start date and a tick box. Longest first.</p>
+<table class="numbers">
+<tr><th style="width:5%;">#</th><th>Item</th><th style="width:19%;">Owner</th><th style="width:15%;">Needed for</th></tr>
+<tr><td>1</td><td><b>WhatsApp Business API number:</b> decide which number LX will use (the phone-app number customers order on today cannot carry template messages), choose a provider, start Meta business verification and get the message templates approved. 1 to 3 weeks.</td><td>Lalitesh</td><td>Week 5, SYS-03</td></tr>
+<tr><td>2</td><td><b>Tally read access</b> for invoices and balances: which Tally edition, on which computer, who has admin access. Reading only; nothing is written into Tally in these twelve weeks.</td><td>Lalitesh</td><td>Week 3, F-00</td></tr>
+<tr><td>3</td><td><b>The keys today:</b> the Google Sheet of keys exported brand by brand, and one recent distributor Excel file, in <code class="f">docs/samples</code>.</td><td>Manager</td><td>Week 1, SYS-01</td></tr>
+<tr><td>4</td><td><b>The human-only item list</b> (the &ldquo;some items&rdquo; that always need your price quote), and the <b>credit limit</b> for each regular customer, in writing.</td><td>Lalitesh</td><td>Week 5</td></tr>
+<tr><td>5</td><td><b>Getcid and Telegram API</b> account details used for Microsoft cid today. You paste them yourself into the place HQ names; never into chat or docs.</td><td>Lalitesh</td><td>Week 9, SYS-05</td></tr>
+<tr><td>6</td><td><b>The numbers:</b> confirm or correct 300 orders a month against 100 quotes and 50 converted, and the average order value of 2000000 against the ₹10 to 50 lakh band. Also: your busy season.</td><td>Lalitesh</td><td>Before any target</td></tr>
+<tr><td>7</td><td><b>Low-stock level per brand</b> for the Key Board, and the validity date your distributor gives per key batch.</td><td>Manager</td><td>Week 3, SYS-02</td></tr>
+<tr><td>8</td><td><b>Your 10 hours a week</b>: fixed sittings in the calendar.</td><td>Lalitesh</td><td>Every week</td></tr>
+</table>
+</div>
+
+<!-- ================= R2 ================= -->
+<div class="sechead"><div class="secnum">R2</div><div class="sectitle">THE RULES: FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by HQ</div></div>
+<div class="paste long"><span class="plbl">Standing rules for everything ever built in this folder, in every session</span>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this folder, this repository, this Supabase project and this Vercel project are the only ones LX IT Solution will ever have; every system is a new section of the same app. 2 &middot; EVERY PERSON THEIR OWN KEY: Lalitesh, the manager and the assistant each have their own login and see only what their work needs; Lalitesh sees everything; customers, when they get a login, see only their own orders, keys and invoices; no shared passwords. 3 &middot; A HUMAN YES BEFORE ANYTHING RISKY LEAVES: nothing outside the AI-may-act-alone list leaves the system without Lalitesh or the manager; one switch turns all automatic behaviour off without code. 4 &middot; THE DIARY NOBODY CAN EDIT: every key sent, resent, revealed or marked sold, and every action the system takes, is written to a log that can only be added to. 5 &middot; SECRETS STAY IN THE CUPBOARD: Supabase keys, the Getcid and Telegram credentials and the WhatsApp token live only in .env.local and Vercel&rsquo;s settings, never in code, in chat, in docs or on GitHub. 6 &middot; MONEY IS CALCULATED, NEVER GUESSED: balances, credit checks and totals come from Tally and exact tested rules; AI reads, drafts, matches and reminds, and never invents a number. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>Lalitesh&rsquo;s guardrails.</b> AI may act alone to: deliver license keys; generate and return Microsoft cid; send the invoice; send the account statement. A person signs off: the price quote for some items. Never automated: payment auto reminders; the price quote of some items. Until the list of &ldquo;some items&rdquo; is written, every item that has ever needed a quote is treated as on it, and any price question stops and goes to Lalitesh untouched. Until the credit limit per customer is written, no order is released without his tap.</p>
+<p><b>LX rules.</b> Keys are stock: a key is shown in full only to the person sending it, every reveal and resend is logged, and the board shows keys masked. The oldest unused key of a product goes first; for multi-use keys, the one with activations left. A key is never sent twice, never sent without a Tally invoice number, and never sent for a box or physical order. No system drafts a payment reminder or mentions bakaya; payment collection stays with Biz Analyst and a person. Any price or discount line comes only from a price list Lalitesh has approved. Customer messages use the LX Hinglish tone, short, brand first, one ask. Tally stays the book of record; nothing is written into Tally in the first twelve weeks. The figures 300 orders, 100 quotes, 50 converted and 2000000 are unconfirmed: never hard-code them. docs/samples never goes to GitHub. Build in the blueprint&rsquo;s order; a system starts only when Lalitesh approves its build sheet.</p>
+</div>
+
+<!-- ================= R3 ================= -->
+<div class="sechead"><div class="secnum">R3</div><div class="sectitle">THE BUILD BRIEF: FOR CLAUDE CODE</div><div class="sectag">Lalitesh can skip this page</div></div>
+<div class="brief"><h3>Stack</h3>
+<p>Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres, Auth, Row Level Security, Storage for key photos) through <code class="f">@supabase/ssr</code>, deployed on Vercel from <code class="f">main</code>, with a preview for every branch. Mobile-first web app added to the home screen. Variables: <code class="f">NEXT_PUBLIC_SUPABASE_URL</code>, <code class="f">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code>, <code class="f">SUPABASE_SECRET_KEY</code>; later <code class="f">TALLY_CONNECTOR_URL</code> and its token, <code class="f">GETCID_*</code>, <code class="f">WHATSAPP_*</code>, <code class="f">CRON_SECRET</code>, <code class="f">ANTHROPIC_API_KEY</code>; <code class="f">.env.example</code> holds names only. Tally Prime is read through its own XML interface by a small connector on the office computer, chosen with Lalitesh in week 3. WhatsApp only through the WhatsApp Business API with approved templates. Scheduled jobs as Vercel Cron calling protected routes.</p></div>
+<div class="brief"><h3>F-00 LX Key Register + Tally link: the starting shape</h3>
+<p><b>profiles</b> (name, role owner / manager / assistant, active); <b>brands</b>; <b>products</b> (brand, name, edition, delivery type digital key / key photo / box); <b>keys</b> (product, key text, key photo path, single or multi use, activations total and left, validity date, batch, status unused / sold / held, sold to customer, sold date, Tally invoice number, sent time); <b>customers</b> (name, WhatsApp number, credit limit set by owner only); <b>key_events</b> (append only: loaded, revealed, sent, resent, marked sold, by whom, when); <b>tally_invoices</b> (read copy: number, date, customer, items, amount); <b>settings</b> (automation switch off by default); <b>audit_log</b> (append only). Row Level Security: owner sees all; manager and assistant see keys masked and reveal one at a time, logged; credit limits writable by owner only.</p></div>
+<div class="brief"><h3>Sessions</h3>
+<ul>
+<li><b>HQ</b> owns <code class="f">main</code>, CLAUDE.md, docs/SESSIONS.md, docs/START-NOW.md and the database; it applies migrations in order and merges finished work. It never builds a system itself. It writes the opening prompt for every builder session into <code class="f">docs/session-prompts/</code> and shows it to Lalitesh in its own box.</li>
+<li><b>Builders</b>, at most two at a time, one per system: each in its own git worktree on branch <code class="f">sys-0N-short-name</code>, touching only its own folders; new tables only in a new migration, adding, never dropping; never applies migrations to the live database. Shared files change only in HQ; requests go in <code class="f">docs/requests/</code>, handovers in <code class="f">docs/handovers/</code>.</li>
+<li><b>Writing session</b> for the skills (Key Register SOP, Order Desk Skill, Sampark Skill): only <code class="f">docs/</code> and <code class="f">content/</code>.</li>
+<li>Every screen follows <code class="f">docs/design/</code> and sections 03 to 05 of the UI Guide; plan first and wait for OK; simple words; a dated note in <code class="f">docs/sessions/</code> at the end of each sitting.</li>
+</ul></div>
+
+<div class="traceline">Prepared for Lalitesh Sharma &middot; LX IT Solution &middot; traces to blueprint BOA-2026-LXI-01 Rev A (blueprint audit 14.11.2026).<br>Stack fixed: Claude Code, Next.js, Supabase, Vercel, GitHub.</div>
+
+</body>
+</html>
