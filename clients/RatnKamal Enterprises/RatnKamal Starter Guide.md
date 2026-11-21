@@ -98,7 +98,7 @@ Paste to Claude Code
 
 1.  Open the Claude desktop app → **Code** tab → open the folder `ratnkamal-os`.
 2.  Start a new session and name it `HQ`. HQ is your main session: it holds the whole picture, and later it writes the prompt for every other session you open.
-3.  Paste the **RatnKamal Starter Prompt** that Romana sent you, with your GitHub address filled in, and send.
+3.  Paste the **RatnKamal Starter Prompt** that Romana sent you, already filled in with your GitHub address, and send.
 4.  HQ works in stages and stops after each one. Read what it says, answer its questions, and type `OK` to go on.
 
 When HQ connects GitHub

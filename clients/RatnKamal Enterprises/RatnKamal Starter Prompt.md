@@ -1,6 +1,6 @@
 # RatnKamal Enterprises · Starter Prompt
 
-Paste this into the **HQ** session (Claude desktop app → Code tab → folder `ratnkamal-os`), as Step 4 of the RatnKamal Starter Guide says. Fill in your GitHub address first.
+Paste this into the **HQ** session (Claude desktop app → Code tab → folder `ratnkamal-os`), as Step 4 of the RatnKamal Starter Guide says. Your GitHub address is already filled in.
 
 ---
 
@@ -14,7 +14,7 @@ In this folder, docs/ holds three PDFs:
 docs/samples holds real enquiry WhatsApp threads, catalogue photos, my rate card, an Order Form, a Job Card Sheet and my Team Leader checklist.
 
 My GitHub repository already exists but is not connected to anything yet:
-https://github.com/____________________/____________________
+https://github.com/ratnkamalenterprises-creator/Ratnkamal-Enterprises.git
 I have Claude, a Supabase project called ratnkamal-os (Mumbai) and a Vercel account, both made today with my GitHub login. Nothing else is set up.
 
 This session is HQ, my main session. HQ owns main and the database, merges all work, and never builds a system itself. Later, HQ writes the opening prompt for every other session I open.
