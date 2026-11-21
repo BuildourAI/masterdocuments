@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="mr-Latn">
+<head>
+<meta charset="UTF-8">
+<title>AI Systems Blueprint: RatnKamal Enterprises (Marathi)</title>
+<style>
+
+  :root {
+    --orange: #e8590c;
+    --orange-soft: #fdeee2;
+    --orange-faint: #fdf6f0;
+    --ink: #1f2430;
+    --grid: rgba(232, 89, 12, 0.07);
+    --rule: #e9c7ae;
+    --mono: "Consolas", "JetBrains Mono", "Courier New", monospace;
+    --sans: "Segoe UI", "Noto Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ---------- PART B pages: A4, in-depth blueprint ---------- */
+  @page {
+    size: A4;
+    margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right {
+      /* EDIT ME: DWG NO. BOA-{year}-{3-letter company code}-01 · REV A */
+      content: "DWG NO. BOA-2026-RAT-01 · REV A";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "RatnKamal Enterprises · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+  }
+
+  /* ---------- PART A pages: wide infographic sheets ---------- */
+  @page infog {
+    size: 842pt 1191pt;
+    margin: 64px 40px 64px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @top-right {
+      /* EDIT ME: same DWG string as above */
+      content: "DWG NO. BOA-2026-RAT-01 · REV A";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "RatnKamal Enterprises · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+  }
+
+  html {
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      #fdfbf9;
+    background-size: 24px 24px;
+  }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13.5px; line-height: 1.6; }
+
+  /* ================= PART A · INFOGRAPHIC COMPONENTS ================= */
+  .ig { page: infog; font-size: 12px; line-height: 1.45; }
+  .ig p { text-align: left; }
+
+  /* header block, top of sheet 1 */
+  .ighead { display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2.5px solid var(--ink); padding-bottom: 18px; margin-bottom: 8px; }
+  .ightitle h1 { font-size: 40px; line-height: 1.02; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
+  .ightitle .standfirst { font-size: 13px; margin-top: 10px; max-width: 480px; color: #46556b; }
+  .igbox { border: 1.5px solid var(--orange); background: #fff; padding: 10px 14px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.9; }
+  .igbox .bl { color: var(--orange); font-weight: 700; }
+
+  /* panel scaffold */
+  .panel { margin: 22px 0 6px; page-break-inside: avoid; }
+  .phead { display: flex; align-items: baseline; gap: 10px; border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 12px; page-break-after: avoid; }
+  .pnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; padding: 2px 8px; }
+  .ptitle { font-size: 17px; font-weight: 800; letter-spacing: 0.2px; text-transform: uppercase; }
+  .ptag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+  .pcap { font-size: 11px; font-style: italic; color: #46556b; margin-top: 8px; }
+  .pcap b { color: var(--orange); font-style: normal; }
+  .mcap { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #8a7361; margin-top: 8px; }
+
+  /* P01 · dashboard tiles */
+  .tiles { display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid var(--rule); background: #fff; }
+  .tile { padding: 12px 10px 10px; border-right: 1px dotted var(--rule); }
+  .tile:last-child { border-right: none; }
+  .tile .v { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+  .tile.hot .v { color: var(--orange); }
+  .tile .l { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361;
+    text-transform: uppercase; margin-top: 3px; }
+
+  /* P02 · money path flow */
+  .mpath { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+  .mstep { border: 1px solid var(--rule); background: #fff; padding: 8px 10px; }
+  .mstep .mn { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #8a7361; }
+  .mstep .mt { font-weight: 700; font-size: 12px; margin: 1px 0; }
+  .mstep .ms { font-family: var(--mono); font-size: 8px; letter-spacing: 0.8px; color: #46556b; text-transform: lowercase; }
+  .mstep.broken { border: 1.5px solid var(--orange); background: var(--orange-faint); }
+  .mstep.broken .ms { color: var(--orange); }
+  .legend { display: flex; gap: 22px; font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #46556b; margin-top: 9px; align-items: center; }
+  .sw { display: inline-block; width: 9px; height: 9px; border: 1px solid var(--orange); margin-right: 5px; vertical-align: -1px; }
+  .sw.f { background: var(--orange-faint); border-width: 1.5px; }
+
+  /* duo row: two diagnostic panels side by side */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* diagnostic · funnel */
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 2px; }
+  .ftier { position: relative; text-align: center; padding: 11px 0 9px; }
+  .ftier .fill { position: absolute; inset: 0; }
+  .ftier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ftier .tx { position: relative; }
+  .ftier .fv { font-size: 19px; font-weight: 800; }
+  .ftier .fl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #46556b; text-transform: uppercase; }
+  .ftier.t1 { width: 88%; } .ftier.t2 { width: 66%; } .ftier.t3 { width: 46%; }
+  .ftier .fill, .ftier .inner { clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .ftier .fill { background: var(--rule); }
+  .ftier.mid .fill { background: var(--orange); }
+  .ftier.mid .inner { background: var(--orange-faint); }
+  .ftier.mid .fv, .ftier.mid .fl { color: var(--orange); }
+  .fverdict { text-align: center; font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 8px; }
+
+  /* diagnostic · layer pyramid */
+  .pyr { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 2px; }
+  .ptier { position: relative; text-align: center; padding: 10px 0 8px; }
+  .ptier .fill { position: absolute; inset: 0; background: var(--rule); }
+  .ptier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ptier .tx { position: relative; }
+  .ptier .pv { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+  .ptier .pl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #46556b; text-transform: uppercase; }
+  .ptier.top { width: 40%; } .ptier.top .fill, .ptier.top .inner { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .ptier.top { padding-top: 22px; }
+  .ptier.mid { width: 66%; } .ptier.mid .fill, .ptier.mid .inner { clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%); }
+  .ptier.mid .fill { background: var(--orange); } .ptier.mid .inner { background: var(--orange-faint); }
+  .ptier.mid .pv, .ptier.mid .pl { color: var(--orange); }
+  .ptier.base { width: 88%; } .ptier.base .fill, .ptier.base .inner { clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+
+  /* diagnostic · before/after cards */
+  .ba { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .bacard { border: 1px solid var(--rule); background: #fff; padding: 10px 13px; }
+  .bacard .fl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .bacard .bt { font-weight: 700; font-size: 12.5px; margin-bottom: 5px; }
+  .bacard p { font-size: 11px; margin-bottom: 4px; }
+  .bacard b.was { color: var(--ink); } .bacard b.now { color: var(--orange); }
+
+  /* diagnostic · comparison bars */
+  .cbars { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+  .cbar { display: flex; align-items: center; gap: 10px; }
+  .cbar .cl { flex: 0 0 170px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: right; color: #46556b; }
+  .cbar .track { flex: 1; }
+  .cbar .bar { height: 20px; border: 1px solid var(--orange); background: var(--orange-faint);
+    display: flex; align-items: center; padding: 0 8px; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 1px; color: var(--orange); font-weight: 700; }
+  .cbar.max .bar { background: var(--orange); color: #fff; }
+
+  /* diagnostic · split/entity map */
+  .split { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .scard { border: 1px solid var(--rule); background: #fff; padding: 9px 11px; text-align: center; }
+  .scard .sv { font-weight: 800; font-size: 14px; }
+  .scard .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361; text-transform: uppercase; }
+
+  /* P06 · system cards grid */
+  .sysgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .icard { border: 1px solid var(--rule); background: #fff; padding: 11px 13px 9px; page-break-inside: avoid; }
+  .icard .iwin { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; }
+  .icard .iname { font-weight: 700; font-size: 13.5px; margin: 2px 0 9px; }
+  .ibody { display: grid; grid-template-columns: 55% 45%; gap: 4px 10px; }
+  .ichain { display: flex; flex-direction: column; align-items: stretch; }
+  .ichip { border: 1px solid var(--orange); background: #fff; font-family: var(--mono); font-size: 7.5px;
+    letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 5px 4px; color: var(--ink); }
+  .ichip.first { background: var(--orange-faint); border-width: 1.5px; color: var(--orange); font-weight: 700; }
+  .iarrow { text-align: center; color: var(--orange); font-size: 10px; line-height: 1.4; }
+  .inotes .nl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-top: 7px; }
+  .inotes .nl:first-child { margin-top: 0; }
+  .inotes p { font-size: 10px; line-height: 1.4; margin-bottom: 2px; }
+  .isolve { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 6px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange); text-transform: uppercase; }
+
+  /* P07 · gantt */
+  table.gantt { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.gantt th, table.gantt td { border: 1px solid var(--rule); padding: 5px 8px; }
+  table.gantt th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; background: #fff; }
+  table.gantt td.sysname { width: 17%; }
+  table.gantt td.sysname .gc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  table.gantt td.sysname .gn { font-weight: 700; font-size: 10.5px; }
+  .gbar { border: 1px solid var(--orange); background: var(--orange-faint); font-family: var(--mono);
+    font-size: 8px; letter-spacing: 0.8px; color: var(--ink); padding: 2px 7px; white-space: nowrap; overflow: hidden; }
+  .dwrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+  .dw { border: 1.5px solid var(--orange); background: #fff; padding: 9px 12px; font-size: 11px; }
+  .dw .dl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+  /* P08 · 2x2 matrix */
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); background: #fff; }
+  .quad { border: 1px solid var(--rule); padding: 10px 13px; min-height: 108px; }
+  .quad .qh { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #46556b;
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 7px; }
+  .mc { border: 1px solid var(--orange); background: #fff; padding: 4px 9px; margin-bottom: 5px; }
+  .mc .mcc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  .mc .mcn { font-weight: 700; font-size: 11px; }
+  .quad.build .mc { background: var(--orange-faint); border-width: 1.5px; }
+  .quad .qv { font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange);
+    text-transform: uppercase; margin-top: 4px; }
+  .axis { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; margin-top: 6px; display: flex; justify-content: space-between; }
+
+  /* P09 · guardrails swimlane */
+  .swim { border: 1px solid var(--rule); background: #fff; }
+  .lane { display: flex; border-top: 1px dotted var(--rule); }
+  .lane:first-child { border-top: none; }
+  .lanel { flex: 0 0 140px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); font-weight: 700; text-transform: uppercase; padding: 11px 0 11px 13px; }
+  .lanev { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 13px; border-left: 1px dotted var(--rule); }
+  .tag { border: 1px solid var(--rule); background: #fff; font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: 0.8px; padding: 3px 9px; }
+  .tag.never { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* P10 · next steps */
+  .igsteps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .igstep { display: flex; border: 1px solid var(--orange); background: #fff; page-break-inside: avoid; }
+  .igstep .n { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 11px; padding: 8px 10px; display: flex; align-items: flex-start; }
+  .igstep .b { padding: 7px 12px; font-size: 11px; }
+
+  /* footer strip, end of each infographic group */
+  .stripe { display: flex; border-top: 2px solid var(--ink); margin: 20px 0 4px; background: #fff; }
+  .scell2 { flex: 1; border-left: 1px dotted var(--rule); padding: 7px 12px; }
+  .scell2:first-child { border-left: none; }
+  .scell2 .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; }
+  .scell2 .sv { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+  .igtrace { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 12px; }
+
+  /* ================= PART B · IN-DEPTH BLUEPRINT COMPONENTS (unchanged v2) ================= */
+  .coverpage { page-break-before: always; page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase;
+    border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 12.5px; letter-spacing: 2.5px;
+    text-transform: uppercase; margin: 16px 0 32px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 32px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono);
+    font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 28px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 30px 0 16px; background: #fff;
+    page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 17px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 17px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  h3.sub { font-size: 14px; font-weight: 700; margin: 20px 0 6px; page-break-after: avoid; }
+  h3.sub .n { color: var(--orange); font-family: var(--mono); margin-right: 6px; }
+  .bp p { text-align: justify; }
+  p { margin-bottom: 11px; }
+  .pain { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 8px 0 16px; page-break-inside: avoid; }
+  .pain .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 2px; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 9px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .sys { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .sysbar { background: var(--orange); color: #fff; padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .sysbar .name { font-weight: 700; font-size: 14.5px; letter-spacing: 0.3px; }
+  .sysbar .code { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; }
+  .sysrow { display: flex; border-top: 1px dotted var(--rule); }
+  .sysrow:first-of-type { border-top: none; }
+  .syslbl { flex: 0 0 118px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; padding: 9px 0 9px 14px; }
+  .sysval { flex: 1; padding: 8px 14px 8px 10px; font-size: 12.5px; border-left: 1px dotted var(--rule); }
+  .sysval p { margin-bottom: 6px; }
+  .sysval p:last-child { margin-bottom: 0; }
+  .phase { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .phasehead { display: flex; align-items: stretch; }
+  .phnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .phtitle { padding: 7px 13px; font-weight: 700; font-size: 14.5px; flex: 1; display: flex; align-items: center; }
+  .phtag { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; }
+  .phbody { padding: 10px 14px 12px; border-top: 1px solid var(--rule); font-size: 12.5px; }
+  .phbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 8px; font-size: 12.5px; }
+  .done .dlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; font-weight: 700; margin-right: 6px; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 8px 13px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 13px; }
+  table.numbers tr { page-break-inside: avoid; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 10px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 13px; padding: 10px 13px; display: flex; align-items: flex-start; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; }
+  .noteblock { border: 1.5px dashed var(--orange); background: rgba(255,255,255,0.8);
+    padding: 13px 16px; margin: 16px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .noteblock .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 26px; border-top: 1.5px solid var(--orange);
+    padding-top: 12px; line-height: 1.8; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+  ul.tight { margin: 0 0 10px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  /* Rev B fit overrides */
+  .quad { min-height: 0; }
+  .ig .panel { margin: 16px 0 4px; }
+  .coverinner { padding: 30px 36px 20px; }
+  .coverbar { margin-bottom: 22px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin: 0 0 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  .covernote { margin-top: 16px; }
+  .bp { font-size: 12.5px; line-height: 1.55; }
+  .sys { margin: 11px 0; }
+
+  .ichip { padding: 3px 4px; }
+  .iarrow { line-height: 1.1; font-size: 9px; }
+  .icard { padding: 9px 11px 7px; }
+  .sysgrid { gap: 12px; }
+  .quad { padding: 8px 12px; }
+  .mc { padding: 3px 8px; margin-bottom: 4px; }
+  .bp p { margin-bottom: 9px; }
+  .sysval { padding: 6px 12px 6px 10px; font-size: 12px; }
+  .syslbl { padding: 7px 0 7px 12px; }
+  h3.sub { margin: 14px 0 5px; }
+  .pain { margin: 6px 0 12px; }
+  .sechead { margin: 22px 0 12px; }
+
+
+  /* RatnKamal Marathi fit overrides */
+  .ighead { gap: 24px; }
+  .ightitle { flex: 1; }
+  .ightitle .standfirst { max-width: none; font-size: 12px; line-height: 1.5; }
+  .igbox { flex: 0 0 auto; white-space: nowrap; }
+  .tile .v { font-size: 19px; line-height: 1.15; }
+  .tile .aw { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1px; color: var(--orange);
+    text-transform: uppercase; margin-top: 4px; line-height: 1.4; }
+  .mpath { grid-template-columns: repeat(4, 1fr); }
+  .mstep .mt { font-size: 12.5px; line-height: 1.25; margin: 2px 0 4px; }
+  .mstep .md { font-size: 10.5px; line-height: 1.4; color: #2e3a4d; }
+  .ftier { padding: 9px 0 7px; }
+  .ptier .pv { font-size: 11.5px; }
+  .ptier .pl { font-size: 7.5px; line-height: 1.5; padding: 0 9%; }
+  .ptier.top { width: 72%; padding-top: 10px; }
+  .ptier.top .fill, .ptier.top .inner { clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%); }
+  .ptier.mid { width: 86%; }
+  .ptier.mid .fill, .ptier.mid .inner { clip-path: polygon(7% 0, 93% 0, 100% 100%, 0 100%); }
+  .ptier.base { width: 100%; }
+  .ptier.base .fill, .ptier.base .inner { clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+  .ptier.top .pl { padding: 0 16%; } .ptier.mid .pl { padding: 0 10%; } .ptier.base .pl { padding: 0 8%; }
+  .pquote { font-size: 11px; text-align: center; margin-top: 8px; }
+  .stripe .sv.long { font-family: var(--sans); font-size: 9px; letter-spacing: 0; text-transform: none; line-height: 1.4; display: block; color: #2e3a4d; }
+  .stripe .scell2 .sl { margin-bottom: 2px; }
+  .icard .iname { font-size: 13px; }
+  .ichip { font-size: 7.3px; letter-spacing: 0.5px; line-height: 1.35; }
+  .inotes p { font-size: 9.6px; }
+  .isolve { line-height: 1.5; }
+  table.gantt th .gph { display: block; color: var(--ink); font-weight: 700; }
+  table.gantt th { vertical-align: top; line-height: 1.5; }
+  table.gantt th.wk { text-align: center; }
+  table.gantt td.tl { padding: 5px 0;
+    background-image: repeating-linear-gradient(90deg, transparent 0, transparent calc(16.6667% - 1px), var(--rule) calc(16.6667% - 1px), var(--rule) 16.6667%); }
+  .gbar { white-space: normal; overflow: visible; line-height: 1.35; }
+  .dw { font-size: 10.8px; }
+  .tag { font-family: var(--sans); font-size: 10px; letter-spacing: 0.2px; padding: 3px 9px; }
+  .tag.hs { border-color: var(--orange); background: var(--orange-faint); color: var(--orange); }
+  .tag.never { background: var(--ink); border-color: var(--ink); }
+  .igsteps { grid-template-columns: repeat(3, 1fr); }
+  .igstep .b { font-size: 11px; }
+  .igstep .own { display: block; font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; margin-top: 5px; }
+  .expertbar { display: flex; justify-content: space-between; align-items: center; margin-top: 12px;
+    border: 1.5px solid var(--orange); background: var(--orange-soft); padding: 7px 13px; }
+  .expertbar .el { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: var(--orange); text-transform: uppercase; }
+  .expertbar a { font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; color: var(--ink); text-decoration: none; }
+
+  /* Part B */
+  .sysbar .name { text-transform: none; }
+  .domino .dominobody { padding: 14px 18px 16px; }
+  .stamp { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 3px; color: var(--orange);
+    text-transform: uppercase; font-weight: 700; border: 1.5px solid var(--orange); outline: 1px solid var(--orange);
+    outline-offset: 2px; padding: 4px 12px; margin-bottom: 10px; }
+  .dfor { font-size: 12px; color: #46556b; margin-bottom: 8px; }
+  .bp p.dlead { font-size: 14px; line-height: 1.6; text-align: left; margin-bottom: 0; }
+  h2.probtitle { font-size: 24px; line-height: 1.2; font-weight: 800; margin: 4px 0 12px; }
+  .pain.quote { font-style: italic; font-size: 13px; line-height: 1.6; padding: 12px 16px; }
+  .sysval.half { display: flex; gap: 40px; }
+  b.mini { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: var(--orange); text-transform: uppercase; margin-right: 6px; }
+  .guard.inner { margin: 0; border-top: 1px dotted var(--rule); }
+  .sysbar .code .scall { border: 1px solid #fff; padding: 1px 6px; margin-left: 6px; }
+  ul.tight li { font-size: 12px; }
+  .sysval ul.tight { margin: 0 0 0 16px; }
+  table.numbers.dept td { vertical-align: top; font-size: 11.5px; line-height: 1.5; }
+  table.numbers.dept thead { display: table-header-group; }
+  .closeblock { page-break-before: always; }
+  .bigclose { font-size: 21px; line-height: 1.35; font-weight: 800; border-top: 2px solid var(--orange); padding-top: 14px; margin: 4px 0 18px; }
+  .noteblock.yournote { min-height: 120px; }
+  .noteblock.expert .ename { font-size: 18px; font-weight: 800; margin: 2px 0 2px; }
+  .noteblock.expert p { margin-bottom: 10px; text-align: left; }
+  .bookbtn { display: inline-block; background: var(--orange); color: #fff; font-family: var(--mono); font-size: 10px;
+    letter-spacing: 2.5px; text-transform: uppercase; text-decoration: none; padding: 9px 20px; }
+  .elink { margin-top: 8px; }
+  .elink a { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; color: var(--ink); }
+  .prepline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; color: #46556b; text-transform: uppercase; margin-top: 14px; }
+  table.gantt { table-layout: fixed; }
+  .ig .panel.p06 { page-break-inside: auto; break-inside: auto; }
+  .p06 .icard { break-inside: avoid; page-break-inside: avoid; }
+  .bp .sys { page-break-inside: auto; break-inside: auto; }
+  .bp .sysbar { break-after: avoid; page-break-after: avoid; }
+  .bp .sysrow, .bp .guard.inner { break-inside: avoid; page-break-inside: avoid; }
+  .closeblock { page-break-before: auto; }
+  .bigclose, .noteblock.expert { break-inside: avoid; page-break-inside: avoid; }
+  .bp .step { margin: 7px 0; }
+  .bp .stepbody { padding: 7px 13px; }
+  .bp .stepbody p { margin-bottom: 0; }
+  .bigclose { font-size: 18.5px; margin-bottom: 14px; }
+  .closegrid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 14px; break-inside: avoid; page-break-inside: avoid; }
+  .closegrid .noteblock { margin: 0; }
+  .noteblock.yournote { min-height: 0; }
+  .closeblock .guard { margin-top: 12px; }
+  .closeblock .traceline { margin-top: 14px; }
+</style></head><body>
+<!-- ############################ PART A · THE INFOGRAPHIC ############################ -->
+<div class="ig">
+
+  <div class="ighead">
+    <div class="ightitle">
+      <h1>RatnKamal Enterprises<br><span style="color:var(--orange);">AI Systems Blueprint</span></h1>
+      <div class="standfirst">RatnKamal Enterprises swatahchya factory madhe GI metal che darwaje ani khidkya banavte ani te ghar bandhnarya vyaktinna ani builders na vikte, ₹10 – 50 Lakh mahinyachya band madhe. Tyanchya swatahchya mojnipramane pratyek mahinyala 200 leads yetat, 80 quotes jatat ani 35 orders book hotat, sarasari ₹45,000 chya, ani Production, Powder Coating, Glass Installation, Site Installation ani char lokanchya back office madhe 22 staff aahet. Custom software aadhich Order Form madhun Job Card Sheet banavte ani batch numbers ek department kadun dusrya department kade pudhe neto; enquiries, quotations, payment follow-ups ani malkancha sakalcha planning cha ek taas ajunahi haatane hotat. Ha document teen mahinyant paach jodlele layers suchavto, ani pratyek price, payment ani order madhla badal Santosh sign kartat.</div>
+    </div>
+    <div class="igbox">
+      <span class="bl">Yanchyasathi tayar kele</span><br>
+      Santosh Uttam Mali<br>
+      Blueprint audit 19.11.2026<br>
+      RatnKamal Enterprises
+    </div>
+  </div>
+
+  <!-- P01 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">01</span><span class="ptitle">Aakde (The Numbers)</span><span class="ptag">Dashboard tiles · client ne dilya pramane</span></div>
+    <div class="tiles" style="grid-template-columns: repeat(8, 1fr);">
+      <div class="tile"><div class="v">200</div><div class="l">Leads mahinyala</div><div class="aw">Jase lihile</div></div>
+      <div class="tile"><div class="v">80</div><div class="l">Quotes mahinyala</div><div class="aw">Jase lihile</div></div>
+      <div class="tile"><div class="v">45</div><div class="l">100 quotes paiki</div><div class="aw">Jase lihile</div></div>
+      <div class="tile"><div class="v">35</div><div class="l">Orders mahinyala</div><div class="aw">Jase lihile</div></div>
+      <div class="tile"><div class="v">45000</div><div class="l">Sarasari order value</div><div class="aw">Jase lihile, rupayat</div></div>
+      <div class="tile"><div class="v">7 to 10 days</div><div class="l">Sales cycle</div><div class="aw">Jase lihile</div></div>
+      <div class="tile hot"><div class="v">B2B</div><div class="l">Repeat customers</div><div class="aw">Jase lihile; ek segment dila, count kiwa share naahi</div></div>
+      <div class="tile hot"><div class="v">22</div><div class="l">Ekun headcount</div><div class="aw">Jase lihile</div></div>
+    </div>
+    <div class="pcap">Sales che aakde ekmekanshi jultat: 200 leads, 80 quotes ani 35 orders yogya dishene kami hotat, ani 80 quotes madhun 35 orders he dilelya 100 paiki 45 conversion chya javal aahe, mhanun ek aakda dusrya aakdyala tapasto. ₹45,000 chya 35 orders sangitlelya ₹10 – 50 Lakh band madhe basatat. <b>Don goshti jasha dilya tasha ubhya rahu shakat naahit.</b> Pahili, Santosh na mojnyaadhich department list 22 hote, mhanun headcount ekatar malkanshivay 22 aahe kiwa tyanchyasakat 23; ani money path madhe B2B Order Forms bharnara Office Boy aahe ani people map madhe Accountant aahe, pan doghanpaiki konihi 22 madhe vegli line mhanun disat naahi. Dusri, repeat customer chya prashnat aakda vicharla hota ani uttar mhanun segment milala, mhanun repeat business chya orders cha share kuthehi dilela naahi ani B2B repeat view ya sheets varun mojta yet naahi. Donhi goshti Santosh ni tharvaychya aahet; ithe kahihi durust kelele naahi.</div>
+  </div>
+
+  <!-- P02 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">02</span><span class="ptitle">Aajcha Paishancha Marg (The Money Path Today)</span><span class="ptag">Flowchart · enquiry pasun antim payment paryant</span></div>
+    <div class="mpath">
+      <div class="mstep broken"><div class="mn">01</div><div class="mt">Enquiry yete</div><div class="md">WhatsApp, IndiaMART, TradeIndia, Justdial, Meta ad, site visit, website. Jo mokla asel to uchalto: Santosh, Sales Executive kiwa ek karmachari.</div></div>
+      <div class="mstep broken"><div class="mn">02</div><div class="mt">Requirement call ani catalogue share</div><div class="md">Santosh, Sales Executive kiwa Receptionist phone kartat, darwaja ki khidki, andaje size, photos havet ki pricing he vichartat, mag WhatsApp var catalogue photos pathavtat.</div></div>
+      <div class="mstep broken"><div class="mn">03</div><div class="mt">Design nivadla, quotation pathavle</div><div class="md">Customer design photo parat pathavto; team width ani height vichartat, haatane price mojtat, quotation tayar karun WhatsApp var pathavtat.</div></div>
+      <div class="mstep broken"><div class="mn">04</div><div class="mt">Follow-up ani negotiation</div><div class="md">Sales Executive 7 te 10 divasanchya cycle madhe phone ani WhatsApp var follow-up karto, prashnanchi uttare deto, negotiate karto, convert karto. Santosh pricing final kartat.</div></div>
+      <div class="mstep broken"><div class="mn">05</div><div class="mt">Advance ani Order Form</div><div class="md">Advance ghetla jato; Sales Executive measurements sathi tapasto kiwa site la bhet deto ani Order Form purna karto, mag to Production kade pathavto.</div></div>
+      <div class="mstep broken"><div class="mn">06</div><div class="mt">Order Form te Job Card Sheet</div><div class="md">Sales Executive (B2C) kiwa Office Boy (B2B) custom software madhe Order Form bharto; Job Card Sheet aapoaap tayar hote, mag print karun haatane Production paryant neli jaate.</div></div>
+      <div class="mstep broken"><div class="mn">07</div><div class="mt">Fabrication</div><div class="md">Production software madhe batch numbers In Progress ani Completed mark karte; mag ti sheet Powder Coating chya tab madhe swatahun disate.</div></div>
+      <div class="mstep broken"><div class="mn">08</div><div class="mt">Coating, glass, installation ani antim payment</div><div class="md">Powder Coating, Glass Installation ani Site Installation pratyek aaplya tab madhe kaam kartat; installation team Accounts kadun bill ani challan gheto, install karto, demo deto, ani site var baki payment kiwa sign kelela Credit Policy gheto.</div></div>
+    </div>
+    <div class="legend"><span><span class="sw f"></span>Ajunahi haatane</span><span>8 paiki 8 stations</span></div>
+    <div class="pcap">Enquiry pasun antim payment paryant aath stations, sagli ajunahi haatane hotat ashi mark keleli. <b>Haatache kaam pahilya charanmadhe sarvat jast aahe</b>, jithe saha channels varchya enquiries la jo mokla asel to uttar deto ani WhatsApp var photo aalyavarach pratyek price mojli jaate. Station saha pasun pudhe custom software aadhich Job Card Sheet departments madhe pohochavte; tithe haatane rahte te mhanje Production paryant neleli printout, status updates, daily reports ani site var payment vasuli. Automation sathi umedvar mhanje pahili char stations ani station saha varcha handover; factory stations aaple software tabs aahet tase thevtat.</div>
+  </div>
+
+  <!-- P03 + P04 -->
+  <div class="duo">
+    <div class="panel">
+      <div class="phead"><span class="pnum">03</span><span class="ptitle">Volume Kuthe Jato (Where The Volume Goes)</span><span class="ptag">Funnel</span></div>
+      <div class="fverdict" style="margin:0 0 6px;">Leads te quotes te orders, jase lihile</div>
+      <div class="funnel">
+        <div class="ftier t1"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">200</div><div class="fl">Leads mahinyala</div></div></div>
+        <div class="ftier t2"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">80</div><div class="fl">Quotes mahinyala</div></div></div>
+        <div class="ftier t3"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="fv">35</div><div class="fl">Orders mahinyala</div></div></div>
+      </div>
+      <div class="pcap">Aakar barobar aahe: pratyek payrivar to aarund hoto. <b>Baghnyasarkhi tafavat pahili aahe, 200 leads te 80 quotes</b>, jithe saha channels varcha haatane honara intake kontya enquiry la uttar milte he tharavto. 80 quotes madhun 35 orders he vegle dilelya 100 paiki 45 conversion chya javal aahe, mhanun quote-to-order payri aadhich sushangat mojli aahe. Ya funnel varun 35 paiki kiti repeat B2B orders aahet he kalat naahi; to aakda sangitla gela naahi.</div>
+    </div>
+    <div class="panel">
+      <div class="phead"><span class="pnum">04</span><span class="ptitle">Kaam Konakade Aahe (Who Holds The Work)</span><span class="ptag">Pyramid · sansthetil thar</span></div>
+      <div class="pyr">
+        <div class="ptier top"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Malak: Santosh Uttam Mali</div><div class="pl">Mahatvache customer vyavahar, sagle pricing, kharedi che nirnay, pratyek bank vyavahar ani payment approval, kadhi kadhi production var dekhrekh, ani roj sakali ek taas 22 staff departments madhe vatnyasathi.</div></div></div>
+        <div class="ptier mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Management: Team Leaders, nemle pan ajun jababdarit naahit</div><div class="pl">Pratyek department sathi Team Leader aahe, pan jababdarya ajun dilelya naahit, meeting jhali naahi, ani ABCD grading ani daily checklist lihilelya aahet pan suru jhalya naahit. Back office la job descriptions naahit; fakt Receptionist roj report dete.</div></div></div>
+        <div class="ptier base"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Execution: 22 staff</div><div class="pl">Production 8, Powder Coating 5, Glass Installation 2, Site Installation 3, Accounts and Stock Keeping 1, Admin 1, Sales Executive 1, Receptionist 1. Office Boy ani Accountant itar thikani nav aahe pan ya count madhe naahit.</div></div></div>
+      </div>
+      <div class="pquote">“At present, I am personally involved in managing and supervising the different departments.”</div>
+      <div class="pcap"><b>Madhla thar haach mahatvacha nishkarsh aahe.</b> Rachna design keleli aahe, checklist ani grading paryant, pan jopryant Team Leader meeting hot naahi topryant malak haach vyavsayacha ekmev management aahe, ani pratyek department report, stock check ani staff allocation tyanchyatunach jate. Build Team Leaders kadun vachto; jo thar ajun report karat naahi tyachyakadun to reports gola karu shakat naahi, mhanunach meeting pahilya aathavdyant thevli aahe.</div>
+    </div>
+  </div>
+
+  <!-- P05 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">05</span><span class="ptitle">Paise Bharle, Lihile, Pan Ajun Chalu Naahi (Paid For, Written, Not Yet Running)</span><span class="ptag">Aadhi / nantar</span></div>
+    <div class="ba">
+      <div class="bacard"><span class="fl">Wapar</span><div class="bt">CRM software</div>
+        <p><b class="was">Aadhi:</b> Subscription ghetli ani paise bharle, sadhya wapar naahi. Leads WhatsApp var ani marketing portals var rahtat, ani Receptionist cha daily call report haach ekmev record aahe.</p>
+        <p><b class="now">Aata:</b> Enquiry Intake Flow pratyek lead ya CRM madhe banavto, channel ani B2C kiwa B2B pramane tag karun, mhanun mahinyache 200 leads ani 80 quotes konihi type na karta mojle jatat.</p></div>
+      <div class="bacard"><span class="fl">Wapar</span><div class="bt">Task manager software</div>
+        <p><b class="was">Aadhi:</b> Vikat ghetle, paise bharle, wapar naahi. Staff cha daily allocation Santosh sakalchya tasat kartat ani tondi sangtat.</p>
+        <p><b class="now">Aata:</b> Santosh ni approve kelyavar Day Manager divasacha allocation task manager madhe takto, ani nantar job descriptions lihilya ki to back office chi daily list banto.</p></div>
+      <div class="bacard"><span class="fl">Rachna</span><div class="bt">Team Leader checklist ani ABCD grading</div>
+        <p><b class="was">Aadhi:</b> Tayar kele, lagu kele naahi. Daily reports, performance observations ani dusrya divasache planning lihun thevle aahe pan kontyahi Team Leader ni ek suddha submit kela naahi.</p>
+        <p><b class="now">Aata:</b> Day Manager pratyek Team Leader la WhatsApp var tyanchyakade aadhich aslelya checklist sathi vicharto, uttar na denaryanna parat aathavan karun deto, ani Santosh na sakali 9 AM la ek summary deto, pending approvals aadhi.</p></div>
+    </div>
+    <div class="pcap">Vyavsayane aadhich vikat ghetlelya kiwa lihilelya pan chalu na kelelya teen goshti. <b>Build chauthi goshta jodat naahi; to ya tinanna kaamala lavto.</b> Jithe Receptionist che aahet te apps ekasarkhe vaparle jat naahit, tithehi hech lagu hote: phone uchalnyaadhich pahila reply ani catalogue pages jatat, mhanun desk vyast aso kiwa naso, record thevla jato.</div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Vyavsay</span><span class="sv long">“We sell Gi metal door to Personal who bulid his house. And Builders”</span></div>
+    <div class="scell2"><span class="sl">Jaga (Sites)</span><span class="sv long">“- All manufacturing and production activities are carried out at our own factory. - Only installation work is performed at the customer's site. - Office operations and stock management are handled at the same location. - Currently, only purchasing is done externally. - No production-related work is outsourced. All production activities are completed in-house at our own factory.”</span></div>
+    <div class="scell2"><span class="sl">Thevlela stack</span><span class="sv long">“Apps and Software We Currently Use and Pay For 1. Accounting Software: Vyapar – used for accounting and business transactions. 2. Digital Marketing Platforms: - TradeIndia - IndiaMART - Justdial - Website - Meta Ads 3. Custom Tracking Software: We use a customized software application developed specifically for our business to track and manage our business operations. We have to pay for using this application.”</span></div>
+    <div class="scell2" style="flex:0 0 130px;"><span class="sl">Bhag</span><span class="sv">Sadyachi sthiti</span></div>
+  </div>
+
+  <!-- P06 -->
+  <div class="panel p06">
+    <div class="phead"><span class="pnum">06</span><span class="ptitle">Suchavleli AI Systems (Recommended AI Systems)</span><span class="ptag">Systems · aadhi foundation</span></div>
+    <div class="sysgrid">
+      <div class="icard"><span class="iwin">F-00 · P1–P2</span><div class="iname">RatnKamal One Lead to Cash Record</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">6 paiki kontyahi channel madhun lead</div><div class="iarrow">↓</div><div class="ichip">Lead var quote</div><div class="iarrow">↓</div><div class="ichip">Order Form ani batch numbers</div><div class="iarrow">↓</div><div class="ichip">Vyapar madhun bakaya</div><div class="iarrow">↓</div><div class="ichip">Ek record, ek ID</div></div>
+        <div class="inotes"><span class="nl">Aadhi ka</span><p>CRM che paise aadhich bharle aahet ani wapar hot naahi; khalchi pratyek system tyatun vachte, mhanun dusra vikat ghenyaaivaji toch shared record mhanun parat chalu kela jato.</p><span class="nl">Baki input</span><p>CRM, custom tracking software, Vyapar ani payment follow-up software che logins ani export access.</p></div></div>
+        <div class="isolve">Sodvte: enquiries, quotes, orders, batches ani bakaya aaj paach thikani rahtat: WhatsApp, portals, custom software, Vyapar ani Receptionist cha report.</div></div>
+      <div class="icard"><span class="iwin">SYS-01 · P1</span><div class="iname">RatnKamal Enquiry and Quote Skill</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Enquiry yete</div><div class="iarrow">↓</div><div class="ichip">Vichara: darwaja ki khidki, andaje size, pricing havi ka</div><div class="iarrow">↓</div><div class="ichip">Tya size che catalogue photos nivda</div><div class="iarrow">↓</div><div class="ichip">Nivadlele design + width ani height gola kara</div><div class="iarrow">↓</div><div class="ichip">Quotation text ani follow-ups draft kara</div></div>
+        <div class="inotes"><span class="nl">Aadhi ka</span><p>Sarvat sopa build, jast confidence, aadhich aslelya kharya WhatsApp threads varun banavla, ani nantarchi pratyek system yatun vachte.</p><span class="nl">Guardrail</span><p>Rupayachi rakkam asleli koni draft Santosh chya price approval shivay baher jat naahi; skill rate card fakt vachnyasathi (read-only) thevto.</p></div></div>
+        <div class="isolve">Sodvte: mahinyache 200 leads Santosh, Sales Executive ani Receptionist haatane qualify karun uttar detat, desk var kon mokla aahe tyavar avlambun.</div></div>
+      <div class="icard"><span class="iwin">SYS-02 · P2</span><div class="iname">RatnKamal Quote Builder</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Design photo + width, height, glass, colour taka</div><div class="iarrow">↓</div><div class="ichip">Rate card + section cutting formulas vacha</div><div class="iarrow">↓</div><div class="ichip">Santosh price line approve kartat</div><div class="iarrow">↓</div><div class="ichip">Quotation PDF + WhatsApp message</div><div class="iarrow">↓</div><div class="ichip">Order Form draft custom software madhe</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>PDF bannyaadhi pratyek quotation chya price var Santosh approve dabtat; discounts ani negotiation tyanchyakade ani Sales Executive kade rahtat.</p><span class="nl">Adoption</span><p>Sales Executive ne quotes haatane naahi tar ya screen var banavle pahijet; he Job Card Sheet che tech formulas vaparte mhanun kahihi parat type hot naahi.</p></div></div>
+        <div class="isolve">Sodvte: customer ne WhatsApp var nivadlela photo pathavlyavar price haatane mojli jaate ani quotation type hote, mahinyala 80 vela.</div></div>
+      <div class="icard"><span class="iwin">SYS-03 · P3</span><div class="iname">RatnKamal Enquiry Intake Flow</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Trigger: WhatsApp, IndiaMART, TradeIndia, Justdial, Meta, website</div><div class="iarrow">↓</div><div class="ichip">CRM madhe lead, channel + B2C/B2B tag</div><div class="iarrow">↓</div><div class="ichip">Pahila reply + catalogue pages gele</div><div class="iarrow">↓</div><div class="ichip">Design + measurements Quote Builder kade</div><div class="iarrow">↓</div><div class="ichip">Quotation Santosh chya queue madhe thambte</div><div class="iarrow">↓</div><div class="ichip">Follow-ups schedule, shant leads chi list</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>Step char: price asleli koni quotation Santosh chya hokara shivay customer la jat naahi; swatahun uttar denyaadhi ha flow don aathavde manual padhatichya barobar chalto.</p><span class="nl">Baki input</span><p>IndiaMART, TradeIndia, Justdial, Meta ad forms ani website kadun lead feed access.</p></div></div>
+        <div class="isolve">Sodvte: saha enquiry channels, shared intake naahi; Receptionist ani Sales Executive madhe leads sutun jatat.</div></div>
+      <div class="icard"><span class="iwin">SYS-04 · P3</span><div class="iname">RatnKamal Bakaya Reminder Drafts</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Vyapar + follow-up software madhun outstanding vacha</div><div class="iarrow">↓</div><div class="ichip">Customer nihay list, promised date + Credit Policy status</div><div class="iarrow">↓</div><div class="ichip">WhatsApp reminders draft</div><div class="iarrow">↓</div><div class="ichip">Santosh divasachi list approve kartat</div><div class="iarrow">↓</div><div class="ichip">Pathva ani follow-up record kara</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>System drafts ani lists banavte; te kadhihi vachan det naahi, vasuli karat naahi, commit karat naahi kiwa pay karat naahi, ani Santosh ni divasachi list approve kelyashivay koni aakda baher jat naahi.</p><span class="nl">Baki input</span><p>Bakaya ani promised payment dates Vyapar ani follow-up software madhe current asayla havya.</p></div></div>
+        <div class="isolve">Sodvte: Receptionist ani Sales Executive phone var payment follow-ups kartat, records haatane thevle jatat.</div></div>
+      <div class="icard"><span class="iwin">SYS-05 · P4</span><div class="iname">RatnKamal Job Card Dispatch</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Custom software madhe Order Form purna</div><div class="iarrow">↓</div><div class="ichip">Job Card Sheet aapoaap tayar</div><div class="iarrow">↓</div><div class="ichip">PDF WhatsApp var Production Team Leader la</div><div class="iarrow">↓</div><div class="ichip">Batch numbers dile</div><div class="iarrow">↓</div><div class="ichip">Stage badalanvar laksha</div></div>
+        <div class="inotes"><span class="nl">Aadhi ka</span><p>Custom software aadhich Job Card Sheet banavte; fakt Production paryant chalat neli janari printout badalte.</p><span class="nl">Guardrail</span><p>Confirm jhalelya customer order madhla koni badal Santosh samor thevla jato ani system to kadhihi swatah karat naahi.</p></div></div>
+        <div class="isolve">Sodvte: Job Card Sheet PDF download, print karun haatane Production department la dili jaate.</div></div>
+      <div class="icard"><span class="iwin">SYS-06 · P4</span><div class="iname">RatnKamal Enquiry to Cash Board</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Channel nihay enquiries, uttar na dilelyancha count</div><div class="iarrow">↓</div><div class="ichip">Price approval baki quotes, follow-ups due</div><div class="iarrow">↓</div><div class="ichip">Advance kiwa site measurement baki orders</div><div class="iarrow">↓</div><div class="ichip">Stage nihay batches vs daily target</div><div class="iarrow">↓</div><div class="ichip">Bakaya ani stock vs minimum</div></div>
+        <div class="inotes"><span class="nl">Baki input</span><p>F-00, S-03 ani S-04 yancha data lagto; stock panel sathi custom software madhe stock minimums set karayla havet.</p><span class="nl">Adoption</span><p>Receptionist cha vegla daily report yachi jaga gheto; ti aata aapli call list board varun vachte.</p></div></div>
+        <div class="isolve">Sodvte: Santosh roj sakali divasache planning karnyaadhi orders kuthe aahet he jodnyat ghalavtat to taas.</div></div>
+      <div class="icard"><span class="iwin">SYS-07 · P4</span><div class="iname">RatnKamal Team Leader Checklist Collection</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">8:30 AM: pratyek Team Leader la WhatsApp var vichara</div><div class="iarrow">↓</div><div class="ichip">Checklist: jhale ki naahi, karane, adchani, udya</div><div class="iarrow">↓</div><div class="ichip">Uttar na dilelyanna aathavan</div><div class="iarrow">↓</div><div class="ichip">ABCD observations gola kara</div><div class="iarrow">↓</div><div class="ichip">Santosh na 9 AM summary</div></div>
+        <div class="inotes"><span class="nl">Adoption</span><p>Team Leader meeting aadhi vhayla havi ani checklist automate karnyaadhi manually chalayla havi; CRM ani task manager vikat ghetle ani padun rahile, mhanun he jithe staff aadhich aahe tya WhatsApp var suru hote.</p><span class="nl">Guardrail</span><p>Hiring, termination ani pagar che nirnay ya reports varun kadhihi ghetle jat naahit; te fakt Santosh na mahiti detat.</p></div></div>
+        <div class="isolve">Sodvte: daily reports fakt Receptionist kadun yetat; Team Leaders nemle aahet pan tyanche reporting suru jhale naahi.</div></div>
+      <div class="icard"><span class="iwin">SYS-08 · P4 → Mahine 4–6</span><div class="iname">RatnKamal Day Manager</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Trigger: 8:30 AM, batch status badal, payment post</div><div class="iarrow">↓</div><div class="ichip">Daily target chya maage aslelya batches flag, Team Leader la aathavan</div><div class="iarrow">↓</div><div class="ichip">Stock vs minimum tapasa, purchase list draft</div><div class="iarrow">↓</div><div class="ichip">Departments madhe staff allocation draft</div><div class="iarrow">↓</div><div class="ichip">Bakaya + allocation approval sathi queue</div><div class="iarrow">↓</div><div class="ichip">Aadhi approvals, mag delays, stock, ABCD</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>12 aathavdyanchya aat report-only mode madhe suru hoto; bakaya list ani staff allocation Santosh roj sakali approve kelyavarach baher jatat; pricing, payments ani order badal samor thevle jatat, kadhihi swatah kele jat naahit.</p><span class="nl">Adoption</span><p>Report-only run var vishwas basla ki mahine 4 te 6 madhe purna batch tracking, reminders ani stock alerts live hotat.</p></div></div>
+        <div class="isolve">Sodvte: Santosh pratyek department che roj swatah coordination kartat ani 22 staff sathi haatane planning cha ek taas.</div></div>
+    </div>
+    <div class="pcap"><b>Paise bharlele kahihi badlat naahi.</b> Custom tracking software Order Form, Job Card Sheet ani batch tabs thevte; Vyapar accounts thevte; IndiaMART, TradeIndia, Justdial, Meta ani website enquiries aanat rahtat. Aadhich paise bharlele pan na vaparlele CRM ani task manager lead record ani daily list mhanun parat kaamat yetat. Varchi systems yatun vachtat ani yanna jodtat; varcha layer haach fakt navin aahe.</div>
+  </div>
+
+  <!-- P07 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">07</span><span class="ptitle">Ammalbajavni Roadmap (Implementation Roadmap)</span><span class="ptag">Gantt · teen mahine</span></div>
+    <table class="gantt">
+      <colgroup><col style="width:17%;"><col><col><col><col><col><col></colgroup>
+      <tr><th>Phase</th><th><span class="gph">P1</span>Enquiry and Quote Skill, Team Leader meeting</th><th colspan="2"><span class="gph">P2</span>Rate card var Quote Builder, CRM parat chalu</th><th><span class="gph">P3</span>Saha channels var Intake Flow, bakaya drafts</th><th colspan="2"><span class="gph">P4</span>Board, Job Card Dispatch, Day Manager report-only madhe</th></tr>
+      <tr><th>System</th><th class="wk">Wk 1–2</th><th class="wk">Wk 3–4</th><th class="wk">Wk 5–6</th><th class="wk">Wk 7–8</th><th class="wk">Wk 9–10</th><th class="wk">Wk 11–12</th></tr>
+      <tr><td class="sysname"><span class="gc">F-00</span><span class="gn">RatnKamal One Lead to Cash Record</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:0%; width:50%;">Paise bharlela CRM ekach record mhanun parat chalu kara</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-01</span><span class="gn">RatnKamal Enquiry and Quote Skill</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:0%; width:25%;">Qualification script + catalogue map + drafts</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-02</span><span class="gn">RatnKamal Quote Builder</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:16.667%; width:33.333%;">Ekach screen varun Quote PDF + Order Form</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-03</span><span class="gn">RatnKamal Enquiry Intake Flow</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:33.333%; width:33.333%;">Saha channels, ek intake, approval queue</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-04</span><span class="gn">RatnKamal Bakaya Reminder Drafts</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:41.667%; width:25%;">Roj bakaya list, aadhi approve mag pathva</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-05</span><span class="gn">RatnKamal Job Card Dispatch</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:50%; width:25%;">Job Card PDF Team Leader la, printout naahi</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-06</span><span class="gn">RatnKamal Enquiry to Cash Board</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:58.333%; width:41.667%;">Ek board, phone + office screen</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-07</span><span class="gn">RatnKamal Team Leader Checklist Collection</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:66.667%; width:33.333%;">Checklists aat, 9 AM summary baher</div></td></tr>
+      <tr><td class="sysname"><span class="gc">SYS-08</span><span class="gn">RatnKamal Day Manager</span></td><td colspan="6" class="tl"><div class="gbar" style="margin-left:75%; width:25%;">Report-only suruvat: laksha, draft, summary</div></td></tr>
+    </table>
+    <div class="dwrow" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="dw"><span class="dl">P1 purna jevha</span>Navin WhatsApp enquiry la tichya size sathi qualification reply ani catalogue pages skill ne draft karun Sales Executive kiwa Receptionist ne pathavle, ani Team Leader meeting jhali aahe ani checklist reporting manually chalu aahe.</div>
+      <div class="dw"><span class="dl">P2 purna jevha</span>Aathavdyat pathavleli pratyek quotation Quote Builder madhun PDF mhanun aali, price line var Santosh chya approval sakat, ani tya mahinyacha pratyek lead CRM madhe channel, B2C kiwa B2B tag ani owner sakat ek row mhanun aahe.</div>
+      <div class="dw"><span class="dl">P3 purna jevha</span>WhatsApp, IndiaMART, TradeIndia, Justdial, Meta ani website varchya enquiries konihi type na karta CRM madhe yetat, flow don aathavde manual padhatichya barobar chalala aahe, ani pratyek divasache bakaya reminders Santosh ni list approve kelyavarach gele.</div>
+      <div class="dw"><span class="dl">P4 purna jevha</span>Sakali 9 AM la Santosh ek message ughadtat, tyat aadhi approvals, dusre delays ani tisre stock; Board pratyek batch tichya stage var dakhavto, ani sakalcha planning cha taas aata gola karnyat jat naahi: AI ani Team Leaders routine sambhaltat mhanun te RatnKamal Enterprises chya bhavishyatil vadh ani vikasavar laksha deu shaktat.</div>
+    </div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Vyavsay</span><span class="sv long">“We sell Gi metal door to Personal who bulid his house. And Builders”</span></div>
+    <div class="scell2"><span class="sl">Jaga (Sites)</span><span class="sv long">“- All manufacturing and production activities are carried out at our own factory. - Only installation work is performed at the customer's site. - Office operations and stock management are handled at the same location. - Currently, only purchasing is done externally. - No production-related work is outsourced. All production activities are completed in-house at our own factory.”</span></div>
+    <div class="scell2"><span class="sl">Thevlela stack</span><span class="sv long">“Apps and Software We Currently Use and Pay For 1. Accounting Software: Vyapar – used for accounting and business transactions. 2. Digital Marketing Platforms: - TradeIndia - IndiaMART - Justdial - Website - Meta Ads 3. Custom Tracking Software: We use a customized software application developed specifically for our business to track and manage our business operations. We have to pay for using this application.”</span></div>
+    <div class="scell2" style="flex:0 0 130px;"><span class="sl">Bhag</span><span class="sv">Build</span></div>
+  </div>
+
+  <!-- P08 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">08</span><span class="ptitle">Haach Build Kram Ka (Why This Build Order)</span><span class="ptag">2 × 2 matrix</span></div>
+    <div class="matrix">
+      <div class="quad"><span class="qh">Jast parinam · konihi na badalta chalte</span>
+        <div class="mc"><span class="mcc">SYS-01</span><span class="mcn">RatnKamal Enquiry and Quote Skill</span></div>
+        <div class="mc"><span class="mcc">SYS-03</span><span class="mcn">RatnKamal Enquiry Intake Flow</span></div>
+        <div class="mc"><span class="mcc">SYS-05</span><span class="mcn">RatnKamal Job Card Dispatch</span></div></div>
+      <div class="quad"><span class="qh">Jast parinam · lokanna badalave lagte</span>
+        <div class="mc"><span class="mcc">SYS-02</span><span class="mcn">RatnKamal Quote Builder</span></div>
+        <div class="mc"><span class="mcc">SYS-07</span><span class="mcn">RatnKamal Team Leader Checklist Collection</span></div></div>
+      <div class="quad"><span class="qh">Vadhat janara fayda · swachha data lagto</span>
+        <div class="mc"><span class="mcc">F-00</span><span class="mcn">RatnKamal One Lead to Cash Record</span></div>
+        <div class="mc"><span class="mcc">SYS-04</span><span class="mcn">RatnKamal Bakaya Reminder Drafts</span></div>
+        <div class="mc"><span class="mcc">SYS-06</span><span class="mcn">RatnKamal Enquiry to Cash Board</span></div></div>
+      <div class="quad"><span class="qh">Vadh · scaling mokla karte</span>
+        <div class="mc"><span class="mcc">SYS-08</span><span class="mcn">RatnKamal Day Manager</span></div></div>
+    </div>
+    <div class="axis"><span>← Manavi badalavar kami avlamban</span><span>Jast →</span></div>
+    <div class="pcap">Build kram quadrants pramane chalto. <b>Aadhi swatah chalnari:</b> skill, intake flow ani Job Card dispatch yanna konihi aapli kaamachi padhat badlavi lagat naahi ani te pahilya divasapasun taas parat detat. <b>Mag lokanna badalave lagnari:</b> Quote Builder ani checklist collection tevhach fayda detat jevha Sales Executive screen var quote karto ani Team Leaders report kartat, mhanunach Team Leader meeting aathavda 1 madhe aahe. <b>Vadhat janara fayda denari systems,</b> shared record, bakaya drafts ani Board, CRM ani Vyapar madhe swachha data yeiparyant thambtat. <b>Vadh,</b> mhanje Day Manager, aathavda 10 madhe report-only suru hoto ani tyachya summaries var vishwas baslyavarach tracking ani allocation hati gheto.</div>
+  </div>
+
+  <!-- P09 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">09</span><span class="ptitle">Suraksha Niyam (Guardrails)</span><span class="ptag">Swimlane · client ne tharavle</span></div>
+    <div class="swim">
+      <div class="lane"><div class="lanel">AI swatah karte</div><div class="lanev">
+        <span class="tag">Production, Powder Coating, Glass Installation ani Site Installation che daily reports gola karun tayar karne</span>
+        <span class="tag">Karmachari ani Team Leaders kadun daily kaamache updates magne</span>
+        <span class="tag">Kaam apurna kiwa usheer jhale tar Team Leaders na reminders pathavne</span>
+        <span class="tag">Pending orders, production chi pragati ani delivery schedules var laksha; status reports tayar karne</span>
+        <span class="tag">Raw material, accessories ani stock var laksha; tharavlelya minimum la alert</span>
+        <span class="tag">Pratyek channel varchya enquiries record ani vargikrut karne; WhatsApp var product mahiti, photos ani details share karne; customer details sambandhit karmacharyala pudhe pathavne</span>
+        <span class="tag">Pending payments sathi WhatsApp messages ani call reminders tayar karne; jababdar karmacharyala kalavne</span>
+        <span class="tag">Karmachari ani Team Leader performance che vishleshan; reports tayar karne</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Manus sign karto</div><div class="lanev">
+        <span class="tag hs">Pricing ani negotiation</span>
+        <span class="tag hs">AI mahiti gola karte, data che vishleshan karte, paryay suchavte ani documents tayar karte</span>
+        <span class="tag hs">Sagla kahi business malkansamor approval sathi thevla jato</span>
+        <span class="tag hs">Santosh chya approval shivay konatihi mahatvachi kriya keli jat naahi ani konatahi antim nirnay ghetla jat naahi</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Kadhihi automate naahi</div><div class="lanev">
+        <span class="tag never">Mahatvache arthik vyavahar</span>
+        <span class="tag never">Antim vyavsayik nirnay</span>
+        <span class="tag never">Customers na arthik vachan</span>
+        <span class="tag never">Karmachari bharti kiwa kadhun takne</span>
+        <span class="tag never">Manavi sahbhag ani antim approval nehmi avashyak</span>
+      </div></div>
+    </div>
+    <div class="pcap">Tinhi niyam Santosh yanni tyanchya swatahchya shabdat tharavle; ekahi rikama sodla naahi. Te ithe jase dile tase chhaple aahet ani <b>varchya pratyek system var GUARDRAIL aahe</b> je sangte ki ti yapaiki kontya gate var thambte.</div>
+  </div>
+
+  <!-- P10 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">10</span><span class="ptitle">Pudhchi Pavle (Next Steps)</span><span class="ptag">Tatkal karayachya goshti</span></div>
+    <div class="igsteps">
+      <div class="igstep"><div class="n">01</div><div class="b">Ya sheets varil sagla kahi confirm kara kiwa durust kara: 200 / 80 / 45 / 35 aakde, money path stations, 22 lokanche headcount ani build kram.<span class="own">Santosh Uttam Mali</span></div></div>
+      <div class="igstep"><div class="n">02</div><div class="b">Team Leader meeting ghya ani tharavlya pramane checklist reporting manually suru kara, mhanje S-07 la gola karayla kahitari asel.<span class="own">Santosh Uttam Mali</span></div></div>
+      <div class="igstep"><div class="n">03</div><div class="b">Enquiry and Quote Skill lihinyasathi gelya kahi aathavdyanche kharya enquiry che WhatsApp threads, size nihay catalogue photos ani sadhyache rate card share kara.<span class="own">Sales Executive, rate card sathi Santosh sobat</span></div></div>
+      <div class="igstep"><div class="n">04</div><div class="b">Custom tracking software, Vyapar, payment follow-up software, na vaparlele CRM ani task manager, ani IndiaMART, TradeIndia, Justdial, Meta ani website lead feeds che logins ani export access dya.<span class="own">Admin</span></div></div>
+      <div class="igstep"><div class="n">05</div><div class="b">Stock alerts madhun purchase list konala milel to staff member nemun sanga, ani tharavlele minimum stock levels set aahet he confirm kara.<span class="own">Santosh Uttam Mali, Accounts and Stock Keeping sobat</span></div></div>
+      <div class="igstep"><div class="n">06</div><div class="b">Approvals ani corrections sathi aathavdyala 10 te 12 taas rakhun theva, ani pratyek phase Santosh chya sign-off nantarach live hoil.<span class="own">Santosh Uttam Mali</span></div></div>
+    </div>
+    <div class="expertbar"><span><span class="el">Tumche AI expert</span> <b>Romana Parkar</b></span><a href="https://calendly.com/romana-buildour/30min">https://calendly.com/romana-buildour/30min</a></div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Vyapti (Scope)</span><span class="sv">8 systems + 1 foundation · 4 phases</span></div>
+    <div class="scell2"><span class="sl">Kalavadhi (Window)</span><span class="sv">Teen mahine</span></div>
+    <div class="scell2"><span class="sl">Sources</span><span class="sv">Blueprint audit + Systems Brief</span></div>
+    <div class="scell2"><span class="sl">Bhag</span><span class="sv">Build</span></div>
+  </div>
+  <div class="igtrace">Pratyek goshta Blueprint audit ani Systems Brief paryant jodleli aahe · mahit naslelya goshti nav gheun sangitlya aahet, andaja lavla naahi · sakhol blueprint pudhe aahe</div>
+
+</div>
+
+<!-- ############################ PART B · IN-DEPTH ############################ -->
+<div class="bp">
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Client Blueprint</span></div>
+    <h1 class="cover">AI SYSTEMS<br><span class="accent">BLUEPRINT</span></h1>
+    <div class="coversub">RatnKamal Enterprises &nbsp;·&nbsp; <b>Santosh Uttam Mali</b> yanchyasathi tayar kele</div>
+    <div class="flow">
+      <span class="chip hot">Enquiry</span><span class="dash">––</span>
+      <span class="chip hot">Requirement call</span><span class="dash">––</span>
+      <span class="chip hot">Quotation</span><span class="dash">––</span>
+      <span class="chip hot">Follow-up</span><span class="dash">––</span>
+      <span class="chip">Advance + Order Form</span><span class="dash">––</span>
+      <span class="chip hot">Job Card Sheet</span><span class="dash">––</span>
+      <span class="chip">Fabrication</span><span class="dash">––</span>
+      <span class="chip">Coating, installation, payment</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Vyavsay</span>Swatahchya factory madhe GI metal che darwaje ani khidkya; ghar bandhnarya vyakti ani builders na vikri; ₹10 – 50 Lakh mahinyacha band. Sagle utpadan swatahchya factory madhe; fakt installation customer chya site var; fakt kharedi baherun.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Sadyacha stack</span>Vyapar (accounting); IndiaMART, TradeIndia, Justdial, website ani Meta Ads (enquiries); paise bharun vaparle janare custom tracking software (Order Form, Job Card Sheet, batch tabs). Paise bharlele pan na vaparlele: CRM ani task manager.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Tayar karnare</span>BuildOur AI · AI expert Romana Parkar</td>
+        <td><span class="lbl">Sources</span>Blueprint audit 19.11.2026 · Systems Brief</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Systems</span>8 systems + 1 foundation · 4 phases</td>
+        <td><span class="lbl">Kalavadhi</span>Teen mahine (Wk 1–12); Day Manager purna live mahine 4–6 madhe</td>
+      </tr>
+    </table>
+    <div class="covernote">Suruvatichi motha sheets mhanje ekach najret sagla chitra (infographic)<br>Ya pudhe sakhol blueprint</div>
+  </div></div>
+</div>
+
+<!-- 01 -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">PAHILA DOMINO (FIRST DOMINO)</div><div class="sectag">Aadhi he bandha</div></div>
+<div class="sys domino"><div class="sysbar"><span class="name">RatnKamal Enquiry and Quote Skill</span><span class="code">CLAUDE SKILL</span></div>
+  <div class="dominobody">
+    <span class="stamp">Suruvat ithun</span>
+    <div class="dfor">Problem 1 sathi: RatnKamal madhe pratyek enquiry, quote, batch ani bakaya sathi ek desk</div>
+    <p class="dlead">Nakashavarcha haa sarvat sopa build aahe, yavar jast confidence aahe, ani ekahi price la haat na lavta to Sales Executive ani Receptionist che mahinyala sumare 20 taas parat deto. Itar pratyek layer, Quote Builder, Intake Flow ani Day Manager, ya skill madhun vachto, mhanun to aadhi bandhla tar nantar kahihi parat lihave lagnar naahi.</p>
+  </div>
+</div>
+
+<!-- 02 -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">PROBLEM 1 PAIKI 1 (PROBLEM 1 OF 1)</div><div class="sectag">Malkanchya shabdat</div></div>
+<h2 class="probtitle">RatnKamal madhe pratyek enquiry, quote, batch ani bakaya sathi ek desk</h2>
+<div class="pain quote">“Customer Enquiry Management: Automatically receive customer enquiries, record customer information, respond to enquiries, and manage follow-ups. Quotation and Order Management: Prepare customer quotations, maintain order records, and track order status. My ultimate goal is to manage the entire RatnKamal Enterprises business through a centralized AI-powered management system, reduce manual intervention, save time, improve operational efficiency, increase productivity, and maximize business profitability.”</div>
+<div class="guard"><b>UDYA SAKALI 9 AM &nbsp;</b>Udya sakali 9 AM la Santosh RatnKamal Day Manager kadun aalela ek WhatsApp message ughadtil: ratrichya IndiaMART, TradeIndia, Justdial ani Meta varchya enquiries na aadhich yogya catalogue pages sobat uttar dilele, quotation drafts fakt tyanchya price chya hokarasathi thamblele, Production pasun Site Installation paryant pratyek batch number tichya stage var dakhavlela, ani divasache bakaya reminders approve karayla tayar, ani aadhi planning sathi sakalcha ekahi taas na ghalavta.</div>
+
+<!-- 03 -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">HA PROBLEM SODVNYACHE PAACH MARG (FIVE WAYS TO ATTACK IT)</div><div class="sectag">1 problem · 5 marg</div></div>
+
+<div class="sys"><div class="sysbar"><span class="name">RatnKamal Enquiry and Quote Skill</span><span class="code">1 · CLAUDE SKILL</span></div>
+  <div class="sysrow"><div class="syslbl">Kay aahe</div><div class="sysval"><p>Santosh, Sales Executive ani Receptionist aadhich GI door enquiry jashi qualify kartat ti padhat yat bandhleli aahe, ani pahilya reply pasun quotation ani follow-up paryant tya sakhalitla pratyek message ha draft karto, kadhihi price na tharavta.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kay karto</div><div class="sysval"><ul class="tight">
+    <li>Qualification script RatnKamal chya swatahchya shabdat thevto: French Door ki Window, product mahiti kiwa photos, andaje size, ani pricing details havet ka.</li>
+    <li>Catalogue map thevto, mhanje customer ne dilelya andaje size sathi yogya design photos nivadle jatat, B2C ghar bandhnaryansathi ani B2B builders sathi vegle vegle.</li>
+    <li>Malkanche rate card fakt vachnyasathi (read-only) reference mhanun ani measurement cha niyam, width ani height, thevto, mhanje quotation draft pratyek vela ekach padhatine tayar hoto.</li>
+    <li>Santosh ni sangitlelya 7 te 10 divasanchya sales cycle madhe antar thevun follow-up messages draft karto; pratyek message customer ne nivadlelya design cha ullekh karto.</li>
+    <li>Team aadhich WhatsApp var vaparte tyach tone madhe lihito, customer ne jya bhashet lihile tyat: Marathi, Hindi kiwa English, ani malkanni approve na kelela koni aakda kadhihi quote karat naahi.</li>
+  </ul></div></div>
+  <div class="sysrow"><div class="syslbl">Kashachi jaga gheto</div><div class="sysval"><p>Aaj mahinyachya 200 paiki pratyek lead sathi Santosh, Sales Executive ani Receptionist karat aslele manual calling ani WhatsApp catalogue sharing.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kathinpana</div><div class="sysval half"><span>Sopa</span><span><b class="mini">Confidence</b> Jast</span></div></div>
+  <div class="sysrow"><div class="syslbl">Savadh bachat</div><div class="sysval"><b>Mahinyala 20 taas</b></div></div>
+  <div class="guard inner"><b>MALAK APPROVE KARTAT &nbsp;</b>Rupayachi rakkam aslela koni draft system madhun baher padnyaadhi, Santosh price approve karat naahit topryant thambto.</div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">RatnKamal Quote Builder</span><span class="code">2 · MICRO-APP</span></div>
+  <div class="sysrow"><div class="syslbl">Kay aahe</div><div class="sysval"><p>Ek chhoti screen jithe Sales Executive customer ne nivadlela design photo ani measurements takto, ani tyala quotation PDF, WhatsApp message ani aadhich bharlela Order Form milto, custom software Job Card Sheets sathi aadhich vaparte tech formulas vaparun.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kay karto</div><div class="sysval"><ul class="tight">
+    <li>Inputs: nivadlela design photo, width ani height, glass type, powder coat colour, accessories, customer type B2C ki B2B, site visit jhali ki naahi.</li>
+    <li>Outputs: RatnKamal branding sakat quotation PDF, tayar WhatsApp message, ani ek Order Form draft jo nantar parat type na karta sadhyachya custom software madhe jato.</li>
+    <li>Malkanche rate card ani section cutting formulas vachto, mhanje price che ganit ani material che ganit pahilya divasapasun julte.</li>
+    <li>Order la kiti material lagel he baju chya panel madhe dakhavto, mhanje stock kami asel tar te fabrication la naahi tar quotation chya velich disate.</li>
+    <li>RatnKamal aadhich paise bharat aslelya CRM madhe lead samor record thevto, mhanje mahinyache 80 quotes ani convert honare 100 paiki 45 aapoaap mojle jatat.</li>
+  </ul></div></div>
+  <div class="sysrow"><div class="syslbl">Kashachi jaga gheto</div><div class="sysval"><p>Customer ne WhatsApp var nivadlela photo pathavlyavar haatane keli janari price mojni ani quotation tayari.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kathinpana</div><div class="sysval half"><span>Madhyam</span><span><b class="mini">Confidence</b> Jast</span></div></div>
+  <div class="sysrow"><div class="syslbl">Savadh bachat</div><div class="sysval"><b>Mahinyala 15 taas</b></div></div>
+  <div class="guard inner"><b>MALAK APPROVE KARTAT &nbsp;</b>Pratyek quotation chi PDF banun pathavli janyaadhi Santosh tichya price line var approve dabtat; discounts ani negotiation tyanchyakade ani Sales Executive kade rahtat.</div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">RatnKamal Enquiry to Cash Board</span><span class="code">3 · DASHBOARD</span></div>
+  <div class="sysrow"><div class="syslbl">Kay aahe</div><div class="sysval"><p>Ek board, phone var ani office screen var, je aaj paach thikani asnari mahiti dakhavte: WhatsApp, marketing portals, custom tracking software, Vyapar ani Receptionist cha daily report.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kay dakhavto</div><div class="sysval"><ul class="tight">
+    <li>Aaj ani ya aathavdyatil channel nihay enquiries, tyapaiki kitinna uttar dile naahi ani kiti velapasun.</li>
+    <li>Santosh chya price approval sathi thamblele quotes, pathavlele quotes ani tyanna jhalele divas, ani aaj due asnare follow-ups.</li>
+    <li>Advance sathi thamblelya confirm orders, ani Order Form Production la janyaadhi site measurement sathi thamblelya orders.</li>
+    <li>Stage nihay pratyek batch number, Production, Powder Coating, Glass Installation, Site Installation, ani department chya daily target peksha jast vel eka stage var basun aslelya batches.</li>
+    <li>Customer nihay bakaya, promised payment dates ani sign kelelya Credit Policy chi sthiti, Vyapar ani payment follow-up software madhun gheun.</li>
+    <li>Raw material, accessories ani glass stock tharavlelya minimum chya tulnet, te vaparnarya orders sakat.</li>
+  </ul></div></div>
+  <div class="sysrow"><div class="syslbl">Kashachi jaga gheto</div><div class="sysval"><p>Santosh divasache planning karnyaadhi orders kuthe aahet he jodnyat roj sakali ghalavtat to taas, ani Receptionist cha vegla daily report.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kathinpana</div><div class="sysval half"><span>Madhyam</span><span><b class="mini">Confidence</b> Madhyam</span></div></div>
+  <div class="sysrow"><div class="syslbl">Savadh bachat</div><div class="sysval"><b>Mahinyala 12 taas</b></div></div>
+  <div class="guard inner"><b>MALAK APPROVE KARTAT &nbsp;</b>Price, discount kiwa terms la sparsh karnari koni goshta baher janyaadhi malak ti approve kartat.</div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">RatnKamal Enquiry Intake Flow</span><span class="code">4 · AUTOMATION</span></div>
+  <div class="sysrow"><div class="syslbl">Kay aahe</div><div class="sysval"><p>Pratyek enquiry channel var ek trigger jo lead record karto, yogya catalogue pages sobat uttar deto, nivadlele design ani measurements gola karto, ani Santosh chya approval sathi quotation draft thevto.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kasa chalto</div><div class="sysval"><ul class="tight">
+    <li>Trigger: WhatsApp, IndiaMART, TradeIndia, Justdial, Meta ad form kiwa website var navin enquiry yete.</li>
+    <li>Step ek: RatnKamal aadhich paise bharat aslelya CRM madhe lead banto, channel ani B2C kiwa B2B pramane tag hoto, ani Sales Executive la WhatsApp var kalavle jate.</li>
+    <li>Step don: darwaja ki khidki ani andaje size vicharnara pahila reply jato, ani size kalali ki julnare catalogue photos pathavle jatat.</li>
+    <li>Step teen: customer aavadlela design parat pathavto tevha flow width ani height vicharto ani sagla RatnKamal Quote Builder kade deto.</li>
+    <li>Step char: quotation draft Santosh chya approval queue madhe yeto; tyanchya hokaranantar to pathavla jato ani Sales Executive sathi follow-up reminders schedule hotat.</li>
+    <li>Shant jhalelya enquiries roj sakali list kelya jatat, mhanje Receptionist ani Sales Executive madhe ekahi lead sutat naahi.</li>
+  </ul></div></div>
+  <div class="sysrow"><div class="syslbl">Kashachi jaga gheto</div><div class="sysval"><p>Saha enquiry channels var haatane honara intake, catalogue sharing ani quotation pathavne, je aaj desk var kon mokla aahe yavar avlambun aahe.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kathinpana</div><div class="sysval half"><span>Madhyam</span><span><b class="mini">Confidence</b> Jast</span></div></div>
+  <div class="sysrow"><div class="syslbl">Savadh bachat</div><div class="sysval"><b>₹10,000 mahinyala · mahinyala 25 taas</b></div></div>
+  <div class="guard inner"><b>MALAK APPROVE KARTAT &nbsp;</b>Step char, price asleli koni quotation customer la pathavli janyaadhi.</div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">RatnKamal Day Manager</span><span class="code">5 · AI AGENT &nbsp;<span class="scall">SCOPING CALL</span></span></div>
+  <div class="sysrow"><div class="syslbl">Kay aahe</div><div class="sysval"><p>Santosh ni varnan kelela digital business manager: ek AI karmachari jo pratyek department cha daily report gola karto, batch numbers var laksha thevto, bakaya reminders draft karto ani Santosh na fakt tech gheu shaktil ashya nirnayansakat sakalchi ek summary deto.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kay karto</div><div class="sysval"><ul class="tight">
+    <li>Trigger: pratyek kaamachya divashi sakali 8:30 AM la, ani parat jevha custom software madhe batch number cha status badalto kiwa Vyapar madhe payment post hote tevha.</li>
+    <li>RatnKamal ne aadhich lihilela checklist report pratyek Team Leader la WhatsApp var vicharto: kaam purna jhale ki naahi, karane, aalelya adchani, sudharnyachi kriya, ani udyacha plan, ani uttar na dilelyanna aathavan karun deto.</li>
+    <li>Pratyek batch number chi stage vachto, department chya daily target peksha maage asnare fabrication, powder coating, glass kiwa installation che kaam flag karto, ani sambandhit Team Leader la aathavan karun deto.</li>
+    <li>Tharavlelya minimum chya tulnet stock tapasto ani kharedi karayla lagnare raw material, accessories ani glass list karto, Santosh sathi kiwa tyanni order karayla nemlelya staff sathi.</li>
+    <li>Vyapar ani payment follow-up software madhun divasache bakaya reminder messages draft karto ani approval sathi queue madhe thevto; to swatahun kadhihi aakda pathavat naahi.</li>
+    <li>Pratyek stage var thamblelya batches pramane, divasasathi 22 staff che departments madhe suchavlele allocation draft karto.</li>
+  </ul></div></div>
+  <div class="sysrow"><div class="syslbl">Kashachi jaga gheto</div><div class="sysval"><p>Santosh pratyek department che swatah karat asnare roj che coordination, daily reports sathi pathpurava, ani sadhya Receptionist ani Sales Executive madhe vibhaglele manual payment follow-up calls.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Kathinpana</div><div class="sysval half"><span>Avghad</span><span><b class="mini">Confidence</b> Madhyam</span></div></div>
+  <div class="sysrow"><div class="syslbl">Savadh bachat</div><div class="sysval"><b>₹15,000 mahinyala · mahinyala 25 taas</b></div></div>
+  <div class="guard inner"><b>MALAK APPROVE KARTAT &nbsp;</b>Kahihi pathavnyaadhi Santosh roj sakali bakaya reminder list ani staff allocation approve kartat; confirm order madhla koni badal, koni payment ani koni pricing tyanchyasamor thevle jate ani agent te kadhihi swatah karat naahi.</div>
+</div>
+
+<!-- 04 -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">SAGLYA VYAVSAYABHAR (ACROSS THE WHOLE BUSINESS)</div><div class="sectag">Department nihay</div></div>
+<table class="numbers dept">
+  <thead><tr><th style="width:19%;">Department</th><th style="width:37%;">Aaj</th><th>Ya systems nantar</th></tr></thead>
+  <tr><td><b>Sales (Sales Executive ani Santosh)</b></td><td>WhatsApp, IndiaMART, TradeIndia, Justdial, Meta ads, site visits ani website varchya enquiries na haatane parat phone kela jato. Catalogue photos nivadun WhatsApp var pathavle jatat. Customer ne nivadlele design ani measurements pathavlyavar price mojli jaate. 7 te 10 divasanchya cycle madhle follow-ups aathvanivar ani phone var chaltat.</td><td>RatnKamal Enquiry Intake Flow tumhi aadhich paise bharat aslelya CRM madhe pratyek lead record karto, andaje size sathi yogya catalogue pages pathavto, ani nivadlele design ani width ani height gola karto. Quote Builder Santosh chya rate card varun quotation tayar karto. Santosh price line approve kartat, Sales Executive ti pathavto ani negotiation sambhalto, ani follow-up reminders aapoaap yetat.</td></tr>
+  <tr><td><b>Reception</b></td><td>Requirements samjun ghenyasathi customers na phone karte, product mahiti share karte, phone var bakaya sathi pathpurava karte, ani back office cha ekmev daily report submit karte.</td><td>Receptionist phone uchalnyaadhich pahile replies ani catalogue sharing hote. Jyanna bolayche aahe tya customers na Receptionist sambhalte, measurements confirm karte, ani vegla report lihinyaaivaji divasachi call list ani bakaya follow-ups RatnKamal Enquiry to Cash Board var baghte.</td></tr>
+  <tr><td><b>Production (8 karmachari)</b></td><td>Printed Job Card Sheet haatane milte, daily targets pramane batch numbers dete, software madhe batches In Progress ani Completed mark karte.</td><td>Order Form purna hotach Job Card Sheet PDF WhatsApp var Production Team Leader kade pohochte, mhanje printout chalat nyavi lagat naahi. Daily target peksha jast vel thamblelya koni batch la Day Manager flag karto ani roj sandhyakali Team Leader kade checklist report magto.</td></tr>
+  <tr><td><b>Powder Coating (5 karmachari)</b></td><td>Aaplya tab madhe purna jhalelya fabrication batches baghte, Job Card Sheet varil colour pramane coating karte, divas sampta tapasni karte, Completed mark karte.</td><td>Tech kaam, toch software tab. Team Leader la sakali coating sathi thamblelya batches chi list milte ani batch pudhe sarkat naslyas reminder milto. Rojchya quality tapasnicha nikal Day Manager gola karto tya checklist report madhe jato.</td></tr>
+  <tr><td><b>Glass Installation (2 karmachari)</b></td><td>Job Card Sheet varun glass measurements vachte, coating chalu astana suppliers kadun glass order karte, batches ani glass donhi uplabdha jhale ki install karte.</td><td>Quote Builder quotation chya velich glass sizes dakhavto, mhanje fabrication nantar naahi tar advance yeil tyach divashi glass order deta yeto. Kontya batches coating sathi ani kontya glass sathi thamblya aahet he Board dakhavto, mhanje don lokanchi team mahiti abhavi kadhihi rikami basat naahi.</td></tr>
+  <tr><td><b>Site Installation (3 karmachari)</b></td><td>Schedule madhun divasachya orders ghete, Accounts kadun bill ani delivery challan ghete, darwaje load karte, install karte, demo dete, baki payment kiwa sign kelela Credit Policy ghete, Completed mark karte.</td><td>Day Manager udyachya installations chi list bill, challan ani bakaya rakkam aadhich jodun deto, mhanje sakali Accounts var thambne kami hote. Site var gola kelele payment kiwa promised date customer samor record hote, ani tya tarkhepasun bakaya reminder Santosh chya approval sathi queue madhe jato.</td></tr>
+  <tr><td><b>Accounts and Stock Keeping (1 karmachari)</b></td><td>Vyapar sambhalte, installation team sathi bills ani challans tayar karte, vegla software madhe outstanding payments track karte, raw material ani accessories stock thevte, payments sathi Santosh chi approval lagte.</td><td>Bakaya ani promised dates Vyapar ani follow-up software madhun Board var vachle jatat, reminders Day Manager draft karto ani Santosh approve kelyavarach pathavle jatat. Stock roj tharavlelya minimum shi tapasla jato ani Santosh ni nemlelya staff sathi purchase list draft hote. Banking ani payment approvals agdi aaj sarkhech Santosh kade rahtat.</td></tr>
+  <tr><td><b>Admin</b></td><td>Thravik job description naahi. Hajeri, pagar records ani departments madhli staff chi halchal Santosh chya sakalchya planning chya tasabhovati hote.</td><td>Tumhi aadhich paise bharat aslela task manager hi ti jaga banto jithe Santosh approve kelyavar Day Manager divasacha allocation takto. Hajeri ani Team Leaders kadun aalele ABCD observations mahinyachya pagar ani performance review sathi ekach thikani gola hotat, je ajunahi Santosh tharavtat.</td></tr>
+</table>
+
+<!-- 05 -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">MANSANKADE KAY RAHTE, PAHILE 90 DIVAS, 12 MAHINE</div><div class="sectag">Stays human · first 90 days · 12 months</div></div>
+
+<h3 class="sub"><span class="n">5.1</span>Mansankade rahte (Stays human)</h3>
+<ul class="tight">
+  <li><b>Pricing ani negotiation.</b></li>
+  <li><b>Payments ani banking:</b> advance vasuli, bakaya che vachan, supplier payments ani pratyek bank vyavahar Santosh approve kartat. System reminders draft karte ani kay due aahe te list karte; te kadhihi vachan det naahi, vasuli karat naahi kiwa pay karat naahi.</li>
+  <li><b>Lok ani confirm orders:</b> hiring, termination, pagar che nirnay ani confirm customer order madhla koni badal, sambandhit Team Leader tyanchyashi bolalyavar Santosh tharavtat. System fakt je dista te report karte.</li>
+</ul>
+
+<h3 class="sub"><span class="n">5.2</span>Pahile 90 divas (First 90 days)</h3>
+<div class="step"><div class="stepnum">01</div><div class="stepbody"><p><b>Aathavde 1 te 3:</b> gelya kahi aathavdyanche kharya WhatsApp threads vaparun Sales Executive ani Receptionist sobat RatnKamal Enquiry and Quote Skill liha. Team Leader meeting ghya ani tumhi tharavlya pramane checklist reporting manually chalu kara.</p></div></div>
+<div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>Aathavde 3 te 6:</b> rate card ani custom software madhe aadhich aslelya section cutting formulas var RatnKamal Quote Builder bandha. Pratyek quotation chi price line Santosh approve kartat. Tumhi aadhich paise bharat aslela CRM lead record mhanun parat chalu kara.</p></div></div>
+<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>Aathavde 5 te 8:</b> RatnKamal Enquiry Intake Flow WhatsApp, IndiaMART, TradeIndia, Justdial, Meta ad forms ani website shi joda. Swatahun uttar denyaadhi to don aathavde manual padhatichya barobar chalva. Vyapar madhun bakaya reminder drafts suru kara; pratyek divasachi list Santosh approve kartil.</p></div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>Aathavde 8 te 12:</b> RatnKamal Enquiry to Cash Board office screen var ani Santosh chya phone var lava. Day Manager report-only mode madhe suru kara: to Team Leader checklists gola karto ani Santosh na 9 AM summary pathavto, tyapeksha kahi naahi.</p></div></div>
+<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>Sampurna kalavadhit:</b> Santosh kadun aathavdyala 10 te 12 taas, mukhyatah drafts approve karnyat ani skill durust karnyat, bandhnyat naahi. Tyanni sangitlya pramane pratyek phase tyanchya sign-off nantarach live hoto.</p></div></div>
+
+<h3 class="sub"><span class="n">5.3</span>12 mahine (12 months)</h3>
+<div class="step"><div class="stepnum">01</div><div class="stepbody"><p><b>Mahine 4 te 6:</b> Day Manager Production, Powder Coating, Glass Installation ani Site Installation madhe batch tracking ani Team Leader reminders hati gheto, ani Santosh chya approval sathi roj che staff allocation draft karto. Tharavlelya minimum varche stock alerts live hotat ani purchase list Santosh ni nemlelya staff kade jate.</p></div></div>
+<div class="step"><div class="stepnum">02</div><div class="stepbody"><p><b>Mahine 6 te 9:</b> ABCD observations ani Team Leader performance checklists eka mahinyachya report madhe yetat. Sales Executive, Admin, Accountant ani Receptionist sathi back office job descriptions lihilya jatat ani tumhi aadhich paise bharat aslela task manager tyanchi daily list banto.</p></div></div>
+<div class="step"><div class="stepnum">03</div><div class="stepbody"><p><b>Mahine 9 te 12:</b> Board channel nihay quote te order conversion dakhavto, mhanje IndiaMART, TradeIndia, Justdial ani Meta varcha marketing kharch aakdyanvarun tapasta yeto, ani B2B builder accounts na tyancha swatahcha repeat order view milto.</p></div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>Mahina 12 paryant:</b> Santosh cha roj cha sahbhag mhanje 9 AM message ani tyatil approvals. Team Leaders checklist vaparun aapapale departments chalavtat. Urlele taas planning ani navin customer milvinyat jatat, jithe aapan asave ase tyanni sangitle.</p></div></div>
+
+<!-- 06 -->
+<div class="closeblock">
+<div class="bigclose">Sagle ekatra gheun ani savadh andaj thevun, varche layers mahinyala sumare ₹25,000 chi kharch bachat ani Santosh, Sales Executive ani Receptionist madhe mahinyala navvadpeksha jast taas parat detat, ani tarihi pratyek price, payment ani order badal Santosh ch sign kartat.</div>
+
+<div class="closegrid">
+<div class="noteblock yournote"><span class="nlbl">Tumchi note</span></div>
+
+<div class="noteblock expert"><span class="nlbl">Tumche AI expert</span>
+  <div class="ename">Romana Parkar</div>
+  <p>Tumhala soyichi vel nivda. Ha nakasha call la sobat aana.</p>
+  <a class="bookbtn" href="https://calendly.com/romana-buildour/30min">Tumcha call book kara →</a>
+  <div class="elink"><a href="https://calendly.com/romana-buildour/30min">https://calendly.com/romana-buildour/30min</a></div>
+</div>
+</div>
+
+<div class="guard"><b>DAY 2 &nbsp;</b>He udya sobat aana. Aaj ratri aamhi kahi vyavsay nivadu ani tyancha First Domino LIVE bandhu.</div>
+
+<div class="prepline">Santosh Uttam Mali yanchyasathi tayar kele · RatnKamal Enterprises · ₹10 – 50 Lakh / mahina</div>
+
+<div class="traceline">Ya document madhli pratyek goshta Blueprint audit (19.11.2026) ani Systems Brief paryant jodleli aahe.<br>Client ne dilelya aakdyanpalikade kahihi jodle naahi; mahit naslelya goshti nav gheun sangitlya aahet, andaja lavla naahi.</div>
+</div>
+
+</div>
+
+</body>
+</html>

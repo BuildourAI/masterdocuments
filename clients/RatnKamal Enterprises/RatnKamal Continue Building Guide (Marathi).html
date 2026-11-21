@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RatnKamal Continue Building (Marathi)</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-RAT-C1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "RatnKamal Enterprises · Continue Building"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; RatnKamal Enterprises</span><span>Continue Building &middot; Rev A</span></div>
+    <h1 class="cover">RATNKAMAL OS<br><span class="accent">CONTINUE BUILDING</span></h1>
+    <div class="coversub"><b>Santosh Uttam Mali</b> yanchyasathi tayar kele. Starter Guide nantar pratyek baithakit: tumhi <b>HQ</b> ughdta, HQ tumhala sangte konte sessions chalvayche ani <b>pratyekacha prompt tumhala dete</b>, ani builders pratyeki ek system banavtat. Aadhi enquiries, ani baravya aathavdyaparyant sakali 9 vajta ekach message.</div>
+    <div class="flow">
+      <span class="chip">HQ<br>ughda</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">HQ prompts<br>dete</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Builders<br>banavtat</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Kharya enquiries<br>ne test</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">HQ<br>merge karte</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Pudhchi<br>system</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Kevha vapraycha</span>Starter Guide chya Step 7 madhla pratyek box tick zala ki. Ha guide <code class="f">docs/</code> madhe blueprint ani Starter Guide sobat theva; pratyek baithakichya survatila section 02 var parat ya. Pratyek navin screen sathi Starter Guide cha section 03 ughda theva.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Kalpana</span>Ek <b>HQ</b> session sagla chitra ani database sambhalte. Jastit jast don <b>builder</b> sessions pratyeki ek system aaplya swatachya branch var banavtat. Tumhi fakt HQ je dete tech paste karta.</td>
+        <td><span class="lbl">Tumcha vel</span>Aathavdyala 10 te 12 taas, jast karun drafts approve karne ani skill sudharne, banavne naahi.<br><br><span class="lbl">Aadhar</span>Blueprint BOA-2026-RAT-01 Rev A (blueprint audit 19.11.2026).</td>
+      </tr>
+    </table>
+    <div class="covernote">Pratyek step var don awaaj: TUMHI HE KARA &middot; CLAUDE CODE LA PASTE KARA</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">SESSIONS KASE KAAM KARTAT</div><div class="sectag">Ekda vacha</div></div>
+<table class="numbers">
+<tr><th style="width:20%;">Session</th><th>Te kay karte</th><th style="width:26%;">Naav dya</th></tr>
+<tr><td><b>HQ</b> (nehami ek)</td><td>Master copy (<code class="f">main</code>) ani database sambhalte: migrations lavnara ekmev session. Itar pratyek session cha opening prompt lihite, purna zalele kaam jodte, CLAUDE.md, START-NOW ani SESSIONS update theva. Swata kadhihi system banavat naahi.</td><td><code class="f">HQ</code></td></tr>
+<tr><td><b>Builder</b> (jastit jast don)</td><td>HQ ne lihilelya prompt varun ek system banavte, folder chya swatachya copy madhe, swatachya branch var, fakt swatachya files la haat lavun. Ek bhag purna zala ki HQ la handover dete.</td><td>HQ sangel tasa, udaharanarth <code class="f">SYS-02 Quote Builder</code></td></tr>
+<tr><td><b>Writing</b></td><td>Shabda, code naahi: Enquiry and Quote Skill (qualification script, catalogue map, drafts, follow-ups) ani Marathi, Hindi ani English madhle message templates. Kadhihi kimmat naahi.</td><td><code class="f">SKILLS writing</code></td></tr>
+</table>
+<div class="note"><span class="nlbl">HQ ne sangitlela session ughadne</span><p>HQ prompt tyachya swatachya box madhe dakhavte ani <code class="f">docs/session-prompts/</code> madhe save karte. Claude desktop app chya <b>Code</b> tab madhe, tyach <code class="f">ratnkamal-os</code> folder var <b>new session</b> suru kara, HQ sangel te naav dya, paste kara, send kara. Pratyek session davikadchya list madhe rahte; badlayla tyavar click kara.</p></div>
+<div class="note"><span class="nlbl">He gondhalache ka hot naahi</span><p>Pratyek builder code chya swatachya copy madhe (<b>worktree</b>) swatachya <b>branch</b> var kaam karto, mhanun don sessions kadhihi ekach file madhe lihit naahit. Pratyek branch la Vercel var swatacha test address milto, mhanun live app madhe yenyaadhi system check hote. Fakt HQ kaam live copy madhe jodte ani fakt HQ database badalte.</p></div>
+<div class="guard"><b>DON BUILDERS, JAST NAAHI.</b> Claude Pro var ekaveli ek builder chalva; Max var don. Usage limits mule sessions thambli tar ekach chalva.</div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">PRATYEK BAITHAK</div><div class="sectag">Pratyek veli hach kram</div></div>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><span class="voice ai">HQ la paste kara</span><p><b>Divas suru kara.</b> Code tab &rarr; tumcha <code class="f">HQ</code> session, ani he paste kara:</p></div></div>
+<div class="paste"><span class="plbl">HQ &middot; Divas suru kara</span>
+<p>Tumhi RatnKamal OS sathi HQ aahat. CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ ani docs/sessions/ madhli sarvat navin note vacha. Mala sopya shabdat, daha olinchya aat sanga: START-NOW madhe kay tick zalele naahi; baara aathavdyanchya plan pramane aapan kuthe aahot; konte builder sessions chalu aahet ani konatya branch var; merge sathi tayar asa konta handover; majhya approval sathi kay thambla aahe. Mag aaj konte sessions chalvayche te sanga (jastit jast don builders, garaj aslyas writing), ani pratyekacha prompt, paste karayla tayar, tyachya swatachya box madhe dya: Starter Guide chya R3 madhlya niyamanpramane navin opening prompt, kinva aadhich aslelya session sathi continue prompt. Navin prompts docs/session-prompts/ madhe save kara. Mi OK mhannar naahi toparyant dusre kahihi karu naka. Majhyashi Marathi madhe (English aksharat) bola, pan system madhli pratyek goshta English madhech theva.</p>
+</div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><span class="voice">Tumhi he kara</span><p><b>HQ ne sangitlele sessions ughda</b> ani pratyekacha prompt paste kara. Aadhich aslelya session sathi, list madhe tyavar click kara ani HQ ne dilela continue prompt paste kara.</p></div></div>
+<div class="step"><div class="stepnum">3</div><div class="stepbody"><span class="voice">Tumhi he kara</span><p><b>Sessions madhe phera mara.</b> Je thambla aahe tyala uttar dya. Pratyek session pratyek baithakit ek chhoti purna goshta banavte ani tyacha test address dete. Tumhala mahit aslelya kharya data ne check kara: ek enquiry, ek design, ek quotation, ek batch. Pratyek navin screen Starter Guide chya section 03 shi julvun bagha.</p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><span class="voice ai">Pratyek builder la, mag HQ la paste kara</span><p><b>Divas band kara.</b> Pratyek builder madhe: <code class="f">Tumchi branch commit ani push kara, tumchi handover file ani aajchi note update kara.</code> Mag HQ la he paste kara:</p></div></div>
+<div class="paste"><span class="plbl">HQ &middot; Divas band kara</span>
+<p>Aajche handovers vacha. Tayar mhanun mark kelelya pratyek bhagasathi: to CLAUDE.md ani tyachya build sheet shi julvun check kara, tyache migrations kramane live database var lava, pratyek role mhanun test kara, merge kara, ani live app var kay badalle te mala sanga. docs/SESSIONS.md ani START-NOW update kara, ani aajchi note docs/sessions/ madhe liha.</p>
+</div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">HQ CHE PROMPTS</div><div class="sectag">He javal theva &middot; baki HQ lihite</div></div>
+<div class="paste"><span class="plbl">HQ &middot; Pudhcha phase suru kara</span>
+<p>Phase <b>[P-number]</b> aata suru hot aahe. Maglya phase cha done-when live app var check kara ani kay purna zale naahi te mala pramanikpane sanga. Mag ya phase sathi: blueprint varun pratyek system chi build sheet liha kinva update kara ani pratyekala majhi approval milat naahi toparyant thamba; tumhala majhyakadun je lagel (logins, lists, niyam, kharch) te START-NOW madhe joda; konti systems Builder A ani Builder B mhanun chaltil te tharva; ani pratyek session cha opening prompt, paste karayla tayar, tyachya swatachya box madhe dya. Majhya sign-off nantarach ha phase live hoil.</p>
+</div>
+<div class="paste"><span class="plbl">HQ &middot; Session adakla kinva chukla</span>
+<p><b>[session che naav]</b> session adakla aahe kinva chukicha chalat aahe. Tyachi branch, handover ani sarvat navin note vacha. Kay bighadle aahe te mala sopya shabdat sanga ani don paryay dya: pudhe jaun durust karne, kinva tyachya shevatchya changlya commit var parat jane. Mag mi je nivadto te karnyasathi tya session madhe paste karayla ek prompt dya.</p>
+</div>
+<div class="paste"><span class="plbl">HQ &middot; Navin connection kinva kharchaadhi</span>
+<p>Kahihi navin connect karnyaadhi (WhatsApp Business API, IndiaMART, TradeIndia, Justdial, Meta, CRM, custom software, Vyapar, Claude API), mala sopya shabdat sanga: te kay aahe, ya system la tyachi garaj ka aahe, tyacha mahinyacha kharch kiti, ani mi nahi mhanalo tar kay hoil. Mag majhya ho chi vaat bagha. Konti hi key kinva login fakt .env.local ani Vercel madhech jaail, ani mi swata te nemke kuthe paste karayche te tumhi mala sanga.</p>
+</div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BANAVA, TEST KARA, CHALU KARA</div><div class="sectag">Pratyek system sathi hech steps</div></div>
+<ol class="tight">
+<li><b>Pratyek baithakit ek purna goshta,</b> branch chya test address var kharya data ne test keleli. Ashcharyakarak goshti <code class="f">docs/rules-i-learned.md</code> madhe liha.</li>
+<li><b>Screen check kara</b> Starter Guide chya section 03 shi julvun. Jar te homework sarkha disat asel: <em>&ldquo;Fakt design badla, docs/design pramane. Features la haat lavu naka.&rdquo;</em></li>
+<li><b>Ek bhag purna zala ki merge.</b> Builder aapla handover lihito; HQ merge karte; live app sadharan don minitat update hote.</li>
+<li><b>Aadhi paach khare cases.</b> Skill paach kharya enquiry threads var check hote; Quote Builder tumhi aadhich pathavlelya paach quotations var, kimmat la kimmat.</li>
+<li><b>Junya padhatisobat chalva.</b> Intake Flow ekta uttar denyaadhi don aathavde manual process sobat chalto, tumchya blueprint madhe sangitlya pramane.</li>
+<li><b>Vishwas basnyaadhi fakt report.</b> Day Manager survatila fakt baghte, drafts lihite ani summary dete; tumcha tyachya summaries var anek aathavde vishwas baslya nantarach te tracking ani allocation ghete.</li>
+</ol>
+<div class="guard"><b>JAR EKHADA SESSION CHUKLA:</b> mhana <em>&ldquo;Thamba. Kay bighadle aahe te sopya shabdat sanga ani mala don paryay dya: pudhe jaun durust karne, kinva tumchya shevatchya commit var parat jane.&rdquo;</em> Ek bighadlela session kadhihi live app kinva itar sessions bighadvat naahi.</div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">BUILD CHA KRAM, SESSION NUSAR</div><div class="sectag">Blueprint madhun &middot; baara aathavde</div></div>
+<table class="numbers">
+<tr><th style="width:15%;">Phase</th><th style="width:20%;">HQ</th><th style="width:23%;">Builder A</th><th style="width:22%;">Builder B</th><th>Writing / tumhi</th></tr>
+<tr><td><b>P1</b> &middot; aathavda 1&ndash;2</td><td>F-00 Starter Guide madhe suru zale; merges</td><td>Mokla: aadhi skill</td><td>Mokla</td><td><b>SYS-01</b> Enquiry and Quote Skill; Team Leader meeting; checklist haatane</td></tr>
+<tr><td><b>P2</b> &middot; aathavda 3&ndash;4</td><td><b>F-00</b>: paise bharlela CRM lead record mhanun parat chalu (kinva tyala API nasel tar Supabase)</td><td><b>SYS-02</b> Quote Builder, rate card ani cutting formulas var</td><td>Mokla</td><td>Rate card ol na ol check; CRM access</td></tr>
+<tr><td><b>P3</b> &middot; aathavda 5&ndash;8</td><td>WhatsApp Business API ani lead feeds, tumchya ho nantar</td><td><b>SYS-03</b> Enquiry Intake Flow saha channels var, don aathavde manual padhatisobat</td><td><b>SYS-04</b> Bakaya Reminder Drafts, Vyapar madhun</td><td>Roj bakaya list approve kara</td></tr>
+<tr><td><b>P4</b> &middot; aathavda 9&ndash;12</td><td>Claude API, tumchya ho nantar</td><td><b>SYS-06</b> Enquiry to Cash Board, mag <b>SYS-05</b> Job Card Dispatch</td><td><b>SYS-07</b> Team Leader Checklist Collection, mag <b>SYS-08</b> Day Manager, fakt report</td><td>Stock minimums; purchase list konala jaail</td></tr>
+</table>
+<table class="numbers">
+<tr><th style="width:15%;">Phase</th><th>Kevha purna (blueprint madhun)</th></tr>
+<tr><td>P1</td><td>Navin WhatsApp enquiry la tyacha qualification reply ani tyachya size che catalogue pages skill draft karte ani Sales Executive kinva Receptionist pathavtat, ani Team Leader meeting zali aahe ani checklist reporting haatane chalu aahe.</td></tr>
+<tr><td>P2</td><td>Eka aathavdyat pathavleli pratyek quotation Quote Builder madhun PDF mhanun aali, price line var tumchya approval sobat, ani tya mahinyacha pratyek lead CRM madhe channel, B2C kinva B2B tag ani owner sobat row mhanun aahe.</td></tr>
+<tr><td>P3</td><td>WhatsApp, IndiaMART, TradeIndia, Justdial, Meta ani website varchya enquiries konihi type na karta CRM madhe yetat, flow don aathavde manual process sobat chalala aahe, ani pratyek divasache bakaya reminders tumhi list approve kelyanantarach gele.</td></tr>
+<tr><td>P4</td><td>Sakali 9 vajta tumhi ek message ughdta: aadhi approvals, mag delays ani mag stock; Board var pratyek batch tyachya stage var disto, ani sakalcha planning cha taas aata mahiti gola karnyat jaat naahi: AI ani Team Leaders rojche kaam sambhaltat, mhanun tumhi RatnKamal Enterprises chya pudhchya vadhivar ani vikasavar laksha deu shakta.</td></tr>
+</table>
+<div class="guard"><b>GATES (ADHI HE, MAG TE):</b> F-00 merge honyaadhi konta hi builder suru hot naahi. Checklist collection Team Leader meeting ani ek manual run chi vaat baghte. Intake Flow manual padhatisobat don aathavde chalalya nantarach ekta uttar dete. Vyapar madhe kahihi lihile jaat naahi. Tumchya approval shivay konta hi bakaya message, kimmat kinva order badal baher jaat naahi.</div>
+<p><b>Baara aathavdyanantar, tech app, tech routine:</b> mahine 4 te 6, Day Manager batch tracking, Team Leader reminders ani staff allocation cha draft ghete, stock alerts ani purchase list live sobat &rarr; mahine 6 te 9, ABCD observations ani performance checklists eka monthly report madhe, back office job descriptions, ani task manager tyanchi rojchi list mhanun &rarr; mahine 9 te 12, marketing kharch tharavnyasathi channel nusar quote-to-order conversion, ani B2B builders sathi repeat order view. Pratyek <em>&ldquo;HQ, pudhcha phase suru kara&rdquo;</em> ne suru hote.</p>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">JEVHA PAISE LAGTAT</div><div class="sectag">Banavnyaadhi tharva</div></div>
+<table class="numbers">
+<tr><th style="width:25%;">Garaj</th><th style="width:18%;">Pahilyanda kevha</th><th>Tumchyasathi yacha artha</th></tr>
+<tr><td><b>Claude Max</b></td><td>Don builders chaltat tevha</td><td>Pro ekaveli ek session sathi chalto; Max madhe HQ ani don builders sathi jaga milte.</td></tr>
+<tr><td><b>Supabase Pro</b></td><td>Staff roj vaparayla laganyaadhi</td><td>Sadharan $25 mahina: pratyek lead, quote ani order cha roj backup.</td></tr>
+<tr><td><b>Vercel Pro</b></td><td>Live jatana</td><td>Sadharan $20 mahina; free plan personal vaparasathi aahe.</td></tr>
+<tr><td><b>WhatsApp Business API</b></td><td>P3</td><td>Business sending sathi ek number, Meta verification, approved templates, ani pratyek message sathi charge.</td></tr>
+<tr><td><b>Lead feeds</b></td><td>P3</td><td>IndiaMART, TradeIndia ani Justdial tumhi aadhich paise bharat aslelya plans var lead access detat; Meta lead forms free connect hotat. Connect karnyaadhi HQ pratyek check karte.</td></tr>
+<tr><td><b>Custom software, Vyapar, CRM</b></td><td>P2 te P4</td><td>Read access kinva exports; custom software cha developer export kinva API sathi paise gheu shakto.</td></tr>
+<tr><td><b>Claude API key</b></td><td>P3 te P4</td><td>Computer var koni naslyavar app draft karte tevha lagte (ratriche pahile replies, 9 AM summary). Vaparapramane bill, tumhi tharavlelya monthly limit sobat.</td></tr>
+</table>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">HQ LA NEHAMICHE PROMPTS</div><div class="sectag">Pratyeki ek ol</div></div>
+<ul class="tight">
+<li><b>Rate card badal:</b> <em>&ldquo;Aaj pasun [item] cha rate badalla aahe. Kahihi badalnyaadhi yacha konatya quotations ani screens var parinam hoto te mala dakhva.&rdquo;</em></li>
+<li><b>Navin staff:</b> <em>&ldquo;[naav] [department] madhe [role] mhanun join hot aahe. Tyanna kay disel te mala dakhva, mag login tayar kara ani majhya OK chi vaat bagha.&rdquo;</em></li>
+<li><b>Koni sodun gele:</b> <em>&ldquo;[naav] aaj sodun gele. Tyanche login aatach band kara.&rdquo;</em></li>
+<li><b>Niyam badalto:</b> <em>&ldquo;Aaj pasun [niyam]. CLAUDE.md update kara ani konatya systems var parinam hoto te mala sanga.&rdquo;</em></li>
+<li><b>Mahinyacha check:</b> <em>&ldquo;Project CLAUDE.md ani majhya guardrails shi julvun audit kara, ani je kahi tyanna todte te sopya shabdat report kara.&rdquo;</em></li>
+</ul>
+<div class="guard"><b>MAHINYACHI TEST:</b> teen prashna vichara. Board varchi pratyek enquiry, quote ani batch khari aahe ka? Tumchya shivay konti kimmat, bakaya message kinva order badal baher gela ka? Ya mahinyat tumcha sakalcha taas kami zala ka? Teen ho: pudhchi system suru kara. Ekhada nahi: aadhi te durust kara.</div>
+
+<div class="traceline">Santosh Uttam Mali &middot; RatnKamal Enterprises yanchyasathi tayar kele. BuildOur Builder Guides madhun, blueprint BOA-2026-RAT-01 Rev A nusar sankshipt kele.<br>Enquiry pasun cash paryant ek record. Pratyek kimmat, payment ani order badal ajunhi Santosh yanchya sahine.</div>
+
+</body>
+</html>
