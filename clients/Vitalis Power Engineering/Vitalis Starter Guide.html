@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vitalis Starter Guide</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-VIT-S0 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "Vitalis Power Engineering · Starter Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; Vitalis Power Engineering</span><span>Starter Guide &middot; Rev A</span></div>
+    <h1 class="cover">VITALIS OS<br><span class="accent">STARTER GUIDE</span></h1>
+    <div class="coversub">Prepared for <b>Jasveen Singh</b>, Vitalis Power Engineering Private Limited. You install one app and paste one prompt. <b>Claude then opens every website for you, one by one</b>, and walks you through GitHub, Supabase and Vercel, makes your app live, helps you <b>choose the look</b>, and opens the build sessions.</div>
+    <div class="flow">
+      <span class="chip">Install<br>Claude</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Folder and<br>docs</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">Starter<br>prompt</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Claude guides<br>every account</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Live on<br>your phone</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Sessions<br>start</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">What you have today</span>A new <b>Claude</b> subscription (Pro or Max: Section 00 shows how to check). No GitHub account, no repository, no Supabase, no Vercel. That is fine: Claude sets all of it up with you, and you only click, type your own passwords and say OK.</td></tr>
+      <tr><td colspan="2"><span class="lbl">What you finish with</span>A private GitHub repository <code class="f">vitalis-os</code> with the Claude GitHub app installed; a Supabase project in <b>South Asia (Mumbai)</b>; a Vercel project with every setting checked; an empty Vitalis app live on your phone; <code class="f">CLAUDE.md</code> holding your rules; your look in <code class="f">docs/design/</code>; and your first build session, the Vitalis Issue Slip App, open and working.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The three documents, all in docs/</span>1 &middot; AI Systems Blueprint<br>2 &middot; This Starter Guide (once; the look is its section 03)<br>3 &middot; Continue Building Guide (every sitting after)</td>
+        <td><span class="lbl">Stack, fixed</span>Claude Code writes &middot; Next.js is the app &middot; Supabase is the database &middot; Vercel puts it online &middot; GitHub keeps the code. All accounts in the company&rsquo;s name.<br><br><span class="lbl">Time</span>About three to four hours, once.</td>
+      </tr>
+    </table>
+    <div class="covernote">The starter prompt comes as a separate message &middot; Two voices on every step: YOU DO THIS &middot; PASTE TO CLAUDE CODE</div>
+  </div></div>
+</div>
+
+<!-- ================= 00 ================= -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">READ THIS FIRST</div><div class="sectag">Five minutes</div></div>
+<p>You named three problems in your own words: <em>&ldquo;Followups, store management, performance evaluation&rdquo;</em>, <em>&ldquo;Manpower management&rdquo;</em> and <em>&ldquo;Store Management&rdquo;</em>. Your blueprint answers with one custom system in three pieces on one set of data, built over twelve weeks, <b>store first</b>: nothing in without a GRN, nothing out without a numbered issue slip tied to a job. Then every job step gets a named owner and a target date. Then your ten quotes a month become rows with follow-ups drafted for your tap.</p>
+<p><b>Nothing here rates a worker, sets a price or changes stock on its own.</b> Every system drafts, records and shows; you and your supervisors decide.</p>
+<p><b>No coding is needed, and no setup knowledge either.</b> Claude Code writes every line and, in the starter prompt, opens each website in your browser and tells you exactly what to click. If you do not understand something, type <code class="f">explain this to me in simple words</code>. If a page looks different from what Claude describes, take a screenshot, paste it in, and type <code class="f">this is what I see, what do I click?</code></p>
+<div class="note"><span class="nlbl">Pro or Max? How to check</span><p>Open the Claude app &rarr; your name (bottom left) &rarr; <b>Settings &rarr; Billing</b>. It says <b>Pro</b> or <b>Max</b>. Both work. On <b>Pro</b>, Claude runs one build session at a time and may ask you to pause when you reach your usage limit; on <b>Max</b>, two build sessions can run side by side. Tell HQ which one you have when it asks.</p></div>
+<div class="note"><span class="nlbl">What it costs, honestly</span><p>Your Claude plan builds everything. GitHub is free. <b>Supabase</b> is free to start; move to Pro (about $25 a month) before the store and floor use it daily, for backups. <b>Vercel Pro</b>, about $20 a month, because the free Hobby plan is for personal projects only. Later, only if you choose: the <b>WhatsApp Business API</b> for sending follow-ups from the system, and the <b>Claude API</b> for the AI employees in months four to twelve. Claude always tells you the cost and waits for your yes.</p></div>
+
+<!-- ================= STEP 1 ================= -->
+<div class="step"><div class="stepnum">STEP 1</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Install the Claude desktop app, on the office computer you will build from</b></p>
+<ol>
+<li>Go to <b>claude.com/download</b>, download the app for your computer (Windows or Mac) and install it.</li>
+<li>Open it and sign in with the email you used for your Claude subscription.</li>
+<li>Click the <b>Code</b> tab at the top. This is <b>Claude Code</b>, the builder. Everything else is installed by Claude, with your permission, in Step 3.</li>
+</ol>
+</div></div>
+
+<!-- ================= STEP 2 ================= -->
+<div class="step"><div class="stepnum">STEP 2</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Make the folder, and the docs folder inside it</b></p>
+<ol>
+<li>Make one folder for life: <code class="f">Documents\vitalis-os</code>. Every Vitalis system goes in here, never in a second folder.</li>
+<li>Inside it, make a folder called <code class="f">docs</code>, and put these three PDFs in it:
+<ul>
+<li>the <b>AI Systems Blueprint</b></li>
+<li>this <b>Starter Guide</b> (it includes the look, section 03)</li>
+<li>the <b>Continue Building Guide</b></li>
+</ul></li>
+<li>Inside <code class="f">docs</code>, make a folder called <code class="f">samples</code> and put in what you have today: photos of a few pages of the <b>store register</b> (the kaccha register), a few <b>issue slips</b> and <b>inward challans</b>, one or two <b>job cards</b> or job lists, and your recent <b>quotes</b> (PDFs or WhatsApp screenshots). If something is not ready, HQ puts it on your list.</li>
+<li><b>Never put</b> a password or a secret key in <code class="f">docs</code>. Claude tells you where those go.</li>
+</ol>
+<div class="note"><span class="nlbl">What it looks like</span><p><code class="f">Documents\vitalis-os\docs\</code> AI Blueprint.pdf &middot; Vitalis Starter Guide.pdf &middot; Vitalis Continue Building Guide.pdf &middot; <code class="f">samples\</code> &middot; later <code class="f">design\</code></p></div>
+</div></div>
+
+<!-- ================= STEP 3 ================= -->
+<div class="step"><div class="stepnum">STEP 3</div><div class="stepbody">
+<span class="voice ai">Paste to Claude Code</span>
+<p><b>Open HQ and paste the starter prompt</b></p>
+<ol>
+<li>In the Claude app, <b>Code</b> tab, choose the folder <code class="f">vitalis-os</code> and start a new session. Name it <code class="f">HQ</code>. HQ is your main session: it holds the whole picture, sets everything up, and later gives you the prompt for every other session.</li>
+<li>Paste the <b>Vitalis Starter Prompt</b> you were sent, and send.</li>
+<li>HQ works in stages and stops after each one. Read what it says, do what it asks, and type <code class="f">OK</code> to go on. One sitting of three to four hours is best; if you stop, come back to HQ and type <code class="f">where were we?</code></li>
+</ol>
+</div></div>
+
+<h3 class="sub">What HQ walks you through, one by one</h3>
+<table class="numbers">
+<tr><th style="width:20%;">Stage</th><th>What happens</th><th style="width:26%;">What you do</th></tr>
+<tr><td><b>Tools</b></td><td>HQ checks your computer and installs Node.js, Git and the GitHub command tool, one at a time.</td><td>Read each one-line request and press <b>Allow</b>.</td></tr>
+<tr><td><b>GitHub</b></td><td>HQ opens github.com: you sign up on the company email and turn on two-factor. HQ signs this computer in to GitHub, creates the private repository <code class="f">vitalis-os</code> and connects your folder to it. Then it asks you to type <code class="f">/install-github-app</code> to install the <b>Claude GitHub app</b> on that repository.</td><td>Type your own email and password; press <b>Authorize</b> when GitHub asks.</td></tr>
+<tr><td><b>Supabase</b></td><td>HQ opens supabase.com: you sign in with GitHub, make the organisation, then the project <code class="f">vitalis-os</code> in region <b>South Asia (Mumbai)</b>. HQ tells you which three values to copy and where to paste them.</td><td>Save the database password safely; paste the keys into the file HQ opens, never into chat.</td></tr>
+<tr><td><b>The app</b></td><td>HQ builds the empty Vitalis app, writes your rules into <code class="f">CLAUDE.md</code>, and pushes it to GitHub.</td><td>Read the rules back; say OK.</td></tr>
+<tr><td><b>Vercel</b></td><td>HQ opens vercel.com: you sign up with GitHub, import <code class="f">vitalis-os</code>, and HQ walks you through every setting in the table below, then the deploy.</td><td>Click, check each setting, paste the keys.</td></tr>
+<tr><td><b>Live</b></td><td>HQ sets Supabase to accept sign-ins from your live address and adds your owner login.</td><td>Open the app on your phone; <b>Add to Home Screen</b>.</td></tr>
+<tr><td><b>Rules and list</b></td><td>HQ writes <code class="f">docs/START-NOW.md</code> and builds the foundation, the Vitalis Shared Record.</td><td>Answer its questions one at a time.</td></tr>
+<tr><td><b>The look</b></td><td>HQ stops and sends you to section 03 of this guide.</td><td>Choose the look; hand it back.</td></tr>
+<tr><td><b>Sessions</b></td><td>HQ writes the plan, then gives you the opening prompt for the first build session and the writing session, and shows you how to open each one.</td><td>Open the sessions and paste.</td></tr>
+</table>
+
+<table class="numbers">
+<tr><th style="width:30%;">Vercel setting</th><th>What it should be (HQ checks each with you)</th></tr>
+<tr><td>Plan</td><td><b>Pro</b> (commercial use). Hobby is for personal projects only.</td></tr>
+<tr><td>Git access</td><td>The Vercel GitHub app installed on <b>only</b> <code class="f">vitalis-os</code>, not all repositories.</td></tr>
+<tr><td>Framework Preset</td><td><b>Next.js</b>. Root Directory left as it is.</td></tr>
+<tr><td>Environment Variables</td><td>The three Supabase names HQ gives you, ticked for <b>Production, Preview and Development</b>.</td></tr>
+<tr><td>Production Branch</td><td><code class="f">main</code> (Settings &rarr; Git).</td></tr>
+<tr><td>Function Region</td><td><b>Mumbai, India (bom1)</b>, next to your Supabase project (Settings &rarr; Functions).</td></tr>
+<tr><td>Deployment Protection</td><td>Vercel Authentication on <b>preview</b> addresses only, so test builds stay private and the live address works for your staff.</td></tr>
+<tr><td>After deploy</td><td>The <code class="f">.vercel.app</code> address goes into Supabase &rarr; Authentication &rarr; URL Configuration as Site URL and Redirect URL.</td></tr>
+</table>
+<div class="guard"><b>YOUR THREE RULES DURING SETUP:</b> you type every password yourself, in the browser, never in the chat. Keys go only into the file or the box HQ names. When Claude asks permission to run something, it shows one line saying what it does: read it, then press Allow. If anything looks wrong, stop and ask HQ.</div>
+
+<!-- ================= 03 UI ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">STEP 4 &middot; CHOOSE THE LOOK</div><div class="sectag">The UI section &middot; when HQ sends you here</div></div>
+<p>Claude builds what you say, but it designs what you show it. Show it nothing and your storekeeper gets the average of every app on the internet: crowded, generic, and ignored. If issuing a slip in the app is slower than writing in the kaccha register, the register wins, and every board after it is empty.</p>
+
+<div class="step"><div class="stepnum">4.1</div><div class="stepbody"><span class="voice">You do this</span><p><b>Collect.</b> On <b>pinterest.com</b> search <code class="f">minimalist UI design web app</code>, <code class="f">inventory app mobile clean</code> and <code class="f">factory job tracking dashboard simple</code>. Download 10 to 15 screens your storekeeper and supervisors would understand at a glance. Skip anything crowded, dark or clever.</p></div></div>
+<div class="step"><div class="stepnum">4.2</div><div class="stepbody"><span class="voice">You do this</span><p><b>Let the strongest model choose.</b> Open the <b>Claude app</b>, choose <b>Chat</b> (not Code), pick the strongest model in the list, attach all the screenshots and paste the chooser prompt.</p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; Claude app chat &middot; the chooser prompt</span>
+<p>I have shared some powerful, minimal UI designs with you. I am building the interface for my company: Vitalis Power Engineering Private Limited, a manufacturing business. My storekeeper will use the screens on a phone at the store counter to issue material against job numbers and to receive goods; my supervisors will use a phone on the shop floor to give each job step a name and close it with a photo; and I will use my phone to see stock, late jobs and my quotes, and to approve follow-ups. Research and analyse all of these designs and tell me which one I should choose. The design must be one my team can understand very easily: self-explanatory, needing almost no training. Often interfaces get so complicated that the team cannot understand them; here we want the opposite, an interface that feels friendly rather than complex. Give me the best one to move ahead with.</p>
+</div>
+<div class="step"><div class="stepnum">4.3</div><div class="stepbody"><span class="voice">You do this</span><p><b>Get it in writing.</b> Upload only the winning one or two designs again and ask: <em>&ldquo;I have uploaded the chosen designs. Give me a detailed prompt as a markdown (.md) file that I can put into Claude Code along with these images.&rdquo;</em> Make a folder <code class="f">docs\design</code> and save the images and the .md file in it. If the direction comes back too narrow (&ldquo;an inventory app&rdquo;), correct it: <em>&ldquo;This is the whole Vitalis business: store, job cards on the floor, and quotes.&rdquo;</em></p></div></div>
+<div class="step"><div class="stepnum">4.4</div><div class="stepbody"><span class="voice ai">Paste to HQ</span><p><b>Hand it over.</b></p></div></div>
+<div class="paste"><span class="plbl">Paste &middot; HQ &middot; set the look for every session</span>
+<p>The design direction is in docs/design: the chosen images and the design .md file. Read them and section 03 of the Starter Guide. Tell me in five lines what the look is. Then add to CLAUDE.md that every screen in every session follows docs/design and the screen rules in section 03, and build one sample screen, the Issue Slip screen with dummy items and jobs, so I can see the look on my phone before any system is built. Wait for my OK, then carry on with the sessions stage.</p>
+</div>
+
+<h3 class="sub">Your main screens, one question each</h3>
+<table class="numbers">
+<tr><th style="width:25%;">System</th><th>Screen and its one question</th><th style="width:16%;">Main button</th><th style="width:19%;">Who, on what</th></tr>
+<tr><td>SYS-01 Issue Slip App</td><td><b>Issue:</b> &ldquo;which item, how many, for which job, to whom?&rdquo;</td><td>Issue slip</td><td>Storekeeper, phone</td></tr>
+<tr><td>SYS-01 Issue Slip App</td><td><b>Receive:</b> &ldquo;which challan came in, and is it a GRN now?&rdquo;</td><td>Make GRN</td><td>Storekeeper, phone</td></tr>
+<tr><td>SYS-02 Store Board</td><td><b>Stock:</b> &ldquo;what is below reorder, what is dead, what does not match?&rdquo;</td><td>Open the red item</td><td>You; storekeeper</td></tr>
+<tr><td>SYS-03 Job Card Tracker</td><td><b>My steps:</b> &ldquo;which step is mine, by when?&rdquo;</td><td>Start / Finish</td><td>Worker or supervisor, phone</td></tr>
+<tr><td>SYS-04 Floor Board</td><td><b>The floor:</b> &ldquo;which steps are late, held or have no owner?&rdquo;</td><td>Assign</td><td>Supervisor; you</td></tr>
+<tr><td>SYS-05 Follow-up Tracker</td><td><b>Quotes:</b> &ldquo;which of this month&rsquo;s quotes is due a follow-up today?&rdquo;</td><td>Log follow-up</td><td>You</td></tr>
+<tr><td>SYS-07 Follow-up Nudge</td><td><b>Waiting for my tap:</b> &ldquo;which drafted messages are ready to send?&rdquo;</td><td>Send / edit</td><td>You, phone</td></tr>
+</table>
+
+<h3 class="sub">Vitalis screen rules</h3>
+<ul class="tight">
+<li><b>Counter-fast.</b> Issuing a slip takes fewer taps than writing it in the register: item picked from the list, job number remembered, quantity typed once.</li>
+<li><b>Works on weak signal.</b> Store and floor screens save on the phone and send when the signal returns, and say so (&ldquo;saved, will send&rdquo;).</li>
+<li><b>Photo closes a step.</b> A job step is finished with one photo, not a paragraph.</li>
+<li><b>No ratings on any screen.</b> The boards show who held which step; they never score, rank or pay anyone.</li>
+<li><b>Stock never changes silently.</b> A count difference shows as a variance note waiting for your signature.</li>
+<li><b>Red, amber, green mean only one thing:</b> late or short, waiting, done. Red at the top.</li>
+<li><b>Hindi, Punjabi or English labels, per person,</b> if your team reads one more easily: tell HQ.</li>
+</ul>
+<table class="numbers">
+<tr><th style="width:34%;">The five screen laws</th><th>Check every screen Claude shows you</th></tr>
+<tr><td><b>1 &middot; Nobody reads, everyone scans</b></td><td>The one thing the user must see first is the biggest and boldest thing on the screen.</td></tr>
+<tr><td><b>2 &middot; One screen, one job</b></td><td>One main button, visible without scrolling, in the one colour kept for action.</td></tr>
+<tr><td><b>3 &middot; Consistency is trust</b></td><td>The same thing looks the same everywhere: an item, a job, a quote, a red flag.</td></tr>
+<tr><td><b>4 &middot; The default is the decision</b></td><td>What is filled in again and again is already filled in: today&rsquo;s date, the job, the storekeeper.</td></tr>
+<tr><td><b>5 &middot; Silence is an error</b></td><td>Every tap answers at once with a change, a tick or a plain message.</td></tr>
+</table>
+<div class="guard"><b>THE TWO-MINUTE RULE:</b> your storekeeper opens any screen and understands what it is and what to do in under two minutes, with no training. If a screen needs explaining, the screen is wrong, not the person. The real test: hand the phone to the storekeeper and watch, without helping.</div>
+</div>
+
+<!-- ================= STEP 5 ================= -->
+<div class="step"><div class="stepnum">STEP 5</div><div class="stepbody">
+<span class="voice">You do this</span>
+<p><b>Switch to the Continue Building Guide when all of this is true</b></p>
+<ul class="ticks">
+<li>The app opens on your phone at its <code class="f">.vercel.app</code> address and is on your home screen.</li>
+<li>The GitHub repository <code class="f">vitalis-os</code> is <b>private</b>, has the Claude GitHub app, and the Supabase project is in <b>Mumbai</b>.</li>
+<li>Every Vercel setting in the table above is checked; the three keys are only in <code class="f">.env.local</code> and Vercel.</li>
+<li><code class="f">CLAUDE.md</code> holds your rules (page R2), and <code class="f">docs/START-NOW.md</code> lists what waits on you.</li>
+<li>The foundation (the Vitalis Shared Record) is in Supabase, and you can sign in on your phone.</li>
+<li><code class="f">docs/design/</code> holds your look, and CLAUDE.md says every screen follows it.</li>
+<li>Your first build session (Issue Slip App) and the writing session (Store SOP) are open with HQ&rsquo;s prompts.</li>
+</ul>
+<p>Then open section 02 of the Continue Building Guide, <b>Every sitting</b>. If a box is not ticked, tell HQ <em>&ldquo;fix this before we continue.&rdquo;</em></p>
+</div></div>
+
+<!-- ================= R1 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">R1</div><div class="sectitle">THE CLOCKS: FOR docs/START-NOW.md</div><div class="sectag">Read by HQ</div></div>
+<p>Things that wait on you or your team. Each becomes a line in <code class="f">docs/START-NOW.md</code> with its owner, a start date and a tick box. Longest first.</p>
+<table class="numbers">
+<tr><th style="width:5%;">#</th><th>Item</th><th style="width:22%;">Owner</th><th style="width:14%;">Needed for</th></tr>
+<tr><td>1</td><td><b>Walk the rack</b> with the storekeeper and build the item master as it stands: item, unit, location, reorder level and last supplier for each item.</td><td>Jasveen with the store in-charge</td><td>Weeks 1 to 2, F-00</td></tr>
+<tr><td>2</td><td><b>Your three guardrails in your own words:</b> what AI may do alone, what a person signs off, what is never automated. Until then the careful default holds.</td><td>Jasveen</td><td>Week 1</td></tr>
+<tr><td>3</td><td><b>The three clarifying questions</b>, in writing: do follow-ups mean customers, the team, or both; how a late job reaches you today and who you ask first; which store pain hurts most.</td><td>Jasveen</td><td>Week 1</td></tr>
+<tr><td>4</td><td><b>The Store SOP and the Work Ownership SOP</b> in plain words.</td><td>Jasveen</td><td>Weeks 1 to 2</td></tr>
+<tr><td>5</td><td><b>Your hours a week</b> for the build, any deadline, and your busy season, so the twelve weeks fit around them.</td><td>Jasveen</td><td>Week 1</td></tr>
+<tr><td>6</td><td><b>The money path</b> from enquiry to final payment, and the <b>people map</b>: owner, managers, who does the work, where.</td><td>Jasveen</td><td>Week 2</td></tr>
+<tr><td>7</td><td><b>The figures not stated:</b> orders a month, win rate, order value, sales cycle, repeat customers, headcount.</td><td>Jasveen</td><td>Before any target</td></tr>
+<tr><td>8</td><td><b>The first full physical count</b>, laid against the book item by item.</td><td>Store in-charge</td><td>Weeks 3 to 4</td></tr>
+<tr><td>9</td><td><b>The first supervisor</b> to run the Job Card Tracker on one floor.</td><td>Jasveen</td><td>Week 5</td></tr>
+</table>
+</div>
+
+<!-- ================= R2 ================= -->
+<div class="sechead"><div class="secnum">R2</div><div class="sectitle">THE RULES: FOR CLAUDE.md, WORD FOR WORD</div><div class="sectag">Read by HQ</div></div>
+<div class="paste long"><span class="plbl">Standing rules for everything ever built in this folder, in every session</span>
+<p><b>House rules.</b> 1 &middot; ONE HOME: this folder, this repository (vitalis-os), this Supabase project (Mumbai) and this Vercel project are the only ones Vitalis OS will ever have; every system is a new section of the same app. 2 &middot; EVERY PERSON THEIR OWN KEY: every team member has their own login and sees only what their work needs; Jasveen sees everything; no shared passwords. 3 &middot; A HUMAN YES BEFORE ANYTHING LEAVES OR CHANGES THE BOOK: every outbound message is sent by Jasveen&rsquo;s tap; one switch turns all automatic behaviour off without code. 4 &middot; THE DIARY NOBODY CAN EDIT: every action the system takes is written to a log that can only be added to. 5 &middot; SECRETS STAY IN THE CUPBOARD: keys and logins live only in .env.local and Vercel&rsquo;s settings, never in code, in chat, in docs or on GitHub. 6 &middot; NUMBERS ARE COUNTED, NEVER GUESSED: stock, consumption and dead-stock value come from slips, GRNs and counts by exact tested rules; AI reads, drafts, records and shows, and never invents a number. If anything you propose bends a rule, say so out loud and wait for my decision.</p>
+<p><b>Guardrails (careful default until Jasveen writes his own).</b> Jasveen did not answer the three guardrail questions; these defaults stand until he does, and HQ must replace them with his own words when he gives them. AI may act alone only to draft, record and show: draft follow-ups, GRNs, issue slips, pick lists and morning summaries; read replies and file pending items against a quote or step. A person signs off: every outbound message is sent by Jasveen&rsquo;s tap; every requisition is approved before any enquiry reaches a supplier; every stock adjustment, write-off or variance correction is signed before the book changes; any reassignment of a step from one person to another is confirmed by the supervisor or Jasveen. Never automated: pricing and negotiation (every rate, discount, payment term, supplier rate and delivery promise); performance evaluation (rating a worker, wages, overtime, moving a person between jobs); book stock changes without a signed variance note.</p>
+<p><b>Vitalis rules.</b> Nothing enters the store without a GRN and nothing leaves without a numbered issue slip carrying an item, a job number and the collector&rsquo;s name. Every job step has a named owner and a target date. The boards show; they never rate a worker, set wages or move a person. No figure appears on a board that was not entered by Vitalis staff. Dead stock is valued only at the last purchase rate once rates exist in the record. Store and floor screens work offline and sync. Only two figures were given (10 leads, 10 quotes a month): count everything else, never assume it, never hard-code a figure. docs/samples never goes to GitHub. Build in the blueprint&rsquo;s order; a system starts only when Jasveen approves its build sheet.</p>
+</div>
+
+<!-- ================= R3 ================= -->
+<div class="sechead"><div class="secnum">R3</div><div class="sectitle">THE BUILD BRIEF: FOR CLAUDE CODE</div><div class="sectag">Jasveen can skip this page</div></div>
+<div class="brief"><h3>Stack and setup</h3>
+<p>Next.js (App Router, TypeScript, Tailwind), Supabase (Postgres, Auth, Row Level Security, Storage for photos and challans) through <code class="f">@supabase/ssr</code>, project region South Asia (Mumbai); deployed on Vercel from <code class="f">main</code> with Function Region Mumbai (bom1), a preview for every branch, and Vercel Authentication on previews only. GitHub repository <code class="f">vitalis-os</code>, private, with the Claude GitHub app installed. Mobile-first web app added to the home screen; store and floor screens save offline and sync. Variables: <code class="f">NEXT_PUBLIC_SUPABASE_URL</code>, <code class="f">NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code>, <code class="f">SUPABASE_SECRET_KEY</code>; later <code class="f">WHATSAPP_*</code>, <code class="f">CRON_SECRET</code>, <code class="f">ANTHROPIC_API_KEY</code> only with Jasveen&rsquo;s yes; <code class="f">.env.example</code> holds names only. When guiding setup: open each website in Jasveen&rsquo;s browser one at a time, describe exactly what to click, never ask for a password or key in chat.</p></div>
+<div class="brief"><h3>F-00 Vitalis Shared Record: the starting shape</h3>
+<p><b>profiles</b> (name, mobile, role owner / store / supervisor / worker / office, language, active); <b>items</b> (item master: name, unit, location, reorder level, last supplier and contact, last purchase rate when known); <b>jobs</b> (job number, customer, quote number, status); <b>quotes</b> (quote number, customer, date, value as entered); <b>sops</b> (Store SOP, Work Ownership SOP, versioned); <b>approvals</b>; <b>settings</b> (automation switch off by default); <b>audit_log</b> (append only). The job number and the quote number are the two keys every tracker writes against. Slips, GRNs, job steps and follow-ups come in their own phases. Row Level Security: Jasveen sees all; the storekeeper sees the store; supervisors see their floor&rsquo;s jobs; nobody but Jasveen changes book stock.</p></div>
+<div class="brief"><h3>Sessions</h3>
+<ul>
+<li><b>HQ</b> owns <code class="f">main</code>, CLAUDE.md, docs/SESSIONS.md, docs/START-NOW.md and the database; applies migrations in order and merges finished work; never builds a system itself. It writes the opening prompt for every other session into <code class="f">docs/session-prompts/</code>, shows it to Jasveen in its own box, and tells him exactly how to open that session in the Code tab.</li>
+<li><b>Builders</b>, one at a time on Claude Pro and at most two on Max, one per system: each in its own git worktree on branch <code class="f">sys-0N-short-name</code>, touching only its own folders; new tables only in a new migration, adding, never dropping; never applies migrations to the live database. Shared files change only in HQ; requests in <code class="f">docs/requests/</code>, handovers in <code class="f">docs/handovers/</code>.</li>
+<li><b>Writing session</b> for the SOPs and skills (Store SOP, Work Ownership SOP, the follow-up message rhythm): only <code class="f">docs/</code> and <code class="f">content/</code>; no price in any draft.</li>
+<li>Every screen follows <code class="f">docs/design/</code> and section 03 of this guide; plan first and wait for OK; simple words; a dated note in <code class="f">docs/sessions/</code> at the end of each sitting.</li>
+</ul></div>
+
+<div class="traceline">Prepared for Jasveen Singh &middot; Vitalis Power Engineering Private Limited &middot; traces to blueprint BOA-2026-VIT-01 Rev A (blueprint audit 22.11.2026).<br>Stack fixed: Claude Code, Next.js, Supabase (Mumbai), Vercel, GitHub.</div>
+
+</body>
+</html>
