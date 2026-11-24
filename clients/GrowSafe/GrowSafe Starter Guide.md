@@ -42,7 +42,7 @@ They are past experiments. GrowSafe OS gets a **new** Supabase project in a new 
 
 Who does what
 
-**Romana sets up the start with you once:** this blueprint and these guides go into a new Claude Code session, the HQ session, on your Tally computer (Steps 1 to 3). **From the starter prompt onwards you do every step yourself,** with HQ telling you exactly what to click, type or approve, including the Tally to Supabase Bridge in both directions (section 08 of the Continue Building Guide). If you are stuck, tell HQ: paste the error or a screenshot and type `explain this in simple words and give me the next step`.
+**Romana shows you how to connect your GitHub repository** to Claude Code, and if you need it, helps you put the keys into Vercel. **Everything else HQ guides you through, one step at a time:** the new Supabase project, Vercel, the TallyPrime settings and the Tally to Supabase Bridge in both directions (section 08 of the Continue Building Guide). Then HQ helps you open a new session for each system. If you are stuck, tell HQ: paste the error or a screenshot and type `explain this in simple words and give me the next step`.
 
 What it costs, honestly
 

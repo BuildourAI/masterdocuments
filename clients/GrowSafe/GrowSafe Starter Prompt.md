@@ -1,6 +1,6 @@
 # GrowSafe · Starter Prompt
 
-Paste this into the **HQ** session (Claude desktop app → Code tab, on the office PC that runs TallyPrime → local folder `GrowSafe-OS`), as Step 3 of the GrowSafe Starter Guide says. Nothing needs filling in.
+Paste this into the **HQ** session (Claude desktop app → Code tab, on the office PC that runs TallyPrime → local folder `GrowSafe-OS`), as Step 3 of the GrowSafe Starter Guide says. Fill in your repository address first.
 
 ---
 
@@ -15,7 +15,9 @@ In this folder, docs/ holds three PDFs:
 - my Continue Building Guide.
 docs/samples holds my terms and conditions, scheme slabs, current price lists, a recipe or costing sheet, the field sales TA and incentive rules, any SOP or KRA documents, and screenshots of what Unolo, AgriCost.In and Biz Analyst show today. There are no Tally exports: the Bridge reads Tally itself.
 
-What I have: an upgraded Claude subscription; a GitHub account with a private repository "GrowSafe OS" (GitHub shows it as GrowSafe-OS) made with a README, with the Claude GitHub app already installed; TallyPrime on this PC with four to five years of data; an OLD Supabase project and an OLD Tally sync script from earlier experiments. What I do not have yet: the tools on this PC, the new Supabase project, Vercel, the app.
+What I have: an upgraded Claude subscription; a GitHub account with a private repository "GrowSafe OS" (GitHub shows it as GrowSafe-OS) made with a README, with the Claude GitHub app already installed, at
+https://github.com/____________________/GrowSafe-OS
+and TallyPrime on this PC with four to five years of data; an OLD Supabase project and an OLD Tally sync script from earlier experiments. What I do not have yet: the tools on this PC, the new Supabase project, Vercel, the app.
 
 The old Supabase project and the old sync script are past experiments. Do not open, read, change, copy from or delete them, and do not build on them or on AgriCost.In. They keep running untouched until the new Bridge matches Tally; stopping them comes later, only with my yes.
 
@@ -43,7 +45,7 @@ STAGE 2 · Tools on this PC
 Check whether Node.js (LTS), Git and the GitHub command-line tool (gh) are installed. Install whatever is missing, one at a time, with winget, telling me what each one is for before I allow it. Then confirm all three work.
 
 STAGE 3 · GitHub
-1. Sign this PC in to GitHub with "gh auth login" (GitHub.com, HTTPS, log in with a web browser), and tell me what to click when the browser opens. Ask me for my GitHub username and remember it.
+1. Sign this PC in to GitHub with "gh auth login" (GitHub.com, HTTPS, log in with a web browser), and tell me what to click when the browser opens. Use the repository address I gave above.
 2. Bring my repository GrowSafe-OS into this folder, keeping its README. This folder already holds docs/, so if a plain clone refuses because the folder is not empty, connect this folder to the repository and pull main instead. Show me the repository address and the README in this folder.
 3. Confirm the repository is private and that the Claude GitHub app is installed on it. If it is not, tell me to type /install-github-app in this chat and guide me through every screen, choosing only GrowSafe-OS.
 
