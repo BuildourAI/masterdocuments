@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Systems Blueprint: GrowSafe, Rev B</title>
+<style>
+
+  :root {
+    --orange: #e8590c;
+    --orange-soft: #fdeee2;
+    --orange-faint: #fdf6f0;
+    --ink: #1f2430;
+    --grid: rgba(232, 89, 12, 0.07);
+    --rule: #e9c7ae;
+    --mono: "Consolas", "JetBrains Mono", "Courier New", monospace;
+    --sans: "Segoe UI", "Noto Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ---------- PART B pages: A4, in-depth blueprint ---------- */
+  @page {
+    size: A4;
+    margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right {
+      /* EDIT ME: DWG NO. BOA-{year}-{3-letter company code}-01 · REV A */
+      content: "DWG NO. BOA-2026-GRO-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "GrowSafe · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+  }
+
+  /* ---------- PART A pages: wide infographic sheets ---------- */
+  @page infog {
+    size: 842pt 1191pt;
+    margin: 64px 40px 64px;
+    @top-left { content: "Buildour AI · Client Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @top-right {
+      /* EDIT ME: same DWG string as above */
+      content: "DWG NO. BOA-2026-GRO-01 · REV B";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 18px; }
+    @bottom-left {
+      /* EDIT ME: {Company} · AI Systems Blueprint */
+      content: "GrowSafe · AI Systems Blueprint";
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages);
+      font-family: "Consolas", "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: 2px;
+      color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 16px; }
+  }
+
+  html {
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      #fdfbf9;
+    background-size: 24px 24px;
+  }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13.5px; line-height: 1.6; }
+
+  /* ================= PART A · INFOGRAPHIC COMPONENTS ================= */
+  .ig { page: infog; font-size: 12px; line-height: 1.45; }
+  .ig p { text-align: left; }
+
+  /* header block, top of sheet 1 */
+  .ighead { display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2.5px solid var(--ink); padding-bottom: 18px; margin-bottom: 8px; }
+  .ightitle h1 { font-size: 40px; line-height: 1.02; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
+  .ightitle .standfirst { font-size: 13px; margin-top: 10px; max-width: 480px; color: #46556b; }
+  .igbox { border: 1.5px solid var(--orange); background: #fff; padding: 10px 14px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; line-height: 1.9; }
+  .igbox .bl { color: var(--orange); font-weight: 700; }
+
+  /* panel scaffold */
+  .panel { margin: 22px 0 6px; page-break-inside: avoid; }
+  .phead { display: flex; align-items: baseline; gap: 10px; border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 12px; page-break-after: avoid; }
+  .pnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 12px; padding: 2px 8px; }
+  .ptitle { font-size: 17px; font-weight: 800; letter-spacing: 0.2px; text-transform: uppercase; }
+  .ptag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+  .pcap { font-size: 11px; font-style: italic; color: #46556b; margin-top: 8px; }
+  .pcap b { color: var(--orange); font-style: normal; }
+  .mcap { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: #8a7361; margin-top: 8px; }
+
+  /* P01 · dashboard tiles */
+  .tiles { display: grid; grid-template-columns: repeat(9, 1fr); border: 1px solid var(--rule); background: #fff; }
+  .tile { padding: 12px 10px 10px; border-right: 1px dotted var(--rule); }
+  .tile:last-child { border-right: none; }
+  .tile .v { font-size: 21px; font-weight: 800; letter-spacing: -0.3px; }
+  .tile.hot .v { color: var(--orange); }
+  .tile .l { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361;
+    text-transform: uppercase; margin-top: 3px; }
+
+  /* P02 · money path flow */
+  .mpath { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px; }
+  .mstep { border: 1px solid var(--rule); background: #fff; padding: 8px 10px; }
+  .mstep .mn { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #8a7361; }
+  .mstep .mt { font-weight: 700; font-size: 12px; margin: 1px 0; }
+  .mstep .ms { font-family: var(--mono); font-size: 8px; letter-spacing: 0.8px; color: #46556b; text-transform: lowercase; }
+  .mstep.broken { border: 1.5px solid var(--orange); background: var(--orange-faint); }
+  .mstep.broken .ms { color: var(--orange); }
+  .legend { display: flex; gap: 22px; font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px;
+    text-transform: uppercase; color: #46556b; margin-top: 9px; align-items: center; }
+  .sw { display: inline-block; width: 9px; height: 9px; border: 1px solid var(--orange); margin-right: 5px; vertical-align: -1px; }
+  .sw.f { background: var(--orange-faint); border-width: 1.5px; }
+
+  /* duo row: two diagnostic panels side by side */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  /* diagnostic · funnel */
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 2px; }
+  .ftier { position: relative; text-align: center; padding: 11px 0 9px; }
+  .ftier .fill { position: absolute; inset: 0; }
+  .ftier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ftier .tx { position: relative; }
+  .ftier .fv { font-size: 19px; font-weight: 800; }
+  .ftier .fl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: #46556b; text-transform: uppercase; }
+  .ftier.t1 { width: 88%; } .ftier.t2 { width: 66%; } .ftier.t3 { width: 46%; }
+  .ftier .fill, .ftier .inner { clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .ftier .fill { background: var(--rule); }
+  .ftier.mid .fill { background: var(--orange); }
+  .ftier.mid .inner { background: var(--orange-faint); }
+  .ftier.mid .fv, .ftier.mid .fl { color: var(--orange); }
+  .fverdict { text-align: center; font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-top: 8px; }
+
+  /* diagnostic · layer pyramid */
+  .pyr { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 6px 0 2px; }
+  .ptier { position: relative; text-align: center; padding: 10px 0 8px; }
+  .ptier .fill { position: absolute; inset: 0; background: var(--rule); }
+  .ptier .inner { position: absolute; inset: 1.5px; background: #fff; }
+  .ptier .tx { position: relative; }
+  .ptier .pv { font-size: 13px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
+  .ptier .pl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #46556b; text-transform: uppercase; }
+  .ptier.top { width: 40%; } .ptier.top .fill, .ptier.top .inner { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .ptier.top { padding-top: 22px; }
+  .ptier.mid { width: 66%; } .ptier.mid .fill, .ptier.mid .inner { clip-path: polygon(9% 0, 91% 0, 100% 100%, 0 100%); }
+  .ptier.mid .fill { background: var(--orange); } .ptier.mid .inner { background: var(--orange-faint); }
+  .ptier.mid .pv, .ptier.mid .pl { color: var(--orange); }
+  .ptier.base { width: 88%; } .ptier.base .fill, .ptier.base .inner { clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%); }
+
+  /* diagnostic · before/after cards */
+  .ba { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .bacard { border: 1px solid var(--rule); background: #fff; padding: 10px 13px; }
+  .bacard .fl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .bacard .bt { font-weight: 700; font-size: 12.5px; margin-bottom: 5px; }
+  .bacard p { font-size: 11px; margin-bottom: 4px; }
+  .bacard b.was { color: var(--ink); } .bacard b.now { color: var(--orange); }
+
+  /* diagnostic · comparison bars */
+  .cbars { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; }
+  .cbar { display: flex; align-items: center; gap: 10px; }
+  .cbar .cl { flex: 0 0 170px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.2px;
+    text-transform: uppercase; text-align: right; color: #46556b; }
+  .cbar .track { flex: 1; }
+  .cbar .bar { height: 20px; border: 1px solid var(--orange); background: var(--orange-faint);
+    display: flex; align-items: center; padding: 0 8px; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 1px; color: var(--orange); font-weight: 700; }
+  .cbar.max .bar { background: var(--orange); color: #fff; }
+
+  /* diagnostic · split/entity map */
+  .split { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .scard { border: 1px solid var(--rule); background: #fff; padding: 9px 11px; text-align: center; }
+  .scard .sv { font-weight: 800; font-size: 14px; }
+  .scard .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: #8a7361; text-transform: uppercase; }
+
+  /* P06 · system cards grid */
+  .sysgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .icard { border: 1px solid var(--rule); background: #fff; padding: 11px 13px 9px; page-break-inside: avoid; }
+  .icard .iwin { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; }
+  .icard .iname { font-weight: 700; font-size: 13.5px; margin: 2px 0 9px; }
+  .ibody { display: grid; grid-template-columns: 55% 45%; gap: 4px 10px; }
+  .ichain { display: flex; flex-direction: column; align-items: stretch; }
+  .ichip { border: 1px solid var(--orange); background: #fff; font-family: var(--mono); font-size: 7.5px;
+    letter-spacing: 0.8px; text-transform: uppercase; text-align: center; padding: 5px 4px; color: var(--ink); }
+  .ichip.first { background: var(--orange-faint); border-width: 1.5px; color: var(--orange); font-weight: 700; }
+  .iarrow { text-align: center; color: var(--orange); font-size: 10px; line-height: 1.4; }
+  .inotes .nl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-top: 7px; }
+  .inotes .nl:first-child { margin-top: 0; }
+  .inotes p { font-size: 10px; line-height: 1.4; margin-bottom: 2px; }
+  .isolve { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 6px;
+    font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange); text-transform: uppercase; }
+
+  /* P07 · gantt */
+  table.gantt { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.gantt th, table.gantt td { border: 1px solid var(--rule); padding: 5px 8px; }
+  table.gantt th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; background: #fff; }
+  table.gantt td.sysname { width: 17%; }
+  table.gantt td.sysname .gc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  table.gantt td.sysname .gn { font-weight: 700; font-size: 10.5px; }
+  .gbar { border: 1px solid var(--orange); background: var(--orange-faint); font-family: var(--mono);
+    font-size: 8px; letter-spacing: 0.8px; color: var(--ink); padding: 2px 7px; white-space: nowrap; overflow: hidden; }
+  .dwrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 12px; }
+  .dw { border: 1.5px solid var(--orange); background: #fff; padding: 9px 12px; font-size: 11px; }
+  .dw .dl { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 3px; }
+
+  /* P08 · 2x2 matrix */
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); background: #fff; }
+  .quad { border: 1px solid var(--rule); padding: 10px 13px; min-height: 108px; }
+  .quad .qh { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #46556b;
+    font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 7px; }
+  .mc { border: 1px solid var(--orange); background: #fff; padding: 4px 9px; margin-bottom: 5px; }
+  .mc .mcc { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.2px; color: var(--orange); display: block; }
+  .mc .mcn { font-weight: 700; font-size: 11px; }
+  .quad.build .mc { background: var(--orange-faint); border-width: 1.5px; }
+  .quad .qv { font-family: var(--mono); font-size: 8px; letter-spacing: 1.2px; color: var(--orange);
+    text-transform: uppercase; margin-top: 4px; }
+  .axis { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; margin-top: 6px; display: flex; justify-content: space-between; }
+
+  /* P09 · guardrails swimlane */
+  .swim { border: 1px solid var(--rule); background: #fff; }
+  .lane { display: flex; border-top: 1px dotted var(--rule); }
+  .lane:first-child { border-top: none; }
+  .lanel { flex: 0 0 140px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); font-weight: 700; text-transform: uppercase; padding: 11px 0 11px 13px; }
+  .lanev { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; padding: 9px 13px; border-left: 1px dotted var(--rule); }
+  .tag { border: 1px solid var(--rule); background: #fff; font-family: var(--mono); font-size: 8.5px;
+    letter-spacing: 0.8px; padding: 3px 9px; }
+  .tag.never { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+  /* P10 · next steps */
+  .igsteps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .igstep { display: flex; border: 1px solid var(--orange); background: #fff; page-break-inside: avoid; }
+  .igstep .n { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 11px; padding: 8px 10px; display: flex; align-items: flex-start; }
+  .igstep .b { padding: 7px 12px; font-size: 11px; }
+
+  /* footer strip, end of each infographic group */
+  .stripe { display: flex; border-top: 2px solid var(--ink); margin: 20px 0 4px; background: #fff; }
+  .scell2 { flex: 1; border-left: 1px dotted var(--rule); padding: 7px 12px; }
+  .scell2:first-child { border-left: none; }
+  .scell2 .sl { font-family: var(--mono); font-size: 7.5px; letter-spacing: 1.5px; color: var(--orange);
+    font-weight: 700; text-transform: uppercase; display: block; }
+  .scell2 .sv { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
+  .igtrace { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 12px; }
+
+  /* ================= PART B · IN-DEPTH BLUEPRINT COMPONENTS (unchanged v2) ================= */
+  .coverpage { page-break-before: always; page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 42px 42px 28px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase;
+    border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 32px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 12.5px; letter-spacing: 2.5px;
+    text-transform: uppercase; margin: 16px 0 32px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 32px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono);
+    font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 28px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 30px 0 16px; background: #fff;
+    page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 17px; padding: 8px 14px; display: flex; align-items: center; }
+  .sectitle { padding: 8px 14px; font-size: 17px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 14px; text-align: right; }
+  h3.sub { font-size: 14px; font-weight: 700; margin: 20px 0 6px; page-break-after: avoid; }
+  h3.sub .n { color: var(--orange); font-family: var(--mono); margin-right: 6px; }
+  .bp p { text-align: justify; }
+  p { margin-bottom: 11px; }
+  .pain { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 8px 0 16px; page-break-inside: avoid; }
+  .pain .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 2px; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint);
+    padding: 9px 13px; margin: 9px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .sys { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .sysbar { background: var(--orange); color: #fff; padding: 7px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .sysbar .name { font-weight: 700; font-size: 14.5px; letter-spacing: 0.3px; }
+  .sysbar .code { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; }
+  .sysrow { display: flex; border-top: 1px dotted var(--rule); }
+  .sysrow:first-of-type { border-top: none; }
+  .syslbl { flex: 0 0 118px; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; padding: 9px 0 9px 14px; }
+  .sysval { flex: 1; padding: 8px 14px 8px 10px; font-size: 12.5px; border-left: 1px dotted var(--rule); }
+  .sysval p { margin-bottom: 6px; }
+  .sysval p:last-child { margin-bottom: 0; }
+  .phase { border: 1.5px solid var(--orange); margin: 14px 0; background: #fff; page-break-inside: avoid; }
+  .phasehead { display: flex; align-items: stretch; }
+  .phnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .phtitle { padding: 7px 13px; font-weight: 700; font-size: 14.5px; flex: 1; display: flex; align-items: center; }
+  .phtag { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; color: var(--orange);
+    text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; }
+  .phbody { padding: 10px 14px 12px; border-top: 1px solid var(--rule); font-size: 12.5px; }
+  .phbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); margin-top: 9px; padding-top: 8px; font-size: 12.5px; }
+  .done .dlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange);
+    text-transform: uppercase; font-weight: 700; margin-right: 6px; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12.5px; background: #fff; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 8px 13px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 13px; }
+  table.numbers tr { page-break-inside: avoid; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 10px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700;
+    font-size: 13px; padding: 10px 13px; display: flex; align-items: flex-start; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; }
+  .noteblock { border: 1.5px dashed var(--orange); background: rgba(255,255,255,0.8);
+    padding: 13px 16px; margin: 16px 0; font-size: 12.5px; page-break-inside: avoid; }
+  .noteblock .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 5px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361;
+    text-transform: uppercase; text-align: center; margin-top: 26px; border-top: 1.5px solid var(--orange);
+    padding-top: 12px; line-height: 1.8; }
+  code.f { font-family: var(--mono); font-size: 11.5px; background: var(--orange-soft); padding: 1px 5px; }
+  ul.tight { margin: 0 0 10px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  /* Rev B fit overrides */
+  .quad { min-height: 0; }
+  .ig .panel { margin: 16px 0 4px; }
+  .coverinner { padding: 30px 36px 20px; }
+  .coverbar { margin-bottom: 22px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin: 0 0 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  .covernote { margin-top: 16px; }
+  .bp { font-size: 12.5px; line-height: 1.55; }
+  .sys { margin: 11px 0; }
+
+  .ichip { padding: 3px 4px; }
+  .iarrow { line-height: 1.1; font-size: 9px; }
+  .icard { padding: 9px 11px 7px; }
+  .sysgrid { gap: 12px; }
+  .quad { padding: 8px 12px; }
+  .mc { padding: 3px 8px; margin-bottom: 4px; }
+  .bp p { margin-bottom: 9px; }
+  .sysval { padding: 6px 12px 6px 10px; font-size: 12px; }
+  .syslbl { padding: 7px 0 7px 12px; }
+  h3.sub { margin: 14px 0 5px; }
+  .pain { margin: 6px 0 12px; }
+  .sechead { margin: 22px 0 12px; }
+
+  .noteblock.long { page-break-inside: auto; }
+  .noteblock table.numbers td, .noteblock table.numbers th { font-size: 11px; padding: 5px 8px; vertical-align: top; }
+  .ig .panel { margin: 10px 0 2px; }
+  .stripe { margin: 12px 0 2px; }
+  .coverpage table.titleblock td { font-size: 11.5px; padding: 6px 11px; }
+  .bp table.numbers td { vertical-align: top; }
+</style>
+</head>
+<body>
+<style>
+  .tiles .tile { border-bottom: 1px dotted var(--rule); }
+  .pstrip { display: flex; gap: 3px; margin: 4px 0 12px; }
+  .pstrip .ps { border: 1.5px solid var(--orange); background: var(--orange-faint); padding: 6px 8px; font-family: var(--mono);
+    font-size: 8.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink); line-height: 1.35; }
+  .pstrip .ps b { color: var(--orange); display: block; font-size: 9px; }
+  .pstrip .ps.done { background: var(--orange); color: #fff; }
+  .pstrip .ps.done b { color: #fff; }
+  table.ptable { width: 100%; border-collapse: collapse; background: #fff; font-size: 11px; }
+  table.ptable th { font-family: var(--mono); font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); text-align: left; padding: 6px 8px; border: 1px solid var(--rule); background: var(--orange-faint); }
+  table.ptable td { border: 1px solid var(--rule); padding: 6px 8px; vertical-align: top; line-height: 1.4; }
+  table.ptable td.ph { font-family: var(--mono); font-weight: 700; color: var(--orange); font-size: 11px; width: 4%; }
+  table.ptable td.pf { font-weight: 700; width: 19%; }
+  table.ptable td.psys { font-family: var(--mono); font-size: 8.5px; letter-spacing: .8px; width: 18%; }
+  table.ptable td.pd { font-family: var(--mono); font-size: 9.5px; width: 9%; white-space: nowrap; }
+  table.ptable tr.built td { background: var(--orange-soft); }
+  .icard .iwin .st { background: var(--orange); color: #fff; padding: 0 4px; margin-left: 4px; }
+</style>
+<!-- ############################ PART A · THE INFOGRAPHIC ############################ -->
+<div class="ig">
+
+  <div class="ighead">
+    <div class="ightitle">
+      <h1>GrowSafe<br>AI Systems Blueprint &middot; Rev B</h1>
+      <div class="standfirst">An agro chemicals manufacturer at Mandideep selling to dealers and retailers across several states, where every number lives in Tally Prime and only accounts can open it. Rev B corrects Rev A against Akash&rsquo;s own note and the call of 24 November: one fresh GrowSafe OS on a new two-way Tally Bridge, sales reporting next, and AgriCost.In, Unolo and Biz Analyst rebuilt inside it and switched off.</div>
+    </div>
+    <div class="igbox">
+      <span class="bl">Prepared for</span><br>
+      Akash Dubey, Owner<br>
+      Blueprint audit 23.11.2026 (Rev A)<br>
+      Call and written requests 24.11.2026<br>
+      Rev B supersedes Rev A
+    </div>
+  </div>
+
+  <!-- P01 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">01</span><span class="ptitle">The Numbers</span><span class="ptag">Dashboard tiles &middot; as provided by client</span></div>
+    <div class="tiles" style="grid-template-columns: repeat(5, 1fr);">
+      <div class="tile"><div class="v">Not stated</div><div class="l">Leads a month</div></div>
+      <div class="tile"><div class="v">Not stated</div><div class="l">Quotes a month</div></div>
+      <div class="tile"><div class="v">Not stated</div><div class="l">Orders a month &middot; order value</div></div>
+      <div class="tile"><div class="v">Not stated</div><div class="l">Sales cycle &middot; repeat customers</div></div>
+      <div class="tile hot"><div class="v">Not stated</div><div class="l">Total headcount</div></div>
+      <div class="tile"><div class="v">₹50L&ndash;1Cr</div><div class="l">Turnover a month &middot; stated band</div></div>
+      <div class="tile hot"><div class="v">4&ndash;5 years</div><div class="l">Of data inside Tally Prime &middot; call 24.11</div></div>
+      <div class="tile"><div class="v">10&ndash;15 h</div><div class="l">Owner time a week</div></div>
+      <div class="tile"><div class="v">10.12.2026</div><div class="l">Deadline set in the brief</div></div>
+      <div class="tile"><div class="v">3 tools</div><div class="l">To discontinue: AgriCost.In, Unolo, Biz Analyst</div></div>
+    </div>
+    <div class="pcap">All eight business numbers were left blank, as were busy season and &ldquo;worth it if&rdquo;. <b>Every one of them already lives in Tally; once the Bridge is live, the system reads them out instead of anyone typing them.</b></div>
+  </div>
+
+  <!-- P02 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">02</span><span class="ptitle">The Money Path Today</span><span class="ptag">Flowchart &middot; enquiry to final payment</span></div>
+    <div class="mpath" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="mstep broken"><div class="mn">01</div><div class="mt">Dealer order arrives</div><div class="ms">phone, whatsapp, field visit</div></div>
+      <div class="mstep broken"><div class="mn">02</div><div class="mt">Credit, overdue, stock checked</div><div class="ms">only accounts can open tally</div></div>
+      <div class="mstep"><div class="mn">03</div><div class="mt">GST invoice, e-way bill</div><div class="ms">multi-state billing in tally</div></div>
+      <div class="mstep broken"><div class="mn">04</div><div class="mt">Dispatch from godown</div><div class="ms">bilty shared only when asked</div></div>
+      <div class="mstep broken"><div class="mn">05</div><div class="mt">Ledger, credit note, return request</div><div class="ms">every request a phone call</div></div>
+      <div class="mstep broken"><div class="mn">06</div><div class="mt">Collection in the market</div><div class="ms">unverified visits, manual TA</div></div>
+      <div class="mstep"><div class="mn">07</div><div class="mt">Receipt and reconciliation</div><div class="ms">accounts, in tally</div></div>
+      <div class="mstep" style="background:#fff;border-style:dashed;"><div class="mn">&nbsp;</div><div class="mt">Accounts stay in Tally</div><div class="ms">the rest of the team moves to growsafe os</div></div>
+    </div>
+    <div class="legend"><span><span class="sw f"></span>Named breakdown point</span><span><span class="sw"></span>Stays with accounts in Tally</span><span>Seven of seven stations done by hand today</span></div>
+  </div>
+
+  <!-- P03 + P04 -->
+  <div class="duo">
+    <div class="panel">
+      <div class="phead"><span class="pnum">03</span><span class="ptitle">Who Holds The Work</span><span class="ptag">Pyramid &middot; org layers</span></div>
+      <div class="pyr">
+        <div class="ptier top"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Owner</div><div class="pl">pricing, schemes, costing, credit, every escalation</div></div></div>
+        <div class="ptier mid"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Management</div><div class="pl">empty &middot; &ldquo;everyone reports to me&rdquo;</div></div></div>
+        <div class="ptier base"><div class="fill"></div><div class="inner"></div><div class="tx"><div class="pv">Execution</div><div class="pl">field sales &middot; accounts, billing &middot; dispatch &middot; qc lab &middot; factory</div></div></div>
+      </div>
+      <div class="fverdict">&ldquo;Everyone reports to me.&rdquo;</div>
+      <div class="mcap">The OS fills the middle with drafts and scorecards; Akash keeps the signature.</div>
+    </div>
+    <div class="panel">
+      <div class="phead"><span class="pnum">04</span><span class="ptitle">Where The Data Should Live</span><span class="ptag">Split &middot; call 24.11</span></div>
+      <div class="ba" style="grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <div class="bacard"><span class="fl">Tally Prime</span><div class="bt">Accounts only</div><p>Books, billing, GST, receipts, payroll accounting. Accounts keeps working here.</p></div>
+        <div class="bacard" style="border-color: var(--orange); border-width: 2px;"><span class="fl">F-00</span><div class="bt">Tally Bridge</div><p>Tally to Supabase, all of it; back into Tally only approved draft vouchers.</p></div>
+        <div class="bacard"><span class="fl">GrowSafe OS</span><div class="bt">Everyone else</div><p>Sales, field, dispatch, QC, costing, dealers, D2C buyers, HR and SOPs.</p></div>
+      </div>
+      <div class="fverdict">One source, two directions, one approval</div>
+      <div class="mcap">HR and SOP layers stand alone; they do not come from Tally.</div>
+    </div>
+  </div>
+
+  <!-- P05 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">05</span><span class="ptitle">What Is Retired, What Replaces It</span><span class="ptag">Before / after &middot; Akash&rsquo;s note and call</span></div>
+    <div class="ba" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="bacard"><span class="fl">Old sync script</span><div class="bt">Tally to old Supabase</div>
+        <p><b class="was">Was:</b> a scripted sync, unstable, data not structured; a past experiment by Akash&rsquo;s own note.</p>
+        <p><b class="now">Now:</b> the new Tally Bridge into a new Supabase project; the old one runs until the new one reconciles, then stops.</p></div>
+      <div class="bacard"><span class="fl">AgriCost.In</span><div class="bt">Costing tool</div>
+        <p><b class="was">Was:</b> recipes and products costed in a separate tool; price lists stay old when Tally rates rise.</p>
+        <p><b class="now">Now:</b> Costing and Margin Guard inside the OS, reading rates from the Bridge (SYS-05).</p></div>
+      <div class="bacard"><span class="fl">Unolo</span><div class="bt">Field force app</div>
+        <p><b class="was">Was:</b> GPS and attendance, disconnected from Tally receipts: a visit is tracked, a collection is not.</p>
+        <p><b class="now">Now:</b> Field Force and Payout Meter inside the OS, tied to Tally collections (SYS-02, SYS-03).</p></div>
+      <div class="bacard"><span class="fl">Biz Analyst</span><div class="bt">Tally on a phone</div>
+        <p><b class="was">Was:</b> Tally figures for the owner only; nobody else sees a number.</p>
+        <p><b class="now">Now:</b> the Role Board: owner view plus role-locked queues for billing, dispatch, accounts and QC (SYS-04).</p></div>
+    </div>
+    <div class="pcap">Each tool is switched off only after its replacement has run beside it, so <b>nothing the team uses today goes dark before the new screen is trusted</b>.</div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Business</span><span class="sv">Agro chemicals to dealers and retailers; D2C next</span></div>
+    <div class="scell2"><span class="sl">Sites</span><span class="sv">Mandideep HO and plant; state C&amp;F and branch godowns</span></div>
+    <div class="scell2"><span class="sl">Stack kept</span><span class="sv">Tally Prime (accounts), Google Workspace</span></div>
+    <div class="scell2"><span class="sl">Stack dropped</span><span class="sv">Old sync script, AgriCost.In, Unolo, Biz Analyst</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">Current state</span></div>
+  </div>
+
+  <!-- P06 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">06</span><span class="ptitle">Recommended AI Systems</span><span class="ptag">Foundation + 8 systems &middot; in build order</span></div>
+    <div class="sysgrid">
+      <div class="icard"><span class="iwin">F-00 &middot; P1 &middot; wk 1&ndash;3<span class="st">New</span></span><div class="iname">GrowSafe Tally Bridge</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Connector on the Tally PC</div><div class="iarrow">&darr;</div><div class="ichip">4&ndash;5 years loaded, then every few minutes</div><div class="iarrow">&darr;</div><div class="ichip">New Supabase, Mumbai</div><div class="iarrow">&darr;</div><div class="ichip">Daily reconciliation vs Tally</div><div class="iarrow">&darr;</div><div class="ichip">Approved vouchers back into Tally</div></div>
+        <div class="inotes"><span class="nl">Two ways</span><p>Back into Tally only after a person approves.</p><span class="nl">Accounts</span><p>Keeps working in Tally as today.</p></div></div>
+        <div class="isolve">Solves data locked inside Tally</div></div>
+      <div class="icard"><span class="iwin">SYS-01 &middot; wk 1&ndash;3 &middot; writing</span><div class="iname">GrowSafe Rulebooks</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Akash&rsquo;s terms, schemes, returns</div><div class="iarrow">&darr;</div><div class="ichip">Formulation and compliance rules</div><div class="iarrow">&darr;</div><div class="ichip">Field sales SOP and KRA</div><div class="iarrow">&darr;</div><div class="ichip">Hindi, English, market language</div><div class="iarrow">&darr;</div><div class="ichip">Every system reads them</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>Only Akash edits; versioned.</p><span class="nl">Drafts</span><p>Replies and summaries, never an amount.</p></div></div>
+        <div class="isolve">Solves rules living in one head</div></div>
+      <div class="icard"><span class="iwin">SYS-02 &middot; P2 &middot; wk 3&ndash;6<span class="st">Replaces Unolo</span></span><div class="iname">GrowSafe Field Force</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Punch in, punch out with GPS</div><div class="iarrow">&darr;</div><div class="ichip">Geo-tagged dealer visit</div><div class="iarrow">&darr;</div><div class="ichip">Overdue shown beside each dealer</div><div class="iarrow">&darr;</div><div class="ichip">Daily visit report</div><div class="iarrow">&darr;</div><div class="ichip">Works offline, syncs later</div></div>
+        <div class="inotes"><span class="nl">Pilot</span><p>One state, Unolo in parallel one month.</p><span class="nl">Then</span><p>Unolo switched off.</p></div></div>
+        <div class="isolve">Solves visits tracked, collections not</div></div>
+      <div class="icard"><span class="iwin">SYS-03 &middot; P2 &middot; wk 4&ndash;7</span><div class="iname">Sales Scorecard and Payout Meter</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Sales and collections from the Bridge</div><div class="iarrow">&darr;</div><div class="ichip">Daily scorecard per salesperson</div><div class="iarrow">&darr;</div><div class="ichip">TA on verified route distance</div><div class="iarrow">&darr;</div><div class="ichip">Base, TA, uncapped incentive</div><div class="iarrow">&darr;</div><div class="ichip">Month-end sheet for Akash</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>Nothing paid until Akash signs.</p><span class="nl">Open input</span><p>Thresholds, TA rate, slabs.</p></div></div>
+        <div class="isolve">Solves salaries without collections</div></div>
+      <div class="icard"><span class="iwin">SYS-08 &middot; parallel lane &middot; wk 1 on</span><div class="iname">GrowSafe People Desk</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">SOPs per role</div><div class="iarrow">&darr;</div><div class="ichip">Read receipts</div><div class="iarrow">&darr;</div><div class="ichip">KRAs and KPIs per role</div><div class="iarrow">&darr;</div><div class="ichip">Hiring simulations</div><div class="iarrow">&darr;</div><div class="ichip">Onboarding checklist</div></div>
+        <div class="inotes"><span class="nl">Standalone</span><p>Not fed from Tally, by Akash&rsquo;s note.</p><span class="nl">Stays human</span><p>Hiring and termination.</p></div></div>
+        <div class="isolve">Solves no middle layer to hold the team</div></div>
+      <div class="icard"><span class="iwin">SYS-04 &middot; P3 &middot; wk 6&ndash;8<span class="st">Replaces Biz Analyst</span></span><div class="iname">GrowSafe Role Board</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Same Bridge data</div><div class="iarrow">&darr;</div><div class="ichip">Owner view: sales, outstanding, stock</div><div class="iarrow">&darr;</div><div class="ichip">Billing queue</div><div class="iarrow">&darr;</div><div class="ichip">Dispatch and bilty queue</div><div class="iarrow">&darr;</div><div class="ichip">Accounts and QC queues</div></div>
+        <div class="inotes"><span class="nl">Locked</span><p>Each role sees its own fields only.</p><span class="nl">Then</span><p>Biz Analyst switched off.</p></div></div>
+        <div class="isolve">Solves staff asking accounts for numbers</div></div>
+      <div class="icard"><span class="iwin">SYS-05 &middot; P3 &middot; wk 6&ndash;9<span class="st">Replaces AgriCost.In</span></span><div class="iname">Costing and Margin Guard</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Recipes rebuilt in the OS</div><div class="iarrow">&darr;</div><div class="ichip">Purchase rates from the Bridge</div><div class="iarrow">&darr;</div><div class="ichip">Landed cost per SKU</div><div class="iarrow">&darr;</div><div class="ichip">Red list below threshold</div><div class="iarrow">&darr;</div><div class="ichip">Draft price list for Akash&rsquo;s yes</div></div>
+        <div class="inotes"><span class="nl">Guardrail</span><p>Recipes and prices change only on his yes.</p><span class="nl">Then</span><p>AgriCost.In switched off.</p></div></div>
+        <div class="isolve">Solves selling at old price lists</div></div>
+      <div class="icard"><span class="iwin">SYS-06 &middot; P3 &middot; wk 7&ndash;9</span><div class="iname">Batch Expiry and Season Board</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Batch, godown, expiry from Tally</div><div class="iarrow">&darr;</div><div class="ichip">Inside 90, 90&ndash;180, beyond 180</div><div class="iarrow">&darr;</div><div class="ichip">Stock vs last Kharif, Rabi</div><div class="iarrow">&darr;</div><div class="ichip">Ageing here, short there</div><div class="iarrow">&darr;</div><div class="ichip">Feeds liquidation deals</div></div>
+        <div class="inotes"><span class="nl">Rhythm</span><p>Read every Monday.</p><span class="nl">Decision</span><p>Every transfer by Akash.</p></div></div>
+        <div class="isolve">Solves near-expiry stock found too late</div></div>
+      <div class="icard"><span class="iwin">SYS-07 &middot; P4 &middot; wk 9&ndash;12<span class="st">New</span></span><div class="iname">Customer App, B2B + D2C</div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">B2B: dealers, licensed retailers</div><div class="iarrow">&darr;</div><div class="ichip">Catalog, ledger, credit, orders</div><div class="iarrow">&darr;</div><div class="ichip">Prepaid flash-liquidation deals</div><div class="iarrow">&darr;</div><div class="ichip">D2C: prepaid, non-restricted only</div><div class="iarrow">&darr;</div><div class="ichip">Delhivery shipping; order into Tally</div></div>
+        <div class="inotes"><span class="nl">No</span><p>B2B2C or multi-tier routing.</p><span class="nl">Guardrail</span><p>Credit overrides stay with Akash.</p></div></div>
+        <div class="isolve">Solves dealers phoning for everything</div></div>
+    </div>
+    <div class="pcap">Kept: <b>Tally Prime</b> for accounts, billing, GST and receipts; <b>Google Workspace</b>. Discontinued after their replacements run alongside: the <b>old sync script</b>, <b>AgriCost.In</b>, <b>Unolo</b>, <b>Biz Analyst</b>. New: <b>GrowSafe OS</b> on <b>Supabase</b> (Mumbai) and <b>Vercel</b>, built with <b>Claude</b>; <b>Delhivery</b> and a payment gateway for the customer app.</div>
+  </div>
+
+  <!-- P07 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">07</span><span class="ptitle">Implementation Roadmap</span><span class="ptag">Phase table &middot; 4 phases + a parallel lane &middot; 12 weeks from 25.11.2026</span></div>
+    <div class="pstrip">
+      <div class="ps done" style="flex: 3;"><b>P1 &middot; wk 1&ndash;3</b>Tally Bridge &middot; read side by 10 Dec</div>
+      <div class="ps" style="flex: 4;"><b>P2 &middot; wk 3&ndash;7</b>Sales reporting</div>
+      <div class="ps" style="flex: 3;"><b>P3 &middot; wk 6&ndash;9</b>Owner view, costing, expiry</div>
+      <div class="ps" style="flex: 4;"><b>P4 &middot; wk 9&ndash;12</b>Customer app, to mid-Feb</div>
+    </div>
+    <table class="ptable">
+      <tr><th>Phase</th><th>Focus</th><th>Systems</th><th>Duration</th><th>Done when</th></tr>
+      <tr class="built"><td class="ph">P1</td><td class="pf">The Tally Bridge</td><td class="psys">F-00 &middot; SYS-01</td><td class="pd">3 weeks</td><td>4&ndash;5 years of Tally data sit in the new Supabase; trial balance, stock by godown and batch, and party outstanding match Tally for 7 days running; one approved test order appears in Tally; the Rulebooks v1 are signed.</td></tr>
+      <tr><td class="ph">P2</td><td class="pf">Sales team reporting and accountability</td><td class="psys">SYS-02 &middot; SYS-03</td><td class="pd">5 weeks</td><td>Field Sales Officers in one state punch in and log visits only by geo-tagged check-in, see their daily sales and collections from Tally and TA from verified distance; Unolo runs alongside, then stops.</td></tr>
+      <tr><td class="ph">P3</td><td class="pf">Owner view, costing and expiry</td><td class="psys">SYS-04 &middot; SYS-05 &middot; SYS-06</td><td class="pd">4 weeks</td><td>Akash opens one owner view instead of Biz Analyst; every SKU below threshold is on a red list with a draft price list he approved; near-expiry stock by godown is read every Monday; AgriCost.In and Biz Analyst are off.</td></tr>
+      <tr><td class="ph">P4</td><td class="pf">Customer app, B2B + D2C</td><td class="psys">SYS-07</td><td class="pd">4 weeks</td><td>Pilot dealers order, download ledgers and buy liquidation deals; D2C buyers pay and track Delhivery shipments; approved orders reach Tally as sales orders with no retyping.</td></tr>
+      <tr><td class="ph">Lane</td><td class="pf">People Desk, in parallel</td><td class="psys">SYS-08</td><td class="pd">From wk 1</td><td>Every role has an SOP with read receipts and a KRA and KPI card; the first hiring simulation has been run.</td></tr>
+    </table>
+  </div>
+
+  <!-- P08 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">08</span><span class="ptitle">Why This Build Order</span><span class="ptag">2&times;2 matrix &middot; Akash&rsquo;s priorities, call 24.11</span></div>
+    <div class="matrix">
+      <div class="quad build"><span class="qh">High impact &middot; runs without anyone changing</span>
+        <div class="mc"><span class="mcc">F-00</span><span class="mcn">GrowSafe Tally Bridge</span></div>
+        <div class="mc"><span class="mcc">SYS-01 + SYS-08</span><span class="mcn">Rulebooks and People Desk (writing first)</span></div>
+        <div class="qv">&rarr; first: every other system reads the Bridge</div></div>
+      <div class="quad build"><span class="qh">High impact &middot; needs people to change</span>
+        <div class="mc"><span class="mcc">SYS-02 + SYS-03</span><span class="mcn">Field Force, Scorecard and Payout Meter</span></div>
+        <div class="qv">&rarr; second: Akash&rsquo;s priority 2, sales accountability; one state first</div></div>
+      <div class="quad"><span class="qh">Compounding &middot; needs clean data</span>
+        <div class="mc"><span class="mcc">SYS-04</span><span class="mcn">Role Board</span></div>
+        <div class="mc"><span class="mcc">SYS-05 + SYS-06</span><span class="mcn">Costing and Margin Guard; Batch Expiry and Season Board</span></div>
+        <div class="qv">&rarr; after the Bridge has reconciled for weeks</div></div>
+      <div class="quad"><span class="qh">Growth &middot; revenue and cash flow</span>
+        <div class="mc"><span class="mcc">SYS-07</span><span class="mcn">Customer App, B2B + D2C, with Delhivery</span></div>
+        <div class="qv">&rarr; once the write-back into Tally is proven</div></div>
+    </div>
+    <div class="axis"><span>&larr; low dependence on human change</span><span>high &rarr;</span></div>
+    <div class="pcap">Akash set the order himself: <b>&ldquo;my project&rsquo;s base is my Tally&rdquo;</b>, then sales reporting, with admin, SOPs, KRAs and KPIs in parallel. The customer app comes last in the window only because it writes orders back into Tally, which must be proven first.</div>
+  </div>
+
+  <!-- P09 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">09</span><span class="ptitle">Guardrails</span><span class="ptag">Swimlane &middot; set by Akash</span></div>
+    <div class="swim">
+      <div class="lane"><div class="lanel">AI acts alone</div><div class="lanev">
+        <span class="tag">Share ledgers, tracking, terms in local languages</span><span class="tag">Prompt quantity and cash-discount offers</span><span class="tag">Automated payment reminders</span><span class="tag">Verified GPS TA</span><span class="tag">Flag near-expiry and margin drops</span><span class="tag">Daily sales and collection scorecards</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Human signs off</div><div class="lanev">
+        <span class="tag">Credit notes</span><span class="tag">Credit limit or overdue overrides</span><span class="tag">Price lists and recipes</span><span class="tag">Payroll and incentive payouts</span><span class="tag">Raw material purchase orders</span><span class="tag">Every voucher written into Tally</span>
+      </div></div>
+      <div class="lane"><div class="lanel">Never automated</div><div class="lanev">
+        <span class="tag never">Vendor selection and price negotiation</span><span class="tag never">CIBRC, FCO, GST filings</span><span class="tag never">Hiring and termination</span><span class="tag never">Interest waivers, bad-debt write-offs</span><span class="tag never">Silent fixes to Tally mismatches</span>
+      </div></div>
+    </div>
+    <div class="pcap">Akash&rsquo;s own rules, unchanged from Rev A. Rev B adds two of its own: <b>nothing enters Tally except an approved voucher through the Bridge</b>, and D2C sells only non-restricted products.</div>
+  </div>
+
+  <!-- P10 -->
+  <div class="panel">
+    <div class="phead"><span class="pnum">10</span><span class="ptitle">Next Steps</span><span class="ptag">Immediate actions</span></div>
+    <div class="igsteps">
+      <div class="igstep"><div class="n">01</div><div class="b"><b>Read and confirm Rev B,</b> section by section, and fill the eight blank numbers. Akash.</div></div>
+      <div class="igstep"><div class="n">02</div><div class="b"><b>Book assisted call 1: the Tally Bridge setup</b> (Tally to the new Supabase, both ways). Akash with Romana.</div></div>
+      <div class="igstep"><div class="n">03</div><div class="b"><b>Book assisted call 2: push and start building in Claude</b> with the Starter Guide. Akash with Romana.</div></div>
+      <div class="igstep"><div class="n">04</div><div class="b"><b>Choose the build PC:</b> the office computer that runs TallyPrime, left on with Tally open. Akash.</div></div>
+      <div class="igstep"><div class="n">05</div><div class="b"><b>New Supabase project on Pro</b> (Mumbai), separate from the old experiments. Akash.</div></div>
+      <div class="igstep"><div class="n">06</div><div class="b"><b>Write the Rulebooks</b> with Claude: terms, returns, credit notes, compliance, field SOP and KRA. Akash.</div></div>
+      <div class="igstep"><div class="n">07</div><div class="b"><b>Set the open inputs:</b> margin threshold, TA per km, incentive slabs, pilot state and dealers. Akash.</div></div>
+      <div class="igstep"><div class="n">08</div><div class="b"><b>For P4:</b> payment gateway, Delhivery account, and the list of non-restricted D2C products. Akash.</div></div>
+    </div>
+  </div>
+
+  <div class="stripe">
+    <div class="scell2"><span class="sl">Scope</span><span class="sv">1 foundation + 8 systems &middot; 4 phases + a parallel lane</span></div>
+    <div class="scell2"><span class="sl">Window</span><span class="sv">25.11.2026 to mid-February 2027; Bridge read side by 10.12.2026</span></div>
+    <div class="scell2"><span class="sl">Sources</span><span class="sv">Rev A, Akash&rsquo;s note, call and requests of 24.11.2026</span></div>
+    <div class="scell2"><span class="sl">Part</span><span class="sv">The build</span></div>
+  </div>
+  <div class="igtrace">Every item traces to the Rev A blueprint audit (23.11.2026), Akash&rsquo;s note printed on its last page, or the call and written requests of 24.11.2026 &middot; unknowns are named, not guessed &middot; the in-depth blueprint follows</div>
+
+</div>
+<!-- ############################ PART B · IN-DEPTH ############################ -->
+<div class="bp">
+
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI</span><span>Client Blueprint</span></div>
+    <h1 class="cover">AI SYSTEMS<br><span class="accent">BLUEPRINT</span> <span style="font-size:24px;">&middot; REV B</span></h1>
+    <div class="coversub">GrowSafe &nbsp;&middot;&nbsp; Prepared for <b>Akash Dubey</b>, Owner</div>
+    <div class="flow">
+      <span class="chip hot">Tally Bridge</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Dealer order</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Credit and stock</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Invoice in Tally</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Dispatch</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Collection</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Receipt</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Business</span>GrowSafe, agro chemicals manufacturer: head office and plant at Mandideep (Bhopal/Raisen, MP), state C&amp;F and branch godowns, dealers and retailers across several states. Turnover band stated at ₹50 Lakh to 1 Crore a month.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Current Stack</span>Tally Prime (4 to 5 years of data); Google Workspace; Unolo; Biz Analyst; AgriCost.In and a scripted Tally to Supabase sync, both built in-house and, by Akash&rsquo;s note, treated as past experiments. A new private GitHub repository, GrowSafe OS, was created on the call of 24.11.2026.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">Prepared by</span>BuildOur AI &middot; AI expert Romana Parkar</td>
+        <td><span class="lbl">Sources</span>Rev A blueprint audit and Systems Brief (23.11.2026) &middot; Akash&rsquo;s note, printed on Rev A&rsquo;s last page &middot; call with Romana (24.11.2026) &middot; Akash&rsquo;s written requests (24.11.2026)</td>
+      </tr>
+      <tr>
+        <td><span class="lbl">Systems Specified</span>1 foundation + 8 systems in 4 phases and one parallel lane</td>
+        <td><span class="lbl">Deadline Anchor</span>Tally Bridge read side live and reconciling by 10.12.2026; the twelve weeks end in mid-February 2027</td>
+      </tr>
+      <tr><td colspan="2"><span class="lbl">Build model</span>Akash builds it with Claude Code on the office computer that runs Tally Prime, following the GrowSafe Starter and Continue Building Guides, with two assisted calls: the Tally Bridge setup, and the push to start building.</td></tr>
+    </table>
+    <div class="covernote">Rev B supersedes Rev A (23.11.2026). Every change traces to Akash&rsquo;s note or the call and requests of 24.11.2026.<br>Sheets 1&ndash;4 are the one-shot capture</div>
+  </div></div>
+</div>
+
+<!-- 00 -->
+<div class="sechead"><div class="secnum">00</div><div class="sectitle">EXECUTIVE SUMMARY</div><div class="sectag">Overview</div></div>
+<p>&ldquo;All our core financial and inventory data... lives inside Tally Prime. However, because this data is locked inside Tally and not accessible to team members based on their roles, our staff operates blind.&rdquo; That is how Akash Dubey describes GrowSafe, an agro chemicals manufacturer at Mandideep that sells to dealers and retailers across several states through C&amp;F and branch godowns. Dealers phone for ledgers and tracking, field sales officers draw salaries without verified visits or realised collections, and price lists stay old after raw material rates rise in Tally.</p>
+<p>Rev A answered that, but on the wrong foundation. It built on the Tally to Supabase script and on AgriCost.In, which Akash&rsquo;s own note on its last page told it not to do; it left out the B2B + D2C customer app his note asked for; and it kept Unolo and Biz Analyst in the stack. On 24 November he asked for the errors to be removed: <em>&ldquo;I need fully new tool that syncs complete Tally data to supabase, and I want to discontinue previously used tools Agricost, Unolo &amp; Biz Analyst.&rdquo;</em></p>
+<p>This revision makes six structural changes, each traceable to his note or the call: (1) a <b>fresh GrowSafe OS</b> in a new repository and a new Supabase project, with the old sync and AgriCost.In treated as past experiments; (2) a new <b>two-way Tally Bridge</b> as the foundation: all of Tally into Supabase, and back into Tally only vouchers a person has approved; (3) <b>sales team reporting and accountability</b> second, by his priority; (4) <b>AgriCost.In, Unolo and Biz Analyst rebuilt inside the OS</b> and switched off after their replacements run alongside; (5) the <b>B2B + D2C customer app</b> with Delhivery and liquidation deals added; (6) <b>HR and operational layers</b> (SOPs, KRAs, KPIs, hiring simulations) kept standalone, not fed from Tally.</p>
+<p>Accounts keeps working in Tally Prime; everyone else moves to GrowSafe OS. Nothing writes into Tally without a person&rsquo;s approval, and every price list, credit note and payout is still signed by Akash.</p>
+
+<!-- 01 -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">CURRENT STATE</div><div class="sectag">How work happens today, and where it hurts</div></div>
+
+<h3 class="sub"><span class="n">1.1</span>Tally holds everything; only accounts can open it</h3>
+<p>Every station of the money path runs through Tally Prime: credit limits, overdue ageing, batch stock, GST invoices, e-way bills, receipts and reconciliation, across several GSTINs and godowns, with 4 to 5 years of history. The person who needs a number (a dealer, a field sales officer, a dispatch clerk) is never the person who can open Tally.</p>
+<div class="pain"><span class="plbl">Pain</span>&ldquo;Every routine inquiry turns into a manual bottleneck, causing delays, human errors, and heavy dependency on key people.&rdquo;</div>
+
+<h3 class="sub"><span class="n">1.2</span>Dealers cannot self-serve</h3>
+<p>Orders arrive by phone, WhatsApp or field visit. Ledgers, bilty tracking, terms, credit note and return requests all become calls to sales staff, who then call accounts. Credit note approvals wait on one desk.</p>
+<div class="pain"><span class="plbl">Pain</span>&ldquo;Customers cannot self-serve and must depend entirely on our staff for basic, routine interactions.&rdquo;</div>
+
+<h3 class="sub"><span class="n">1.3</span>Field sales: salaries without verified collections</h3>
+<p>Unolo tracks GPS and attendance but sits apart from Tally receipts, so a visit is tracked and a collection is not. Kilometre bills are checked by hand, and there is no instant view of each person&rsquo;s return.</p>
+<div class="pain"><span class="plbl">Pain</span>&ldquo;Salespeople are drawing fixed salaries (CTC) and claiming expenses without generating enough turnover or timely payment collections to justify even their basic remuneration.&rdquo;</div>
+
+<h3 class="sub"><span class="n">1.4</span>Margin leakage and expiring batches</h3>
+<p>AgriCost.In costs a formulation correctly, but when purchase rates rise in Tally the cost sheets and price lists stay old until someone reruns it. Batch expiry is spread across state godowns with no single view.</p>
+<div class="pain"><span class="plbl">Pain</span>&ldquo;We often keep selling at old price lists after raw material costs have already spiked... slow-moving or near-expiry batches sit unnoticed in one state until they become dead stock.&rdquo;</div>
+
+<h3 class="sub"><span class="n">1.5</span>The team: everyone reports to the owner</h3>
+<p>Field sales officers in several states, an accountant and billing operators, dispatch and godown staff, QC chemists and factory workers, with no regional sales head, accounts head or plant manager named. SOPs, KRAs and KPIs are not yet running. Headcount was not stated.</p>
+<div class="pain"><span class="plbl">Pain</span>&ldquo;Everyone reports to me.&rdquo; Every review, approval and escalation lands on one desk with 10 to 15 hours a week to give.</div>
+
+<h3 class="sub"><span class="n">1.6</span>The tools: four experiments, none joined</h3>
+<p>A scripted Tally to Supabase sync, unstable and not structured; AgriCost.In for costing; Unolo for the field force; Biz Analyst for Tally figures on the owner&rsquo;s phone. Each worked alone; none talks to the others. On the call Akash asked for all of them to come into one GrowSafe OS and for AgriCost.In, Unolo and Biz Analyst to be discontinued.</p>
+<div class="pain"><span class="plbl">Pain</span>Four places to look, and the sync underneath them is the weakest piece.</div>
+
+<h3 class="sub"><span class="n">1.7</span>What Rev A got wrong</h3>
+<p>Akash&rsquo;s note was printed on the last page of Rev A, but the pages before it were not written to it. These are the errors Rev B removes:</p>
+<table class="numbers">
+<tr><th style="width:6%;">#</th><th style="width:44%;">Rev A said</th><th>Rev B, and why</th></tr>
+<tr><td>E1</td><td>F-00 is &ldquo;the Tally to Supabase sync Akash already built, confirmed and widened&rdquo;.</td><td>A fully new two-way Tally Bridge into a new Supabase project. His note: do not build on the old sync; his request: &ldquo;fully new tool&rdquo;.</td></tr>
+<tr><td>E2</td><td>The Margin Guard &ldquo;sits on AgriCost.In&rdquo;.</td><td>Costing rebuilt inside the OS; AgriCost.In discontinued.</td></tr>
+<tr><td>E3</td><td>Unolo and Biz Analyst in the stack kept, replaced later.</td><td>AgriCost.In, Unolo and Biz Analyst all discontinued, each after its replacement runs alongside.</td></tr>
+<tr><td>E4</td><td>No customer app, no D2C, no Delhivery liquidation engine.</td><td>SYS-07 Customer App, B2B + D2C, exactly as his note sets it out.</td></tr>
+<tr><td>E5</td><td>SOP and KRA rules mixed into Tally-fed systems.</td><td>SYS-08 People Desk, standalone; Tally feeds only accounting, billing and batch inventory.</td></tr>
+<tr><td>E6</td><td>Read-only: &ldquo;nothing on this sheet writes to Tally&rdquo;.</td><td>Both ways, as he asked: approved vouchers go back into Tally through the Bridge.</td></tr>
+<tr><td>E7</td><td>First domino: the Margin Guard.</td><td>First the Tally Bridge, second sales reporting, by his priorities on the call.</td></tr>
+<tr><td>E8</td><td>Next steps: share AgriCost.In access; list fields missing from the current sync.</td><td>Removed. Nothing is read from the old tools.</td></tr>
+</table>
+<div class="pain"><span class="plbl">Finding</span>The note was right and the plan ignored it. Rev B is written to the note first, then to the call.</div>
+
+<!-- 02 -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">RECOMMENDED AI SYSTEMS</div><div class="sectag">Foundation + 8 systems</div></div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE TALLY BRIDGE</span><span class="code">F-00 &middot; FOUNDATION &middot; P1 &middot; NEW</span></div>
+  <div class="sysrow"><div class="syslbl">What it is</div><div class="sysval"><p>A new tool, built fresh, that keeps Tally Prime and GrowSafe OS in step. A small connector runs as a background service on the office computer where Tally runs and talks to Tally over its own XML interface (port 9000). <b>Tally to Supabase:</b> a first full load of every company and GSTIN, all masters (ledgers, groups, stock items, units, godowns, batches with manufacturing and expiry dates, price levels) and every voucher for the 4 to 5 years on record; then every few minutes it picks up only what changed. <b>Supabase to Tally:</b> only items a person has approved in the OS (a dealer&rsquo;s order, later a credit note or receipt draft) go back into Tally as vouchers, each tagged with its app id, where accounts sees and finishes them. <b>Every day</b> it compares Tally with Supabase (trial balance, stock by godown and batch, party outstanding) and flags any difference. <code class="f">Tally &harr; connector on the Tally PC &rarr; new Supabase (Mumbai) &rarr; GrowSafe OS</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.1, data locked in Tally; &sect;1.6, the unstable old script.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Nothing is written into Tally without approval. A mismatch is flagged for accounts, never silently fixed. The Supabase secret key lives only on the Tally computer. Accounts keeps working in Tally exactly as today.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Retires</div><div class="sysval"><p>The old sync script and the old Supabase project: they keep running untouched until the Bridge has reconciled for a week, then they are stopped on Akash&rsquo;s yes.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE RULEBOOKS</span><span class="code">SYS-01 &middot; WRITING LANE &middot; WEEKS 1&ndash;3</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Akash&rsquo;s rules, written once with Claude and kept as versioned documents every system reads: the <b>Dealer Desk Rulebook</b> (terms and conditions, return window per product type, freight credit note and leakage or damage claim rules with the proof each needs); the <b>Formulation and Compliance rules</b> (recipe logic per family, COA, FCO and leaflet formats); and the <b>Field Sales SOP and KRA</b> (what a verified visit is, the payout ladder, the monthly review format). In Hindi, English and each market language.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Only Akash edits them. They draft replies and summaries; they never set an amount.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE FIELD FORCE</span><span class="code">SYS-02 &middot; P2 &middot; REPLACES UNOLO</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>The field app on each sales officer&rsquo;s phone: punch in and out with GPS, the day&rsquo;s assigned dealers with the overdue amount beside each name (from the Bridge), a geo-tagged check-in at each dealer, a short visit report, and the day&rsquo;s route. Works offline in rural markets and sends when signal returns.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.3, visits tracked apart from collections.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Adoption</div><div class="sysval"><p>One state first, with Unolo running in parallel for one month; Unolo is switched off when the two agree.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE SALES SCORECARD AND PAYOUT METER</span><span class="code">SYS-03 &middot; P2</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Sales and collections per salesperson, read from Tally through the Bridge, become a daily scorecard against each person&rsquo;s KRA. TA is calculated only on verified route distance. Each officer sees a payout bar (base covered, TA covered, uncapped incentive) that moves when Tally posts a receipt. At month end it drafts the TA and incentive sheet and a state-wise scorecard for Akash.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Nothing is paid until Akash signs the sheet. The collection-to-cost threshold, TA rate per kilometre and incentive slabs are his to set before it is switched on.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE ROLE BOARD</span><span class="code">SYS-04 &middot; P3 &middot; REPLACES BIZ ANALYST</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>One board on the same Bridge data: an owner view (sales, collections, outstanding by age, stock by godown, margin) on Akash&rsquo;s phone, and role-locked queues for billing (order requests), dispatch (bilty entry and tracking), accounts (credit note and return requests by age) and QC (batches tested, COA issued).</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Each role sees only its fields and its states. Biz Analyst is switched off once the owner view is trusted.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE COSTING AND MARGIN GUARD</span><span class="code">SYS-05 &middot; P3 &middot; REPLACES AGRICOST.IN</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Recipes, formulations and finished products are rebuilt inside the OS. Raw material purchase rates are read from Tally through the Bridge, so every rate change recalculates landed cost per SKU per litre or kg. SKUs whose margin falls below Akash&rsquo;s threshold per family appear on a red list with a draft price list, old and new figures side by side.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Recipes and price lists change only on Akash&rsquo;s yes. AgriCost.In runs beside it for one month, then is switched off.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE BATCH EXPIRY AND SEASON BOARD</span><span class="code">SYS-06 &middot; P3</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Every batch by godown with manufacturing and expiry dates from the Bridge, in bands (inside 90 days, 90 to 180, beyond 180), beside stock against last Kharif and Rabi sales per state: ageing here, short there. Read every Monday. Its slow-moving and near-expiry list feeds the liquidation deals in the customer app.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Every stock transfer and every liquidation price is decided by Akash.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE CUSTOMER APP, B2B + D2C</span><span class="code">SYS-07 &middot; P4 &middot; NEW</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>Built to Akash&rsquo;s note. <b>B2B mode:</b> existing dealers and newly onboarded licensed retailers sign in with an OTP tied to their GSTIN, see the full catalogue, their credit and ledger, download statements, place orders within their credit limit, and buy prepaid flash-liquidation deals on slow-moving or near-expiry batches. <b>D2C mode:</b> open buyers pay first and get instant access to non-restricted bio-stimulants and micronutrients, shipped and tracked through Delhivery. Approved orders go into Tally through the Bridge as sales orders, with no retyping.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>No B2B2C or multi-tier routing. Orders over a credit limit or under an overdue block wait for Akash. D2C never shows a restricted product. Prices and deals come only from lists he approved.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Needs</div><div class="sysval"><p>A payment gateway of Akash&rsquo;s choice, a Delhivery account with API access, and the list of non-restricted D2C products.</p></div></div>
+</div>
+
+<div class="sys"><div class="sysbar"><span class="name">GROWSAFE PEOPLE DESK</span><span class="code">SYS-08 &middot; PARALLEL LANE FROM WEEK 1</span></div>
+  <div class="sysrow"><div class="syslbl">What it does</div><div class="sysval"><p>The operational layer, standalone as Akash&rsquo;s note asks: SOPs for each role with read receipts, a KRA and KPI card per role, hiring simulations for new field sales officers, and an onboarding checklist. Payroll and HR accounting stay in Tally.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Final hiring and termination decisions are never automated.</p></div></div>
+</div>
+
+<div class="noteblock"><span class="nlbl">Months 4 to 12, after this window (from Rev A, unchanged in intent)</span>
+<p>The Credit Note Router, the Collection Reminder Flow, GrowSafe Dealer Munshi (answers routine dealer questions on WhatsApp in every operating language), the Sales ROI Board, the Batch Release to Dispatch Flow, the Stock Planner and the Field Reviewer. Each reads the same Bridge and starts in draft-only mode.</p></div>
+
+<!-- 03 -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">IMPLEMENTATION ROADMAP</div><div class="sectag">4 phases + a parallel lane &middot; 12 weeks</div></div>
+<p>Akash set the order on the call: <em>&ldquo;my project&rsquo;s base is my Tally&rdquo;</em>, then the sales team&rsquo;s reporting and accountability, with admin, SOPs, KRAs and KPIs in parallel. The twelve weeks run from 25.11.2026 to mid-February 2027 at his 10 to 15 hours a week. Rev A&rsquo;s 10 December deadline asked for the sync, dealer self-service and collection tracking together; read honestly, the Bridge&rsquo;s read side is what can be live and reconciling by 10 December, and the rest follows in P2 to P4.</p>
+
+<table class="numbers">
+  <tr><th>Phase</th><th>Focus</th><th>Duration</th><th>End state</th></tr>
+  <tr><td><b>1</b></td><td>The Tally Bridge</td><td>Weeks 1&ndash;3</td><td>All of Tally in the new Supabase, reconciling daily; approved vouchers can go back.</td></tr>
+  <tr><td><b>2</b></td><td>Sales team reporting and accountability</td><td>Weeks 3&ndash;7</td><td>One state on Field Force and the Payout Meter; Unolo stops.</td></tr>
+  <tr><td><b>3</b></td><td>Owner view, costing and expiry</td><td>Weeks 6&ndash;9</td><td>Role Board, Costing and Margin Guard, Expiry Board live; Biz Analyst and AgriCost.In stop.</td></tr>
+  <tr><td><b>4</b></td><td>Customer app, B2B + D2C</td><td>Weeks 9&ndash;12</td><td>Pilot dealers and D2C buyers order in the app; orders reach Tally.</td></tr>
+  <tr><td><b>Lane</b></td><td>People Desk</td><td>From week 1</td><td>SOPs, KRAs and KPIs live for every role.</td></tr>
+</table>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P1</div><div class="phtitle">THE TALLY BRIDGE</div><div class="phtag">F-00 + SYS-01 &middot; weeks 1&ndash;3</div></div>
+  <div class="phbody"><p><b>Why first:</b> Tally is the source for every other system; Akash called it the main reason he joined. The Rulebooks are written beside it so that P2 starts with the rules ready.</p>
+  <div class="done"><span class="dlbl">Done when</span>4 to 5 years of Tally data sit in the new Supabase &middot; trial balance, stock by godown and batch, and party outstanding match Tally for 7 days running &middot; the change sync runs within the agreed minutes &middot; one approved test order appears in Tally as a sales order &middot; the Rulebooks v1 are signed.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P2</div><div class="phtitle">SALES TEAM REPORTING AND ACCOUNTABILITY</div><div class="phtag">SYS-02 + SYS-03 &middot; weeks 3&ndash;7</div></div>
+  <div class="phbody"><p><b>Why now:</b> Akash&rsquo;s second priority, and the field sales collection-ROI engine his note puts at the centre; it needs only the Bridge&rsquo;s receipts and the Field Sales SOP.</p>
+  <div class="done"><span class="dlbl">Done when</span>Field sales officers in one state punch in and log visits only by geo-tagged check-in &middot; each sees daily sales and collections from Tally and TA from verified distance &middot; Akash reads one state scorecard without a call &middot; Unolo ran alongside for a month and is off.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P3</div><div class="phtitle">OWNER VIEW, COSTING AND EXPIRY</div><div class="phtag">SYS-04 + SYS-05 + SYS-06 &middot; weeks 6&ndash;9</div></div>
+  <div class="phbody"><p><b>Why now:</b> these boards are only as good as the data behind them, so they follow weeks of a reconciled Bridge.</p>
+  <div class="done"><span class="dlbl">Done when</span>Akash opens one owner view instead of Biz Analyst &middot; billing, dispatch, accounts and QC work from their own queues &middot; every SKU below threshold is on the red list with a draft price list he approved &middot; near-expiry stock by godown is read every Monday &middot; AgriCost.In and Biz Analyst are off.</div></div></div>
+
+<div class="phase"><div class="phasehead"><div class="phnum">P4</div><div class="phtitle">CUSTOMER APP, B2B + D2C</div><div class="phtag">SYS-07 &middot; weeks 9&ndash;12</div></div>
+  <div class="phbody"><p><b>Why now:</b> the revenue engine his note asks for; it writes orders back into Tally, so it comes once the write-back is proven and the expiry list exists to feed the liquidation deals.</p>
+  <div class="done"><span class="dlbl">Done when</span>Pilot dealers order, download ledgers and buy liquidation deals in the app &middot; D2C buyers pay and track Delhivery shipments &middot; approved orders appear in Tally as sales orders with no retyping.</div></div></div>
+
+<div class="noteblock long"><span class="nlbl">The Tally Bridge, for the build</span>
+<table class="numbers" style="margin: 6px 0 0;">
+  <tr><th style="width:24%;">Part</th><th>How it works</th></tr>
+  <tr><td>Tally side</td><td>TallyPrime on the office computer, open with the companies loaded. F1 Help &rarr; Settings &rarr; Connectivity &rarr; Client/Server configuration: TallyPrime acts as Both, Enable ODBC Yes, Port 9000. The computer stays on during working hours.</td></tr>
+  <tr><td>Connector</td><td>A small program running as a Windows background service on that computer. It asks Tally for data over XML on port 9000 and sends it to Supabase over HTTPS. The Supabase secret key is stored only there.</td></tr>
+  <tr><td>First load</td><td>Every company and GSTIN; masters (ledgers, groups, stock items, units, godowns, batches with dates, price levels); every voucher and its lines for 4 to 5 years, loaded year by year with a count check after each.</td></tr>
+  <tr><td>Change sync</td><td>Every few minutes it picks up only new or altered masters and vouchers, and records each run (started, rows, errors) in a sync log on the Role Board.</td></tr>
+  <tr><td>Back into Tally</td><td>A write-back queue in Supabase holds approved items only. The connector imports each as a Tally voucher (sales order first; later credit note or receipt drafts), tagged with its app id, and records Tally&rsquo;s reply. Accounts finishes them in Tally.</td></tr>
+  <tr><td>Reconciliation</td><td>Daily: trial balance, stock summary by godown and batch, and party outstanding compared between Tally and Supabase; any difference is flagged for accounts and never silently corrected.</td></tr>
+  <tr><td>Storage</td><td>A new Supabase project in South Asia (Mumbai) on the Pro plan: 4 to 5 years of vouchers will outgrow the free plan, and free projects pause when idle.</td></tr>
+</table></div>
+
+<div class="noteblock"><span class="nlbl">Two assisted calls, as Akash asked</span>
+<p><b>Call 1, the Tally Bridge setup:</b> on the Tally computer, with Romana: Tally connectivity settings, the new Supabase project, the connector installed, the first load started and the first reconciliation read together. <b>Call 2, push and start building:</b> the Starter Guide&rsquo;s HQ session set up in Claude Code with the repository GrowSafe OS, the first sessions opened, and the build started from this blueprint. Both are booked at calendly.com/romana-buildour/30min.</p></div>
+
+<!-- 04 -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">GUARDRAILS</div><div class="sectag">Set by Akash, enforced by design</div></div>
+<p>These are Akash&rsquo;s own rules from Rev A, unchanged, and the build rules that make them hold.</p>
+<div class="guard"><b>AI ACTS ALONE:</b> share real-time ledger statements, shipment tracking and terms in local languages &middot; prompt quantity and cash-discount offers during ordering &middot; send automated payment reminders showing overdue status, early-payment discounts and late-interest rules &middot; auto-calculate verified GPS travel allowance (TA) &middot; flag near-expiry batches and margin drops &middot; generate daily sales and collection scorecards.</div>
+<div class="guard"><b>HUMAN SIGNS OFF:</b> issuing credit notes (freight, leakage or damage, sales returns) &middot; overriding credit limits or overdue blocks for new orders &middot; changing master product price lists or formulation recipes &middot; approving final payroll and incentive disbursements &middot; releasing raw material purchase orders.</div>
+<div class="guard"><b>NEVER AUTOMATED:</b> final raw material vendor selection and price negotiation &middot; statutory regulatory filings (CIBRC, FCO, GST returns) &middot; final hiring and termination decisions &middot; waiving late-payment interest or bad-debt write-offs.</div>
+<div class="guard"><b>TALLY, ADDED BY REV B:</b> nothing enters Tally except an approved draft voucher through the Bridge, tagged with its app id; accounts keeps working in Tally; reconciliation differences are flagged, never silently fixed.</div>
+<div class="guard"><b>THE CUSTOMER APP:</b> B2B and D2C only, no B2B2C or multi-tier routing; D2C sells only non-restricted bio-stimulants and micronutrients; discounts and interest come only from the terms Akash signed.</div>
+
+<!-- 05 -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE NUMBERS</div><div class="sectag">Flagged, not resolved</div></div>
+<p>All eight dashboard numbers were left blank: leads, quotes, conversion, orders, order value, sales cycle, repeat customers and headcount; so were busy season and &ldquo;worth it if&rdquo;. Three questions only Akash can answer: <b>(1)</b> the eight numbers, or the go-ahead for the OS to read them from Tally once the Bridge is live; <b>(2)</b> the Kharif and Rabi windows per state; <b>(3)</b> what would make this worth it. The savings in Rev A, about ₹1.6 lakh a month and three hundred staff hours, were the writers&rsquo; conservative estimates, not figures from GrowSafe, and stay estimates until the Role Board can measure them.</p>
+
+<!-- 06 -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Detail behind panel 10</div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>The build computer:</b> the office Windows computer that runs TallyPrime, with Claude desktop installed and signed in. The Bridge connector must run where Tally runs, and Claude Code must work on a folder on that computer, not in a cloud session, to reach Tally. It stays on with Tally open during working hours. Akash.</p></div></div>
+<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>Supabase:</b> a new organisation and project for GrowSafe OS, region South Asia (Mumbai), on Pro. The old project and the old script are not touched until the Bridge reconciles; then they are stopped on Akash&rsquo;s yes. Keys go only into the build computer&rsquo;s files and Vercel, never into chat or GitHub. Akash.</p></div></div>
+<div class="step"><div class="stepnum">07</div><div class="stepbody"><p><b>Open inputs before P2 and P3:</b> which Tally companies and GSTINs to sync; the gross margin threshold per formulation family; the collection-to-cost threshold, TA rate per kilometre and incentive slabs; the pilot state for Field Force and the pilot dealer group; the dates to stop Unolo, AgriCost.In and Biz Analyst, each only after its replacement has run alongside. Akash.</p></div></div>
+<div class="step"><div class="stepnum">08</div><div class="stepbody"><p><b>For P4:</b> the payment gateway, a Delhivery account with API access, the list of non-restricted products for D2C, and the rules for liquidation deals (which batches, which prices). Akash.</p></div></div>
+
+<!-- 07 -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">WHAT REV B CHANGED</div><div class="sectag">For sign-off before the build starts</div></div>
+<table class="numbers">
+<tr><th style="width:16%;">Type</th><th>What</th><th style="width:30%;">Traces to</th></tr>
+<tr><td>Replaced</td><td>F-00: the old sync &ldquo;confirmed and widened&rdquo; becomes a new two-way Tally Bridge into a new Supabase project</td><td>Note 1; request 1; request 3; call</td></tr>
+<tr><td>Discontinued</td><td>AgriCost.In, Unolo, Biz Analyst; and the old sync script</td><td>Request 1; note 1</td></tr>
+<tr><td>Rebuilt inside</td><td>Costing (SYS-05), field force (SYS-02, SYS-03), owner view (SYS-04)</td><td>Call 24.11</td></tr>
+<tr><td>Added</td><td>SYS-07 Customer App, B2B + D2C, Delhivery, liquidation deals</td><td>Note 3 and 4</td></tr>
+<tr><td>Added</td><td>SYS-08 People Desk, standalone: SOPs, KRAs, KPIs, hiring simulations</td><td>Note 2; call 24.11</td></tr>
+<tr><td>Reordered</td><td>Tally Bridge first, sales reporting second, People Desk in parallel; Margin Guard moves to P3</td><td>Call 24.11</td></tr>
+<tr><td>Merged</td><td>Rev A&rsquo;s Dealer Desk Rulebook, Formulation and Compliance Skill and Field Sales SOP Skill into SYS-01 Rulebooks</td><td>Rev A</td></tr>
+<tr><td>Moved</td><td>Dealer Portal (Rev A SYS-04) into the Customer App&rsquo;s B2B mode</td><td>Note 3</td></tr>
+<tr><td>Kept</td><td>Akash&rsquo;s guardrails, word for word; the months 4 to 12 systems</td><td>Rev A</td></tr>
+<tr><td>Removed</td><td>Next steps that used the old tools (share AgriCost.In access; list fields missing from the old sync)</td><td>Note 1</td></tr>
+</table>
+
+<div class="traceline">Every item in this document traces to the Rev A blueprint audit and Systems Brief (23.11.2026), Akash&rsquo;s note printed on Rev A&rsquo;s last page, the call with Romana (24.11.2026) or Akash&rsquo;s written requests (24.11.2026).<br>No figures added beyond those the client provided; unknowns are named, not guessed. Rev B supersedes Rev A in full.</div>
+
+</div>
+
+</body>
+</html>

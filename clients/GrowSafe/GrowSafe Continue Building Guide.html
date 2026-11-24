@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GrowSafe Continue Building</title>
+<style>
+  :root { --orange: #e8590c; --orange-soft: #fdeee2; --orange-faint: #fdf6f0; --ink: #1f2430; --grid: rgba(232,89,12,0.07); --rule: #e9c7ae; --mono: "Consolas","JetBrains Mono","Courier New",monospace; --sans: "Segoe UI","Noto Sans","Inter","Helvetica Neue",Arial,sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 84px 44px 84px;
+    @top-left { content: "Buildour AI · Builder Guide"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @top-right { content: "DWG NO. BOA-2026-GRO-C1 · REV A"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: bottom; padding-bottom: 24px; }
+    @bottom-left { content: "GrowSafe · Continue Building"; font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; }
+    @bottom-right { content: "Sheet " counter(page) " / " counter(pages); font-family: "Consolas","JetBrains Mono",monospace; font-size: 9.5px; letter-spacing: 2px; color: #e8590c; text-transform: uppercase; vertical-align: top; padding-top: 20px; } }
+  html { background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px), #fdfbf9; background-size: 24px 24px; }
+  body { font-family: var(--sans); color: var(--ink); font-size: 13px; line-height: 1.6; }
+  .coverpage { page-break-after: always; page-break-inside: avoid; }
+  .coverframe { border: 2.5px solid var(--orange); padding: 8px; }
+  .coverinner { border: 1px solid var(--orange); padding: 38px 42px 26px; background: rgba(255,255,255,0.75); }
+  .coverbar { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10.5px; letter-spacing: 3px; color: var(--orange); text-transform: uppercase; border-bottom: 1px dotted var(--rule); padding-bottom: 12px; margin-bottom: 30px; }
+  h1.cover { font-size: 46px; line-height: 1.04; font-weight: 800; letter-spacing: -0.5px; }
+  h1.cover .accent { color: var(--orange); }
+  .coversub { font-family: var(--mono); font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; margin: 16px 0 26px; }
+  .coversub b { color: var(--orange); }
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 26px; }
+  .chip { border: 1px solid var(--orange); color: var(--orange); font-family: var(--mono); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; padding: 8px 10px; text-align: center; background: #fff; }
+  .chip.hot { background: var(--orange); color: #fff; font-weight: 700; }
+  .dash { color: var(--orange); font-family: var(--mono); font-size: 10px; }
+  table.titleblock { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+  table.titleblock td { border: 1px solid var(--orange); padding: 9px 13px; vertical-align: top; }
+  table.titleblock .lbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); font-weight: 700; display: block; margin-bottom: 3px; }
+  .covernote { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 22px; border-top: 1px dotted var(--rule); padding-top: 14px; }
+  .sechead { display: flex; align-items: stretch; border: 1.5px solid var(--orange); margin: 24px 0 14px; background: #fff; page-break-after: avoid; page-break-inside: avoid; }
+  .secnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 15px; padding: 7px 13px; display: flex; align-items: center; }
+  .sectitle { padding: 7px 13px; font-size: 15.5px; font-weight: 700; flex: 1; display: flex; align-items: center; }
+  .sectag { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; display: flex; align-items: center; padding-right: 13px; text-align: right; }
+  .newsheet { page-break-before: always; }
+  .newsheet .sechead:first-child { margin-top: 0; }
+  p { margin-bottom: 11px; text-align: justify; }
+  .guard { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 13px; margin: 9px 0 12px; font-size: 12.5px; page-break-inside: avoid; }
+  .guard b { color: var(--orange); }
+  .note { border: 1px dashed var(--orange); background: rgba(255,255,255,0.8); padding: 11px 15px; margin: 12px 0 14px; font-size: 12.5px; page-break-inside: avoid; }
+  .note .nlbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px; }
+  .note p { margin-bottom: 0; }
+  table.numbers { width: 100%; border-collapse: collapse; margin: 10px 0 14px; font-size: 12px; background: #fff; page-break-inside: avoid; }
+  table.numbers th { background: var(--orange); color: #fff; text-align: left; padding: 7px 11px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; }
+  table.numbers td { border: 1px solid var(--rule); padding: 7px 11px; vertical-align: top; }
+  table.numbers tr { page-break-inside: avoid; }
+  .tool { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .toolhead { background: var(--orange); color: #fff; font-weight: 700; font-size: 13.5px; padding: 8px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .toolhead span { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; font-weight: 400; }
+  .toolrow { display: flex; border-top: 1px dotted var(--rule); }
+  .toolrow:first-of-type { border-top: none; }
+  .toolrow .k { width: 120px; flex: none; font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); font-weight: 700; padding: 10px 14px; border-right: 1px dotted var(--rule); }
+  .toolrow .v { padding: 8px 14px; font-size: 12.5px; flex: 1; text-align: justify; }
+  .step { display: flex; border: 1px solid var(--orange); margin: 9px 0; background: #fff; page-break-inside: avoid; }
+  .stepnum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 10px 11px; display: flex; align-items: flex-start; white-space: nowrap; min-width: 42px; justify-content: center; }
+  .stepbody { padding: 9px 14px; font-size: 12.5px; flex: 1; }
+  .stepbody p { margin-bottom: 6px; text-align: left; }
+  .stepbody p:last-child { margin-bottom: 0; }
+  .stepbody ol, .stepbody ul { margin: 2px 0 4px 18px; }
+  .stepbody li { margin-bottom: 4px; }
+  .owner { font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); font-weight: 700; }
+  .voice { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 2px 7px; border: 1px solid var(--orange); color: var(--orange); display: inline-block; margin-bottom: 6px; }
+  .voice.ai { background: var(--orange); color: #fff; }
+  .wk { border: 1px solid var(--orange); background: #fff; margin: 10px 0; page-break-inside: avoid; }
+  .wkhead { display: flex; align-items: stretch; border-bottom: 1px solid var(--orange); }
+  .wknum { background: var(--orange); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 13px; padding: 7px 12px; }
+  .wktitle { font-weight: 700; font-size: 13.5px; padding: 7px 12px; flex: 1; }
+  .wktag { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); padding: 9px 12px; }
+  .wkbody { padding: 10px 14px; font-size: 12.5px; }
+  .wkbody p { margin-bottom: 7px; }
+  .done { border-top: 1px dotted var(--rule); padding-top: 8px; margin-top: 4px; }
+  .done b { font-family: var(--mono); font-size: 8.5px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--orange); margin-right: 6px; }
+  .paste { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0 14px; font-size: 12px; page-break-inside: avoid; }
+  .paste .plbl { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: #fff; background: var(--orange); text-transform: uppercase; font-weight: 700; display: inline-block; padding: 2px 8px; margin: -12px 0 8px -16px; }
+  .paste p { margin-bottom: 8px; text-align: left; }
+  .paste ol { margin: 2px 0 8px 20px; }
+  .paste ol li { margin-bottom: 5px; }
+  .paste p:last-child, .paste ol:last-child { margin-bottom: 0; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; page-break-inside: avoid; text-align: justify; }
+  .rule b:first-child { color: var(--orange); }
+  ol.tight { margin: 0 0 12px 22px; }
+  ol.tight li { margin-bottom: 6px; font-size: 12.5px; }
+  ul.tight { margin: 0 0 12px 20px; }
+  ul.tight li { margin-bottom: 5px; font-size: 12.5px; }
+  .brief { border: 1.5px solid var(--orange); background: #fff; padding: 12px 16px; margin: 10px 0; font-size: 12px; page-break-inside: avoid; }
+  .brief h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 7px; }
+  .brief p { margin-bottom: 7px; text-align: left; }
+  .brief p:last-child, .brief ul:last-child, .brief ol:last-child { margin-bottom: 0; }
+  .brief ul, .brief ol { margin: 0 0 7px 18px; }
+  .brief li { margin-bottom: 4px; }
+  .brief table.numbers { margin: 6px 0 8px; }
+  .traceline { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.5px; color: #8a7361; text-transform: uppercase; text-align: center; margin-top: 14px; border-top: 1.5px solid var(--orange); padding-top: 8px; line-height: 1.6; page-break-inside: avoid; }
+  code.f { font-family: var(--mono); font-size: 11px; background: var(--orange-soft); padding: 1px 5px; overflow-wrap: break-word; }
+  em.q { font-style: italic; }
+
+  .stepnum { min-width: 64px; }
+  .paste.long { page-break-inside: auto; }
+  .paste.long ol li, .paste.long p { page-break-inside: avoid; }
+  table.numbers.split, table.numbers { page-break-inside: auto; }
+  .coverinner { padding: 30px 38px 20px; }
+  .coverbar { margin-bottom: 24px; }
+  h1.cover { font-size: 40px; }
+  .coversub { margin: 12px 0 20px; }
+  .flow { margin-bottom: 20px; }
+  table.titleblock td { padding: 7px 12px; }
+  ul.ticks { list-style: none; margin: 2px 0 4px 0 !important; }
+  ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 7px; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 2px; width: 13px; height: 13px; border: 1.5px solid var(--orange); background: #fff; }
+  .stepbody ul { margin: 3px 0 3px 18px; }
+  .rule { border-left: 3px solid var(--orange); background: var(--orange-faint); padding: 9px 14px; margin: 8px 0; font-size: 12.5px; }
+  .rule b:first-child { color: var(--orange); }
+  .traceline { margin-top: 8px; padding-top: 6px; }
+  .step { margin: 7px 0; }
+  p { margin-bottom: 9px; }
+  h3.sub { font-size: 13.5px; font-weight: 700; margin: 14px 0 6px; }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER ================= -->
+<div class="coverpage">
+  <div class="coverframe"><div class="coverinner">
+    <div class="coverbar"><span>Buildour AI &middot; GrowSafe</span><span>Continue Building &middot; Rev A</span></div>
+    <h1 class="cover">GROWSAFE OS<br><span class="accent">CONTINUE BUILDING</span></h1>
+    <div class="coversub">Prepared for <b>Akash Dubey</b>. Every sitting after the Starter Guide: on the Tally PC you open <b>HQ</b>, HQ tells you which sessions to run and <b>gives you each one&rsquo;s prompt</b>, and the builders work one system each. The Tally Bridge first, the sales team second, the customer app by week twelve.</div>
+    <div class="flow">
+      <span class="chip">Open<br>HQ</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip hot">HQ gives<br>the prompts</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Builders<br>build</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Test against<br>Tally</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">HQ<br>merges</span><span class="dash">&ndash;&ndash;</span>
+      <span class="chip">Next<br>system</span>
+    </div>
+    <table class="titleblock">
+      <tr><td colspan="2"><span class="lbl">Use it when</span>Every box in Step 5 of the Starter Guide is ticked. It lives in <code class="f">docs/</code> with the blueprint and the Starter Guide; come back to section 02 at the start of every sitting. For every new screen, keep section 03 of the Starter Guide open.</td></tr>
+      <tr>
+        <td style="width:50%;"><span class="lbl">The idea</span>One <b>HQ</b> session holds the whole picture and the database. Up to two <b>builder</b> sessions each build one system on their own branch, the first being <b>BRIDGE</b>. Writing sessions handle the Rulebooks and the People Desk. You only ever paste what HQ gives you.</td>
+        <td><span class="lbl">Your time</span>10 to 15 hours a week: sittings, answers and signatures.<br><br><span class="lbl">Sources</span>Blueprint BOA-2026-GRO-01 Rev B (Rev A blueprint audit 23.11.2026; call with Romana Parkar 24.11.2026).</td>
+      </tr>
+    </table>
+    <div class="covernote">Two voices on every step: YOU DO THIS &middot; PASTE TO CLAUDE CODE</div>
+  </div></div>
+</div>
+
+<!-- ================= 01 ================= -->
+<div class="sechead"><div class="secnum">01</div><div class="sectitle">HOW THE SESSIONS WORK</div><div class="sectag">Read once</div></div>
+<table class="numbers">
+<tr><th style="width:20%;">Session</th><th>What it does</th><th style="width:26%;">Name it</th></tr>
+<tr><td><b>HQ</b> (always one)</td><td>Keeps the master copy (<code class="f">main</code>) and the database: the only session that applies migrations. Writes the opening prompt for every other session, joins finished work, keeps CLAUDE.md, START-NOW and SESSIONS up to date. Never builds a system itself.</td><td><code class="f">HQ</code></td></tr>
+<tr><td><b>BRIDGE</b> (the first builder)</td><td>Builds the F-00 GrowSafe Tally Bridge on the Tally PC: the connector, the full load, the incremental sync, the daily reconciliation, and last the write-back of approved vouchers. Hands each piece to HQ.</td><td><code class="f">BRIDGE F-00 Tally Bridge</code></td></tr>
+<tr><td><b>Builder</b> (up to two, BRIDGE included)</td><td>Builds one system from the prompt HQ wrote, in its own copy of the folder on its own branch, touching only its own files. Hands over to HQ when a piece is done.</td><td>As HQ names it, e.g. <code class="f">SYS-02 Field Force</code></td></tr>
+<tr><td><b>Writing</b></td><td>Words, not code. <b>RULEBOOKS</b>: the Dealer Desk Rulebook, Formulation and Compliance rules, the Field Sales SOP and KRA rules, in Hindi, English and the market languages. <b>PEOPLE DESK</b>: SOPs, KRAs and KPIs per role, hiring simulations, onboarding. Its screens are built later by a builder.</td><td><code class="f">RULEBOOKS writing</code>, <code class="f">PEOPLE DESK</code></td></tr>
+</table>
+<div class="note"><span class="nlbl">Opening a session HQ asked for</span><p>HQ shows the prompt in its own box and saves it in <code class="f">docs/session-prompts/</code>. In the Claude desktop app&rsquo;s <b>Code</b> tab, on the Tally PC, start a <b>new session</b> on the same local <code class="f">GrowSafe-OS</code> folder, name it as HQ says, paste, send. Each session stays in the list on the left; click to switch. Never open GrowSafe sessions in a cloud environment: a cloud session cannot reach Tally.</p></div>
+<div class="note"><span class="nlbl">Why this does not get messy</span><p>Each builder works in its own copy of the code (a <b>worktree</b>) on its own <b>branch</b>, so two sessions never type into the same file. Each branch gets its own test address on Vercel, so a system is checked before it reaches the live app. Only HQ joins work into the live copy and only HQ changes the database.</p></div>
+<div class="guard"><b>ONE BUILDER ON PRO, TWO ON MAX.</b> BRIDGE counts as a builder. If sessions pause for usage limits, run one. The writing sessions are light and can run beside a builder. HQ can also run a small piece of work in its own background worktree when you prefer not to open another session; it still hands over the same way.</div>
+
+<!-- ================= 02 ================= -->
+<div class="sechead"><div class="secnum">02</div><div class="sectitle">EVERY SITTING</div><div class="sectag">Same routine, every time</div></div>
+<div class="step"><div class="stepnum">1</div><div class="stepbody"><span class="voice ai">Paste to HQ</span><p><b>Open the day.</b> On the Tally PC, with TallyPrime open: Code tab &rarr; your <code class="f">HQ</code> session, and paste:</p></div></div>
+<div class="paste"><span class="plbl">HQ &middot; Open the day</span>
+<p>You are HQ for GrowSafe OS. Read CLAUDE.md, docs/START-NOW.md, docs/SESSIONS.md, docs/handovers/, docs/requests/ and the latest note in docs/sessions/. Tell me in simple words, in ten lines or fewer: what is not ticked in START-NOW; where we are against the twelve-week plan; the Bridge&rsquo;s last sync time and yesterday&rsquo;s reconciliation result; which builder sessions are in progress and on which branch; any handover ready to merge; anything waiting for my approval or signature. Then tell me which sessions to run today (at most two builders, plus writing if needed), and for each one give me its prompt, ready to paste, in its own box: a new opening prompt following the rules in R3 of the Starter Guide, or a continue prompt for a session that already exists. Save new ones in docs/session-prompts/. Do nothing else until I say OK.</p>
+</div>
+<div class="step"><div class="stepnum">2</div><div class="stepbody"><span class="voice">You do this</span><p><b>Open the sessions HQ named</b> and paste each one&rsquo;s prompt. For a session that already exists, click it in the list and paste the continue prompt HQ gave.</p></div></div>
+<div class="step"><div class="stepnum">3</div><div class="stepbody"><span class="voice">You do this</span><p><b>Go round the sessions.</b> Answer whichever is waiting. Each builds one small finished thing per sitting and gives its test address. Check it against Tally with data you know: one dealer&rsquo;s ledger, one invoice, one batch in one godown, one salesman&rsquo;s day. Check every new screen against section 03 of the Starter Guide.</p></div></div>
+<div class="step"><div class="stepnum">4</div><div class="stepbody"><span class="voice ai">Paste to each builder, then HQ</span><p><b>Close the day.</b> In each builder: <code class="f">Commit and push your branch, update your handover file and today's note.</code> Then paste to HQ:</p></div></div>
+<div class="paste"><span class="plbl">HQ &middot; Close the day</span>
+<p>Read today&rsquo;s handovers. For each piece marked ready: check it against CLAUDE.md and its build sheet, apply its migrations to the live database in order, test it as each role, merge it, and tell me what changed on the live app. Update docs/SESSIONS.md and START-NOW, and write today&rsquo;s note in docs/sessions/.</p>
+</div>
+
+<!-- ================= 03 ================= -->
+<div class="sechead"><div class="secnum">03</div><div class="sectitle">THE HQ PROMPTS</div><div class="sectag">Keep these handy &middot; HQ writes the rest</div></div>
+<div class="paste"><span class="plbl">HQ &middot; Start the next phase</span>
+<p>Phase <b>[P-number]</b> starts now. Check the previous phase&rsquo;s done-when on the live app and tell me honestly what is not met. Then, for this phase: write or update the build sheet for each system from blueprint Rev B and wait for my approval of each; add what you need from me (lists, thresholds, rates, accounts, costs) to START-NOW; decide which systems run as Builder A and Builder B; and give me the opening prompt for each session, ready to paste, in its own box.</p>
+</div>
+<div class="paste"><span class="plbl">HQ &middot; Tally and the app do not match</span>
+<p>Today&rsquo;s reconciliation shows a mismatch. Read the reconciliations table and the last sync runs. Tell me in simple words which check failed (trial balance, stock by godown and batch, or outstanding by party), which company, ledger, batch or party, both figures, and the likely cause. Do not change any data in Tally or in Supabase. Give me two or three options, and a prompt for the BRIDGE session to carry out the one I choose.</p>
+</div>
+<div class="paste"><span class="plbl">HQ &middot; A session is stuck or wrong</span>
+<p>The <b>[session name]</b> session is stuck or going wrong. Read its branch, handover and latest note. Tell me in simple words what is broken and give me two options: fix forward, or go back to its last good commit. Then give me a prompt to paste into that session to carry out what I choose.</p>
+</div>
+<div class="paste"><span class="plbl">HQ &middot; Before any new connection or cost</span>
+<p>Before you connect anything new (the payment gateway, the Delhivery API, the WhatsApp Business API, the Claude API), tell me in simple words: what it is, why this system needs it, what it costs each month, and what happens if I say no. Then wait for my yes. Any key or login goes only into .env.local and Vercel, and you tell me exactly where to paste it myself.</p>
+</div>
+<div class="paste"><span class="plbl">HQ &middot; Can I switch an old tool off?</span>
+<p>I want to stop <b>[the old sync script / Unolo / AgriCost.In / Biz Analyst / the old Supabase project]</b>. Check that its replacement has run alongside it for the agreed time and compare what both showed. Tell me honestly whether anything the old tool did is not yet covered. Make a list of what to export or keep first. Do not delete or switch off anything yourself; tell me the steps and wait for my yes.</p>
+</div>
+
+<!-- ================= 04 ================= -->
+<div class="sechead"><div class="secnum">04</div><div class="sectitle">BUILD, TEST, SWITCH ON</div><div class="sectag">The same moves for every system</div></div>
+<ol class="tight">
+<li><b>One finished thing per sitting,</b> tested at the branch&rsquo;s test address with real data from Tally. Surprises go in <code class="f">docs/rules-i-learned.md</code>.</li>
+<li><b>Check the screen</b> against section 03 of the Starter Guide. If it looks like homework: <em>&ldquo;Change only the design, following docs/design. Do not touch the features.&rdquo;</em></li>
+<li><b>Merge when a piece is done.</b> The builder writes its handover; HQ merges; the live app updates in about two minutes.</li>
+<li><b>Tally first.</b> The Bridge reads before it writes: full history, then incremental, then the daily reconciliation. The write-back of approved vouchers is the last piece, tested with one approved test sales order you can see in Tally.</li>
+<li><b>One state first.</b> Field Force starts in the pilot state with Unolo running alongside for one month; the Customer App starts with the pilot dealer group and one D2C product set.</li>
+<li><b>The old tool runs beside the new one</b> until the new one is trusted: the old sync script until the Bridge matches Tally for 7 days; Unolo for one month in the pilot state; AgriCost.In for one month side by side; Biz Analyst until you trust the owner view. Then each is switched off with your yes. Nothing is deleted.</li>
+<li><b>Accounts stays in TallyPrime.</b> Payroll and HR accounting too. Every other team moves into GrowSafe OS one system at a time.</li>
+</ol>
+<div class="guard"><b>IF A SESSION GOES WRONG:</b> say <em>&ldquo;Stop. Summarise what is broken in simple words and give me two options: fix forward, or go back to your last commit.&rdquo;</em> One broken session never breaks the live app, the others, or Tally.</div>
+
+<!-- ================= 05 ================= -->
+<div class="sechead"><div class="secnum">05</div><div class="sectitle">THE BUILD ORDER, SESSION BY SESSION</div><div class="sectag">Blueprint Rev B &middot; from 25.11.2026</div></div>
+<table class="numbers">
+<tr><th style="width:15%;">Phase</th><th style="width:19%;">HQ</th><th style="width:24%;">Builder A</th><th style="width:21%;">Builder B (Max only)</th><th>Writing / you</th></tr>
+<tr><td><b>P1</b> &middot; wk 1&ndash;3<br>The Tally Bridge and the Rulebooks</td><td>F-00 starting tables; applies every Bridge migration; owner and accounts logins</td><td><b>BRIDGE: F-00</b> GrowSafe Tally Bridge: connector, full load, incremental sync, daily reconciliation, then write-back</td><td><b>SYS-08</b> People Desk screens: SOP library with read receipts, KRAs per role</td><td><b>SYS-01</b> Rulebooks (RULEBOOKS writing); People Desk SOPs and KRAs (PEOPLE DESK); Tally companies list; the Tally PC kept on</td></tr>
+<tr><td><b>P2</b> &middot; wk 3&ndash;7<br>Sales team reporting</td><td>Field Sales Officer logins for the pilot state</td><td><b>SYS-02</b> GrowSafe Field Force (wk 3&ndash;6), replaces Unolo: punch-in and out with GPS, geo-tagged visits, daily visit report, offline</td><td><b>SYS-03</b> Sales Scorecard and Payout Meter (wk 4&ndash;7); on Pro, after SYS-02</td><td>Pilot state; TA rate per km, incentive slabs, collection-to-cost threshold; hiring simulations (PEOPLE DESK)</td></tr>
+<tr><td><b>P3</b> &middot; wk 6&ndash;9<br>Owner view, costing, expiry</td><td>Billing, dispatch, accounts and QC logins</td><td><b>SYS-04</b> Role Board (wk 6&ndash;8), replaces Biz Analyst; then <b>SYS-06</b> Batch Expiry and Season Board (wk 7&ndash;9)</td><td><b>SYS-05</b> Costing and Margin Guard (wk 6&ndash;9), replaces AgriCost.In</td><td>Margin threshold per formulation family; recipes checked; approve the draft price list</td></tr>
+<tr><td><b>P4</b> &middot; wk 9&ndash;12<br>The Customer App</td><td>Payment gateway and Delhivery keys, only with your yes; dealer logins</td><td><b>SYS-07</b> Customer App: B2B mode first, then D2C with Delhivery; orders back to Tally as approved sales orders</td><td>People Desk screens if not done; else free</td><td>Pilot dealer group; the non-restricted D2C list; Rulebooks in the dealer&rsquo;s language</td></tr>
+</table>
+<table class="numbers">
+<tr><th style="width:15%;">Phase</th><th>Done when (from blueprint Rev B)</th></tr>
+<tr><td>P1</td><td>The full history is loaded, the three reconciliations (trial balance, stock by godown and batch, outstanding by party) match for 7 days, the incremental sync lag is under the agreed minutes, and one approved test sales order is written back and visible in Tally; and Rulebooks v1 is signed.</td></tr>
+<tr><td>P2</td><td>Field Sales Officers in one state mark attendance and visits only by geo-tagged check-in, see their daily sales and collection from Tally and their TA from verified distance; Unolo ran in parallel, then is off.</td></tr>
+<tr><td>P3</td><td>You open one owner view instead of Biz Analyst; every SKU below your threshold is on the red list with a draft price list you approved; near-expiry stock by godown is read every Monday; AgriCost.In and Biz Analyst are switched off.</td></tr>
+<tr><td>P4</td><td>Pilot dealers order, download ledgers and buy liquidation deals in the app; D2C buyers pay and track Delhivery shipments; approved orders appear in Tally as sales orders with no retyping.</td></tr>
+</table>
+<div class="note"><span class="nlbl">Your 10 December 2026 date, honestly</span><p>The Bridge&rsquo;s read side, loaded and reconciled, is targeted live by 10.12.2026. Dealer self-service and collection-ROI tracking follow in phases two to four, by about 16.02.2027.</p></div>
+<div class="guard"><b>THE GATES:</b> no builder but BRIDGE starts before the F-00 starting tables are merged. The Scorecard shows sales and collection only after the Bridge matches Tally; Field Force attendance and visits can start before that. Nothing is written into Tally except an approved draft voucher through the Bridge. Month-end payouts wait for your signature; price lists and recipes change only with your yes. D2C sells only the non-restricted products you list. No old tool is switched off before its replacement has run alongside, and nothing is deleted without your yes.</div>
+<p><b>After the twelve weeks, months four to twelve, same app, same routine:</b> the Credit Note Router, the Collection Reminder Flow, the GrowSafe Dealer Munshi (a WhatsApp agent), the Sales ROI Board, the Batch Release to Dispatch Flow, the Stock Planner and the Field Reviewer, each starting in draft-only mode and reporting to you. Each starts with <em>&ldquo;HQ, start the next phase&rdquo;</em>.</p>
+
+<!-- ================= 06 ================= -->
+<div class="sechead"><div class="secnum">06</div><div class="sectitle">WHEN SOMETHING COSTS MONEY</div><div class="sectag">Decide before it is built</div></div>
+<table class="numbers">
+<tr><th style="width:25%;">Need</th><th style="width:18%;">First appears</th><th>What it means for you</th></tr>
+<tr><td><b>Claude Max</b></td><td>When two builders run</td><td>Pro works for one build session at a time; Max gives room for HQ, BRIDGE and a second builder.</td></tr>
+<tr><td><b>Supabase Pro</b></td><td>Setup, from the start</td><td>About $25 a month: room for four to five years of Tally data, daily backups, and no pausing when idle.</td></tr>
+<tr><td><b>Vercel Pro</b></td><td>Going live</td><td>About $20 a month; the free plan is for personal use.</td></tr>
+<tr><td><b>Payment gateway</b></td><td>P4, Customer App</td><td>You choose the gateway; it charges per payment as its own plan says. HQ shows the cost before connecting it.</td></tr>
+<tr><td><b>Delhivery account and API</b></td><td>P4, Customer App</td><td>For D2C shipping and tracking, and dealer dispatches if you choose; charged per shipment as agreed with Delhivery.</td></tr>
+<tr><td><b>WhatsApp Business API</b> (optional)</td><td>Months 4 to 12</td><td>For the Dealer Munshi and reminders sent from the system: a business number, Meta verification, approved templates, a charge per message.</td></tr>
+<tr><td><b>Claude API key</b></td><td>Months 4 to 12</td><td>For the AI employees that work with nobody at the computer. Billed per use with a monthly limit you set.</td></tr>
+<tr><td><b>What stops</b></td><td>Weeks 3 to 9</td><td>Unolo, AgriCost.In and Biz Analyst, and the old Supabase project, once each replacement is trusted and you say yes.</td></tr>
+</table>
+
+<!-- ================= 07 ================= -->
+<div class="sechead"><div class="secnum">07</div><div class="sectitle">STANDING PROMPTS TO HQ</div><div class="sectag">One line each</div></div>
+<ul class="tight">
+<li><b>Change a guardrail:</b> <em>&ldquo;Change my guardrail on [what] to [my new words]. Show me the old and new lines in CLAUDE.md and what changes in the app, and wait for my OK.&rdquo;</em></li>
+<li><b>Bridge check:</b> <em>&ldquo;Show me today&rsquo;s reconciliation and the last sync time, in simple words, and anything waiting in the write-back queue.&rdquo;</em></li>
+<li><b>New salesman or staff member:</b> <em>&ldquo;[Name] joins as [role] in [state]. Show me what they will see, then prepare the login and wait for my OK.&rdquo;</em></li>
+<li><b>New dealer or retailer:</b> <em>&ldquo;Onboard [dealer] with GSTIN [number] and licence [number]. Show me his ledger and credit limit from Tally before he gets a login.&rdquo;</em></li>
+<li><b>Someone leaves:</b> <em>&ldquo;[Name] has left today. Withdraw their login now.&rdquo;</em></li>
+<li><b>Monthly check:</b> <em>&ldquo;Audit the project against CLAUDE.md and my guardrails, and report anything that breaks them, in simple words.&rdquo;</em></li>
+</ul>
+<div class="guard"><b>THE MONTHLY TEST:</b> ask three questions. Did Tally and the app match on all three reconciliations this month? Did anything reach Tally, or any payout or price change go out, without the approval it needs? Did you open Unolo, AgriCost.In or Biz Analyst less this month than last? Three yeses: start the next system. Any no: fix that first.</div>
+
+<div class="traceline">Prepared for Akash Dubey &middot; GrowSafe. Condensed from BuildOur Builder Guides against blueprint BOA-2026-GRO-01 Rev B.<br>One GrowSafe OS on Tally&rsquo;s data: the Bridge first, the sales team second. Nothing enters Tally without approval, and accounts stays in TallyPrime.</div>
+
+</body>
+</html>
