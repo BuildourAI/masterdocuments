@@ -1,0 +1,25 @@
+{
+  "_readme": "Copy to config.json on the Tally server. Company names must match TallyPrime exactly.",
+  "tally": {
+    "host": "localhost",
+    "port": 9000,
+    "timeoutSeconds": 600
+  },
+  "companies": [
+    { "name": "GrowSafe TEST COPY", "isTestCompany": true, "booksFrom": "2021-04-01" }
+  ],
+  "read": {
+    "everyMinutes": 5,
+    "voucherChunk": 2000,
+    "deletionCheckEveryHours": 24,
+    "reconcileAtHour": 7
+  },
+  "write": {
+    "enabled": false,
+    "everyMinutes": 2,
+    "allowLiveCompanies": false,
+    "masters": ["Ledger"],
+    "voucherTypes": ["Sales", "Receipt", "Payment", "Credit Note", "Debit Note"],
+    "maxPerRun": 20
+  }
+}

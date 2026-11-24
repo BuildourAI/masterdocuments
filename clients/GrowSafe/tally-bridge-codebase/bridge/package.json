@@ -1,0 +1,18 @@
+{
+  "name": "growsafe-tally-bridge",
+  "version": "0.1.0",
+  "description": "GrowSafe Tally Bridge: incremental TallyPrime to Supabase sync, and approved write-back into TallyPrime (masters, and vouchers as Optional).",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test",
+    "bridge:test": "node src/index.js test",
+    "bridge:once": "node src/index.js sync-once",
+    "bridge:run": "node src/index.js run"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "fast-xml-parser": "^4.4.0"
+  }
+}
