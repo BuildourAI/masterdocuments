@@ -40,9 +40,9 @@ Your old Supabase project and old sync script
 
 They are past experiments. GrowSafe OS gets a **new** Supabase project in a new organisation, so nothing can clash. The old project and the old script keep running exactly as they are until the new Bridge matches Tally; then, with your yes, they are stopped. Claude never deletes anything without your yes.
 
-When to book a call with Romana
+Who does what
 
-You asked for two assisted calls. Book each at **calendly.com/romana-buildour/30min**. **(1) Assisted Tally and Supabase Bridge setup:** best booked for the day HQ reaches the Tally stage (Stage 7 of the starter prompt). **(2) Assisted call to push and start building in Claude:** best booked for the day you paste the starter prompt, or for the sessions stage. You can still do every step yourself with HQ; the calls are there so you are never stuck.
+**Romana sets up the start with you once:** this blueprint and these guides go into a new Claude Code session, the HQ session, on your Tally computer (Steps 1 to 3). **From the starter prompt onwards you do every step yourself,** with HQ telling you exactly what to click, type or approve, including the Tally to Supabase Bridge in both directions (section 08 of the Continue Building Guide). If you are stuck, tell HQ: paste the error or a screenshot and type `explain this in simple words and give me the next step`.
 
 What it costs, honestly
 

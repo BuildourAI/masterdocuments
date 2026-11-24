@@ -246,6 +246,26 @@
 </ul>
 <div class="guard"><b>THE MONTHLY TEST:</b> ask three questions. Did Tally and the app match on all three reconciliations this month? Did anything reach Tally, or any payout or price change go out, without the approval it needs? Did you open Unolo, AgriCost.In or Biz Analyst less this month than last? Three yeses: start the next system. Any no: fix that first.</div>
 
+<!-- ================= 08 ================= -->
+<div class="newsheet">
+<div class="sechead"><div class="secnum">08</div><div class="sectitle">BUILDING THE TALLY BRIDGE YOURSELF</div><div class="sectag">Both ways &middot; what you do at each step</div></div>
+<p>The BRIDGE session writes all the code. You do every step on the Tally computer: you open what it asks, check two numbers in Tally, and approve. Do the steps in this order and do not skip one; each step only starts when the one before it is done. If anything goes wrong, type into the session: <code class="f">Stop. Explain in simple words what went wrong and give me the next step.</code></p>
+<table class="numbers">
+<tr><th style="width:6%;">#</th><th style="width:24%;">Step</th><th>What you do</th><th style="width:24%;">Done when</th></tr>
+<tr><td>1</td><td><b>Tally ready</b></td><td>TallyPrime open on this computer with every company loaded; connectivity set as in the Starter Guide (Both, ODBC Yes, Port 9000). In Windows power settings, set the computer never to sleep during working hours.</td><td>HQ&rsquo;s read-only test shows your company names.</td></tr>
+<tr><td>2</td><td><b>Open the BRIDGE session</b></td><td>Paste the BRIDGE prompt HQ gave you into a new session on this same folder. Read the build sheet it shows you and type OK.</td><td>The build sheet is approved.</td></tr>
+<tr><td>3</td><td><b>Read test</b></td><td>The session reads your list of companies, ledgers and stock items from Tally and shows the counts. Open Tally and check two of them yourself (for example the number of ledgers and one stock item&rsquo;s quantity). Nothing is written anywhere yet.</td><td>Your two checks match.</td></tr>
+<tr><td>4</td><td><b>First load, one year at a time</b></td><td>The session asks your OK for each financial year, oldest first. After each year it shows the voucher count and the totals for that year; compare one total with Tally&rsquo;s Trial Balance for the same year. A large year can take a long time: keep Tally open and the computer on.</td><td>Every year loaded and checked.</td></tr>
+<tr><td>5</td><td><b>Connector in the background</b></td><td>The session gives you one command that installs the connector as a background service, so it starts on its own when the computer starts. Read the one line, press Allow; Windows may ask for administrator permission. If Windows Firewall asks, choose <b>Private networks</b> only.</td><td>The connector starts by itself after a restart.</td></tr>
+<tr><td>6</td><td><b>Change sync</b></td><td>Let your accounts team work in Tally as on any normal day. Next morning, check that yesterday&rsquo;s vouchers appear in the app.</td><td>Yesterday&rsquo;s entries arrive within the agreed minutes.</td></tr>
+<tr><td>7</td><td><b>Seven days of matching</b></td><td>Every morning paste the Bridge check prompt (section 07) into HQ. All three checks (trial balance, stock by godown and batch, party outstanding) must be green. If one is red, use &ldquo;Tally and the app do not match&rdquo; (section 03) and let accounts look; never correct the app by hand.</td><td>Seven days in a row, all green.</td></tr>
+<tr><td>8</td><td><b>Stop the old script</b></td><td>HQ asks your yes, then tells you exactly how to stop the old sync script. The old Supabase project is only paused, never deleted, until you decide.</td><td>Only the new Bridge is running.</td></tr>
+<tr><td>9</td><td><b>Switch on the write-back</b></td><td>Last, and only after step 7: the session switches on the queue that writes into Tally. You approve one real sales order in the app; accounts opens Tally and finds it as a sales order tagged with its app id, and finishes it as usual.</td><td>The order is in Tally, untouched by hand.</td></tr>
+<tr><td>10</td><td><b>Hand over to HQ</b></td><td>The session opens a pull request; HQ checks it, applies its migrations and merges. The Role Board shows the Bridge&rsquo;s last sync time and reconciliation every day from now on.</td><td>F-00 done; P2 can start.</td></tr>
+</table>
+<div class="guard"><b>THE BRIDGE&rsquo;S RULES:</b> nothing is written into Tally before step 9, and after it only what you approved in the app. The Supabase secret key stays on this computer. A mismatch is always flagged and checked by accounts, never fixed silently. Your old project and script are never deleted without your yes.</div>
+</div>
+
 <div class="traceline">Prepared for Akash Dubey &middot; GrowSafe. Condensed from BuildOur Builder Guides against blueprint BOA-2026-GRO-01 Rev B.<br>One GrowSafe OS on Tally&rsquo;s data: the Bridge first, the sales team second. Nothing enters Tally without approval, and accounts stays in TallyPrime.</div>
 
 </body>

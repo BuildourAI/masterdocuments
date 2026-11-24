@@ -71,7 +71,7 @@ STAGE 6 · Vercel, every setting
 6. Tell me to open the live address on my phone and choose Add to Home Screen.
 
 STAGE 7 · TallyPrime, read-only check
-Remind me that I can book the assisted Bridge call with Romana for this stage (calendly.com/romana-buildour/30min), and carry on if I say so.
+I do every step of this myself, with you guiding me. If something does not work, explain what went wrong in simple words and give me the next step; never skip a step.
 1. Ask me to open TallyPrime on this PC with my companies loaded.
 2. Guide me, screen by screen: F1 Help → Settings → Connectivity → Client/Server configuration: "TallyPrime acts as" Both, Enable ODBC Yes, Port 9000. Save, and restart TallyPrime if it asks. If Windows asks whether to allow TallyPrime on the network, tell me what the box means before I choose.
 3. With my OK, send TallyPrime one read-only request on this PC at port 9000 asking for its list of companies, and show me the company names. Nothing is written into Tally. If Tally does not answer, tell me in simple words what to check.
@@ -88,10 +88,10 @@ STAGE 10 · The sessions
 1. Write docs/SESSIONS.md: the twelve-week build order from blueprint Rev B and section 05 of the Continue Building Guide, how many builders run at once on my plan (BRIDGE counts as one), and the rule that each builder works in its own worktree on its own branch and hands over to HQ, who applies every migration.
 2. Write docs/build-sheets/f-00-tally-bridge.md for the GrowSafe Tally Bridge, from R3: the connector as a Windows background service on this PC, XML over port 9000, the first full load then incremental sync, the secret key only on this PC, the write-back of approved draft vouchers tagged with their app id, the daily reconciliation, what it must never do, the tables it uses, its screens and its done-when. Wait for my approval.
 3. Write three opening prompts into docs/session-prompts/ and show each to me in its own box, ready to paste:
-   - BRIDGE F-00 Tally Bridge: the builder session on this PC, on branch f-00-tally-bridge in its own worktree, reading Tally only until I approve the write-back step;
+   - BRIDGE F-00 Tally Bridge: the builder session on this PC, on branch f-00-tally-bridge in its own worktree, following section 08 of the Continue Building Guide step by step and telling me exactly what I do, check or approve at each step; reading Tally only until I approve the write-back step;
    - RULEBOOKS writing: SYS-01, the Dealer Desk Rulebook, Formulation and Compliance rules, the Field Sales SOP and KRA rules, in Hindi, English and my first market language, only in docs/ and content/;
    - PEOPLE DESK: the SYS-08 lane, SOPs, KRAs and KPIs per role, hiring simulations and onboarding, standalone and never from Tally, writing first, screens later when HQ says.
-4. Walk me through opening each session: in the Code tab, on this PC, start a new session on this same GrowSafe-OS folder, name it as you say (with its own worktree if the app offers it), paste the prompt, send. Then tell me how to switch between sessions and come back to HQ. Remind me I can book the assisted call to start building with Romana (calendly.com/romana-buildour/30min).
+4. Walk me through opening each session: in the Code tab, on this PC, start a new session on this same GrowSafe-OS folder, name it as you say (with its own worktree if the app offers it), paste the prompt, send. Then tell me how to switch between sessions and come back to HQ.
 5. Finish by telling me to switch to the Continue Building Guide.
 No feature code before my OK on the build sheet.
 ```

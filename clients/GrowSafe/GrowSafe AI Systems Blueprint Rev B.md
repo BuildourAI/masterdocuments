@@ -560,11 +560,11 @@ Akash’s own rules, unchanged from Rev A. Rev B adds two of its own: **nothing 
 
 02
 
-**Book assisted call 1: the Tally Bridge setup** (Tally to the new Supabase, both ways). Akash with Romana.
+**Start session:** the blueprint and guides set up in a new Claude Code session (HQ) on the Tally PC. Akash with Romana.
 
 03
 
-**Book assisted call 2: push and start building in Claude** with the Starter Guide. Akash with Romana.
+**Build the Tally Bridge yourself,** both ways, step by step with Claude (Continue Building Guide, section 08). Akash.
 
 04
 
@@ -610,7 +610,7 @@ Tally Bridge–– Dealer order–– Credit and stock–– Invoice in Tally–
 | Current StackTally Prime (4 to 5 years of data); Google Workspace; Unolo; Biz Analyst; AgriCost.In and a scripted Tally to Supabase sync, both built in-house and, by Akash’s note, treated as past experiments. A new private GitHub repository, GrowSafe OS, was created on the call of 24.11.2026. |                                                                                                                                                                                  |
 | Prepared byBuildOur AI · AI expert Romana Parkar                                                                                                                                                                                                                                                      | SourcesRev A blueprint audit and Systems Brief (23.11.2026) · Akash’s note, printed on Rev A’s last page · call with Romana (24.11.2026) · Akash’s written requests (24.11.2026) |
 | Systems Specified1 foundation + 8 systems in 4 phases and one parallel lane                                                                                                                                                                                                                           | Deadline AnchorTally Bridge read side live and reconciling by 10.12.2026; the twelve weeks end in mid-February 2027                                                              |
-| Build modelAkash builds it with Claude Code on the office computer that runs Tally Prime, following the GrowSafe Starter and Continue Building Guides, with two assisted calls: the Tally Bridge setup, and the push to start building.                                                               |                                                                                                                                                                                  |
+| Build modelAkash builds it with Claude Code on the office computer that runs Tally Prime, following the GrowSafe Starter and Continue Building Guides and doing every step himself, the Tally Bridge included. Romana sets up the blueprint and guides with him once, in a new Claude Code session.   |                                                                                                                                                                                  |
 
 Rev B supersedes Rev A (23.11.2026). Every change traces to Akash’s note or the call and requests of 24.11.2026.  
 Sheets 1–4 are the one-shot capture
@@ -872,9 +872,9 @@ The Tally Bridge, for the build
 | Reconciliation  | Daily: trial balance, stock summary by godown and batch, and party outstanding compared between Tally and Supabase; any difference is flagged for accounts and never silently corrected.                                                              |
 | Storage         | A new Supabase project in South Asia (Mumbai) on the Pro plan: 4 to 5 years of vouchers will outgrow the free plan, and free projects pause when idle.                                                                                                |
 
-Two assisted calls, as Akash asked
+Who does what
 
-**Call 1, the Tally Bridge setup:** on the Tally computer, with Romana: Tally connectivity settings, the new Supabase project, the connector installed, the first load started and the first reconciliation read together. **Call 2, push and start building:** the Starter Guide’s HQ session set up in Claude Code with the repository GrowSafe OS, the first sessions opened, and the build started from this blueprint. Both are booked at calendly.com/romana-buildour/30min.
+**Romana, once:** the blueprint and the guides are set up with Akash in a new Claude Code session, the HQ session, on the Tally computer. **Akash, every step after that:** HQ and the BRIDGE session tell him what to click, check and approve at each step of the Tally Bridge: the Tally settings, the new Supabase project, the read-only test, the year-by-year first load, the background connector, seven days of matching reconciliations, stopping the old script, and last, switching on the write-back into Tally. The Continue Building Guide, section 08, sets these out in order.
 
 04
 
