@@ -40,6 +40,8 @@ GrowSafe OS
 - Deleted vouchers do not appear in an AlterID sync: `detectDeletions` compares GUIDs month by month and marks missing ones `is_deleted`; the monthly counts are stored in `bridge_reconciliations` (kind `voucher_counts`).
 - The app never writes `tally_*` tables (no RLS write policy; only the secret key writes).
 
+**Not yet in the starter code (add on the test copy, in this order):** batch master details (manufacturing and expiry dates) and price levels on stock items; the daily stock summary by godown and batch, compared Tally against the app; party outstanding by bill. The starter code already reconciles ledger closing balances (`reconcile.js`) and monthly voucher counts (`detectDeletions`).
+
 **Verify on the test copy:** that the Voucher collection with `ALLLEDGERENTRIES` and `ALLINVENTORYENTRIES` in FETCH returns the lines for both invoice and accounting views; that Optional vouchers are included in the export (they must be, so the app can confirm them); field names of GST on ledgers for the installed TallyPrime release.
 
 ## 4. Writing (points 2, 3 and 4)
