@@ -198,7 +198,7 @@ F-00 · P1 · wk 1–3New
 
 GrowSafe Tally Bridge
 
-Connector on the Tally PC
+Connector on the Tally server
 
 ↓
 
@@ -560,7 +560,7 @@ Akash’s own rules, unchanged from Rev A. Rev B adds two of its own: **nothing 
 
 02
 
-**Connect the GrowSafe OS repository** to Claude Code on the Tally PC and paste the starter prompt; Claude guides the rest. Akash.
+**Connect the GrowSafe OS repository** to Claude Code on your development PC and paste the starter prompt; Claude guides the rest. Akash.
 
 03
 
@@ -568,7 +568,7 @@ Akash’s own rules, unchanged from Rev A. Rev B adds two of its own: **nothing 
 
 04
 
-**Choose the build PC:** the office computer that runs TallyPrime, left on with Tally open. Akash.
+**Your development PC, and the Tally server:** Claude on your own PC; the Tally server on the accounts LAN, by Remote Desktop, kept on with Tally open. Akash.
 
 05
 
@@ -604,13 +604,13 @@ GrowSafe  ·  Prepared for **Akash Dubey**, Owner
 
 Tally Bridge–– Dealer order–– Credit and stock–– Invoice in Tally–– Dispatch–– Collection–– Receipt
 
-|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                                  |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| BusinessGrowSafe, agro chemicals manufacturer: head office and plant at Mandideep (Bhopal/Raisen, MP), state C&F and branch godowns, dealers and retailers across several states. Turnover band stated at ₹50 Lakh to 1 Crore a month.                                                                           |                                                                                                                                                                                  |
-| Current StackTally Prime (4 to 5 years of data); Google Workspace; Unolo; Biz Analyst; AgriCost.In and a scripted Tally to Supabase sync, both built in-house and, by Akash’s note, treated as past experiments. A new private GitHub repository, GrowSafe OS, was created on the call of 24.11.2026.            |                                                                                                                                                                                  |
-| Prepared byBuildOur AI · AI expert Romana Parkar                                                                                                                                                                                                                                                                 | SourcesRev A blueprint audit and Systems Brief (23.11.2026) · Akash’s note, printed on Rev A’s last page · call with Romana (24.11.2026) · Akash’s written requests (24.11.2026) |
-| Systems Specified1 foundation + 8 systems in 4 phases and one parallel lane                                                                                                                                                                                                                                      | Deadline AnchorTally Bridge read side live and reconciling by 10.12.2026; the twelve weeks end in mid-February 2027                                                              |
-| Build modelAkash builds it with Claude Code on the office computer that runs Tally Prime, following the GrowSafe Starter and Continue Building Guides. Claude guides every setup step (the repository, a new Supabase project, Vercel, TallyPrime and the Tally Bridge) and opens a new session for each system. |                                                                                                                                                                                  |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                  |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| BusinessGrowSafe, agro chemicals manufacturer: head office and plant at Mandideep (Bhopal/Raisen, MP), state C&F and branch godowns, dealers and retailers across several states. Turnover band stated at ₹50 Lakh to 1 Crore a month.                                                                                                                                                                                                          |                                                                                                                                                                                  |
+| Current StackTally Prime (4 to 5 years of data); Google Workspace; Unolo; Biz Analyst; AgriCost.In and a scripted Tally to Supabase sync, both built in-house and, by Akash’s note, treated as past experiments. A new private GitHub repository, GrowSafe OS, was created on the call of 24.11.2026.                                                                                                                                           |                                                                                                                                                                                  |
+| Prepared byBuildOur AI · AI expert Romana Parkar                                                                                                                                                                                                                                                                                                                                                                                                | SourcesRev A blueprint audit and Systems Brief (23.11.2026) · Akash’s note, printed on Rev A’s last page · call with Romana (24.11.2026) · Akash’s written requests (24.11.2026) |
+| Systems Specified1 foundation + 8 systems in 4 phases and one parallel lane                                                                                                                                                                                                                                                                                                                                                                     | Deadline AnchorTally Bridge read side live and reconciling by 10.12.2026; the twelve weeks end in mid-February 2027                                                              |
+| Build modelAkash builds it with Claude Code on his own development PC, following the GrowSafe Starter and Continue Building Guides. The Tally Prime server on the accounts LAN, reached by Remote Desktop, runs only Tally and the Bridge connector; Claude is never installed on it. Claude guides every setup step (the repository, a new Supabase project, Vercel, TallyPrime and the Tally Bridge) and opens a new session for each system. |                                                                                                                                                                                  |
 
 Rev B supersedes Rev A (23.11.2026). Every change traces to Akash’s note or the call and requests of 24.11.2026.  
 Sheets 1–4 are the one-shot capture
@@ -698,7 +698,7 @@ GROWSAFE TALLY BRIDGEF-00 · FOUNDATION · P1 · NEW
 
 What it is
 
-A new tool, built fresh, that keeps Tally Prime and GrowSafe OS in step. A small connector runs as a background service on the office computer where Tally runs and talks to Tally over its own XML interface (port 9000). **Tally to Supabase:** a first full load of every company and GSTIN, all masters (ledgers, groups, stock items, units, godowns, batches with manufacturing and expiry dates, price levels) and every voucher for the 4 to 5 years on record; then every few minutes it picks up only what changed. **Supabase to Tally:** only items a person has approved in the OS (a dealer’s order, later a credit note or receipt draft) go back into Tally as vouchers, each tagged with its app id, where accounts sees and finishes them. **Every day** it compares Tally with Supabase (trial balance, stock by godown and batch, party outstanding) and flags any difference. `Tally ↔ connector on the Tally PC → new Supabase (Mumbai) → GrowSafe OS`
+A new tool, built fresh, that keeps Tally Prime and GrowSafe OS in step. A small connector runs as a background service on the Tally Prime server on the accounts LAN, talks to Tally there over its own XML interface (localhost:9000) and connects out to Supabase over HTTPS only; nothing on the server is opened to the internet. Akash installs it over Remote Desktop, guided step by step by Claude from his development PC. **Tally to Supabase:** a first full load of every company and GSTIN, all masters (ledgers, groups, stock items, units, godowns, batches with manufacturing and expiry dates, price levels) and every voucher for the 4 to 5 years on record; then every few minutes it picks up only what changed. **Supabase to Tally:** only items a person has approved in the OS (a dealer’s order, later a credit note or receipt draft) go back into Tally as vouchers, each tagged with its app id, where accounts sees and finishes them. **Every day** it compares Tally with Supabase (trial balance, stock by godown and batch, party outstanding) and flags any difference. `Tally ↔ connector on the Tally server → HTTPS out → new Supabase (Mumbai) → GrowSafe OS`
 
 Solves
 
@@ -706,11 +706,11 @@ Solves
 
 Guardrail
 
-Nothing is written into Tally without approval. A mismatch is flagged for accounts, never silently fixed. The Supabase secret key lives only on the Tally computer. Accounts keeps working in Tally exactly as today.
+Nothing is written into Tally without approval. A mismatch is flagged for accounts, never silently fixed. The Supabase secret key lives only in the connector’s settings on the Tally server, typed there by Akash. Accounts keeps working in Tally exactly as today.
 
 Retires
 
-The old sync script and the old Supabase project: they keep running untouched until the Bridge has reconciled for a week, then they are stopped on Akash’s yes.
+The old sync script and the old Supabase project: they keep running untouched (the old script where it runs today, even if that is the Tally server) until the Bridge has reconciled for a week, then they are stopped on Akash’s yes.
 
 GROWSAFE RULEBOOKSSYS-01 · WRITING LANE · WEEKS 1–3
 
@@ -862,19 +862,20 @@ Done whenPilot dealers order, download ledgers and buy liquidation deals in the 
 
 The Tally Bridge, for the build
 
-| Part            | How it works                                                                                                                                                                                                                                          |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Tally side      | TallyPrime on the office computer, open with the companies loaded. F1 Help → Settings → Connectivity → Client/Server configuration: TallyPrime acts as Both, Enable ODBC Yes, Port 9000. The computer stays on during working hours.                  |
-| Connector       | A small program running as a Windows background service on that computer. It asks Tally for data over XML on port 9000 and sends it to Supabase over HTTPS. The Supabase secret key is stored only there.                                             |
-| First load      | Every company and GSTIN; masters (ledgers, groups, stock items, units, godowns, batches with dates, price levels); every voucher and its lines for 4 to 5 years, loaded year by year with a count check after each.                                   |
-| Change sync     | Every few minutes it picks up only new or altered masters and vouchers, and records each run (started, rows, errors) in a sync log on the Role Board.                                                                                                 |
-| Back into Tally | A write-back queue in Supabase holds approved items only. The connector imports each as a Tally voucher (sales order first; later credit note or receipt drafts), tagged with its app id, and records Tally’s reply. Accounts finishes them in Tally. |
-| Reconciliation  | Daily: trial balance, stock summary by godown and batch, and party outstanding compared between Tally and Supabase; any difference is flagged for accounts and never silently corrected.                                                              |
-| Storage         | A new Supabase project in South Asia (Mumbai) on the Pro plan: 4 to 5 years of vouchers will outgrow the free plan, and free projects pause when idle.                                                                                                |
+| Part            | How it works                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Tally side      | TallyPrime on the Tally server PC on the accounts LAN, which Akash reaches only by Remote Desktop; open with the companies loaded. F1 Help → Settings → Connectivity → Client/Server configuration: TallyPrime acts as Both, Enable ODBC Yes, Port 9000, set by Akash over Remote Desktop. The server stays on and never sleeps.                                                                                                                                                                                           |
+| Connector       | A small program running as a Windows background service on the Tally server, installed once by Akash over Remote Desktop with Claude guiding each step from his development PC. Claude is never installed on the server. It asks Tally for data over XML at localhost:9000 and connects out to Supabase over HTTPS only: no inbound connection, nothing opened to the internet, port 9000 never exposed beyond the LAN. Akash types the Supabase secret key into its settings file on the server; it is stored only there. |
+| Testing         | The BRIDGE session never touches the server. Akash runs the connector’s test mode over Remote Desktop when Claude asks; it writes the company list, counts, totals and errors into Supabase (sync_runs, reconciliations), where the session reads them. Each new version is an update Akash installs over Remote Desktop. Open question: is the development PC on the office LAN? Only if so, and Akash and accounts agree, it may read Tally on port 9000 over the LAN for read-only tests, never from the internet.      |
+| First load      | Every company and GSTIN; masters (ledgers, groups, stock items, units, godowns, batches with dates, price levels); every voucher and its lines for 4 to 5 years, loaded year by year with a count check after each.                                                                                                                                                                                                                                                                                                        |
+| Change sync     | Every few minutes it picks up only new or altered masters and vouchers, and records each run (started, rows, errors) in a sync log on the Role Board.                                                                                                                                                                                                                                                                                                                                                                      |
+| Back into Tally | A write-back queue in Supabase holds approved items only. Every few minutes the connector checks it and imports each, locally on the server, as a Tally voucher (sales order first; later credit note or receipt drafts), tagged with its app id, and records Tally’s reply. Accounts finishes them in Tally.                                                                                                                                                                                                              |
+| Reconciliation  | Daily: trial balance, stock summary by godown and batch, and party outstanding compared between Tally and Supabase; any difference is flagged for accounts and never silently corrected.                                                                                                                                                                                                                                                                                                                                   |
+| Storage         | A new Supabase project in South Asia (Mumbai) on the Pro plan: 4 to 5 years of vouchers will outgrow the free plan, and free projects pause when idle.                                                                                                                                                                                                                                                                                                                                                                     |
 
 How the setup is guided
 
-Akash connects the GrowSafe OS repository to Claude Code on the Tally computer and pastes the starter prompt with the blueprint and both guides. From there Claude guides every step: the new Supabase project, Vercel, the TallyPrime settings and the Tally Bridge in order (the Tally settings, the read-only test, the year-by-year first load, the background connector, seven days of matching reconciliations, stopping the old script, and last, switching on the write-back into Tally). The Continue Building Guide, section 08, sets these out; after the Bridge, Claude opens a new session for each system.
+Akash connects the GrowSafe OS repository to Claude Code on his own development PC and pastes the starter prompt with the blueprint and both guides; Claude is never installed on the Tally server. From there Claude guides every step: the new Supabase project, Vercel, the TallyPrime settings on the Tally server over Remote Desktop, and the Tally Bridge in order (Tally ready on the server, the connector installed there as a service over Remote Desktop, the read test through its test mode with the results read from Supabase, the year-by-year first load on the server, the change sync, seven days of matching reconciliations, stopping the old script, and last, switching on the write-back into Tally). The Continue Building Guide, section 08, sets these out; after the Bridge, Claude opens a new session for each system.
 
 04
 
@@ -910,11 +911,11 @@ Detail behind panel 10
 
 04
 
-**The build computer:** the office Windows computer that runs TallyPrime, with Claude desktop installed and signed in. The Bridge connector must run where Tally runs, and Claude Code must work on a folder on that computer, not in a cloud session, to reach Tally. It stays on with Tally open during working hours. Akash.
+**Your development PC, and the Tally server:** Claude desktop installed and signed in on Akash’s own Windows development PC, working on the local folder Documents\GrowSafe-OS connected to GitHub. The TallyPrime server stays on the accounts LAN, reached only by Remote Desktop, on with Tally open during working hours; on it run only TallyPrime and the Bridge connector, which connects out to Supabase over HTTPS. Claude is never installed there. Question for Akash: is your development PC on the office LAN? Akash.
 
 05
 
-**Supabase:** a new organisation and project for GrowSafe OS, region South Asia (Mumbai), on Pro. The old project and the old script are not touched until the Bridge reconciles; then they are stopped on Akash’s yes. Keys go only into the build computer’s files and Vercel, never into chat or GitHub. Akash.
+**Supabase:** a new organisation and project for GrowSafe OS, region South Asia (Mumbai), on Pro. The old project and the old script are not touched until the Bridge reconciles; then they are stopped on Akash’s yes. Keys go only into the development PC’s .env.local, Vercel and the connector’s settings file on the Tally server, never into chat or GitHub. Akash.
 
 07
 
@@ -930,18 +931,19 @@ WHAT REV B CHANGED
 
 For sign-off before the build starts
 
-| Type           | What                                                                                                           | Traces to                          |
-|----------------|----------------------------------------------------------------------------------------------------------------|------------------------------------|
-| Replaced       | F-00: the old sync “confirmed and widened” becomes a new two-way Tally Bridge into a new Supabase project      | Note 1; request 1; request 3; call |
-| Discontinued   | AgriCost.In, Unolo, Biz Analyst; and the old sync script                                                       | Request 1; note 1                  |
-| Rebuilt inside | Costing (SYS-05), field force (SYS-02, SYS-03), owner view (SYS-04)                                            | Call 24.11                         |
-| Added          | SYS-07 Customer App, B2B + D2C, Delhivery, liquidation deals                                                   | Note 3 and 4                       |
-| Added          | SYS-08 People Desk, standalone: SOPs, KRAs, KPIs, hiring simulations                                           | Note 2; call 24.11                 |
-| Reordered      | Tally Bridge first, sales reporting second, People Desk in parallel; Margin Guard moves to P3                  | Call 24.11                         |
-| Merged         | Rev A’s Dealer Desk Rulebook, Formulation and Compliance Skill and Field Sales SOP Skill into SYS-01 Rulebooks | Rev A                              |
-| Moved          | Dealer Portal (Rev A SYS-04) into the Customer App’s B2B mode                                                  | Note 3                             |
-| Kept           | Akash’s guardrails, word for word; the months 4 to 12 systems                                                  | Rev A                              |
-| Removed        | Next steps that used the old tools (share AgriCost.In access; list fields missing from the old sync)           | Note 1                             |
+| Type           | What                                                                                                                                                                                | Traces to                          |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
+| Replaced       | F-00: the old sync “confirmed and widened” becomes a new two-way Tally Bridge into a new Supabase project                                                                           | Note 1; request 1; request 3; call |
+| Discontinued   | AgriCost.In, Unolo, Biz Analyst; and the old sync script                                                                                                                            | Request 1; note 1                  |
+| Rebuilt inside | Costing (SYS-05), field force (SYS-02, SYS-03), owner view (SYS-04)                                                                                                                 | Call 24.11                         |
+| Added          | SYS-07 Customer App, B2B + D2C, Delhivery, liquidation deals                                                                                                                        | Note 3 and 4                       |
+| Added          | SYS-08 People Desk, standalone: SOPs, KRAs, KPIs, hiring simulations                                                                                                                | Note 2; call 24.11                 |
+| Reordered      | Tally Bridge first, sales reporting second, People Desk in parallel; Margin Guard moves to P3                                                                                       | Call 24.11                         |
+| Merged         | Rev A’s Dealer Desk Rulebook, Formulation and Compliance Skill and Field Sales SOP Skill into SYS-01 Rulebooks                                                                      | Rev A                              |
+| Moved          | Dealer Portal (Rev A SYS-04) into the Customer App’s B2B mode                                                                                                                       | Note 3                             |
+| Kept           | Akash’s guardrails, word for word; the months 4 to 12 systems                                                                                                                       | Rev A                              |
+| Changed        | Build model: Claude Code on Akash’s development PC; only TallyPrime and the Bridge connector on the Tally server (accounts LAN), installed over Remote Desktop, outbound HTTPS only | Akash’s note on his setup          |
+| Removed        | Next steps that used the old tools (share AgriCost.In access; list fields missing from the old sync)                                                                                | Note 1                             |
 
 Every item in this document traces to the Rev A blueprint audit and Systems Brief (23.11.2026), Akash’s note printed on Rev A’s last page, the call with Romana (24.11.2026) or Akash’s written requests (24.11.2026).  
 No figures added beyond those the client provided; unknowns are named, not guessed. Rev B supersedes Rev A in full.

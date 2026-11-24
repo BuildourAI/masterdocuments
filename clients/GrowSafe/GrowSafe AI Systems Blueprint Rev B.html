@@ -370,9 +370,9 @@
   .stripe { margin: 12px 0 2px; }
   .coverpage table.titleblock td { font-size: 11.5px; padding: 6px 11px; }
   .bp table.numbers td { vertical-align: top; }
-</style>
-</head>
-<body>
+  </style>
+  </head>
+  <body>
 <style>
   .tiles .tile { border-bottom: 1px dotted var(--rule); }
   .pstrip { display: flex; gap: 3px; margin: 4px 0 12px; }
@@ -500,7 +500,7 @@
     <div class="phead"><span class="pnum">06</span><span class="ptitle">Recommended AI Systems</span><span class="ptag">Foundation + 8 systems &middot; in build order</span></div>
     <div class="sysgrid">
       <div class="icard"><span class="iwin">F-00 &middot; P1 &middot; wk 1&ndash;3<span class="st">New</span></span><div class="iname">GrowSafe Tally Bridge</div>
-        <div class="ibody"><div class="ichain"><div class="ichip first">Connector on the Tally PC</div><div class="iarrow">&darr;</div><div class="ichip">4&ndash;5 years loaded, then every few minutes</div><div class="iarrow">&darr;</div><div class="ichip">New Supabase, Mumbai</div><div class="iarrow">&darr;</div><div class="ichip">Daily reconciliation vs Tally</div><div class="iarrow">&darr;</div><div class="ichip">Approved vouchers back into Tally</div></div>
+        <div class="ibody"><div class="ichain"><div class="ichip first">Connector on the Tally server</div><div class="iarrow">&darr;</div><div class="ichip">4&ndash;5 years loaded, then every few minutes</div><div class="iarrow">&darr;</div><div class="ichip">New Supabase, Mumbai</div><div class="iarrow">&darr;</div><div class="ichip">Daily reconciliation vs Tally</div><div class="iarrow">&darr;</div><div class="ichip">Approved vouchers back into Tally</div></div>
         <div class="inotes"><span class="nl">Two ways</span><p>Back into Tally only after a person approves.</p><span class="nl">Accounts</span><p>Keeps working in Tally as today.</p></div></div>
         <div class="isolve">Solves data locked inside Tally</div></div>
       <div class="icard"><span class="iwin">SYS-01 &middot; wk 1&ndash;3 &middot; writing</span><div class="iname">GrowSafe Rulebooks</div>
@@ -603,9 +603,9 @@
     <div class="phead"><span class="pnum">10</span><span class="ptitle">Next Steps</span><span class="ptag">Immediate actions</span></div>
     <div class="igsteps">
       <div class="igstep"><div class="n">01</div><div class="b"><b>Read and confirm Rev B,</b> section by section, and fill the eight blank numbers. Akash.</div></div>
-      <div class="igstep"><div class="n">02</div><div class="b"><b>Connect the GrowSafe OS repository</b> to Claude Code on the Tally PC and paste the starter prompt; Claude guides the rest. Akash.</div></div>
+      <div class="igstep"><div class="n">02</div><div class="b"><b>Connect the GrowSafe OS repository</b> to Claude Code on your development PC and paste the starter prompt; Claude guides the rest. Akash.</div></div>
       <div class="igstep"><div class="n">03</div><div class="b"><b>Build the Tally Bridge yourself,</b> both ways, step by step with Claude (Continue Building Guide, section 08). Akash.</div></div>
-      <div class="igstep"><div class="n">04</div><div class="b"><b>Choose the build PC:</b> the office computer that runs TallyPrime, left on with Tally open. Akash.</div></div>
+      <div class="igstep"><div class="n">04</div><div class="b"><b>Your development PC, and the Tally server:</b> Claude on your own PC; the Tally server on the accounts LAN, by Remote Desktop, kept on with Tally open. Akash.</div></div>
       <div class="igstep"><div class="n">05</div><div class="b"><b>New Supabase project on Pro</b> (Mumbai), separate from the old experiments. Akash.</div></div>
       <div class="igstep"><div class="n">06</div><div class="b"><b>Write the Rulebooks</b> with Claude: terms, returns, credit notes, compliance, field SOP and KRA. Akash.</div></div>
       <div class="igstep"><div class="n">07</div><div class="b"><b>Set the open inputs:</b> margin threshold, TA per km, incentive slabs, pilot state and dealers. Akash.</div></div>
@@ -650,7 +650,7 @@
         <td><span class="lbl">Systems Specified</span>1 foundation + 8 systems in 4 phases and one parallel lane</td>
         <td><span class="lbl">Deadline Anchor</span>Tally Bridge read side live and reconciling by 10.12.2026; the twelve weeks end in mid-February 2027</td>
       </tr>
-      <tr><td colspan="2"><span class="lbl">Build model</span>Akash builds it with Claude Code on the office computer that runs Tally Prime, following the GrowSafe Starter and Continue Building Guides. Claude guides every setup step (the repository, a new Supabase project, Vercel, TallyPrime and the Tally Bridge) and opens a new session for each system.</td></tr>
+      <tr><td colspan="2"><span class="lbl">Build model</span>Akash builds it with Claude Code on his own development PC, following the GrowSafe Starter and Continue Building Guides. The Tally Prime server on the accounts LAN, reached by Remote Desktop, runs only Tally and the Bridge connector; Claude is never installed on it. Claude guides every setup step (the repository, a new Supabase project, Vercel, TallyPrime and the Tally Bridge) and opens a new session for each system.</td></tr>
     </table>
     <div class="covernote">Rev B supersedes Rev A (23.11.2026). Every change traces to Akash&rsquo;s note or the call and requests of 24.11.2026.<br>Sheets 1&ndash;4 are the one-shot capture</div>
   </div></div>
@@ -709,10 +709,10 @@
 <div class="sechead"><div class="secnum">02</div><div class="sectitle">RECOMMENDED AI SYSTEMS</div><div class="sectag">Foundation + 8 systems</div></div>
 
 <div class="sys"><div class="sysbar"><span class="name">GROWSAFE TALLY BRIDGE</span><span class="code">F-00 &middot; FOUNDATION &middot; P1 &middot; NEW</span></div>
-  <div class="sysrow"><div class="syslbl">What it is</div><div class="sysval"><p>A new tool, built fresh, that keeps Tally Prime and GrowSafe OS in step. A small connector runs as a background service on the office computer where Tally runs and talks to Tally over its own XML interface (port 9000). <b>Tally to Supabase:</b> a first full load of every company and GSTIN, all masters (ledgers, groups, stock items, units, godowns, batches with manufacturing and expiry dates, price levels) and every voucher for the 4 to 5 years on record; then every few minutes it picks up only what changed. <b>Supabase to Tally:</b> only items a person has approved in the OS (a dealer&rsquo;s order, later a credit note or receipt draft) go back into Tally as vouchers, each tagged with its app id, where accounts sees and finishes them. <b>Every day</b> it compares Tally with Supabase (trial balance, stock by godown and batch, party outstanding) and flags any difference. <code class="f">Tally &harr; connector on the Tally PC &rarr; new Supabase (Mumbai) &rarr; GrowSafe OS</code></p></div></div>
+  <div class="sysrow"><div class="syslbl">What it is</div><div class="sysval"><p>A new tool, built fresh, that keeps Tally Prime and GrowSafe OS in step. A small connector runs as a background service on the Tally Prime server on the accounts LAN, talks to Tally there over its own XML interface (localhost:9000) and connects out to Supabase over HTTPS only; nothing on the server is opened to the internet. Akash installs it over Remote Desktop, guided step by step by Claude from his development PC. <b>Tally to Supabase:</b> a first full load of every company and GSTIN, all masters (ledgers, groups, stock items, units, godowns, batches with manufacturing and expiry dates, price levels) and every voucher for the 4 to 5 years on record; then every few minutes it picks up only what changed. <b>Supabase to Tally:</b> only items a person has approved in the OS (a dealer&rsquo;s order, later a credit note or receipt draft) go back into Tally as vouchers, each tagged with its app id, where accounts sees and finishes them. <b>Every day</b> it compares Tally with Supabase (trial balance, stock by godown and batch, party outstanding) and flags any difference. <code class="f">Tally &harr; connector on the Tally server &rarr; HTTPS out &rarr; new Supabase (Mumbai) &rarr; GrowSafe OS</code></p></div></div>
   <div class="sysrow"><div class="syslbl">Solves</div><div class="sysval"><p>&sect;1.1, data locked in Tally; &sect;1.6, the unstable old script.</p></div></div>
-  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Nothing is written into Tally without approval. A mismatch is flagged for accounts, never silently fixed. The Supabase secret key lives only on the Tally computer. Accounts keeps working in Tally exactly as today.</p></div></div>
-  <div class="sysrow"><div class="syslbl">Retires</div><div class="sysval"><p>The old sync script and the old Supabase project: they keep running untouched until the Bridge has reconciled for a week, then they are stopped on Akash&rsquo;s yes.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Guardrail</div><div class="sysval"><p>Nothing is written into Tally without approval. A mismatch is flagged for accounts, never silently fixed. The Supabase secret key lives only in the connector&rsquo;s settings on the Tally server, typed there by Akash. Accounts keeps working in Tally exactly as today.</p></div></div>
+  <div class="sysrow"><div class="syslbl">Retires</div><div class="sysval"><p>The old sync script and the old Supabase project: they keep running untouched (the old script where it runs today, even if that is the Tally server) until the Bridge has reconciled for a week, then they are stopped on Akash&rsquo;s yes.</p></div></div>
 </div>
 
 <div class="sys"><div class="sysbar"><span class="name">GROWSAFE RULEBOOKS</span><span class="code">SYS-01 &middot; WRITING LANE &middot; WEEKS 1&ndash;3</span></div>
@@ -792,16 +792,17 @@
 <div class="noteblock long"><span class="nlbl">The Tally Bridge, for the build</span>
 <table class="numbers" style="margin: 6px 0 0;">
   <tr><th style="width:24%;">Part</th><th>How it works</th></tr>
-  <tr><td>Tally side</td><td>TallyPrime on the office computer, open with the companies loaded. F1 Help &rarr; Settings &rarr; Connectivity &rarr; Client/Server configuration: TallyPrime acts as Both, Enable ODBC Yes, Port 9000. The computer stays on during working hours.</td></tr>
-  <tr><td>Connector</td><td>A small program running as a Windows background service on that computer. It asks Tally for data over XML on port 9000 and sends it to Supabase over HTTPS. The Supabase secret key is stored only there.</td></tr>
+  <tr><td>Tally side</td><td>TallyPrime on the Tally server PC on the accounts LAN, which Akash reaches only by Remote Desktop; open with the companies loaded. F1 Help &rarr; Settings &rarr; Connectivity &rarr; Client/Server configuration: TallyPrime acts as Both, Enable ODBC Yes, Port 9000, set by Akash over Remote Desktop. The server stays on and never sleeps.</td></tr>
+  <tr><td>Connector</td><td>A small program running as a Windows background service on the Tally server, installed once by Akash over Remote Desktop with Claude guiding each step from his development PC. Claude is never installed on the server. It asks Tally for data over XML at localhost:9000 and connects out to Supabase over HTTPS only: no inbound connection, nothing opened to the internet, port 9000 never exposed beyond the LAN. Akash types the Supabase secret key into its settings file on the server; it is stored only there.</td></tr>
+  <tr><td>Testing</td><td>The BRIDGE session never touches the server. Akash runs the connector&rsquo;s test mode over Remote Desktop when Claude asks; it writes the company list, counts, totals and errors into Supabase (sync_runs, reconciliations), where the session reads them. Each new version is an update Akash installs over Remote Desktop. Open question: is the development PC on the office LAN? Only if so, and Akash and accounts agree, it may read Tally on port 9000 over the LAN for read-only tests, never from the internet.</td></tr>
   <tr><td>First load</td><td>Every company and GSTIN; masters (ledgers, groups, stock items, units, godowns, batches with dates, price levels); every voucher and its lines for 4 to 5 years, loaded year by year with a count check after each.</td></tr>
   <tr><td>Change sync</td><td>Every few minutes it picks up only new or altered masters and vouchers, and records each run (started, rows, errors) in a sync log on the Role Board.</td></tr>
-  <tr><td>Back into Tally</td><td>A write-back queue in Supabase holds approved items only. The connector imports each as a Tally voucher (sales order first; later credit note or receipt drafts), tagged with its app id, and records Tally&rsquo;s reply. Accounts finishes them in Tally.</td></tr>
+  <tr><td>Back into Tally</td><td>A write-back queue in Supabase holds approved items only. Every few minutes the connector checks it and imports each, locally on the server, as a Tally voucher (sales order first; later credit note or receipt drafts), tagged with its app id, and records Tally&rsquo;s reply. Accounts finishes them in Tally.</td></tr>
   <tr><td>Reconciliation</td><td>Daily: trial balance, stock summary by godown and batch, and party outstanding compared between Tally and Supabase; any difference is flagged for accounts and never silently corrected.</td></tr>
   <tr><td>Storage</td><td>A new Supabase project in South Asia (Mumbai) on the Pro plan: 4 to 5 years of vouchers will outgrow the free plan, and free projects pause when idle.</td></tr>
 </table></div>
 
-<div class="noteblock"><span class="nlbl">How the setup is guided</span><p>Akash connects the GrowSafe OS repository to Claude Code on the Tally computer and pastes the starter prompt with the blueprint and both guides. From there Claude guides every step: the new Supabase project, Vercel, the TallyPrime settings and the Tally Bridge in order (the Tally settings, the read-only test, the year-by-year first load, the background connector, seven days of matching reconciliations, stopping the old script, and last, switching on the write-back into Tally). The Continue Building Guide, section 08, sets these out; after the Bridge, Claude opens a new session for each system.</p></div>
+<div class="noteblock"><span class="nlbl">How the setup is guided</span><p>Akash connects the GrowSafe OS repository to Claude Code on his own development PC and pastes the starter prompt with the blueprint and both guides; Claude is never installed on the Tally server. From there Claude guides every step: the new Supabase project, Vercel, the TallyPrime settings on the Tally server over Remote Desktop, and the Tally Bridge in order (Tally ready on the server, the connector installed there as a service over Remote Desktop, the read test through its test mode with the results read from Supabase, the year-by-year first load on the server, the change sync, seven days of matching reconciliations, stopping the old script, and last, switching on the write-back into Tally). The Continue Building Guide, section 08, sets these out; after the Bridge, Claude opens a new session for each system.</p></div>
 
 <!-- 04 -->
 <div class="sechead"><div class="secnum">04</div><div class="sectitle">GUARDRAILS</div><div class="sectag">Set by Akash, enforced by design</div></div>
@@ -818,8 +819,8 @@
 
 <!-- 06 -->
 <div class="sechead"><div class="secnum">06</div><div class="sectitle">NEXT STEPS</div><div class="sectag">Detail behind panel 10</div></div>
-<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>The build computer:</b> the office Windows computer that runs TallyPrime, with Claude desktop installed and signed in. The Bridge connector must run where Tally runs, and Claude Code must work on a folder on that computer, not in a cloud session, to reach Tally. It stays on with Tally open during working hours. Akash.</p></div></div>
-<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>Supabase:</b> a new organisation and project for GrowSafe OS, region South Asia (Mumbai), on Pro. The old project and the old script are not touched until the Bridge reconciles; then they are stopped on Akash&rsquo;s yes. Keys go only into the build computer&rsquo;s files and Vercel, never into chat or GitHub. Akash.</p></div></div>
+<div class="step"><div class="stepnum">04</div><div class="stepbody"><p><b>Your development PC, and the Tally server:</b> Claude desktop installed and signed in on Akash&rsquo;s own Windows development PC, working on the local folder Documents\GrowSafe-OS connected to GitHub. The TallyPrime server stays on the accounts LAN, reached only by Remote Desktop, on with Tally open during working hours; on it run only TallyPrime and the Bridge connector, which connects out to Supabase over HTTPS. Claude is never installed there. Question for Akash: is your development PC on the office LAN? Akash.</p></div></div>
+<div class="step"><div class="stepnum">05</div><div class="stepbody"><p><b>Supabase:</b> a new organisation and project for GrowSafe OS, region South Asia (Mumbai), on Pro. The old project and the old script are not touched until the Bridge reconciles; then they are stopped on Akash&rsquo;s yes. Keys go only into the development PC&rsquo;s .env.local, Vercel and the connector&rsquo;s settings file on the Tally server, never into chat or GitHub. Akash.</p></div></div>
 <div class="step"><div class="stepnum">07</div><div class="stepbody"><p><b>Open inputs before P2 and P3:</b> which Tally companies and GSTINs to sync; the gross margin threshold per formulation family; the collection-to-cost threshold, TA rate per kilometre and incentive slabs; the pilot state for Field Force and the pilot dealer group; the dates to stop Unolo, AgriCost.In and Biz Analyst, each only after its replacement has run alongside. Akash.</p></div></div>
 <div class="step"><div class="stepnum">08</div><div class="stepbody"><p><b>For P4:</b> the payment gateway, a Delhivery account with API access, the list of non-restricted products for D2C, and the rules for liquidation deals (which batches, which prices). Akash.</p></div></div>
 
@@ -836,6 +837,7 @@
 <tr><td>Merged</td><td>Rev A&rsquo;s Dealer Desk Rulebook, Formulation and Compliance Skill and Field Sales SOP Skill into SYS-01 Rulebooks</td><td>Rev A</td></tr>
 <tr><td>Moved</td><td>Dealer Portal (Rev A SYS-04) into the Customer App&rsquo;s B2B mode</td><td>Note 3</td></tr>
 <tr><td>Kept</td><td>Akash&rsquo;s guardrails, word for word; the months 4 to 12 systems</td><td>Rev A</td></tr>
+<tr><td>Changed</td><td>Build model: Claude Code on Akash&rsquo;s development PC; only TallyPrime and the Bridge connector on the Tally server (accounts LAN), installed over Remote Desktop, outbound HTTPS only</td><td>Akash&rsquo;s note on his setup</td></tr>
 <tr><td>Removed</td><td>Next steps that used the old tools (share AgriCost.In access; list fields missing from the old sync)</td><td>Note 1</td></tr>
 </table>
 
