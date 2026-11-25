@@ -1,6 +1,6 @@
-Buildour AI · GrowSafeContinue Building · Rev A
+Buildour AI · GrowSafeContinuation Guide · Rev A
 
-# GROWSAFE OS CONTINUE BUILDING
+# GROWSAFE OS CONTINUATION GUIDE
 
 Prepared for **Akash Dubey**. Every sitting after the Starter Guide: on your development PC you open **HQ**, HQ tells you which sessions to run and **gives you each one’s prompt**, and the builders work one system each. The Tally Bridge first, the sales team second, the customer app by week twelve.
 

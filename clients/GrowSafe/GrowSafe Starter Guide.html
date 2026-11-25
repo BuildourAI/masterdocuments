@@ -136,7 +136,7 @@
       <tr><td colspan="2"><span class="lbl">What you have today</span>An upgraded <b>Claude</b> subscription (Pro or Max: Section 00 shows how to check). <b>GitHub</b>, with the private repository <code class="f">GrowSafe-OS</code> (made on the call, with a README; address: <b>github.com/</b>&nbsp;______________<b>/GrowSafe-OS</b>) and the <b>Claude GitHub app</b> installed. The <b>TallyPrime server</b> on the accounts LAN, which you open by <b>Remote Desktop</b>. Your <b>old Supabase project and old sync script</b>, which keep running untouched. No new Supabase and no Vercel yet: Claude sets them up with you; you click, type your own passwords and say OK.</td></tr>
       <tr><td colspan="2"><span class="lbl">What you finish with</span>The repository on your development PC in <code class="f">Documents\GrowSafe-OS</code>; a <b>new</b> Supabase project in <b>Mumbai</b> on Pro; Vercel with every setting checked; an empty GrowSafe app live on your phone; <code class="f">CLAUDE.md</code> holding your rules; TallyPrime on the Tally server set for the Bridge (<b>port 9000</b>, inside the server only); your look in <code class="f">docs/design/</code>; and the <b>BRIDGE</b>, Rulebooks and People Desk sessions open.</td></tr>
       <tr>
-        <td style="width:50%;"><span class="lbl">The three documents, all in docs/</span>1 &middot; AI Systems Blueprint, Rev B<br>2 &middot; This Starter Guide (once; the look is its section 03)<br>3 &middot; Continue Building Guide (every sitting after)</td>
+        <td style="width:50%;"><span class="lbl">The three documents, all in docs/</span>1 &middot; AI Systems Blueprint, Rev B<br>2 &middot; This Starter Guide (once; the look is its section 03)<br>3 &middot; Continuation Guide (every sitting after)</td>
         <td><span class="lbl">Stack, fixed</span>Claude Code writes &middot; Next.js is the app &middot; Supabase is the database &middot; Vercel puts it online &middot; GitHub keeps the code &middot; TallyPrime stays the books. All accounts in the company&rsquo;s name.<br><br><span class="lbl">Time</span>About three to four hours, once.</td>
       </tr>
     </table>
@@ -152,7 +152,7 @@
 <div class="note"><span class="nlbl">Two computers: your development PC and the Tally server</span><p>You build on <b>your own computer, your development PC</b>, in the Claude desktop app&rsquo;s <b>Code</b> tab, on the local folder <code class="f">Documents\GrowSafe-OS</code> connected to your GitHub repository. <b>Claude is never installed on the Tally server.</b> The TallyPrime server stays on the accounts LAN and you reach it only by <b>Remote Desktop</b>. On it run only TallyPrime and, later, the small <b>GrowSafe Bridge connector</b>, which you install yourself over Remote Desktop while Claude tells you each step from your development PC. The connector reads Tally inside the server and sends data <b>out</b> to Supabase over HTTPS. Nothing on the server is opened to the internet, and port 9000 never leaves the office network.</p></div>
 <div class="note"><span class="nlbl">Pro or Max? How to check</span><p>Open the Claude app &rarr; your name (bottom left) &rarr; <b>Settings &rarr; Billing</b>. It says <b>Pro</b> or <b>Max</b>. Both work. On <b>Pro</b>, Claude runs one build session at a time and may ask you to pause when you reach your usage limit; on <b>Max</b>, two build sessions can run side by side. Tell HQ which one you have when it asks.</p></div>
 <div class="note"><span class="nlbl">Your old Supabase project and old sync script</span><p>They are past experiments. GrowSafe OS gets a <b>new</b> Supabase project in a new organisation, so nothing can clash. The old project and the old script keep running exactly as they are (if the old script runs on the Tally server, it stays there) until the new Bridge matches Tally; then, with your yes, they are stopped. Claude never deletes anything without your yes.</p></div>
-<div class="note"><span class="nlbl">Who does what</span><p><b>Romana shows you how to connect your GitHub repository</b> to Claude Code, and if you need it, helps you put the keys into Vercel. <b>Everything else HQ guides you through, one step at a time:</b> the new Supabase project, Vercel, the TallyPrime settings on the Tally server (over Remote Desktop) and the Tally to Supabase Bridge in both directions (section 08 of the Continue Building Guide). Then HQ helps you open a new session for each system. If you are stuck, tell HQ: paste the error or a screenshot and type <code class="f">explain this in simple words and give me the next step</code>.</p></div>
+<div class="note"><span class="nlbl">Who does what</span><p><b>Romana shows you how to connect your GitHub repository</b> to Claude Code, and if you need it, helps you put the keys into Vercel. <b>Everything else HQ guides you through, one step at a time:</b> the new Supabase project, Vercel, the TallyPrime settings on the Tally server (over Remote Desktop) and the Tally to Supabase Bridge in both directions (section 08 of the Continuation Guide). Then HQ helps you open a new session for each system. If you are stuck, tell HQ: paste the error or a screenshot and type <code class="f">explain this in simple words and give me the next step</code>.</p></div>
 <div class="note"><span class="nlbl">What it costs, honestly</span><p>Your Claude plan builds everything. GitHub is free. <b>Supabase Pro</b>, about $25 a month, from the start: four to five years of Tally data is more than the free 500 MB, and free projects pause when idle. <b>Vercel Pro</b>, about $20 a month, because the free Hobby plan is for personal projects only. Later, only if you choose: a <b>payment gateway</b> and a <b>Delhivery</b> account for the Customer App, and the <b>Claude API</b> and <b>WhatsApp Business API</b> for the AI employees in months four to twelve. Claude always tells you the cost and waits for your yes.</p></div>
 
 <!-- ================= STEP 1 ================= -->
@@ -177,12 +177,12 @@
 <ul>
 <li>the <b>AI Systems Blueprint, Rev B</b></li>
 <li>this <b>Starter Guide</b> (it includes the look, section 03)</li>
-<li>the <b>Continue Building Guide</b></li>
+<li>the <b>Continuation Guide</b></li>
 </ul></li>
 <li>Inside <code class="f">docs</code>, make a folder called <code class="f">samples</code> and put in what you have today: your <b>terms and conditions</b>, <b>scheme slabs</b>, current <b>price lists</b>, one <b>recipe or costing sheet</b>, the field sales <b>TA and incentive rules</b>, any <b>SOP or KRA documents</b>, and <b>screenshots of what Unolo, AgriCost.In and Biz Analyst show today</b>, so their replacements cover the same ground. <b>Tally exports are not needed</b>: the Bridge reads Tally itself. If something is not ready, HQ puts it on your list.</li>
 <li><b>Never put</b> a password or a secret key in <code class="f">docs</code>. Claude tells you where those go.</li>
 </ol>
-<div class="note"><span class="nlbl">What it looks like</span><p><code class="f">Documents\GrowSafe-OS\docs\</code> GrowSafe AI Systems Blueprint Rev B.pdf &middot; GrowSafe Starter Guide.pdf &middot; GrowSafe Continue Building Guide.pdf &middot; <code class="f">samples\</code> &middot; later <code class="f">design\</code> &middot; and later, next to <code class="f">docs</code>, the folder <code class="f">tally-bridge-starter</code>, which BuildOur sends you once it is tested, unzipped as it is</p></div>
+<div class="note"><span class="nlbl">What it looks like</span><p><code class="f">Documents\GrowSafe-OS\docs\</code> GrowSafe Final Blueprint.pdf &middot; GrowSafe Starter Guide.pdf &middot; GrowSafe Continuation Guide.pdf &middot; <code class="f">samples\</code> &middot; later <code class="f">design\</code> &middot; and later, next to <code class="f">docs</code>, the folder <code class="f">tally-bridge-starter</code>, which BuildOur sends you once it is tested, unzipped as it is</p></div>
 </div></div>
 
 <!-- ================= STEP 3 ================= -->
@@ -293,7 +293,7 @@
 <!-- ================= STEP 5 ================= -->
 <div class="step"><div class="stepnum">STEP 5</div><div class="stepbody">
 <span class="voice">You do this</span>
-<p><b>Switch to the Continue Building Guide when all of this is true</b></p>
+<p><b>Switch to the Continuation Guide when all of this is true</b></p>
 <ul class="ticks">
 <li>The app opens on your phone at its <code class="f">.vercel.app</code> address and is on your home screen.</li>
 <li><code class="f">GrowSafe-OS</code> is <b>private</b>, has the Claude GitHub app, and lives on your development PC in <code class="f">Documents\GrowSafe-OS</code>.</li>
@@ -305,7 +305,7 @@
 <li><code class="f">docs/design/</code> holds your look, and CLAUDE.md says every screen follows it.</li>
 <li>The BRIDGE session, the Rulebooks writing session and the People Desk lane are open with HQ&rsquo;s prompts.</li>
 </ul>
-<p>Then open section 02 of the Continue Building Guide, <b>Every sitting</b>. If a box is not ticked, tell HQ <em>&ldquo;fix this before we continue.&rdquo;</em></p>
+<p>Then open section 02 of the Continuation Guide, <b>Every sitting</b>. If a box is not ticked, tell HQ <em>&ldquo;fix this before we continue.&rdquo;</em></p>
 </div></div>
 
 <!-- ================= R1 ================= -->

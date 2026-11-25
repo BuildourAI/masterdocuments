@@ -42,7 +42,7 @@ They are past experiments. GrowSafe OS gets a **new** Supabase project in a new 
 
 Who does what
 
-**Romana shows you how to connect your GitHub repository** to Claude Code, and if you need it, helps you put the keys into Vercel. **Everything else HQ guides you through, one step at a time:** the new Supabase project, Vercel, the TallyPrime settings on the Tally server (over Remote Desktop) and the Tally to Supabase Bridge in both directions (section 08 of the Continue Building Guide). Then HQ helps you open a new session for each system. If you are stuck, tell HQ: paste the error or a screenshot and type `explain this in simple words and give me the next step`.
+**Romana shows you how to connect your GitHub repository** to Claude Code, and if you need it, helps you put the keys into Vercel. **Everything else HQ guides you through, one step at a time:** the new Supabase project, Vercel, the TallyPrime settings on the Tally server (over Remote Desktop) and the Tally to Supabase Bridge in both directions (section 08 of the Continuation Guide). Then HQ helps you open a new session for each system. If you are stuck, tell HQ: paste the error or a screenshot and type `explain this in simple words and give me the next step`.
 
 What it costs, honestly
 
@@ -69,13 +69,13 @@ You do this
 2.  Inside it, make a folder called `docs`, and put these three PDFs in it:
     - the **AI Systems Blueprint, Rev B**
     - this **Starter Guide** (it includes the look, section 03)
-    - the **Continue Building Guide**
+    - the **Continuation Guide**
 3.  Inside `docs`, make a folder called `samples` and put in what you have today: your **terms and conditions**, **scheme slabs**, current **price lists**, one **recipe or costing sheet**, the field sales **TA and incentive rules**, any **SOP or KRA documents**, and **screenshots of what Unolo, AgriCost.In and Biz Analyst show today**, so their replacements cover the same ground. **Tally exports are not needed**: the Bridge reads Tally itself. If something is not ready, HQ puts it on your list.
 4.  **Never put** a password or a secret key in `docs`. Claude tells you where those go.
 
 What it looks like
 
-`Documents\GrowSafe-OS\docs\` GrowSafe AI Systems Blueprint Rev B.pdf · GrowSafe Starter Guide.pdf · GrowSafe Continue Building Guide.pdf · `samples\` · later `design\` · and later, next to `docs`, the folder `tally-bridge-starter`, which BuildOur sends you once it is tested, unzipped as it is
+`Documents\GrowSafe-OS\docs\` GrowSafe Final Blueprint.pdf · GrowSafe Starter Guide.pdf · GrowSafe Continuation Guide.pdf · `samples\` · later `design\` · and later, next to `docs`, the folder `tally-bridge-starter`, which BuildOur sends you once it is tested, unzipped as it is
 
 STEP 3
 
@@ -207,7 +207,7 @@ STEP 5
 
 You do this
 
-**Switch to the Continue Building Guide when all of this is true**
+**Switch to the Continuation Guide when all of this is true**
 
 - The app opens on your phone at its `.vercel.app` address and is on your home screen.
 - `GrowSafe-OS` is **private**, has the Claude GitHub app, and lives on your development PC in `Documents\GrowSafe-OS`.
@@ -219,7 +219,7 @@ You do this
 - `docs/design/` holds your look, and CLAUDE.md says every screen follows it.
 - The BRIDGE session, the Rulebooks writing session and the People Desk lane are open with HQ’s prompts.
 
-Then open section 02 of the Continue Building Guide, **Every sitting**. If a box is not ticked, tell HQ *“fix this before we continue.”*
+Then open section 02 of the Continuation Guide, **Every sitting**. If a box is not ticked, tell HQ *“fix this before we continue.”*
 
 R1
 
