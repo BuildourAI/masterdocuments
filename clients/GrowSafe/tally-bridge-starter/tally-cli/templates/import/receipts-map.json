@@ -1,0 +1,16 @@
+{
+  "op": "post.receipt",
+  "columns": {
+    "date": "Date",
+    "party": "Customer",
+    "amount": "Amount",
+    "against": "Invoice No",
+    "instrumentNumber": "UTR"
+  },
+  "defaults": {
+    "bank": "Bank of Example - Current A/c",
+    "mode": "neft",
+    "autoAllocate": true
+  },
+  "key": "UTR"
+}

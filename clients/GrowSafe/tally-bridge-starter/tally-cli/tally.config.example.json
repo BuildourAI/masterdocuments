@@ -1,0 +1,49 @@
+{
+  "defaultProfile": "main",
+  "profiles": {
+    "main": {
+      "url": "http://127.0.0.1:9000",
+      "company": "Exact Company Name",
+      "companyGuid": null,
+      "timeoutMs": 120000,
+      "connectTimeoutMs": 3000,
+      "encoding": "utf16",
+
+      "writeMode": "off",
+      "allowMasterWrites": false,
+      "allowDestructive": false,
+      "allowedVoucherTypes": null,
+      "maxAmount": null,
+      "maxPerRun": 200,
+      "lockBefore": null,
+      "requireIdempotencyKey": false,
+      "decimals": 2,
+
+      "frontends": { "cli": "destructive", "mcp": "read", "http": "read", "relay": "read" },
+
+      "gst": {
+        "companyState": "Maharashtra",
+        "ledgers": {
+          "output": { "cgst": "Output CGST", "sgst": "Output SGST", "igst": "Output IGST" },
+          "input": { "cgst": "Input CGST", "sgst": "Input SGST", "igst": "Input IGST" }
+        },
+        "byRate": {}
+      },
+      "roundOffLedger": "Round Off",
+      "defaultBankLedger": "HDFC Bank",
+      "tagStyle": "both",
+      "chunk": { "maxDays": 31, "pauseMs": 0 }
+    },
+    "test": {
+      "url": "http://127.0.0.1:9000",
+      "company": "Test Company",
+      "writeMode": "on",
+      "allowMasterWrites": true,
+      "allowDestructive": true
+    }
+  },
+  "http": { "host": "127.0.0.1", "port": 8765, "tokens": [], "allowHosts": [], "maxBodyBytes": 2000000 },
+  "relay": { "url": null, "secret": null, "agentId": "office-pc", "allow": ["report.*", "party.*", "ledger.list", "ledger.get", "ledger.search", "voucher.list", "voucher.get", "voucher.find"] },
+  "mcp": { "toolset": "core", "maxChars": 40000 },
+  "webhookSecret": null
+}

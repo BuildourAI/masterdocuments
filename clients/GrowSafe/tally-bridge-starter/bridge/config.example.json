@@ -1,16 +1,11 @@
 {
-  "_readme": "Copy to config.json on the Tally server. Company names must match TallyPrime exactly.",
-  "tally": {
-    "host": "localhost",
-    "port": 9000,
-    "timeoutSeconds": 600
-  },
+  "_readme": "Copy to config.json on the Tally server. Each company needs its exact TallyPrime name and its tally-cli profile (made with tally init; see README).",
+  "tallyCli": { "dir": "../tally-cli" },
   "companies": [
-    { "name": "GrowSafe TEST COPY", "isTestCompany": true, "booksFrom": "2021-04-01" }
+    { "name": "GrowSafe TEST COPY", "profile": "test-copy", "isTestCompany": true, "booksFrom": "2021-04-01" }
   ],
   "read": {
     "everyMinutes": 5,
-    "voucherChunk": 2000,
     "deletionCheckEveryHours": 24,
     "reconcileAtHour": 7
   },

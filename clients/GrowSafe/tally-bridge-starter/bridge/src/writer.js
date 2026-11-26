@@ -1,91 +1,76 @@
-// Supabase -> Tally. Only rows a person has APPROVED in the app. Masters are created; vouchers go in as OPTIONAL.
-// Safety order for every row: claim it (so it is never sent twice), check every name against the Tally copy,
-// skip it if Tally already has it, send it, record Tally's exact answer. Nothing is retried blindly.
-import { buildLedgerCreate, buildOptionalVoucher, validateVoucherPayload } from './xml.js';
-import { must } from './supabase.js';
+// Supabase -> Tally, through tally-cli. Only rows a person APPROVED in the app.
+// Ledgers are created; vouchers go in as OPTIONAL (tally-cli's profile is in "optional" write mode).
+// Every row: claimed first (never sent twice by the bridge), skipped if Tally already has it, sent with an
+// idempotency key (never posted twice by tally-cli), and Tally's answer recorded. Nothing is retried blindly.
+import { EXIT } from './tallycli.js';
+import { writeTag } from './map.js';
 import { resolveCompany } from './reader.js';
 import { log } from './config.js';
 
-async function namesExist(sb, table, companyGuid, names) {
-  const wanted = [...new Set(names.filter(Boolean))];
-  if (wanted.length === 0) return [];
-  const rows = await must(sb.from(table).select('name').eq('company_guid', companyGuid).in('name', wanted), `check ${table}`);
-  const have = new Set(rows.map((r) => r.name));
-  return wanted.filter((n) => !have.has(n));
+// Queue object_type (the Tally voucher type) -> tally-cli voucher kind.
+export const KINDS = { Sales: 'sales', Receipt: 'receipt', Payment: 'payment', 'Credit Note': 'credit-note', 'Debit Note': 'debit-note' };
+
+/** The voucher JSON tally-cli receives: the approved payload, plus our tag in the narration. */
+export function voucherForTally(row) {
+  const kind = KINDS[row.object_type];
+  if (!kind) throw Object.assign(new Error(`voucher type "${row.object_type}" is not one the bridge writes`), { permanent: true });
+  const p = { ...row.payload };
+  if (p.kind && p.kind !== kind) throw Object.assign(new Error(`payload kind "${p.kind}" does not match "${row.object_type}"`), { permanent: true });
+  p.kind = kind;
+  delete p.idempotencyKey;
+  const tag = writeTag(row.id);
+  p.narration = p.narration ? `${p.narration} ${tag}` : tag;
+  return p;
 }
 
-export async function checkVoucherNames(sb, companyGuid, p) {
-  const problems = validateVoucherPayload(p);
-  const ledgers = [p.partyLedger, ...(p.ledgerEntries || []).map((e) => e.ledger), ...(p.inventoryEntries || []).map((e) => e.salesLedger)];
-  for (const n of await namesExist(sb, 'tally_ledgers', companyGuid, ledgers)) problems.push(`ledger not in Tally: ${n}`);
-  for (const n of await namesExist(sb, 'tally_stock_items', companyGuid, (p.inventoryEntries || []).map((e) => e.item))) problems.push(`stock item not in Tally: ${n}`);
-  for (const n of await namesExist(sb, 'tally_godowns', companyGuid, (p.inventoryEntries || []).map((e) => e.godown))) problems.push(`godown not in Tally: ${n}`);
-  for (const n of await namesExist(sb, 'tally_voucher_types', companyGuid, [p.voucherType])) problems.push(`voucher type not in Tally: ${n}`);
-  for (const n of await namesExist(sb, 'tally_cost_centres', companyGuid, (p.ledgerEntries || []).map((e) => e.costCentre))) problems.push(`cost centre not in Tally: ${n}`);
-  return problems;
-}
-
-export async function checkLedgerCreate(sb, companyGuid, p) {
-  const problems = [];
-  if (!p?.name) problems.push('ledger name missing');
-  if (!p?.parent) problems.push('parent group missing');
-  if (p?.gstin && !/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(p.gstin)) problems.push(`GSTIN looks wrong: ${p.gstin}`);
-  if (p?.name) {
-    const exists = await must(sb.from('tally_ledgers').select('guid').eq('company_guid', companyGuid).eq('name', p.name).limit(1), 'check ledger');
-    if (exists.length) problems.push(`a ledger named "${p.name}" already exists in Tally`);
+export function outcomeFromError(err) {
+  // 3: Tally could not be reached, so nothing was sent: put it back in the queue for the next round.
+  if (err.exitCode === EXIT.unreachable) return { status: 'approved', error: `Tally not reachable, will retry: ${err.message}` };
+  // 8: sent, but the result is unknown and tally-cli could not find it in Tally: a person checks first.
+  if (err.exitCode === EXIT.unknownOutcome || err.code === 'E_NO_REPLY' || err.exitCode === null) {
+    return { status: 'check_in_tally', error: `${err.message}${err.hint ? ` (${err.hint})` : ''}` };
   }
-  if (p?.parent) for (const n of await namesExist(sb, 'tally_groups', companyGuid, [p.parent])) problems.push(`group not in Tally: ${n}`);
-  return problems;
+  // Everything else (invalid, refused by Tally, not allowed, conflict): Tally's or tally-cli's exact reason.
+  const problems = err.details?.problems?.map((p) => `${p.path}: ${p.message}`).join('; ');
+  return { status: 'failed', error: problems || err.message, response: { code: err.code, hint: err.hint || null } };
 }
 
-export async function writeCompany(tally, sb, cfg, cfgCompany) {
+export async function writeCompany(cli, store, cfg, c) {
   const w = cfg.write || {};
   if (!w.enabled) return { skipped: 'write is switched off in config.json' };
-  if (!cfgCompany.isTestCompany && !w.allowLiveCompanies) return { skipped: `live company "${cfgCompany.name}": write-back not yet allowed (write.allowLiveCompanies is false)` };
-  const company = await resolveCompany(tally, sb, cfgCompany);
+  if (!c.isTestCompany && !w.allowLiveCompanies) return { skipped: `live company "${c.name}": write-back not yet allowed (write.allowLiveCompanies is false)` };
+  const company = await resolveCompany(cli, store, c);
 
-  const rows = await must(sb.rpc('bridge_claim_writebacks', {
+  const rows = await store.rpc('bridge_claim_writebacks', {
     p_company_guid: company.guid,
     p_master_types: w.masters || [],
     p_voucher_types: w.voucherTypes || [],
-    p_limit: w.maxPerRun || 20
-  }), 'claim writebacks');
+    p_limit: w.maxPerRun || 20,
+  }) || [];
 
   const results = [];
   for (const row of rows) {
     let outcome;
     try {
       if (row.kind === 'voucher') {
-        const already = await must(sb.from('tally_vouchers').select('guid, is_optional').eq('company_guid', company.guid).eq('app_tag', row.id).limit(1), 'check already in Tally');
-        if (already.length) {
-          outcome = { status: already[0].is_optional ? 'in_tally_optional' : 'converted', note: 'already in Tally; not sent again' };
+        const already = await store.rpc('bridge_voucher_by_tag', { p_company_guid: company.guid, p_tag: row.id });
+        if (already) {
+          outcome = { status: already.is_optional ? 'in_tally_optional' : 'converted', response: { note: 'already in Tally; not sent again', guid: already.guid } };
         } else {
-          const problems = await checkVoucherNames(sb, company.guid, row.payload);
-          if (problems.length) outcome = { status: 'failed', error: problems.join('; ') };
-          else {
-            const res = await tally.importXml(buildOptionalVoucher(company.name, row.id, row.payload));
-            outcome = res.ok ? { status: 'sent', response: res } : { status: 'failed', error: res.lineErrors.join('; ') || `Tally created ${res.created}, errors ${res.errors}`, response: res };
-          }
+          const r = await cli.createVoucher(c.profile, voucherForTally(row), `gsos:${row.id}`);
+          outcome = { status: 'sent', response: { masterId: r.masterId ?? null, guid: r.guid ?? null, number: r.number ?? null, optional: r.optional ?? null, duplicate: !!r.duplicate } };
         }
       } else if (row.kind === 'master' && row.object_type === 'Ledger') {
-        const problems = await checkLedgerCreate(sb, company.guid, row.payload);
-        if (problems.length) outcome = { status: 'failed', error: problems.join('; ') };
-        else {
-          const res = await tally.importXml(buildLedgerCreate(company.name, row.payload));
-          outcome = res.ok ? { status: 'sent', response: res } : { status: 'failed', error: res.lineErrors.join('; ') || `Tally created ${res.created}, errors ${res.errors}`, response: res };
-        }
+        const r = await cli.createLedger(c.profile, row.payload);
+        outcome = { status: 'sent', response: { guid: r.record?.guid ?? null, tally: r.tally ?? null } };
       } else {
         outcome = { status: 'failed', error: `not supported yet: ${row.kind} ${row.object_type}` };
       }
     } catch (err) {
-      // Unknown result (for example a timeout): do NOT resend automatically. A person checks Tally first.
-      outcome = { status: 'check_in_tally', error: String(err.message || err) };
+      outcome = err.permanent ? { status: 'failed', error: err.message } : outcomeFromError(err);
     }
-    await must(sb.rpc('bridge_writeback_result', {
-      p_id: row.id, p_status: outcome.status, p_error: outcome.error || null,
-      p_response: outcome.response ? { ...outcome.response, raw: undefined } : (outcome.note ? { note: outcome.note } : null)
-    }), 'record writeback result');
-    log(outcome.status === 'failed' ? 'warn' : 'info', `writeback ${row.id} ${row.kind}/${row.object_type}: ${outcome.status}`, outcome.error ? { error: outcome.error } : undefined);
+    await store.rpc('bridge_writeback_result', { p_id: row.id, p_status: outcome.status, p_error: outcome.error || null, p_response: outcome.response || null });
+    log(outcome.status === 'failed' || outcome.status === 'check_in_tally' ? 'warn' : 'info', `writeback ${row.id} ${row.kind}/${row.object_type}: ${outcome.status}`, outcome.error ? { error: outcome.error } : undefined);
     results.push({ id: row.id, ...outcome });
   }
   return { company: company.name, written: results.length, results };

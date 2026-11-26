@@ -1,6 +1,6 @@
 # GrowSafe Tally Bridge · Build Spec
 
-For Akash's Claude (HQ and the BRIDGE session). Read with `bridge/README.md` and `supabase/migrations/20261125000000_tally_bridge.sql`. This spec and the starter code in `bridge/` implement Akash's five points; the BRIDGE session's job is to install, test on a copy of one company, and adjust, not to rewrite from zero.
+For Akash's Claude (HQ and the BRIDGE session). Read with `bridge/README.md`, `tally-cli/README.md` and `supabase/migrations/20261125000000_tally_bridge.sql`. This spec, tally-cli and the code in `bridge/` implement Akash's five points; the BRIDGE session's job is to install, test on a copy of one company, and adjust, not to rewrite from zero.
 
 ## 1. Akash's five points (the requirement, verbatim)
 
@@ -16,15 +16,18 @@ For Akash's Claude (HQ and the BRIDGE session). Read with `bridge/README.md` and
 TallyPrime (Tally server, accounts LAN)
    ^  |  XML over localhost:9000
    |  v
+tally-cli/   reads, validates, writes Optional vouchers and ledgers, idempotency keys, audit log, doctor, selftest, simulator
+   ^  |  JSON (the bridge runs tally-cli commands)
+   |  v
 bridge/ (Node.js, scheduled task on the Tally server)
-   reader.js     Tally -> Supabase: masters, then vouchers, by AlterID; deletions by GUID comparison
+   reader.js     Tally -> Supabase: masters, then vouchers, by alter id; deletions by comparing voucher ids
    writer.js     Supabase -> Tally: approved rows only; ledgers created; vouchers as Optional
    reconcile.js  daily ledger balance check
    |  HTTPS out only (secret key in bridge/.env on the server)
    v
 Supabase (Mumbai)
    tally_*                 read-only copy of Tally
-   bridge_*                sync state, runs, reconciliations, the approval queue
+   bridge_*                sync state, runs, reconciliations, the approval queue, the functions the bridge calls
    app_*                   approval rules, point 5 mapping
    views                   v_tally_ledger_balance, v_salesperson_dealers
    ^
@@ -32,47 +35,51 @@ Supabase (Mumbai)
 GrowSafe OS
 ```
 
+tally-cli is used as it is; the bridge never builds Tally XML. Its documentation (`tally-cli/README.md`, `CLAUDE.md`, `docs/`) applies in full: read `docs/SAFETY.md` before switching any write on.
+
 ## 3. Reading (points 1 and 4)
 
-- Masters in order: Group, Ledger, CostCentre, StockGroup, StockItem, Unit, Godown, VoucherType. Each request filters `$AlterID > last` per company; `bridge_sync_state` keeps the last AlterID per master type and for vouchers.
-- First voucher load: month by month from `booksFrom` (4 to 5 years). After that: one request with `$AlterID > last`.
-- Each voucher is saved with its ledger entries and inventory entries (batches and bill references as JSON) through `bridge_upsert_vouchers`, which replaces the lines of a changed voucher in one transaction.
-- Deleted vouchers do not appear in an AlterID sync: `detectDeletions` compares GUIDs month by month and marks missing ones `is_deleted`; the monthly counts are stored in `bridge_reconciliations` (kind `voucher_counts`).
-- The app never writes `tally_*` tables (no RLS write policy; only the secret key writes).
+- Before each read the bridge takes Tally's change counters (`tally sync status`); afterwards it stores them in `bridge_sync_state` (`masters`, `vouchers`). Anything changed during a read is picked up next time.
+- Masters in order: groups, ledgers, cost centres, stock groups, units, godowns, stock items, voucher types (`tally export <dataset> --since-alter-id`).
+- First voucher load: one financial year at a time from `booksFrom` (tally-cli splits each year month by month and retries smaller windows if Tally is slow). After that: only vouchers altered since the last counter.
+- Each voucher is saved with its ledger lines (bill references and cost centres inside), inventory lines (godown and batches inside), its base type, and Optional and cancelled flags, through `bridge_upsert_vouchers`.
+- Deleted vouchers never appear in an alter-id sync: `detectDeletions` compares voucher ids month by month and marks missing ones `is_deleted`; monthly counts go to `bridge_reconciliations` (kind `voucher_counts`).
+- Orders, delivery and receipt notes, memoranda and stock-only vouchers are kept (sales reporting needs orders) but never count in balances (`tally_affects_books`).
+- The app never writes `tally_*` tables (no RLS write policy; the bridge writes through the `bridge_*` functions with the secret key).
 
-**Not yet in the starter code (add on the test copy, in this order):** batch master details (manufacturing and expiry dates) and price levels on stock items; the daily stock summary by godown and batch, compared Tally against the app; party outstanding by bill. The starter code already reconciles ledger closing balances (`reconcile.js`) and monthly voucher counts (`detectDeletions`).
-
-**Verify on the test copy:** that the Voucher collection with `ALLLEDGERENTRIES` and `ALLINVENTORYENTRIES` in FETCH returns the lines for both invoice and accounting views; that Optional vouchers are included in the export (they must be, so the app can confirm them); field names of GST on ledgers for the installed TallyPrime release.
+**Not yet in this code (add on the test copy, in this order):** batch manufacturing and expiry dates and price levels (from the stock item and batch masters, with `tally query collection`); the daily stock summary by godown and batch compared with Tally (`tally export stock`); party outstanding by bill compared with Tally (`tally export receivables`). The code already reconciles every ledger's closing balance (`reconcile.js`) and monthly voucher counts (`detectDeletions`).
 
 ## 4. Writing (points 2, 3 and 4)
 
-- The app inserts a row into `bridge_writeback_queue` as `draft` (kind `master` or `voucher`, `object_type` = `Ledger` or the Tally voucher type name, `payload` JSON). A person allowed by `app_approval_rules` calls `app_approve_writeback`.
-- The writer claims approved rows (`bridge_claim_writebacks` marks them `sending` in one step), checks every name against the copy of Tally, and sends:
-  - **Ledger create:** `buildLedgerCreate` (name, parent group, GSTIN and registration type, state, address, mobile, email, bill-wise). Refused if the name already exists or the parent group does not.
-  - **Voucher as Optional:** `buildOptionalVoucher` with `ISOPTIONAL=Yes`; narration ends with `[GSOS:<queue id>]`. Amounts use Tally's sign: negative = debit, positive = credit; ledger plus inventory amounts must sum to zero (checked before sending).
-- Tally's reply is parsed (`CREATED`, `ERRORS`, `LINEERROR`) and stored on the row: `sent` or `failed` with Tally's reason. A timeout becomes `check_in_tally` and is never resent automatically.
+- The app inserts a row into `bridge_writeback_queue` as `draft`: `kind` `master` or `voucher`, `object_type` `Ledger` or the voucher type (`Sales`, `Receipt`, `Payment`, `Credit Note`, `Debit Note`), `payload` in tally-cli's JSON. A person allowed by `app_approval_rules` calls `app_approve_writeback`.
+- The writer claims approved rows (`bridge_claim_writebacks` marks them `sending` in one step), skips any voucher Tally already holds with its tag, and runs `tally voucher create` (idempotency key `gsos:<queue id>`, narration ending `[GSOS:<queue id>]`) or `tally ledger create`.
+- tally-cli's profile (`tally-cli/tally.config.json`) is the second lock: `writeMode: "optional"` (every voucher Optional), `allowMasterWrites: true`, `allowedVoucherTypes`, `requireIdempotencyKey: true`, `maxAmount`, `lockBefore`, the pinned company id.
+- Outcome on the row: `sent`; `failed` with tally-cli's or Tally's exact reason (a wrong name, unbalanced, missing bill reference, invalid GSTIN); `check_in_tally` when the result is unknown (never resent automatically); back to `approved` when Tally could not be reached (nothing was sent).
 - The next sync calls `bridge_confirm_writebacks`: a voucher found with its tag becomes `in_tally_optional`, and `converted` once the accountant makes it regular; a ledger found by name becomes `in_tally`.
-- `config.json` gates writing: `write.enabled`, the allowed master and voucher types, and `allowLiveCompanies` (false until M8).
+- `bridge/config.json` gates writing too: `write.enabled`, the allowed master and voucher types, `allowLiveCompanies` (false until M8).
 
-### Voucher payload examples
+### Payload examples (tally-cli voucher JSON; full reference in tally-cli/docs/VOUCHERS.md)
 
-Sales (invoice view, goods out):
+New dealer ledger (`kind` master, `object_type` Ledger):
 ```json
-{ "voucherType": "Sales", "date": "2026-11-25", "partyLedger": "Sharma Traders", "narration": "Order from app",
-  "inventoryEntries": [{ "item": "Bio Gold 1L", "qty": 10, "unit": "Ltr", "rate": 100, "amount": 1000,
-                         "salesLedger": "Sales GST 18%", "godown": "Main Location", "batch": "B-101" }],
-  "ledgerEntries": [{ "ledger": "Sharma Traders", "amount": -1180, "isParty": true, "billRef": { "name": "APP-0001", "type": "New Ref" } },
-                    { "ledger": "Output IGST 18%", "amount": 180 }] }
+{ "name": "Sharma Agro Bhopal", "group": "MP Dealers", "gstin": "23AAFCA1111A1ZV", "gstRegistrationType": "Regular",
+  "state": "Madhya Pradesh", "billWise": true, "creditDays": 30, "phone": "98xxxxxxxx" }
 ```
-Receipt (bank debit, party credit against a bill):
+Sales (`object_type` Sales): GST computed by tally-cli from the profile's tax ledgers; the party keeps bill-wise details, so a bill reference is given.
 ```json
-{ "voucherType": "Receipt", "date": "2026-11-25",
-  "ledgerEntries": [{ "ledger": "HDFC Bank", "amount": -5000 },
-                    { "ledger": "Sharma Traders", "amount": 5000, "isParty": true, "billRef": { "name": "INV-77", "type": "Agst Ref" } }] }
+{ "date": "2026-11-25", "party": "Sharma Agro Bhopal", "narration": "Order from app",
+  "items": [{ "item": "Bio Gold 1L", "qty": 10, "rate": 100, "ledger": "Sales GST 18%", "godown": "Main Location" }],
+  "taxes": "auto", "roundOff": "auto", "bills": [{ "type": "new", "ref": "APP-0001" }] }
 ```
-Payment: party debit (negative), bank credit (positive). Credit Note (sales return): inventory amount negative (goods in), party credit. Debit Note: the reverse. GST lines are computed by the app from Tally's tax ledgers and rates and shown to the approver; the accountant checks them when converting the Optional voucher.
+Receipt (`object_type` Receipt):
+```json
+{ "date": "2026-11-25", "party": "Sharma Agro Bhopal",
+  "entries": [{ "ledger": "HDFC Bank", "debit": 5000 },
+              { "ledger": "Sharma Agro Bhopal", "credit": 5000, "bills": [{ "type": "against", "ref": "APP-0001", "amount": 5000 }] }] }
+```
+Payment: party `debit`, bank `credit`. Credit Note: `items` returned with the sales ledger, `bills` against the invoice or `"on-account"`. Debit Note: the same with the purchase ledger and the supplier. The approver sees tally-cli's dry-run summary (`--dry-run`) before approving, when the app shows one.
 
-**Next, once ledger creation is proven:** stock item creation (name, group, base unit, HSN and GST rate), then alteration of existing masters (Tally's `ACTION="Alter"` with the old name), each behind its own approval type.
+**Next, once ledger creation is proven:** stock item creation (`tally item create`), then changes to existing masters (`tally ledger update`), each behind its own approval type and only with `allowMasterWrites`.
 
 ## 5. Point 5: mapping
 
@@ -81,19 +88,23 @@ Payment: party debit (negative), bank credit (positive). Credit Note (sales retu
 
 ## 6. Safety rules (never break these)
 
-1. Nothing reaches Tally except approved queue rows. 2. Vouchers only as Optional. 3. Names only from the copy of Tally. 4. Every voucher tagged; nothing sent twice. 5. Unknown results are checked by a person, not resent. 6. Mismatches flagged, never fixed silently. 7. Test copy first, one type at a time; live only with `allowLiveCompanies`. 8. The secret key lives only in `bridge/.env` on the Tally server and in Vercel's settings.
+1. Nothing reaches Tally except approved queue rows. 2. Vouchers only as Optional (tally-cli's profile in optional mode). 3. Names only from the copy of Tally. 4. Every voucher tagged; nothing sent twice. 5. Unknown results are checked by a person, not resent. 6. Mismatches flagged, never fixed silently. 7. Test copy first, one type at a time; live only with `allowLiveCompanies`. 8. The secret key lives only in `bridge/.env` on the Tally server and in Vercel's settings. 9. tally-cli's files under `src/` are not edited to make something work: first `tally doctor`, `tally selftest`, `tally explain`, and its docs/TROUBLESHOOTING.md.
 
 ## 7. Test protocol (on the test copy)
 
 | Case | Expected |
 |---|---|
+| tally-cli write self-test on the test copy | Passes; Optional vouchers stay out of balances |
 | New dealer ledger with GSTIN | Created; app shows `in_tally` |
 | Ledger name that already exists | Refused before sending |
 | Sales with batch and godown | Optional voucher in Tally; `in_tally_optional` |
 | Accountant converts it | `converted` after next sync |
-| Same row sent twice (re-approve or crash) | Second send blocked (claim) or skipped (tag found) |
-| Wrong ledger name in a voucher | Refused before sending, reason shown |
+| Same row sent twice (re-approve or crash) | Second send blocked (claim), skipped (tag found) or refused (idempotency key) |
+| Wrong ledger name in a voucher | Refused by tally-cli before sending, reason shown |
+| GSTIN with a wrong check digit | Refused before sending |
 | Unbalanced voucher | Refused before sending |
 | Receipt, Payment, Credit Note, Debit Note | Each arrives Optional and converts |
 | Voucher deleted in Tally | Marked deleted after the deletion check |
-| Tally closed during a send | Row goes to `check_in_tally`; a person checks Tally |
+| Tally closed before a send | Nothing sent; the row waits as `approved` |
+| Tally stops answering during a send | tally-cli searches Tally; if not found, `check_in_tally`; a person checks Tally |
+| Educational mode (if used for rehearsal) | Only the 1st, 2nd and last day of a month accepted; other dates refused with the reason |

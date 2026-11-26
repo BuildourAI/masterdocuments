@@ -1,0 +1,34 @@
+{
+  "kind": "sales",
+  "date": "2026-11-24",
+  "number": "SI/26-27/0101",
+  "party": "City Lights Traders",
+  "narration": "Order received by phone",
+  "items": [
+    {
+      "item": "MCB 32A Double Pole",
+      "qty": 20,
+      "rate": 520,
+      "ledger": "Sales GST 18%"
+    },
+    {
+      "item": "LED Bulb 9W",
+      "qty": 100,
+      "rate": 95,
+      "discountPct": 5,
+      "ledger": "Sales GST 12%",
+      "godown": "Main Location"
+    }
+  ],
+  "charges": [
+    {
+      "ledger": "Freight Outward",
+      "amount": 450,
+      "gstRate": 18
+    }
+  ],
+  "taxes": "auto",
+  "roundOff": "auto",
+  "expectedTotal": 22911,
+  "idempotencyKey": "invoice-SI-26-27-0101"
+}

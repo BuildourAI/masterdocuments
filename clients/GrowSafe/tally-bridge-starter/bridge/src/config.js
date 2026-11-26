@@ -18,6 +18,9 @@ export function loadConfig() {
   if (!fs.existsSync(file)) throw new Error('config.json not found: copy config.example.json to config.json and fill in your company names');
   const cfg = JSON.parse(fs.readFileSync(file, 'utf8'));
   if (!Array.isArray(cfg.companies) || cfg.companies.length === 0) throw new Error('config.json: list at least one company');
+  for (const c of cfg.companies) {
+    if (!c.name || !c.profile) throw new Error('config.json: every company needs "name" (exact, as in TallyPrime) and "profile" (its tally-cli profile)');
+  }
   return cfg;
 }
 

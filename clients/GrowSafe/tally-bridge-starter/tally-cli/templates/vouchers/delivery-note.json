@@ -1,0 +1,16 @@
+{
+  "kind": "delivery-note",
+  "date": "2026-11-24",
+  "number": "DN-OUT/0101",
+  "party": "Deccan Builders",
+  "items": [
+    {
+      "item": "RCCB 40A 4 Pole",
+      "qty": 10,
+      "rate": 2650,
+      "ledger": "Sales GST 18%",
+      "orderNo": "SO/26-27/0001"
+    }
+  ],
+  "taxes": "none"
+}

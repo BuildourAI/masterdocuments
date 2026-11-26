@@ -1,0 +1,24 @@
+{
+  "kind": "stock-journal",
+  "date": "2026-11-24",
+  "narration": "Assembled one board from stock",
+  "consumed": [
+    {
+      "item": "Copper Wire 1.5 sqmm (90 m)",
+      "qty": 1,
+      "rate": 1180
+    },
+    {
+      "item": "MCB 32A Double Pole",
+      "qty": 4,
+      "rate": 410
+    }
+  ],
+  "produced": [
+    {
+      "item": "Distribution Board 8 Way",
+      "qty": 1,
+      "rate": 2820
+    }
+  ]
+}

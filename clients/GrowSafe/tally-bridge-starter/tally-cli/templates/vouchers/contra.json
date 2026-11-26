@@ -1,0 +1,15 @@
+{
+  "kind": "contra",
+  "date": "2026-11-24",
+  "narration": "Cash deposited",
+  "entries": [
+    {
+      "ledger": "Bank of Example - Current A/c",
+      "debit": 20000
+    },
+    {
+      "ledger": "Cash",
+      "credit": 20000
+    }
+  ]
+}

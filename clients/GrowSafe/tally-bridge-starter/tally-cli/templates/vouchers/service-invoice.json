@@ -1,0 +1,15 @@
+{
+  "kind": "sales",
+  "date": "2026-11-24",
+  "number": "SI/26-27/0102",
+  "party": "Deccan Builders",
+  "narration": "Installation charges",
+  "charges": [
+    {
+      "ledger": "Sales GST 18%",
+      "amount": 15000,
+      "gstRate": 18
+    }
+  ],
+  "taxes": "auto"
+}

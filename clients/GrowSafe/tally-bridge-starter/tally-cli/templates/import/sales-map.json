@@ -1,0 +1,21 @@
+{
+  "group": "Invoice No",
+  "voucher": {
+    "kind": {
+      "value": "sales"
+    },
+    "date": "Date",
+    "party": "Customer",
+    "number": "Invoice No"
+  },
+  "item": {
+    "item": "Item",
+    "qty": "Qty",
+    "rate": "Rate",
+    "ledger": "Sales Ledger"
+  },
+  "defaults": {
+    "taxes": "auto",
+    "roundOff": "auto"
+  }
+}

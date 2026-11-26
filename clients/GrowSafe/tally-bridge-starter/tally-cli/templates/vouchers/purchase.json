@@ -1,0 +1,28 @@
+{
+  "kind": "purchase",
+  "date": "2026-11-24",
+  "party": "Prime Cables Ltd",
+  "reference": {
+    "number": "PRI-9012",
+    "date": "2026-11-22"
+  },
+  "number": "PUR/26-27/0101",
+  "items": [
+    {
+      "item": "Copper Wire 1.5 sqmm (90 m)",
+      "qty": 40,
+      "rate": 1180,
+      "ledger": "Purchase GST 18%"
+    }
+  ],
+  "taxes": "auto",
+  "roundOff": "auto",
+  "bills": [
+    {
+      "type": "new",
+      "ref": "PRI-9012",
+      "creditDays": 30
+    }
+  ],
+  "idempotencyKey": "bill-PRI-9012"
+}

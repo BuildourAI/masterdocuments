@@ -1,0 +1,28 @@
+{
+  "kind": "payment",
+  "date": "2026-11-24",
+  "narration": "Office rent for November",
+  "entries": [
+    {
+      "ledger": "Office Rent",
+      "debit": 24000,
+      "costCentres": [
+        {
+          "name": "Mumbai Branch",
+          "amount": 16000
+        },
+        {
+          "name": "Pune Branch",
+          "amount": 8000
+        }
+      ]
+    },
+    {
+      "ledger": "Bank of Example - Current A/c",
+      "credit": 24000,
+      "bank": {
+        "mode": "neft"
+      }
+    }
+  ]
+}

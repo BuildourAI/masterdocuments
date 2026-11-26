@@ -1,0 +1,33 @@
+{
+  "kind": "receipt",
+  "date": "2026-11-24",
+  "party": "Alpha Hardware Stores",
+  "narration": "NEFT received",
+  "entries": [
+    {
+      "ledger": "Bank of Example - Current A/c",
+      "debit": 50000,
+      "bank": {
+        "mode": "neft",
+        "instrumentNumber": "UTR123456",
+        "instrumentDate": "2026-11-24"
+      }
+    },
+    {
+      "ledger": "Alpha Hardware Stores",
+      "credit": 50000,
+      "bills": [
+        {
+          "type": "against",
+          "ref": "SI/26-27/0040",
+          "amount": 43853
+        },
+        {
+          "type": "on-account",
+          "amount": 6147
+        }
+      ]
+    }
+  ],
+  "idempotencyKey": "bank-UTR123456"
+}

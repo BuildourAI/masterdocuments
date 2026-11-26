@@ -1,0 +1,16 @@
+{
+  "kind": "sales-order",
+  "date": "2026-11-24",
+  "number": "SO/26-27/0101",
+  "party": "Deccan Builders",
+  "dueDate": "2026-12-10",
+  "items": [
+    {
+      "item": "RCCB 40A 4 Pole",
+      "qty": 30,
+      "rate": 2650,
+      "ledger": "Sales GST 18%"
+    }
+  ],
+  "taxes": "auto"
+}

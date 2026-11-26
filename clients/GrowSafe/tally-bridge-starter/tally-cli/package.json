@@ -1,0 +1,14 @@
+{
+  "name": "tally-cli",
+  "version": "1.0.0",
+  "description": "Command-line bridge between AI systems and Tally (TallyPrime / Tally.ERP 9) over Tally's built-in XML gateway.",
+  "private": true,
+  "type": "module",
+  "bin": { "tally": "bin/tally.mjs" },
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test",
+    "docs": "node bin/tally.mjs ops --markdown --out docs/COMMANDS.md",
+    "simulate": "node bin/tally.mjs simulate"
+  }
+}

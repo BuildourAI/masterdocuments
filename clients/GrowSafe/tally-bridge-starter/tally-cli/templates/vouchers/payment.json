@@ -1,0 +1,21 @@
+{
+  "kind": "payment",
+  "date": "2026-11-24",
+  "party": "Prime Cables Ltd",
+  "narration": "Paid by RTGS",
+  "entries": [
+    {
+      "ledger": "Prime Cables Ltd",
+      "debit": 25000,
+      "bills": "on-account"
+    },
+    {
+      "ledger": "Bank of Example - Current A/c",
+      "credit": 25000,
+      "bank": {
+        "mode": "rtgs",
+        "instrumentNumber": "UTR998877"
+      }
+    }
+  ]
+}

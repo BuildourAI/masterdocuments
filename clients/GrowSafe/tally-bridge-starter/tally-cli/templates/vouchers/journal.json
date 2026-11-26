@@ -1,0 +1,15 @@
+{
+  "kind": "journal",
+  "date": "2026-11-30",
+  "narration": "Salary provision for November",
+  "entries": [
+    {
+      "ledger": "Salaries",
+      "debit": 38000
+    },
+    {
+      "ledger": "Second Bank - OD A/c",
+      "credit": 38000
+    }
+  ]
+}

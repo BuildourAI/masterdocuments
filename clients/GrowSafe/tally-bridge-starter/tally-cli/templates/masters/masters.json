@@ -1,0 +1,24 @@
+[
+  {
+    "type": "unit",
+    "name": "Pcs",
+    "formalName": "Pieces",
+    "decimals": 0
+  },
+  {
+    "type": "item",
+    "name": "Cable Tie 200mm (pack of 100)",
+    "group": "Cables & Wires",
+    "unit": "Pcs",
+    "hsn": "39269099",
+    "gstRate": 18
+  },
+  {
+    "type": "ledger",
+    "name": "New Supplier Traders",
+    "group": "Sundry Creditors",
+    "state": "Gujarat",
+    "billWise": true,
+    "creditDays": 30
+  }
+]

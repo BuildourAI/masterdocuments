@@ -1,0 +1,15 @@
+{
+  "name": "New Customer Pvt Ltd",
+  "group": "Sundry Debtors",
+  "gstin": "27AAPFU0939F1ZV",
+  "state": "Maharashtra",
+  "address": [
+    "Plot 4, Industrial Area",
+    "Pune"
+  ],
+  "pincode": "411001",
+  "email": "accounts@newcustomer.example",
+  "phone": "9800000000",
+  "billWise": true,
+  "creditDays": 30
+}

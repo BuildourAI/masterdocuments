@@ -1,0 +1,7 @@
+# Site-specific files: never commit these
+tally.config.json
+.tally/
+artifacts/
+runtime/
+node_modules/
+*.log

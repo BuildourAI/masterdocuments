@@ -1,0 +1,5 @@
+#!/bin/sh
+# POSIX launcher: runs the CLI with the bundled runtime if present, else the system node.
+DIR="$(cd "$(dirname "$0")" && pwd)"
+if [ -x "$DIR/runtime/node" ]; then exec "$DIR/runtime/node" "$DIR/bin/tally.mjs" "$@"; fi
+exec node "$DIR/bin/tally.mjs" "$@"

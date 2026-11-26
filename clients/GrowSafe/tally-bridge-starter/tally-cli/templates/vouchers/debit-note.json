@@ -1,0 +1,17 @@
+{
+  "kind": "debit-note",
+  "date": "2026-11-24",
+  "party": "Prime Cables Ltd",
+  "number": "DN/26-27/0101",
+  "narration": "Short supply returned",
+  "items": [
+    {
+      "item": "Copper Wire 1.5 sqmm (90 m)",
+      "qty": 2,
+      "rate": 1180,
+      "ledger": "Purchase GST 18%"
+    }
+  ],
+  "taxes": "auto",
+  "bills": "on-account"
+}

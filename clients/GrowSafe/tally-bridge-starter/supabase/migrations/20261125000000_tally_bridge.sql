@@ -24,7 +24,7 @@ create table if not exists public.tally_companies (
 create table if not exists public.tally_groups (
   company_guid text not null references public.tally_companies(guid),
   guid text not null, master_id bigint, alter_id bigint,
-  name text not null, parent text, is_revenue boolean,
+  name text not null, parent text, primary_group text, nature text, is_revenue boolean,
   primary key (company_guid, guid)
 );
 create table if not exists public.tally_ledgers (
@@ -32,7 +32,8 @@ create table if not exists public.tally_ledgers (
   guid text not null, master_id bigint, alter_id bigint,
   name text not null, parent text,
   opening_balance numeric(18,2) default 0, closing_balance numeric(18,2) default 0,
-  gstin text, gst_registration_type text, state text, pincode text, email text, mobile text, is_bill_wise boolean,
+  primary_group text, gstin text, gst_registration_type text, pan text, state text, pincode text, email text, mobile text,
+  is_bill_wise boolean, credit_days int,
   primary key (company_guid, guid)
 );
 create table if not exists public.tally_cost_centres (
@@ -48,7 +49,8 @@ create table if not exists public.tally_stock_groups (
 create table if not exists public.tally_stock_items (
   company_guid text not null references public.tally_companies(guid),
   guid text not null, master_id bigint, alter_id bigint, name text not null, parent text,
-  base_unit text, opening_qty numeric(18,3) default 0, closing_qty numeric(18,3) default 0, closing_value numeric(18,2) default 0,
+  category text, base_unit text, hsn text, gst_rate numeric(6,2),
+  opening_qty numeric(18,3) default 0, closing_qty numeric(18,3) default 0, closing_value numeric(18,2) default 0,
   primary key (company_guid, guid)
 );
 create table if not exists public.tally_units (
@@ -69,7 +71,7 @@ create table if not exists public.tally_voucher_types (
 create table if not exists public.tally_vouchers (
   company_guid text not null references public.tally_companies(guid),
   guid text not null, master_id bigint, alter_id bigint,
-  date date, voucher_type text, voucher_number text, party_ledger text, narration text, reference text,
+  date date, voucher_type text, base_type text, voucher_number text, party_ledger text, narration text, reference text,
   is_optional boolean not null default false, is_cancelled boolean not null default false,
   is_invoice boolean not null default false, is_deleted boolean not null default false,
   app_tag text,
@@ -79,7 +81,7 @@ create table if not exists public.tally_vouchers (
 create table if not exists public.tally_ledger_entries (
   company_guid text not null, voucher_guid text not null, line_no int not null,
   ledger text not null, amount numeric(18,2) not null default 0, is_party boolean not null default false,
-  bill_refs jsonb not null default '[]'::jsonb,
+  bill_refs jsonb not null default '[]'::jsonb, cost_centres jsonb not null default '[]'::jsonb,
   primary key (company_guid, voucher_guid, line_no),
   foreign key (company_guid, voucher_guid) references public.tally_vouchers(company_guid, guid) on delete cascade
 );
@@ -87,10 +89,23 @@ create table if not exists public.tally_inventory_entries (
   company_guid text not null, voucher_guid text not null, line_no int not null,
   item text not null, qty numeric(18,3) default 0, unit text, rate numeric(18,4) default 0,
   amount numeric(18,2) default 0, is_inward boolean not null default false,
-  batches jsonb not null default '[]'::jsonb,
+  godown text, batches jsonb not null default '[]'::jsonb,
   primary key (company_guid, voucher_guid, line_no),
   foreign key (company_guid, voucher_guid) references public.tally_vouchers(company_guid, guid) on delete cascade
 );
+
+-- (for a database created from an earlier draft of this file)
+alter table public.tally_vouchers add column if not exists base_type text;
+alter table public.tally_groups add column if not exists primary_group text;
+alter table public.tally_groups add column if not exists nature text;
+alter table public.tally_ledgers add column if not exists primary_group text;
+alter table public.tally_ledgers add column if not exists pan text;
+alter table public.tally_ledgers add column if not exists credit_days int;
+alter table public.tally_stock_items add column if not exists category text;
+alter table public.tally_stock_items add column if not exists hsn text;
+alter table public.tally_stock_items add column if not exists gst_rate numeric(6,2);
+alter table public.tally_ledger_entries add column if not exists cost_centres jsonb not null default '[]'::jsonb;
+alter table public.tally_inventory_entries add column if not exists godown text;
 
 create index if not exists tally_vouchers_date on public.tally_vouchers(company_guid, date);
 create index if not exists tally_vouchers_party on public.tally_vouchers(company_guid, party_ledger);
@@ -160,14 +175,24 @@ create table if not exists public.app_salesperson_groups (
 );
 
 -- ---------- Views ----------
--- Ledger balance computed from the copied vouchers (regular, not cancelled, not deleted). Same sign as Tally: debit negative.
+-- Vouchers that post to the books. Orders, delivery and receipt notes, rejections, memoranda and stock-only
+-- vouchers are kept in the copy (sales reporting needs orders) but never count in balances.
+create or replace function public.tally_affects_books(p_base_type text)
+returns boolean language sql immutable as $$
+  select coalesce(p_base_type, '') not in ('Sales Order','Purchase Order','Delivery Note','Receipt Note','Rejections In',
+    'Rejections Out','Memorandum','Reversing Journal','Stock Journal','Physical Stock','Material In','Material Out',
+    'Job Work In Order','Job Work Out Order','Attendance');
+$$;
+
+-- Ledger balance computed from the copied vouchers (regular, not cancelled, not deleted, posting to the books).
+-- Same sign as Tally: debit negative.
 create or replace view public.v_tally_ledger_balance with (security_invoker = on) as
 select l.company_guid, l.guid as ledger_guid, l.name,
        l.opening_balance + coalesce(sum(e.amount) filter (where v.guid is not null), 0) as computed_closing
 from public.tally_ledgers l
 left join public.tally_ledger_entries e on e.company_guid = l.company_guid and e.ledger = l.name
 left join public.tally_vouchers v on v.company_guid = e.company_guid and v.guid = e.voucher_guid
-     and not v.is_optional and not v.is_cancelled and not v.is_deleted
+     and not v.is_optional and not v.is_cancelled and not v.is_deleted and public.tally_affects_books(v.base_type)
 group by l.company_guid, l.guid, l.name, l.opening_balance;
 
 -- Every dealer ledger under each salesperson's Tally group(s), including sub-groups.
@@ -189,15 +214,15 @@ returns int language plpgsql security definer set search_path = public as $$
 declare r jsonb; n int := 0;
 begin
   for r in select * from jsonb_array_elements(p_rows) loop
-    insert into tally_vouchers as v (company_guid, guid, master_id, alter_id, date, voucher_type, voucher_number,
+    insert into tally_vouchers as v (company_guid, guid, master_id, alter_id, date, voucher_type, base_type, voucher_number,
       party_ledger, narration, reference, is_optional, is_cancelled, is_invoice, is_deleted, app_tag, synced_at)
     values (p_company_guid, r->>'guid', (r->>'master_id')::bigint, (r->>'alter_id')::bigint, (r->>'date')::date,
-      r->>'voucher_type', r->>'voucher_number', r->>'party_ledger', r->>'narration', r->>'reference',
+      r->>'voucher_type', r->>'base_type', r->>'voucher_number', r->>'party_ledger', r->>'narration', r->>'reference',
       coalesce((r->>'is_optional')::boolean, false), coalesce((r->>'is_cancelled')::boolean, false),
       coalesce((r->>'is_invoice')::boolean, false), false, r->>'app_tag', now())
     on conflict (company_guid, guid) do update set
       master_id = excluded.master_id, alter_id = excluded.alter_id, date = excluded.date,
-      voucher_type = excluded.voucher_type, voucher_number = excluded.voucher_number,
+      voucher_type = excluded.voucher_type, base_type = excluded.base_type, voucher_number = excluded.voucher_number,
       party_ledger = excluded.party_ledger, narration = excluded.narration, reference = excluded.reference,
       is_optional = excluded.is_optional, is_cancelled = excluded.is_cancelled, is_invoice = excluded.is_invoice,
       is_deleted = false, app_tag = excluded.app_tag, synced_at = now();
@@ -205,15 +230,15 @@ begin
     delete from tally_ledger_entries where company_guid = p_company_guid and voucher_guid = r->>'guid';
     delete from tally_inventory_entries where company_guid = p_company_guid and voucher_guid = r->>'guid';
 
-    insert into tally_ledger_entries (company_guid, voucher_guid, line_no, ledger, amount, is_party, bill_refs)
+    insert into tally_ledger_entries (company_guid, voucher_guid, line_no, ledger, amount, is_party, bill_refs, cost_centres)
     select p_company_guid, r->>'guid', (e->>'line_no')::int, e->>'ledger', coalesce((e->>'amount')::numeric, 0),
-           coalesce((e->>'is_party')::boolean, false), coalesce(e->'bill_refs', '[]'::jsonb)
+           coalesce((e->>'is_party')::boolean, false), coalesce(e->'bill_refs', '[]'::jsonb), coalesce(e->'cost_centres', '[]'::jsonb)
     from jsonb_array_elements(coalesce(r->'ledger_entries', '[]'::jsonb)) e;
 
-    insert into tally_inventory_entries (company_guid, voucher_guid, line_no, item, qty, unit, rate, amount, is_inward, batches)
+    insert into tally_inventory_entries (company_guid, voucher_guid, line_no, item, qty, unit, rate, amount, is_inward, godown, batches)
     select p_company_guid, r->>'guid', (e->>'line_no')::int, e->>'item', coalesce((e->>'qty')::numeric, 0), e->>'unit',
            coalesce((e->>'rate')::numeric, 0), coalesce((e->>'amount')::numeric, 0),
-           coalesce((e->>'is_inward')::boolean, false), coalesce(e->'batches', '[]'::jsonb)
+           coalesce((e->>'is_inward')::boolean, false), e->>'godown', coalesce(e->'batches', '[]'::jsonb)
     from jsonb_array_elements(coalesce(r->'inventory_entries', '[]'::jsonb)) e;
     n := n + 1;
   end loop;
@@ -273,6 +298,79 @@ begin
      and l.company_guid = q.company_guid and l.name = q.payload->>'name';
   get diagnostics k = row_count; n := n + k;
   return n;
+end $$;
+
+-- The bridge talks to the database only through these functions (secret key).
+create or replace function public.bridge_save_company(p_guid text, p_name text, p_books_from date, p_is_test boolean)
+returns void language sql security definer set search_path = public as $$
+  insert into tally_companies(guid, name, books_from, is_test_company, last_seen_at)
+  values (p_guid, p_name, p_books_from, p_is_test, now())
+  on conflict (guid) do update set name = excluded.name, books_from = excluded.books_from,
+    is_test_company = excluded.is_test_company, last_seen_at = now();
+$$;
+
+create or replace function public.bridge_get_state(p_company_guid text)
+returns jsonb language sql stable security definer set search_path = public as $$
+  select coalesce(jsonb_object_agg(kind, last_alter_id), '{}'::jsonb) from bridge_sync_state where company_guid = p_company_guid;
+$$;
+
+create or replace function public.bridge_set_state(p_company_guid text, p_kind text, p_last bigint)
+returns void language sql security definer set search_path = public as $$
+  insert into bridge_sync_state(company_guid, kind, last_alter_id, updated_at) values (p_company_guid, p_kind, p_last, now())
+  on conflict (company_guid, kind) do update set last_alter_id = excluded.last_alter_id, updated_at = now();
+$$;
+
+-- Masters: upsert rows (already in column names) into one of the tally_* master tables.
+create or replace function public.bridge_upsert_masters(p_table text, p_company_guid text, p_rows jsonb)
+returns int language plpgsql security definer set search_path = public as $$
+declare cols text; sets text; n int;
+begin
+  if p_table not in ('tally_groups','tally_ledgers','tally_cost_centres','tally_stock_groups','tally_stock_items',
+                     'tally_units','tally_godowns','tally_voucher_types') then
+    raise exception 'not a master table: %', p_table;
+  end if;
+  select string_agg(quote_ident(column_name), ', ' order by ordinal_position),
+         string_agg(format('%1$I = excluded.%1$I', column_name), ', ' order by ordinal_position)
+           filter (where column_name not in ('company_guid','guid'))
+    into cols, sets
+    from information_schema.columns where table_schema = 'public' and table_name = p_table;
+  execute format(
+    'insert into %1$I (%2$s) select %2$s from jsonb_populate_recordset(null::%1$I, $1) on conflict (company_guid, guid) do update set %3$s',
+    p_table, cols, sets)
+  using (select coalesce(jsonb_agg(e || jsonb_build_object('company_guid', p_company_guid)), '[]'::jsonb) from jsonb_array_elements(p_rows) e);
+  get diagnostics n = row_count;
+  return n;
+end $$;
+
+create or replace function public.bridge_voucher_guids(p_company_guid text, p_from date, p_to date)
+returns text[] language sql stable security definer set search_path = public as $$
+  select coalesce(array_agg(guid), '{}') from tally_vouchers
+  where company_guid = p_company_guid and not is_deleted and date between p_from and p_to;
+$$;
+
+create or replace function public.bridge_voucher_by_tag(p_company_guid text, p_tag text)
+returns jsonb language sql stable security definer set search_path = public as $$
+  select to_jsonb(v) from (select guid, is_optional, is_cancelled from tally_vouchers
+    where company_guid = p_company_guid and app_tag = p_tag and not is_deleted limit 1) v;
+$$;
+
+create or replace function public.bridge_ledger_balances(p_company_guid text)
+returns table(ledger_guid text, name text, computed_closing numeric) language sql stable security definer set search_path = public as $$
+  select ledger_guid, name, computed_closing from v_tally_ledger_balance where company_guid = p_company_guid;
+$$;
+
+create or replace function public.bridge_log(p_table text, p_row jsonb)
+returns void language plpgsql security definer set search_path = public as $$
+begin
+  if p_table = 'bridge_sync_runs' then
+    insert into bridge_sync_runs(company_guid, kind, status, started_at, finished_at, error, details)
+    select company_guid, kind, status, started_at, finished_at, error, details from jsonb_populate_record(null::bridge_sync_runs, p_row);
+  elsif p_table = 'bridge_reconciliations' then
+    insert into bridge_reconciliations(company_guid, kind, mismatches, details)
+    select company_guid, kind, coalesce(mismatches, 0), details from jsonb_populate_record(null::bridge_reconciliations, p_row);
+  else
+    raise exception 'not a log table: %', p_table;
+  end if;
 end $$;
 
 -- ---------- Functions used by the app (signed-in users) ----------
@@ -347,6 +445,14 @@ create policy "own groups" on public.app_salesperson_groups for select to authen
   using (profile_id = auth.uid() or exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'owner'));
 
 revoke execute on function public.bridge_upsert_vouchers(text, jsonb) from public, anon, authenticated;
+revoke execute on function public.bridge_save_company(text, text, date, boolean) from public, anon, authenticated;
+revoke execute on function public.bridge_get_state(text) from public, anon, authenticated;
+revoke execute on function public.bridge_set_state(text, text, bigint) from public, anon, authenticated;
+revoke execute on function public.bridge_upsert_masters(text, text, jsonb) from public, anon, authenticated;
+revoke execute on function public.bridge_voucher_guids(text, date, date) from public, anon, authenticated;
+revoke execute on function public.bridge_voucher_by_tag(text, text) from public, anon, authenticated;
+revoke execute on function public.bridge_ledger_balances(text) from public, anon, authenticated;
+revoke execute on function public.bridge_log(text, jsonb) from public, anon, authenticated;
 revoke execute on function public.bridge_mark_deleted(text, text[]) from public, anon, authenticated;
 revoke execute on function public.bridge_claim_writebacks(text, text[], text[], int) from public, anon, authenticated;
 revoke execute on function public.bridge_writeback_result(uuid, text, text, jsonb) from public, anon, authenticated;

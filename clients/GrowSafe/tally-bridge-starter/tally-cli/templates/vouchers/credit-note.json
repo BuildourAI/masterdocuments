@@ -1,0 +1,22 @@
+{
+  "kind": "credit-note",
+  "date": "2026-11-24",
+  "party": "Alpha Hardware Stores",
+  "number": "CN/26-27/0101",
+  "narration": "Goods returned against SI/26-27/0040",
+  "items": [
+    {
+      "item": "LED Bulb 9W",
+      "qty": 10,
+      "rate": 95,
+      "ledger": "Sales GST 12%"
+    }
+  ],
+  "taxes": "auto",
+  "bills": [
+    {
+      "type": "against",
+      "ref": "SI/26-27/0040"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "ledger",
+  "columns": {
+    "name": "Customer",
+    "group": "Group",
+    "gstin": "GSTIN",
+    "state": "State",
+    "email": "Email",
+    "creditDays": "Credit Days"
+  },
+  "defaults": {
+    "billWise": true
+  }
+}

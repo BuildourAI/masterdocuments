@@ -1,0 +1,4 @@
+Invoice No,Date,Customer,Item,Qty,Rate,Sales Ledger
+SI/26-27/0201,24-11-2026,Alpha Hardware Stores,MCB 32A Double Pole,10,520,Sales GST 18%
+SI/26-27/0201,24-11-2026,Alpha Hardware Stores,LED Bulb 9W,50,95,Sales GST 12%
+SI/26-27/0202,24-11-2026,Deccan Builders,RCCB 40A 4 Pole,4,2650,Sales GST 18%
