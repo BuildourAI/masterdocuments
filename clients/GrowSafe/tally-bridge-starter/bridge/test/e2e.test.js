@@ -69,7 +69,7 @@ test('incremental: a second sync with no change reads no vouchers', async () => 
   assert.equal(run.details.ledgers, 0);
 });
 
-test('payment reminders: unpaid bills per dealer, how late, the dealer's mobile and salesperson', async () => {
+test('payment reminders: unpaid bills per dealer, how late, the dealer mobile number and salesperson', async () => {
   const bills = await cli.exportRows('gs', 'receivables', { to: new Date().toISOString().slice(0, 10) });
   assert.equal(Number((await q(`select count(*) n from tally_outstanding where kind = 'receivable'`))[0].n), bills.length);
   const debtors = (await q(`select guid from tally_groups where name = 'Sundry Debtors'`))[0].guid;
