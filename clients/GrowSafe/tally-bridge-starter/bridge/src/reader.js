@@ -67,7 +67,13 @@ export async function syncCompany(cli, store, c) {
     if (now.altVchId && now.altVchId > lastVch) await store.rpc('bridge_set_state', { p_company_guid: company.guid, p_kind: 'vouchers', p_last: now.altVchId });
     run.details.vouchers = count;
 
-    // 3. Close the loop on anything the app wrote into Tally.
+    // 3. Unpaid bills (for payment reminders), refreshed whenever a voucher changed, and on the first run.
+    if (!state.outstanding || now.altVchId !== Number(state.outstanding)) {
+      run.details.outstanding = await refreshOutstanding(cli, store, c, company.guid);
+      if (now.altVchId) await store.rpc('bridge_set_state', { p_company_guid: company.guid, p_kind: 'outstanding', p_last: now.altVchId });
+    }
+
+    // 4. Close the loop on anything the app wrote into Tally.
     run.details.confirmed = await store.rpc('bridge_confirm_writebacks', { p_company_guid: company.guid });
     run.status = 'ok';
   } catch (err) {
@@ -79,6 +85,17 @@ export async function syncCompany(cli, store, c) {
     await store.rpc('bridge_log', { p_table: 'bridge_sync_runs', p_row: run }).catch(() => {});
   }
   return run;
+}
+
+/** Receivables and payables, bill by bill, as Tally reports them today. */
+export async function refreshOutstanding(cli, store, c, companyGuid) {
+  const asOf = today();
+  const out = {};
+  for (const [dataset, kind] of [['receivables', 'receivable'], ['payables', 'payable']]) {
+    const rows = await cli.exportRows(c.profile, dataset, { to: asOf });
+    out[dataset] = await store.rpc('bridge_replace_outstanding', { p_company_guid: companyGuid, p_kind: kind, p_as_of: asOf, p_rows: rows });
+  }
+  return out;
 }
 
 // Vouchers deleted in Tally never show up in an alter-id sync. Compare ids month by month.

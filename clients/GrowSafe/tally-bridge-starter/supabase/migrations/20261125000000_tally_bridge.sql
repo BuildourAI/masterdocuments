@@ -115,6 +115,17 @@ create index if not exists tally_ledgers_name on public.tally_ledgers(company_gu
 create index if not exists tally_groups_name on public.tally_groups(company_guid, name);
 create index if not exists tally_stock_items_name on public.tally_stock_items(company_guid, name);
 
+-- Unpaid bills, bill by bill, as Tally reports them (receivables from dealers, payables to suppliers).
+-- Replaced as a whole on each refresh; the input for payment reminders and the sales team's collection view.
+create table if not exists public.tally_outstanding (
+  company_guid text not null references public.tally_companies(guid),
+  kind text not null check (kind in ('receivable','payable')),
+  party text not null, bill_ref text not null default '', bill_date date, due_date date,
+  amount numeric(18,2) not null default 0, is_advance boolean not null default false,
+  as_of date not null, refreshed_at timestamptz not null default now()
+);
+create index if not exists tally_outstanding_party on public.tally_outstanding(company_guid, kind, party);
+
 -- ---------- Sync bookkeeping ----------
 create table if not exists public.bridge_sync_state (
   company_guid text not null, kind text not null, last_alter_id bigint not null default 0,
@@ -207,6 +218,23 @@ with recursive tree as (
 )
 select distinct t.profile_id, l.company_guid, l.guid as ledger_guid, l.name as dealer, l.closing_balance
 from tree t join public.tally_ledgers l on l.company_guid = t.company_guid and l.parent = t.group_name;
+
+-- Per dealer: what is unpaid and how late, with the dealer's mobile and the salesperson(s) whose groups hold the dealer.
+-- Overdue days are counted from today, so the view stays right between refreshes.
+create or replace view public.v_dealer_outstanding with (security_invoker = on) as
+select o.company_guid, o.party as dealer, l.guid as ledger_guid, l.parent as dealer_group, l.mobile, l.email, l.credit_days,
+       sum(o.amount) filter (where not o.is_advance) as outstanding,
+       sum(o.amount) filter (where not o.is_advance and o.due_date < current_date) as overdue,
+       max(current_date - o.due_date) filter (where not o.is_advance and o.due_date < current_date) as max_overdue_days,
+       count(*) filter (where not o.is_advance and o.due_date < current_date) as overdue_bills,
+       sum(o.amount) filter (where o.is_advance) as advances,
+       (select array_agg(distinct sd.profile_id) from public.v_salesperson_dealers sd
+         where sd.company_guid = o.company_guid and sd.dealer = o.party) as salespeople,
+       max(o.as_of) as as_of
+from public.tally_outstanding o
+left join public.tally_ledgers l on l.company_guid = o.company_guid and l.name = o.party
+where o.kind = 'receivable'
+group by o.company_guid, o.party, l.guid, l.parent, l.mobile, l.email, l.credit_days;
 
 -- ---------- Functions used by the bridge (secret key) ----------
 create or replace function public.bridge_upsert_vouchers(p_company_guid text, p_rows jsonb)
@@ -342,6 +370,19 @@ begin
   return n;
 end $$;
 
+create or replace function public.bridge_replace_outstanding(p_company_guid text, p_kind text, p_as_of date, p_rows jsonb)
+returns int language plpgsql security definer set search_path = public as $$
+declare n int;
+begin
+  delete from tally_outstanding where company_guid = p_company_guid and kind = p_kind;
+  insert into tally_outstanding(company_guid, kind, party, bill_ref, bill_date, due_date, amount, is_advance, as_of)
+  select p_company_guid, p_kind, r->>'party', coalesce(r->>'ref', ''), (r->>'date')::date, (r->>'dueDate')::date,
+         coalesce((r->>'amount')::numeric, 0), coalesce((r->>'isAdvance')::boolean, false), p_as_of
+  from jsonb_array_elements(p_rows) r;
+  get diagnostics n = row_count;
+  return n;
+end $$;
+
 create or replace function public.bridge_voucher_guids(p_company_guid text, p_from date, p_to date)
 returns text[] language sql stable security definer set search_path = public as $$
   select coalesce(array_agg(guid), '{}') from tally_vouchers
@@ -410,7 +451,7 @@ declare t text;
 begin
   foreach t in array array['tally_companies','tally_groups','tally_ledgers','tally_cost_centres','tally_stock_groups',
     'tally_stock_items','tally_units','tally_godowns','tally_voucher_types','tally_vouchers','tally_ledger_entries',
-    'tally_inventory_entries','bridge_sync_state','bridge_sync_runs','bridge_reconciliations','bridge_writeback_queue',
+    'tally_inventory_entries','tally_outstanding','bridge_sync_state','bridge_sync_runs','bridge_reconciliations','bridge_writeback_queue',
     'app_approval_rules','app_profile_tally_links','app_salesperson_groups'] loop
     execute format('alter table public.%I enable row level security', t);
   end loop;
@@ -423,7 +464,7 @@ declare t text;
 begin
   foreach t in array array['tally_companies','tally_groups','tally_ledgers','tally_cost_centres','tally_stock_groups',
     'tally_stock_items','tally_units','tally_godowns','tally_voucher_types','tally_vouchers','tally_ledger_entries',
-    'tally_inventory_entries','bridge_sync_runs','bridge_reconciliations','app_approval_rules'] loop
+    'tally_inventory_entries','tally_outstanding','bridge_sync_runs','bridge_reconciliations','app_approval_rules'] loop
     execute format('drop policy if exists "read for signed-in" on public.%I', t);
     execute format('create policy "read for signed-in" on public.%I for select to authenticated using (true)', t);
   end loop;
@@ -450,6 +491,7 @@ revoke execute on function public.bridge_get_state(text) from public, anon, auth
 revoke execute on function public.bridge_set_state(text, text, bigint) from public, anon, authenticated;
 revoke execute on function public.bridge_upsert_masters(text, text, jsonb) from public, anon, authenticated;
 revoke execute on function public.bridge_voucher_guids(text, date, date) from public, anon, authenticated;
+revoke execute on function public.bridge_replace_outstanding(text, text, date, jsonb) from public, anon, authenticated;
 revoke execute on function public.bridge_voucher_by_tag(text, text) from public, anon, authenticated;
 revoke execute on function public.bridge_ledger_balances(text) from public, anon, authenticated;
 revoke execute on function public.bridge_log(text, jsonb) from public, anon, authenticated;

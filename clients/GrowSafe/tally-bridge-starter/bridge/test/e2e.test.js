@@ -69,6 +69,19 @@ test('incremental: a second sync with no change reads no vouchers', async () => 
   assert.equal(run.details.ledgers, 0);
 });
 
+test('payment reminders: unpaid bills per dealer, how late, the dealer's mobile and salesperson', async () => {
+  const bills = await cli.exportRows('gs', 'receivables', { to: new Date().toISOString().slice(0, 10) });
+  assert.equal(Number((await q(`select count(*) n from tally_outstanding where kind = 'receivable'`))[0].n), bills.length);
+  const debtors = (await q(`select guid from tally_groups where name = 'Sundry Debtors'`))[0].guid;
+  await q(`insert into app_salesperson_groups values ($1, $2, $3)`, ['00000000-0000-0000-0000-000000000001', guid, debtors]);
+  const alpha = (await q(`select * from v_dealer_outstanding where dealer = 'Alpha Hardware Stores'`))[0];
+  const expected = bills.filter((b) => b.party === 'Alpha Hardware Stores' && !b.isAdvance).reduce((t, b) => t + b.amount, 0);
+  assert.equal(Number(alpha.outstanding), expected);
+  assert.ok(Number(alpha.overdue) > 0 && alpha.max_overdue_days > 0);
+  assert.ok(alpha.mobile, 'mobile number from the Tally ledger');
+  assert.deepEqual(alpha.salespeople, ['00000000-0000-0000-0000-000000000001']);
+});
+
 const payloads = {
   ledger: { name: 'Sharma Agro Bhopal', group: 'Sundry Debtors', gstin: '23AAFCA1111A1ZV', gstRegistrationType: 'Regular', state: 'Madhya Pradesh', billWise: true, creditDays: 30 },
   Sales: { date: '2026-11-25', party: 'Alpha Hardware Stores', narration: 'App order', items: [{ item: 'LED Bulb 9W', qty: 10, rate: 95, ledger: 'Sales GST 12%' }], taxes: 'auto', roundOff: 'auto', bills: [{ type: 'new', ref: 'APP-0001' }] },

@@ -47,7 +47,9 @@ tally-cli is used as it is; the bridge never builds Tally XML. Its documentation
 - Orders, delivery and receipt notes, memoranda and stock-only vouchers are kept (sales reporting needs orders) but never count in balances (`tally_affects_books`).
 - The app never writes `tally_*` tables (no RLS write policy; the bridge writes through the `bridge_*` functions with the secret key).
 
-**Not yet in this code (add on the test copy, in this order):** batch manufacturing and expiry dates and price levels (from the stock item and batch masters, with `tally query collection`); the daily stock summary by godown and batch compared with Tally (`tally export stock`); party outstanding by bill compared with Tally (`tally export receivables`). The code already reconciles every ledger's closing balance (`reconcile.js`) and monthly voucher counts (`detectDeletions`).
+- **Unpaid bills for payment reminders:** whenever a voucher changed, the bridge refreshes `tally_outstanding` from tally-cli's receivables and payables (bill by bill: party, bill, bill date, due date, amount, advance). The view `v_dealer_outstanding` gives per dealer the outstanding, the overdue amount, the most days overdue, the overdue bill count, the dealer's mobile and email from the Tally ledger, and the salesperson(s) whose Tally groups hold the dealer. Overdue days are counted from today, so the view stays right between refreshes.
+
+**Not yet in this code (add on the test copy, in this order):** batch manufacturing and expiry dates and price levels (from the stock item and batch masters, with `tally query collection`); the daily stock summary by godown and batch compared with Tally (`tally export stock`). The code already reconciles every ledger's closing balance (`reconcile.js`) and monthly voucher counts (`detectDeletions`); a dealer's outstanding in `v_dealer_outstanding` can be compared with his ledger balance.
 
 ## 4. Writing (points 2, 3 and 4)
 

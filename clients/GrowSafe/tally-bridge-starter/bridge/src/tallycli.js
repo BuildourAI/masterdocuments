@@ -83,7 +83,7 @@ export class TallyCli {
       if (from) args.push('--from', from);
       if (to) args.push('--to', to);
     }
-    if (!['ledgers', 'groups', 'items', 'units', 'godowns', 'cost-centres', 'voucher-types', 'stock-groups'].includes(dataset)) {
+    if (!['ledgers', 'groups', 'items', 'units', 'godowns', 'cost-centres', 'voucher-types', 'stock-groups', 'receivables', 'payables'].includes(dataset)) {
       args.push('--include-optional', '--include-cancelled');
     }
     return (await this.run(profile, args)).rows;
